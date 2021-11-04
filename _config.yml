@@ -26,7 +26,7 @@ author:
 description: >- # this means to ignore newlines until "baseurl:"
   This is the website of the Advanced Data Science unit
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-baseurl: "/mlphysical" # the subpath of your site, e.g. /blog
+baseurl: "/ads" # the subpath of your site, e.g. /blog
 twitter_username:
 github_username: mlatcl
 colab: https://colab.research.google.com
