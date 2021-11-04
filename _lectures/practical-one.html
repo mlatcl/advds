@@ -658,6 +658,12 @@ sns.set_palette('colorblind')}-->
 <div class="sourceCode" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> nigeria_gdf.plot(color<span class="op">=</span><span class="st">&#39;white&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, alpha<span class="op">=</span><span class="dv">0</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">11</span>))</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;hosp_per_capita_10k&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Hospitals Per Capita (10k) of Nigerian States&quot;</span>)</span></code></pre></div>
+<h3 id="exercise-2">Exercise 2</h3>
+<p>Add a new column the dataframe for covid cases per 10,000 population, in the same way we computed health facilities per 10k capita.</p>
+<h3 id="exercise-3">Exercise 3</h3>
+<p>Add a new column for covid cases per health facility.</p>
+<h3 id="exercise-1">Exercise 1</h3>
+<p>Do this in both the SQL and the Pandas styles to get a feel for how they differ.</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pop_joined[&#39;cases_per_capita_10k&#39;] = ???</span></span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="co"># pop_joined[&#39;cases_per_facility&#39;] = ???</span></span></code></pre></div>
