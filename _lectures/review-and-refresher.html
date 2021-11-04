@@ -190,7 +190,7 @@ P(y|x) = p(y).
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>total_large_doctors <span class="op">=</span> (data.num_doctors_fulltime<span class="op">&gt;</span><span class="dv">1</span>).<span class="bu">sum</span>()</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>prob_both_large <span class="op">=</span> large<span class="op">/</span>total_large_doctors</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Probability of number of nurses being greater than 2 given number of doctors is greater than 1 is:&quot;</span>, prob_both_large)</span></code></pre></div>
-<h3 id="exercise-2">Exercise 2</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <p>Write code that prints out the probability of nurses being greater than 2 for different numbers of doctors.</p>
 <p>Make sure the plot is included in <em>this</em> notebook file (the Jupyter magic command <code>%matplotlib inline</code> we ran above will do that for you, it only needs to be run once per file).</p>
 <table>
@@ -312,7 +312,7 @@ P(Y=y) = \sum_{x} P(Y=y, X=x)
 \]</span> Or in our shortened notation <span class="math display">\[
 P(y) = \sum_{x} P(y, x)
 \]</span></p>
-<h3 id="exercise-3">Exercise 3</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <p>Write code that computes <span class="math inline">\(P(y)\)</span> by adding <span class="math inline">\(P(y, x)\)</span> for all values of <span class="math inline">\(x\)</span>.</p>
 <h2 id="bayes-rule">Bayes’ Rule</h2>
 <p>Bayes’ rule is a very simple rule, it’s hardly worth the name of a rule at all. It follows directly from the product rule of probability. Because <span class="math inline">\(P(y, x) = P(y|x)P(x)\)</span> and by symmetry <span class="math inline">\(P(y,x)=P(x,y)=P(x|y)P(y)\)</span> then by equating these two equations and dividing through by <span class="math inline">\(P(y)\)</span> we have <span class="math display">\[
@@ -333,7 +333,7 @@ P(x|y) =
 </div>
 <p>What use is all this probability in data science? Let’s think about how we might use the probabilities to do some decision making. Let’s look at the information data.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>data.columns</span></code></pre></div>
-<h3 id="exercise-1">Exercise 1</h3>
+<h3 id="exercise-3">Exercise 3</h3>
 <p>Now we see we have several additional features. Let’s assume we want to predict <code>maternal_health_delivery_services</code>. How would we go about doing it?</p>
 <p>Using what you’ve learnt about joint, conditional and marginal probabilities, as well as the sum and product rule, how would you formulate the question you want to answer in terms of probabilities? Should you be using a joint or a conditional distribution? If it’s conditional, what should the distribution be over, and what should it be conditioned on?</p>
 <div class="figure">
