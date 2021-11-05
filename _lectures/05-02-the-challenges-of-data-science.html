@@ -1,7 +1,7 @@
 ---
 title: "The Challenges of Data Science"
 venue: "LT2, William Gates Building"
-abstract: "<p>Given the landscape we’ve outlined, in this lecture we will look at the challenges of deploying data science solutions in practice. We categorize them into three groups.</p>"
+abstract: "<p>In the first lecture, we laid out the underpinning phenomena that give us the landscape of data science. In this lecture we unpick the challenges that landscape presents us with. The material gives you context for why data science is very different from standard software engineering, and how data science problems need to be approached including the many different aspects that need to be considered. We will look at the challenges of deploying data science solutions in practice. We categorize them into three groups.</p>"
 author:
 - given: Neil D.
   family: Lawrence
@@ -33,6 +33,215 @@ categories:
 <!--
 
 -->
+<h1 id="introduction">Introduction</h1>
+<p>Data science is an emerging discipline. That makes it harder to make clean decisions about what any given individual will need to know to become a data scientist. Those of you who are studying now will be those that define the discipline. As we deploy more data driven decision making in the world, the role will be refined. Until we achieve that refinement, your knowledge needs to be broad based.</p>
+<p>In this lecture we will first continue our theme of how our limitations as humans mean that our analysis of data can be effected, and I will introduce an analogy that should help you understand <em>how</em> data science differs significantly from traditional software engineering. We’ll then contextualize some of the challenges the domain into three different groups.</p>
+<h2 id="complexity-in-action">Complexity in Action</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_psychology/includes/selective-attention-bias.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_psychology/includes/selective-attention-bias.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>As an exercise in understanding complexity, watch the following video. You will see the basketball being bounced around, and the players moving. Your job is to count the passes of those dressed in white and ignore those of the individuals dressed in black.</p>
+<div class="figure">
+<div id="monkey-business-figure" class="figure-frame">
+<iframe width="600" height="450" src="https://www.youtube.com/embed/vJG698U2Mvo?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</div>
+<div id="monkey-business-magnify" class="magnify" onclick="magnifyFigure(&#39;monkey-business&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="monkey-business-caption" class="caption-frame">
+<p>Figure: Daniel Simon’s famous illusion “monkey business.” Focus on the movement of the ball distracts the viewer from seeing other aspects of the image.</p>
+</div>
+</div>
+<p>In a classic study <span class="citation" data-cites="Simons-gorillas99">Simons and Chabris (1999)</span> ask subjects to count the number of passes of the basketball between players on the team wearing white shirts. Fifty percent of the time, these subjects don’t notice the gorilla moving across the scene.</p>
+<p>The phenomenon of inattentional blindness is well known, e.g in their paper Simons and Charbris quote the Hungarian neurologist, Rezsö Bálint,</p>
+<blockquote>
+<p>It is a well-known phenomenon that we do not notice anything happening in our surroundings while being absorbed in the inspection of something; focusing our attention on a certain object may happen to such an extent that we cannot perceive other objects placed in the peripheral parts of our visual field, although the light rays they emit arrive completely at the visual sphere of the cerebral cortex.</p>
+<p>Rezsö Bálint 1907 (translated in Husain and Stein 1988, page 91)</p>
+</blockquote>
+<p>When we combine the complexity of the world with our relatively low bandwidth for information, problems can arise. Our focus on what we perceive to be the most important problem can cause us to miss other (potentially vital) contextual information.</p>
+<p>This phenomenon is known as selective attention or ‘inattentional blindness.’</p>
+<div class="figure">
+<div id="daniel-simons-monkey-business-figure" class="figure-frame">
+<iframe width="600" height="450" src="https://www.youtube.com/embed/_oGAzq5wM_Q?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</div>
+<div id="daniel-simons-monkey-business-magnify" class="magnify" onclick="magnifyFigure(&#39;daniel-simons-monkey-business&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="daniel-simons-monkey-business-caption" class="caption-frame">
+<p>Figure: For a longer talk on inattentional bias from Daniel Simons see this video.</p>
+</div>
+</div>
+<h2 id="data-selective-attention-bias">Data Selective Attention Bias</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-inattention-bias.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-inattention-bias.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>We are going to see how inattention biases can play out in data analysis by going through a simple example. The analysis involves body mass index and activity information.</p>
+<h2 id="bmi-steps-data">BMI Steps Data</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/bmi-steps-data.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/bmi-steps-data.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>The BMI Steps example is taken from <span class="citation" data-cites="Yanai-hypothesis20">Yanai and Lercher (2020)</span>. We are given a data set of body-mass index measurements against step counts. For convenience we have packaged the data so that it can be easily downloaded.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.bmi_steps()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>] </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span></code></pre></div>
+<p>It is good practice to give our variables interpretable names so that the analysis may be clearly understood by others. Here the <code>steps</code> count is the first dimension of the covariate, the <code>bmi</code> is the second dimension and the <code>gender</code> is stored in <code>y</code> with <code>1</code> for female and <code>0</code> for male.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>steps <span class="op">=</span> X[:, <span class="dv">0</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>bmi <span class="op">=</span> X[:, <span class="dv">1</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gender <span class="op">=</span> y[:, <span class="dv">0</span>]</span></code></pre></div>
+<p>We can check the mean steps and the mean of the BMI.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Steps mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>steps.mean()))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;BMI mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>bmi.mean()))</span></code></pre></div>
+<h2 id="bmi-steps-data-analysis">BMI Steps Data Analysis</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/bmi-steps-analysis.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/bmi-steps-analysis.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>We can also separate out the means from the male and female populations. In python this can be done by setting male and female indices as follows.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>male_ind <span class="op">=</span> (gender<span class="op">==</span><span class="dv">0</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>female_ind <span class="op">=</span> (gender<span class="op">==</span><span class="dv">1</span>)</span></code></pre></div>
+<p>And now we can extract the variables for the two populations.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>male_steps <span class="op">=</span> steps[male_ind]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>male_bmi <span class="op">=</span> bmi[male_ind]</span></code></pre></div>
+<p>And as before we compute the mean.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Male steps mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>male_steps.mean()))</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Male BMI mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>male_bmi.mean()))</span></code></pre></div>
+<p>Similarly, we can get the same result for the female portion of the populaton.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>female_steps <span class="op">=</span> steps[female_ind]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>female_bmi <span class="op">=</span> bmi[female_ind]</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Female steps mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>female_steps.mean()))</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Female BMI mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>female_bmi.mean()))</span></code></pre></div>
+<p>Interesting, the female BMI average is slightly higher than the male BMI average. The number of steps in the male group is higher than that in the female group. Perhaps the steps and the BMI are anti-correlated. The more steps, the lower the BMI.</p>
+<p>Python provides a statistics package. We’ll import this in <code>python</code> so that we can try and understand the correlation between the <code>steps</code> and the <code>BMI</code>.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> pearsonr</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>corr, _ <span class="op">=</span> pearsonr(steps, bmi)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Pearson&#39;s overall correlation: </span><span class="sc">{corr}</span><span class="st">&quot;</span>.<span class="bu">format</span>(corr<span class="op">=</span>corr))</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>male_corr, _ <span class="op">=</span> pearsonr(male_steps, male_bmi)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Pearson&#39;s correlation for males: </span><span class="sc">{corr}</span><span class="st">&quot;</span>.<span class="bu">format</span>(corr<span class="op">=</span>male_corr))</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>female_corr, _ <span class="op">=</span> pearsonr(female_steps, female_bmi)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Pearson&#39;s correlation for females: </span><span class="sc">{corr}</span><span class="st">&quot;</span>.<span class="bu">format</span>(corr<span class="op">=</span>female_corr))</span></code></pre></div>
+<h2 id="a-hypothesis-as-a-liability">A Hypothesis as a Liability</h2>
+<p>This analysis is from an article titled “A Hypothesis as a Liability” <span class="citation" data-cites="Yanai-hypothesis20">(Yanai and Lercher, 2020)</span>, they start their article with the following quite from Herman Hesse.</p>
+<blockquote>
+<p>“ ‘When someone seeks,’ said Siddhartha, ‘then it easily happens that his eyes see only the thing that he seeks, and he is able to find nothing, to take in nothing. […] Seeking means: having a goal. But finding means: being free, being open, having no goal.’ ”</p>
+<p>Hermann Hesse</p>
+</blockquote>
+<p>Their idea is that having a hypothesis can constrain our thinking. However, in answer to their paper <span class="citation" data-cites="Felin-data20">Felin et al. (2021)</span> argue that some form of hypothesis is always necessary, suggesting that a hypothesis <em>can</em> be a liability</p>
+<p>My view is captured in the introductory chapter to an edited volume on computational systems biology that I worked on with Mark Girolami, Magnus Rattray and Guido Sanguinetti.</p>
+<div class="figure">
+<div id="licsb-popper-quote-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//data-science/licsb-popper-quote.png" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="licsb-popper-quote-magnify" class="magnify" onclick="magnifyFigure(&#39;licsb-popper-quote&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="licsb-popper-quote-caption" class="caption-frame">
+<p>Figure: Quote from <span class="citation" data-cites="Lawrence:licsbintro10">Lawrence (2010)</span> highlighting the importance of interaction between data and hypothesis.</p>
+</div>
+</div>
+<p>Popper nicely captures the interaction between hypothesis and data by relating it to the chicken and the egg. The important thing is that these two co-evolve.</p>
+<h2 id="number-theatre">Number Theatre</h2>
+<p>Unfortunately, we don’t always have time to wait for this process to converge to an answer we can all rely on before a decision is required.</p>
+<p>Not only can we be misled by data before a decision is made, but sometimes we can be misled by data to justify the making of a decision. David Spiegelhalter refers to the phenomenon of “Number Theatre” in a conversation with Andrew Marr from May 2020 on the presentation of data.</p>
+<div class="figure">
+<div id="david-andrew-marr-figure" class="figure-frame">
+<iframe width="600" height="450" src="https://www.youtube.com/embed/9388XmWIHXg?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</div>
+<div id="david-andrew-marr-magnify" class="magnify" onclick="magnifyFigure(&#39;david-andrew-marr&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="david-andrew-marr-caption" class="caption-frame">
+<p>Figure: Professor Sir David Spiegelhalter on Andrew Marr on 10th May 2020 speaking about some of the challengers around data, data presentation, and decision making in a pandemic. David mentions number theatre at 9 minutes 10 seconds.</p>
+</div>
+</div>
+<!--includebbcvideo{p08csg28}-->
+<h2 id="data-theatre">Data Theatre</h2>
+<p>Data Theatre exploits data inattention bias to present a particular view on events that may misrepresents through selective presentation. Statisticians are one of the few groups that are trained with a sufficient degree of data skepticism. But it can also be combatted through ensuring there are domain experts present, and that they can speak freely.</p>
+<div class="figure">
+<div id="data-theatre-001-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//business/data-theatre001.svg" width="60%" style=" ">
+</object>
+</div>
+<div id="data-theatre-001-magnify" class="magnify" onclick="magnifyFigure(&#39;data-theatre-001&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="data-theatre-001-caption" class="caption-frame">
+<p>Figure: The pheonomenon of number theatre or <em>data theatre</em> was described by David Spiegelhalter and is nicely sumamrized by Martin Robbins in this sub-stack article <a href="https://martinrobbins.substack.com/p/data-theatre-why-the-digital-dashboards" class="uri">https://martinrobbins.substack.com/p/data-theatre-why-the-digital-dashboards</a>.</p>
+</div>
+</div>
+<p>The best book I have found for teaching the skeptical sense of data that underlies the statisticians craft is David Spiegelhalter’s <em>Art of Statistics</em>.</p>
+<h1 id="the-art-of-statistics">The Art of Statistics</h1>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_books/includes/the-art-of-statistics.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_books/includes/the-art-of-statistics.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<center>
+<svg viewBox="0 0 200 200" style="width:15%">
+<defs> <clipPath id="clip0">
+<style>
+circle {
+  fill: black;
+}
+</style>
+<circle cx="100" cy="100" r="100"/> </clipPath> </defs>
+<title>
+David Spiegelhalter
+</title>
+<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/david-spiegelhalter.png" clip-path="url(#clip0)"/>
+</svg>
+</center>
+<div class="figure">
+<div id="art-of-statistics-figure" class="figure-frame">
+<div class="centered centered" style="">
+<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//books/the-art-of-statistics.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="art-of-statistics-magnify" class="magnify" onclick="magnifyFigure(&#39;art-of-statistics&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="art-of-statistics-caption" class="caption-frame">
+<p>Figure: <a href="https://www.amazon.co.uk/Art-Statistics-Learning-Pelican-Books-ebook/dp/B07HQDJD99">The Art of Statistics by David Spiegelhalter</a> is an excellent read on the pitfalls of data interpretation.</p>
+</div>
+</div>
+<p>David’s <span class="citation" data-cites="Spiegelhalter-art19">(Spiegelhalter, 2019)</span> book brings important examples from statistics to life in an intelligent and entertaining way. It is highly readable and gives an opportunity to fast-track towards the important skill of data-skepticism that is the mark of a professional statistician.</p>
+<h2 id="increasing-need-for-human-judgment">Increasing Need for Human Judgment</h2>
+<div class="figure">
+<div id="-figure" class="figure-frame">
+<iframe width="600" height="450" src="https://www.youtube.com/embed/ori6J8oR0jI?start=1350" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</div>
+<div id="-magnify" class="magnify" onclick="magnifyFigure(&#39;&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="-caption" class="caption-frame">
+<p>Figure: Diane Coyle’s Fitzwilliam Lecture where she emphasises as data increases, human judgment is <em>more</em> needed.</p>
+</div>
+</div>
+<div class="centered" style="">
+<svg viewBox="0 0 200 200" style="width:15%">
+<defs> <clipPath id="clip1">
+<style>
+circle {
+  fill: black;
+}
+</style>
+<circle cx="100" cy="100" r="100"/> </clipPath> </defs>
+<title>
+Diane Coyle
+</title>
+<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/diane-coyle.png" clip-path="url(#clip1)"/>
+</svg>
+</div>
+<blockquote>
+<p>The domain of human judgment is increasing.</p>
+<p>How these firms use knowledge. How do they generate ideas?</p>
+</blockquote>
 <h2 id="data-science-as-debugging">Data Science as Debugging</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-science-as-debugging.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-science-as-debugging.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
@@ -226,7 +435,7 @@ categories:
 <p>Assessing the readiness of data for analysis is one action that can be taken, but assessing teams that need to assimilate the information in the data is the other side of the coin. With this in mind both <a href="https://medium.com/@damoncivin/the-joel-test-for-data-readiness-4882aae64753">Damon Civin</a> and <a href="https://blog.dominodatalab.com/joel-test-data-science/">Nick Elprin</a> have independently proposed the idea of a “Data Joel Test.” A “<a href="https://www.joelonsoftware.com/2000/08/09/the-joel-test-12-steps-to-better-code/">Joel Test</a>” is a short questionaire to establish the ability of a team to handle software engineering tasks. It is designed as a rough and ready capability assessment. A “Data Joel Test” is similar, but for assessing the capability of a team in performing data science.</p>
 <h2 id="privacy-loss-of-control-and-marginalization">Privacy, Loss of Control and Marginalization</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/privacy-loss-of-control.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/privacy-loss-of-control.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/privacy-intro.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/privacy-intro.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <p>Society is becoming harder to monitor, but the individual is becoming easier to monitor. Social media monitoring for ‘hate speech’ can easily be turned to monitoring of political dissent. Marketing becomes more sinister when the target of the marketing is so well understood and the digital environment of the target is so well controlled.</p>
 <h3 id="bandwidth-constrained-conversations">Bandwidth Constrained Conversations</h3>
@@ -263,6 +472,10 @@ categories:
 <p>The high availability of data available to humans undermines human-to-human communication channels by providing new routes to undermining our control of self.</p>
 <p>The consequences between this mismatch of power and delivery are to be seen all around us. Because, just as driving an F1 car with bicycle wheels would be a fine art, so is the process of communication between humans.</p>
 <p>If I have a thought and I wish to communicate it, I first of all need to have a model of what you think. I should think before I speak. When I speak, you may react. You have a model of who I am and what I was trying to say, and why I chose to say what I said. Now we begin this dance, where we are each trying to better understand each other and what we are saying. When it works, it is beautiful, but when misdeployed, just like a badly driven F1 car, there is a horrible crash, an argument.</p>
+<h2 id="marketing-and-free-will">Marketing and Free Will</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/marketing-and-free-will.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/marketing-and-free-will.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>What does it mean for our free will if a computer can predict our individual behavior better than we ourselves can?</p>
 <p>There is potential for both explicit and implicit discrimination on the basis of race, religion, sexuality or health status. All of these are prohibited under European law, but can pass unawares or be implicit.</p>
 <p>The GDPR is the General Data Protection Regulation, but a better name for it would simpl by Good Data Practice Rules. It covers how to deal with discrimination which has a consequential effect on the individual. For example, entrance to University, access to loans or insurance. But the new phenomenon is dealing with a series of inconsequential decisions that taken together have a consequential effect.</p>
@@ -298,8 +511,20 @@ categories:
 <p>Figure: Data Science Africa <a href="http://datascienceafrica.org" class="uri">http://datascienceafrica.org</a> is a ground up initiative for capacity building around data science, machine learning and artificial intelligence on the African continent.</p>
 </div>
 </div>
+<div class="figure">
+<div id="dsa-events-october-2021-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//dsa/dsa-events-october-2021.svg" width="60%" style=" ">
+</object>
+</div>
+<div id="dsa-events-october-2021-magnify" class="magnify" onclick="magnifyFigure(&#39;dsa-events-october-2021&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="dsa-events-october-2021-caption" class="caption-frame">
+<p>Figure: Data Science Africa meetings held up to October 2021.</p>
+</div>
+</div>
 <p>Data Science Africa is a bottom up initiative for capacity building in data science, machine learning and artificial intelligence on the African continent.</p>
-<p>As of 2019 there have been five workshops and five schools, located in Nyeri, Kenya (twice); Kampala, Uganda; Arusha, Tanzania; Abuja, Nigeria; Addis Ababa, Ethiopia and Accra, Ghana. The next event is scheduled for June 2020 in Kampala, Uganda.</p>
+<p>As of October 2021 there have been five workshops and five schools, located in Nyeri, Kenya (twice); Kampala, Uganda; Arusha, Tanzania; Abuja, Nigeria; Addis Ababa, Ethiopia; Accra, Ghana; Kampala, Uganda and Kimberley, South Africa.</p>
 <p>The main notion is <em>end-to-end</em> data science. For example, going from data collection in the farmer’s field to decision making in the Ministry of Agriculture. Or going from malaria disease counts in health centers to medicine distribution.</p>
 <p>The philosophy is laid out in <span class="citation" data-cites="Lawrence:dsa15">(Lawrence, 2015)</span>. The key idea is that the modern <em>information infrastructure</em> presents new solutions to old problems. Modes of development change because less capital investment is required to take advantage of this infrastructure. The philosophy is that local capacity building is the right way to leverage these challenges in addressing data science problems in the African context.</p>
 <p>Data Science Africa is now a non-govermental organization registered in Kenya. The organising board of the meeting is entirely made up of scientists and academics based on the African continent.</p>
@@ -323,7 +548,7 @@ categories:
 </div>
 <div class="centered" style="">
 <svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip0">
+<defs> <clipPath id="clip2">
 <style>
 circle {
   fill: black;
@@ -333,10 +558,10 @@ circle {
 <title>
 Martin Mubangizi
 </title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/martin-mubangizi.png" clip-path="url(#clip0)"/>
+<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/martin-mubangizi.png" clip-path="url(#clip2)"/>
 </svg>
 <svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip1">
+<defs> <clipPath id="clip3">
 <style>
 circle {
   fill: black;
@@ -346,10 +571,10 @@ circle {
 <title>
 Ricardo Andrade Pacecho
 </title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/ricardo-andrade-pacheco.png" clip-path="url(#clip1)"/>
+<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/ricardo-andrade-pacheco.png" clip-path="url(#clip3)"/>
 </svg>
 <svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip2">
+<defs> <clipPath id="clip4">
 <style>
 circle {
   fill: black;
@@ -359,7 +584,7 @@ circle {
 <title>
 John Quinn
 </title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/john-quinn.jpg" clip-path="url(#clip2)"/>
+<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/john-quinn.jpg" clip-path="url(#clip4)"/>
 </svg>
 </div>
 <p>As an example of using Gaussian process models within the full pipeline from data to decsion, we’ll consider the prediction of Malaria incidence in Uganda. For the purposes of this study malaria reports come in two forms, HMIS reports from health centres and Sentinel data, which is curated by the WHO. There are limited sentinel sites and many HMIS sites.</p>
@@ -378,7 +603,7 @@ John Quinn
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="uganda-districts-2006-caption" class="caption-frame">
-<p>Figure: Ugandan districs. Data SRTM/NASA from <a href="https://dds.cr.usgs.gov/srtm/version2_1" class="uri">https://dds.cr.usgs.gov/srtm/version2_1</a>.</p>
+<p>Figure: Ugandan districts. Data SRTM/NASA from <a href="https://dds.cr.usgs.gov/srtm/version2_1" class="uri">https://dds.cr.usgs.gov/srtm/version2_1</a>.</p>
 </div>
 </div>
 <div style="text-align:right">
@@ -550,216 +775,14 @@ John Quinn
 <p>Figure: The Data Trusts Initiative (<a href="https://datatrusts.uk/" target="_blank">http://datatrusts.uk</a>) hosts blog posts helping build understanding of data trusts and supports research and pilot projects.</p>
 </div>
 </div>
+<h2 id="amelioration">Amelioration</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/privacy-amelioration.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/privacy-amelioration.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>Addressing challenges in privacy, loss of control and marginalization includes ensuring that the individual retains control of their own data. We accept privacy in our real loves, we need to accept it in our digital persona. This is vital for our control of persona and our ability to project ourselves.</p>
 <p>Fairness goes hand in hand with privacy to protect the individual. Regulations like the GDPR date from a time where the main worry was <em>consequential</em> decision making but today we also face problems from accumulation of inconsequential decisions leading to a resulting consequential effect.</p>
 <p>Capacity building in different contexts, empowering domain experts to solve their own problems, is one aspect to the solution. A further proposal is the use of data trusts to reintroduce control of personal data for the individual.</p>
 <p>You can also check this blog post on <a href="http://inverseprobability.com/2016/07/01/data-science-challenges">Three Data Science Challenges</a>..</p>
-<h2 id="complexity-in-action">Complexity in Action</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_psychology/includes/selective-attention-bias.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_psychology/includes/selective-attention-bias.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>As an exercise in understanding complexity, watch the following video. You will see the basketball being bounced around, and the players moving. Your job is to count the passes of those dressed in white and ignore those of the individuals dressed in black.</p>
-<div class="figure">
-<div id="monkey-business-figure" class="figure-frame">
-<iframe width="600" height="450" src="https://www.youtube.com/embed/vJG698U2Mvo?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
-</div>
-<div id="monkey-business-magnify" class="magnify" onclick="magnifyFigure(&#39;monkey-business&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="monkey-business-caption" class="caption-frame">
-<p>Figure: Daniel Simon’s famous illusion “monkey business.” Focus on the movement of the ball distracts the viewer from seeing other aspects of the image.</p>
-</div>
-</div>
-<p>In a classic study <span class="citation" data-cites="Simons-gorillas99">Simons and Chabris (1999)</span> ask subjects to count the number of passes of the basketball between players on the team wearing white shirts. Fifty percent of the time, these subjects don’t notice the gorilla moving across the scene.</p>
-<p>The phenomenon of inattentional blindness is well known, e.g in their paper Simons and Charbris quote the Hungarian neurologist, Rezsö Bálint,</p>
-<blockquote>
-<p>It is a well-known phenomenon that we do not notice anything happening in our surroundings while being absorbed in the inspection of something; focusing our attention on a certain object may happen to such an extent that we cannot perceive other objects placed in the peripheral parts of our visual field, although the light rays they emit arrive completely at the visual sphere of the cerebral cortex.</p>
-<p>Rezsö Bálint 1907 (translated in Husain and Stein 1988, page 91)</p>
-</blockquote>
-<p>When we combine the complexity of the world with our relatively low bandwidth for information, problems can arise. Our focus on what we perceive to be the most important problem can cause us to miss other (potentially vital) contextual information.</p>
-<p>This phenomenon is known as selective attention or ‘inattentional blindness.’</p>
-<div class="figure">
-<div id="daniel-simons-monkey-business-figure" class="figure-frame">
-<iframe width="600" height="450" src="https://www.youtube.com/embed/_oGAzq5wM_Q?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
-</div>
-<div id="daniel-simons-monkey-business-magnify" class="magnify" onclick="magnifyFigure(&#39;daniel-simons-monkey-business&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="daniel-simons-monkey-business-caption" class="caption-frame">
-<p>Figure: For a longer talk on inattentional bias from Daniel Simons see this video.</p>
-</div>
-</div>
-<h2 id="data-selective-attention-bias">Data Selective Attention Bias</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-inattention-bias.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-inattention-bias.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>We are going to see how inattention biases can play out in data analysis by going through a simple example. The analysis involves body mass index and activity information.</p>
-<h2 id="bmi-steps-data">BMI Steps Data</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/bmi-steps-data.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/bmi-steps-data.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>The BMI Steps example is taken from <span class="citation" data-cites="Yanai-hypothesis20">Yanai and Lercher (2020)</span>. We are given a data set of body-mass index measurements against step counts. For convenience we have packaged the data so that it can be easily downloaded.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.bmi_steps()</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>] </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span></code></pre></div>
-<p>It is good practice to give our variables interpretable names so that the analysis may be clearly understood by others. Here the <code>steps</code> count is the first dimension of the covariate, the <code>bmi</code> is the second dimension and the <code>gender</code> is stored in <code>y</code> with <code>1</code> for female and <code>0</code> for male.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>steps <span class="op">=</span> X[:, <span class="dv">0</span>]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>bmi <span class="op">=</span> X[:, <span class="dv">1</span>]</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gender <span class="op">=</span> y[:, <span class="dv">0</span>]</span></code></pre></div>
-<p>We can check the mean steps and the mean of the BMI.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Steps mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>steps.mean()))</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;BMI mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>bmi.mean()))</span></code></pre></div>
-<h2 id="bmi-steps-data-analysis">BMI Steps Data Analysis</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/bmi-steps-analysis.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/bmi-steps-analysis.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>We can also separate out the means from the male and female populations. In python this can be done by setting male and female indices as follows.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>male_ind <span class="op">=</span> (gender<span class="op">==</span><span class="dv">0</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>female_ind <span class="op">=</span> (gender<span class="op">==</span><span class="dv">1</span>)</span></code></pre></div>
-<p>And now we can extract the variables for the two populations.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>male_steps <span class="op">=</span> steps[male_ind]</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>male_bmi <span class="op">=</span> bmi[male_ind]</span></code></pre></div>
-<p>And as before we compute the mean.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Male steps mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>male_steps.mean()))</span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Male BMI mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>male_bmi.mean()))</span></code></pre></div>
-<p>Similarly, we can get the same result for the female portion of the populaton.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>female_steps <span class="op">=</span> steps[female_ind]</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>female_bmi <span class="op">=</span> bmi[female_ind]</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Female steps mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>female_steps.mean()))</span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Female BMI mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>female_bmi.mean()))</span></code></pre></div>
-<p>Interesting, the female BMI average is slightly higher than the male BMI average. The number of steps in the male group is higher than that in the female group. Perhaps the steps and the BMI are anti-correlated. The more steps, the lower the BMI.</p>
-<p>Python provides a statistics package. We’ll import this in <code>python</code> so that we can try and understand the correlation between the <code>steps</code> and the <code>BMI</code>.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> pearsonr</span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>corr, _ <span class="op">=</span> pearsonr(steps, bmi)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Pearson&#39;s overall correlation: </span><span class="sc">{corr}</span><span class="st">&quot;</span>.<span class="bu">format</span>(corr<span class="op">=</span>corr))</span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>male_corr, _ <span class="op">=</span> pearsonr(male_steps, male_bmi)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Pearson&#39;s correlation for males: </span><span class="sc">{corr}</span><span class="st">&quot;</span>.<span class="bu">format</span>(corr<span class="op">=</span>male_corr))</span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>female_corr, _ <span class="op">=</span> pearsonr(female_steps, female_bmi)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Pearson&#39;s correlation for females: </span><span class="sc">{corr}</span><span class="st">&quot;</span>.<span class="bu">format</span>(corr<span class="op">=</span>female_corr))</span></code></pre></div>
-<h2 id="a-hypothesis-as-a-liability">A Hypothesis as a Liability</h2>
-<p>This analysis is from an article titled “A Hypothesis as a Liability” <span class="citation" data-cites="Yanai-hypothesis20">(Yanai and Lercher, 2020)</span>, they start their article with the following quite from Herman Hesse.</p>
-<blockquote>
-<p>“ ‘When someone seeks,’ said Siddhartha, ‘then it easily happens that his eyes see only the thing that he seeks, and he is able to find nothing, to take in nothing. […] Seeking means: having a goal. But finding means: being free, being open, having no goal.’ ”</p>
-<p>Hermann Hesse</p>
-</blockquote>
-<p>Their idea is that having a hypothesis can constrain our thinking. However, in answer to their paper <span class="citation" data-cites="Felin-data20">Felin et al. (2021)</span> argue that some form of hypothesis is always necessary, suggesting that a hypothesis <em>can</em> be a liability</p>
-<p>My view is captured in the introductory chapter to an edited volume on computational systems biology that I worked on with Mark Girolami, Magnus Rattray and Guido Sanguinetti.</p>
-<div class="figure">
-<div id="licsb-popper-quote-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//data-science/licsb-popper-quote.png" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-<div id="licsb-popper-quote-magnify" class="magnify" onclick="magnifyFigure(&#39;licsb-popper-quote&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="licsb-popper-quote-caption" class="caption-frame">
-<p>Figure: Quote from <span class="citation" data-cites="Lawrence:licsbintro10">Lawrence (2010)</span> highlighting the importance of interaction between data and hypothesis.</p>
-</div>
-</div>
-<p>Popper nicely captures the interaction between hypothesis and data by relating it to the chicken and the egg. The important thing is that these two co-evolve.</p>
-<h2 id="number-theatre">Number Theatre</h2>
-<p>Unfortunately, we don’t always have time to wait for this process to converge to an answer we can all rely on before a decision is required.</p>
-<p>Not only can we be misled by data before a decision is made, but sometimes we can be misled by data to justify the making of a decision. David Spiegelhalter refers to the phenomenon of “Number Theatre” in a conversation with Andrew Marr from May 2020 on the presentation of data.</p>
-<div class="figure">
-<div id="david-andrew-marr-figure" class="figure-frame">
-<iframe width="600" height="450" src="https://www.youtube.com/embed/9388XmWIHXg?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
-</div>
-<div id="david-andrew-marr-magnify" class="magnify" onclick="magnifyFigure(&#39;david-andrew-marr&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="david-andrew-marr-caption" class="caption-frame">
-<p>Figure: Professor Sir David Spiegelhalter on Andrew Marr on 10th May 2020 speaking about some of the challengers around data, data presentation, and decision making in a pandemic. David mentions number theatre at 9 minutes 10 seconds.</p>
-</div>
-</div>
-<!--includebbcvideo{p08csg28}-->
-<h2 id="data-theatre">Data Theatre</h2>
-<p>Data Theatre exploits data inattention bias to present a particular view on events that may misrepresents through selective presentation. Statisticians are one of the few groups that are trained with a sufficient degree of data skepticism. But it can also be combatted through ensuring there are domain experts present, and that they can speak freely.</p>
-<div class="figure">
-<div id="data-theatre-001-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//business/data-theatre001.svg" width="60%" style=" ">
-</object>
-</div>
-<div id="data-theatre-001-magnify" class="magnify" onclick="magnifyFigure(&#39;data-theatre-001&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="data-theatre-001-caption" class="caption-frame">
-<p>Figure: The pheonomenon of number theatre or <em>data theatre</em> was described by David Spiegelhalter and is nicely sumamrized by Martin Robbins in this sub-stack article <a href="https://martinrobbins.substack.com/p/data-theatre-why-the-digital-dashboards" class="uri">https://martinrobbins.substack.com/p/data-theatre-why-the-digital-dashboards</a>.</p>
-</div>
-</div>
-<p>The best book I have found for teaching the skeptical sense of data that underlies the statisticians craft is David Spiegelhalter’s <em>Art of Statistics</em>.</p>
-<h1 id="the-art-of-statistics">The Art of Statistics</h1>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_books/includes/the-art-of-statistics.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_books/includes/the-art-of-statistics.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<center>
-<svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip3">
-<style>
-circle {
-  fill: black;
-}
-</style>
-<circle cx="100" cy="100" r="100"/> </clipPath> </defs>
-<title>
-David Spiegelhalter
-</title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/david-spiegelhalter.png" clip-path="url(#clip3)"/>
-</svg>
-</center>
-<div class="figure">
-<div id="art-of-statistics-figure" class="figure-frame">
-<div class="centered centered" style="">
-<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//books/the-art-of-statistics.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-<div id="art-of-statistics-magnify" class="magnify" onclick="magnifyFigure(&#39;art-of-statistics&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="art-of-statistics-caption" class="caption-frame">
-<p>Figure: <a href="https://www.amazon.co.uk/Art-Statistics-Learning-Pelican-Books-ebook/dp/B07HQDJD99">The Art of Statistics by David Spiegelhalter</a> is an excellent read on the pitfalls of data interpretation.</p>
-</div>
-</div>
-<p>David’s <span class="citation" data-cites="Spiegelhalter-art19">(Spiegelhalter, 2019)</span> book brings important examples from statistics to life in an intelligent and entertaining way. It is highly readable and gives an opportunity to fast-track towards the important skill of data-skepticism that is the mark of a professional statistician.</p>
-<h2 id="increasing-need-for-human-judgment">Increasing Need for Human Judgment</h2>
-<div class="figure">
-<div id="-figure" class="figure-frame">
-<iframe width="600" height="450" src="https://www.youtube.com/embed/ori6J8oR0jI?start=1350" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
-</div>
-<div id="-magnify" class="magnify" onclick="magnifyFigure(&#39;&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="-caption" class="caption-frame">
-<p>Figure: Diane Coyle’s Fitzwilliam Lecture where she emphasises as data increases, human judgment is <em>more</em> needed.</p>
-</div>
-</div>
-<div class="centered" style="">
-<svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip4">
-<style>
-circle {
-  fill: black;
-}
-</style>
-<circle cx="100" cy="100" r="100"/> </clipPath> </defs>
-<title>
-Diane Coyle
-</title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/diane-coyle.png" clip-path="url(#clip4)"/>
-</svg>
-</div>
-<blockquote>
-<p>The domain of human judgment is increasing.</p>
-<p>How these firms use knowledge. How do they generate ideas?</p>
-</blockquote>
 <h1 id="references">References</h1>
 <h2 id="thanks">Thanks!</h2>
 <p>For more information on these subjects and more you might want to check the following resources.</p>
