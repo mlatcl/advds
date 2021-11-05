@@ -33,243 +33,139 @@ categories:
 <!--
 
 -->
-<h2 id="complexity-in-action">Complexity in Action</h2>
+<h2 id="deploying-artificial-intelligence">Deploying Artificial Intelligence</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_psychology/includes/selective-attention-bias.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_psychology/includes/selective-attention-bias.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/deploying-ai.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/deploying-ai.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>As an exercise in understanding complexity, watch the following video. You will see the basketball being bounced around, and the players moving. Your job is to count the passes of those dressed in white and ignore those of the individuals dressed in black.</p>
-<div class="figure">
-<div id="monkey-business-figure" class="figure-frame">
-<iframe width="600" height="450" src="https://www.youtube.com/embed/vJG698U2Mvo?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
-</div>
-<div id="monkey-business-magnify" class="magnify" onclick="magnifyFigure(&#39;monkey-business&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="monkey-business-caption" class="caption-frame">
-<p>Figure: Daniel Simon’s famous illusion “monkey business.” Focus on the movement of the ball distracts the viewer from seeing other aspects of the image.</p>
-</div>
-</div>
-<p>In a classic study <span class="citation" data-cites="Simons-gorillas99">Simons and Chabris (1999)</span> ask subjects to count the number of passes of the basketball between players on the team wearing white shirts. Fifty percent of the time, these subjects don’t notice the gorilla moving across the scene.</p>
-<p>The phenomenon of inattentional blindness is well known, e.g in their paper Simons and Charbris quote the Hungarian neurologist, Rezsö Bálint,</p>
-<blockquote>
-<p>It is a well-known phenomenon that we do not notice anything happening in our surroundings while being absorbed in the inspection of something; focusing our attention on a certain object may happen to such an extent that we cannot perceive other objects placed in the peripheral parts of our visual field, although the light rays they emit arrive completely at the visual sphere of the cerebral cortex.</p>
-<p>Rezsö Bálint 1907 (translated in Husain and Stein 1988, page 91)</p>
-</blockquote>
-<p>When we combine the complexity of the world with our relatively low bandwidth for information, problems can arise. Our focus on what we perceive to be the most important problem can cause us to miss other (potentially vital) contextual information.</p>
-<p>This phenomenon is known as selective attention or ‘inattentional blindness.’</p>
-<div class="figure">
-<div id="daniel-simons-monkey-business-figure" class="figure-frame">
-<iframe width="600" height="450" src="https://www.youtube.com/embed/_oGAzq5wM_Q?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
-</div>
-<div id="daniel-simons-monkey-business-magnify" class="magnify" onclick="magnifyFigure(&#39;daniel-simons-monkey-business&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="daniel-simons-monkey-business-caption" class="caption-frame">
-<p>Figure: For a longer talk on inattentional bias from Daniel Simons see this video.</p>
-</div>
-</div>
-<h2 id="data-selective-attention-bias">Data Selective Attention Bias</h2>
+<p>With the wide availability of new techniques, we are currently creating Artifical Intelligence through combination of machine learning algorithms to form machine learning systems.</p>
+<p>This effect is amplified through the growth in sensorics, in particular the movement of cloud computing towards the customer. The barrier between cloud and device is blurring. This phenomenon is sometimes known as fog computing, or <em>computing on the edge</em>.</p>
+<p>This presents major new challenges for machine learning systems design. We would like an internet of <em>intelligence</em> but currently our AI systems are <em>fragile</em>. A classical systems approach to design does not handle evolving environments well.</p>
+<h2 id="machine-learning-systems-design">Machine Learning Systems Design</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-inattention-bias.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-inattention-bias.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/ml-systems-design-short.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/ml-systems-design-short.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>We are going to see how inattention biases can play out in data analysis by going through a simple example. The analysis involves body mass index and activity information.</p>
-<h2 id="a-hypothesis-as-a-liability">A Hypothesis as a Liability</h2>
-<p>This analysis is from an article titled “A Hypothesis as a Liability” <span class="citation" data-cites="Yanai-hypothesis20">(Yanai and Lercher, 2020)</span>, they start their article with the following quite from Herman Hesse.</p>
-<blockquote>
-<p>“ ‘When someone seeks,’ said Siddhartha, ‘then it easily happens that his eyes see only the thing that he seeks, and he is able to find nothing, to take in nothing. […] Seeking means: having a goal. But finding means: being free, being open, having no goal.’ ”</p>
-<p>Hermann Hesse</p>
-</blockquote>
-<p>Their idea is that having a hypothesis can constrain our thinking. However, in answer to their paper <span class="citation" data-cites="Felin-data20">Felin et al. (2021)</span> argue that some form of hypothesis is always necessary, suggesting that a hypothesis <em>can</em> be a liability</p>
-<p>My view is captured in the introductory chapter to an edited volume on computational systems biology that I worked on with Mark Girolami, Magnus Rattray and Guido Sanguinetti.</p>
-<div class="figure">
-<div id="licsb-popper-quote-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//data-science/licsb-popper-quote.png" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-<div id="licsb-popper-quote-magnify" class="magnify" onclick="magnifyFigure(&#39;licsb-popper-quote&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="licsb-popper-quote-caption" class="caption-frame">
-<p>Figure: Quote from <span class="citation" data-cites="Lawrence:licsbintro10">Lawrence (2010)</span> highlighting the importance of interaction between data and hypothesis.</p>
-</div>
-</div>
-<p>Popper nicely captures the interaction between hypothesis and data by relating it to the chicken and the egg. The important thing is that these two co-evolve.</p>
-<h2 id="number-theatre">Number Theatre</h2>
-<p>Unfortunately, we don’t always have time to wait for this process to converge to an answer we can all rely on before a decision is required.</p>
-<p>Not only can we be misled by data before a decision is made, but sometimes we can be misled by data to justify the making of a decision. David Spiegelhalter refers to the phenomenon of “Number Theatre” in a conversation with Andrew Marr from May 2020 on the presentation of data.</p>
-<div class="figure">
-<div id="david-andrew-marr-figure" class="figure-frame">
-<iframe width="600" height="450" src="https://www.youtube.com/embed/9388XmWIHXg?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
-</div>
-<div id="david-andrew-marr-magnify" class="magnify" onclick="magnifyFigure(&#39;david-andrew-marr&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="david-andrew-marr-caption" class="caption-frame">
-<p>Figure: Professor Sir David Spiegelhalter on Andrew Marr on 10th May 2020 speaking about some of the challengers around data, data presentation, and decision making in a pandemic. David mentions number theatre at 9 minutes 10 seconds.</p>
-</div>
-</div>
-<!--includebbcvideo{p08csg28}-->
-<h2 id="data-theatre">Data Theatre</h2>
-<p>Data Theatre exploits data inattention bias to present a particular view on events that may misrepresents through selective presentation. Statisticians are one of the few groups that are trained with a sufficient degree of data skepticism. But it can also be combatted through ensuring there are domain experts present, and that they can speak freely.</p>
-<div class="figure">
-<div id="data-theatre-001-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//business/data-theatre001.svg" width="60%" style=" ">
-</object>
-</div>
-<div id="data-theatre-001-magnify" class="magnify" onclick="magnifyFigure(&#39;data-theatre-001&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="data-theatre-001-caption" class="caption-frame">
-<p>Figure: The pheonomenon of number theatre or <em>data theatre</em> was described by David Spiegelhalter and is nicely sumamrized by Martin Robbins in this sub-stack article <a href="https://martinrobbins.substack.com/p/data-theatre-why-the-digital-dashboards" class="uri">https://martinrobbins.substack.com/p/data-theatre-why-the-digital-dashboards</a>.</p>
-</div>
-</div>
-<p>The best book I have found for teaching the skeptical sense of data that underlies the statisticians craft is David Spiegelhalter’s <em>Art of Statistics</em>.</p>
-<h1 id="the-art-of-statistics">The Art of Statistics</h1>
+<p>The challenges of integrating different machine learning components into a whole that acts effectively as a system seem unresolved. In software engineering, separating parts of a system in this way is known as <a href="">component-based software engineering</a>. The core idea is that the different parts of the system can be independently designed according to a sub-specfication. This is sometimes known as <em>separation of concerns</em>. However, once the components are machine learning based, tighter coupling becomes a side effect of the learned nature of the system. For example if a driverless car’s detection of cyclist is dependent on its detection of the road surface, a change in the road surface detection algorithm will have downstream effects on the cyclist detection. Even if the road detection system has been improved by objective measures, the cyclist detection system may have become sensitive to the foibles of the previous version of road detection and will need to be retrained.</p>
+<p>Most of our experience with deployment relies on some approximation to the component based model, this is also important for verification of the system. If the components of the system can be verified then the composed system can also, potentially, be verified.</p>
+<h2 id="pigeonholing">Pigeonholing</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_books/includes/the-art-of-statistics.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_books/includes/the-art-of-statistics.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/pigeonholing.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/pigeonholing.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<center>
-<svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip0">
-<style>
-circle {
-  fill: black;
-}
-</style>
-<circle cx="100" cy="100" r="100"/> </clipPath> </defs>
-<title>
-David Spiegelhalter
-</title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/david-spiegelhalter.png" clip-path="url(#clip0)"/>
-</svg>
-</center>
 <div class="figure">
-<div id="art-of-statistics-figure" class="figure-frame">
+<div id="too-many-pigeons-figure" class="figure-frame">
 <div class="centered centered" style="">
-<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//books/the-art-of-statistics.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//TooManyPigeons.jpg" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="art-of-statistics-magnify" class="magnify" onclick="magnifyFigure(&#39;art-of-statistics&#39;)">
+<div id="too-many-pigeons-magnify" class="magnify" onclick="magnifyFigure(&#39;too-many-pigeons&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="art-of-statistics-caption" class="caption-frame">
-<p>Figure: <a href="https://www.amazon.co.uk/Art-Statistics-Learning-Pelican-Books-ebook/dp/B07HQDJD99">The Art of Statistics by David Spiegelhalter</a> is an excellent read on the pitfalls of data interpretation.</p>
+<div id="too-many-pigeons-caption" class="caption-frame">
+<p>Figure: Decompartmentalization of the model into parts can be seen as pigeonholing the separate tasks that are required.</p>
 </div>
 </div>
-<p>David’s <span class="citation" data-cites="Spiegelhalter-art19">(Spiegelhalter, 2019)</span> book brings important examples from statistics to life in an intelligent and entertaining way. It is highly readable and gives an opportunity to fast-track towards the important skill of data-skepticism that is the mark of a professional statistician.</p>
+<p>To deal with the complexity of systems design, a common approach is to break complex systems down into a series of tasks. An approach we can think of as “pigeonholing.” Classically, a sub-task could be thought of as a particular stage in machining (by analogy to productionlines in factories) or a sub-routine call in computing. Machine learning allows any complex sub-task, that was difficult to decompose by classical methods, to be reconstituted by acquiring data. In particular, when we think of emulating a human, we can ask many humans to perform the sub-task many times and fit machine learning models to reconstruct the performance, or to <em>emulate</em> the human in the performance of the task. For example, the decomposition of a complex process such as driving a car into apparently obvious sub-tasks (following the road, identifying pedestrians, etc).</p>
+<p>The practitioner’s approach to deploying artificial intelligence systems is to build up systems of machine learning components. To build a machine learning system, we decompose the task into parts, each of which we can emulate with ML methods. These parts are typically independently constructed and verified. For example, in a driverless car we can decompose the tasks into components such as “pedestrian detection” and “road line detection.” Each of these components can be constructed with, for example, a classification algorithm. Nowadays, people will often deploy a deep neural network, but for many tasks a random forest algorithm may be sufficient. We can then superimpose a logic on top. For example, “Follow the road line unless you detect a pedestrian in the road.”</p>
+<p>This allows for verification of car performance, as long as we can verify the individual components. However, it also implies that the AI systems we deploy are <em>fragile</em>.</p>
+<p>Our intelligent systems are composed by “pigeonholing” each indvidual task, then substituting with a machine learning model.</p>
+<p>But this is not a robust approach to systems design. The definition of sub-tasks can lead to a single point of failure, where if any sub-task fails, the entire system fails.</p>
+<h2 id="rapid-reimplementation">Rapid Reimplementation</h2>
+<p>This is also the classical approach to automation, but in traditional automation we also ensure the <em>environment</em> in which the system operates becomes controlled. For example, trains run on railway lines, fast cars run on motorways, goods are manufactured in a controlled factory environment.</p>
+<p>The difference with modern automated decision making systems is our intention is to deploy them in the <em>uncontrolled</em> environment that makes up our own world.</p>
+<p>This exposes us to either unforseen circumstances or adversarial action. And yet it is unclear our our intelligent systems are capable of adapting to this.</p>
+<p>We become exposed to mischief and adversaries. Adversaries intentially may wish to take over the artificial intelligence system, and mischief is the constant practice of many in our society. Simply watching a 10 year old interact with a voice agent such as Alexa or Siri shows that they are delighted when the can make the the “intelligent” agent seem foolish.</p>
+<h2 id="the-centrifugal-governor">The Centrifugal Governor</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/centrifugal-governor.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/centrifugal-governor.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<div class="figure">
+<div id="science-holborn-viaduct-figure" class="figure-frame">
+<div class="centered centered" style="">
+<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//science-holborn-viaduct.jpg" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="science-holborn-viaduct-magnify" class="magnify" onclick="magnifyFigure(&#39;science-holborn-viaduct&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="science-holborn-viaduct-caption" class="caption-frame">
+<p>Figure: Centrifugal governor as held by “Science” on Holborn Viaduct</p>
+</div>
+</div>
+<h2 id="boulton-and-watts-steam-engine">Boulton and Watt’s Steam Engine</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/watt-steam-engine.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/watt-steam-engine.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<div class="figure">
+<div id="steam-engine-boulton-watt-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="negate" src="https://mlatcl.github.io/ads/./slides/diagrams//SteamEngine_Boulton&Watt_1784.png" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="steam-engine-boulton-watt-magnify" class="magnify" onclick="magnifyFigure(&#39;steam-engine-boulton-watt&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="steam-engine-boulton-watt-caption" class="caption-frame">
+<p>Figure: Watt’s Steam Engine which made Steam Power Efficient and Practical.</p>
+</div>
+</div>
+<p>James Watt’s steam engine contained an early machine learning device. In the same way that modern systems are component based, his engine was composed of components. One of which is a speed regulator sometimes known as <em>Watt’s governor</em>. The two balls in the center of the image, when spun fast, rise, and through a linkage mechanism.</p>
+<p>The centrifugal governor was made famous by Boulton and Watt when it was deployed in the steam engine. Studying stability in the governor is the main subject of James Clerk Maxwell’s paper on the theoretical analysis of governors <span class="citation" data-cites="Maxwell:governors1867">(Maxwell, 1867)</span>. This paper is a founding paper of control theory. In an acknowledgment of its influence, Wiener used the name <a href="https://en.wikipedia.org/wiki/Cybernetics"><em>cybernetics</em></a> to describe the field of control and communication in animals and the machine <span class="citation" data-cites="Wiener:cybernetics48">(Wiener, 1948)</span>. Cybernetics is the Greek word for governor, which comes from the latin for helmsman.</p>
+<p>A governor is one of the simplest artificial intelligence systems. It senses the speed of an engine, and acts to change the position of the valve on the engine to slow it down.</p>
+<p>Although it’s a mechanical system a governor can be seen as automating a role that a human would have traditionally played. It is an early example of artificial intelligence.</p>
+<p>The centrifugal governor has several parameters, the weight of the balls used, the length of the linkages and the limits on the balls movement.</p>
+<p>Two principle differences exist between the centrifugal governor and artificial intelligence systems of today.</p>
+<ol type="1">
+<li>The centrifugal governor is a physical system and it is an integral part of a wider physical system that it regulates (the engine).</li>
+<li>The parameters of the governor were set by hand, our modern artificial intelligence systems have their parameters set by <em>data</em>.</li>
+</ol>
+<div class="figure">
+<div id="centrifugal-governor-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="negate" src="https://mlatcl.github.io/ads/./slides/diagrams//Centrifugal_governor.png" width="70%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="centrifugal-governor-magnify" class="magnify" onclick="magnifyFigure(&#39;centrifugal-governor&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="centrifugal-governor-caption" class="caption-frame">
+<p>Figure: The centrifugal governor, an early example of a decision making system. The parameters of the governor include the lengths of the linkages (which effect how far the throttle opens in response to movement in the balls), the weight of the balls (which effects inertia) and the limits of to which the balls can rise.</p>
+</div>
+</div>
+<p>This has the basic components of sense and act that we expect in an intelligent system, and this system saved the need for a human operator to manually adjust the system in the case of overspeed. Overspeed has the potential to destroy an engine, so the governor operates as a safety device.</p>
+<p>The first wave of automation did bring about sabotoage as a worker’s response. But if machinery was sabotaged, for example, if the linkage between sensor (the spinning balls) and action (the valve closure) was broken, this would be obvious to the engine operator at start up time. The machine could be repaired before operation.</p>
+<p>The centrifugal governor was a key component in the Boulton-Watt steam engine. It senses increases in speed in the engine and closed the steam valve to prevent the engine overspeeding and destroying itself. Until the invention of this device, it was a human job to do this.</p>
+<p>The formal study of governors and other feedback control devices was then began by <a href="https://en.wikipedia.org/wiki/James_Clerk_Maxwell">James Clerk Maxwell</a>, the Scottish physicist. This field became the foundation of our modern techniques of artificial intelligence through Norbert Wiener’s book <em>Cybernetics</em> <span class="citation" data-cites="Wiener:cybernetics48">(Wiener, 1948)</span>. Cybernetics is Greek for governor, a word that in itself simply means helmsman in English.</p>
+<p>The recent WannaCry virus that had a wide impact on our health services ecosystem was exploiting a security flaw in Windows systems that was first exploited by a virus called Stuxnet.</p>
+<p>Stuxnet was a virus designed to infect the Iranian nuclear program’s Uranium enrichment centrifuges. A centrifuge is prevented from overspeed by a controller, just like the centrifugal governor. Only now it is implemented in control logic, in this case on a Siemens PLC controller.</p>
+<p>Stuxnet infected these controllers and took over the response signal in the centrifuge, fooling the system into thinking that no overspeed was occuring. As a result, the centrifuges destroyed themselves through spinning too fast.</p>
+<p>This is equivalent to detaching the governor from the steam engine. Such sabotage would be easily recognized by a steam engine operator. The challenge for the operators of the Iranian Uranium centrifuges was that the sabotage was occurring inside the electronics.</p>
+<p>That is the effect of an adversary on an intelligent system, but even without adveraries, the mischief of a 10 year old can confuse our AIs.</p>
+<h2 id="peppercorns">Peppercorns</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/peppercorn.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/peppercorn.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<div class="figure">
+<div id="peppercorn-siri-figure" class="figure-frame">
+<iframe width="600" height="450" src="https://www.youtube.com/embed/1y2UKz47gew?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</div>
+<div id="peppercorn-siri-magnify" class="magnify" onclick="magnifyFigure(&#39;peppercorn-siri&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="peppercorn-siri-caption" class="caption-frame">
+<p>Figure: A peppercorn is a system design failure which is not a bug, but a conformance to design specification that causes problems when the system is deployed in the real world with mischevious and adversarial actors.</p>
+</div>
+</div>
+<p>Asking Siri “What is a trillion to the power of a thousand minus one?” leads to a 30 minute response<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> consisting of only 9s. I found this out because my nine year old grabbed my phone and did it. The only way to stop Siri was to force closure. This is an interesting example of a system feature that’s <em>not</em> a bug, in fact it requires clever processing from Wolfram Alpha. But it’s an unexpected result from the system performing correctly.</p>
+<p>This challenge of facing a circumstance that was unenvisaged in design but has consequences in deployment becomes far larger when the environment is uncontrolled. Or in the extreme case, where actions of the intelligent system effect the wider environment and change it.</p>
+<p>These unforseen circumstances are likely to lead to need for much more efficient turn-around and update for our intelligent systems. Whether we are correcting for security flaws (which <em>are</em> bugs) or unenvisaged circumstantial challenges: an issue I’m referring to as <em>peppercorns</em>. Rapid deployment of system updates is required. For example, Apple have “fixed” the problem of Siri returning long numbers.</p>
+<p>Here’s another one from Reddit, of a Tesla Model 3 system hallucinating traffic lights.</p>
+<iframe id="reddit-embed" width="600" height="450" src="https://www.redditmedia.com/r/teslamotors/comments/nrs8kf/you_think_ice_cream_truck_stop_signs_are_a_problem/?ref_source=embed&amp;ref=share&amp;embed=true" sandbox="allow-scripts allow-same-origin allow-popups" frameborder="0" scrolling="no">
+</iframe>
+<p>The challenge is particularly acute because of the <em>scale</em> at which we can deploy AI solutions. This means when something does go wrong, it may be going wrong in billions of households simultaneously.</p>
+<p>You can also check this blog post on <a href="http://inverseprobability.com/2017/11/15/decision-making">Decision Making and Diversity</a>. and this blog post on <a href="http://inverseprobability.com/2018/02/06/natural-and-artificial-intelligence">Natural vs Artifical Intelligence</a>..</p>
 <h2 id="the-three-ds-of-machine-learning-systems-design">The Three Ds of Machine Learning Systems Design</h2>
 <p>We can characterize the challenges for integrating machine learning within our systems as the three Ds. Decomposition, Data and Deployment.</p>
 <p>The first two components <em>decomposition</em> and <em>data</em> are interlinked, but we will first outline the decomposition challenge. Below we will mainly focus on <em>supervised learning</em> because this is arguably the technology that is best understood within machine learning.</p>
-<h2 id="data">Data</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/ml-data-challenge.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/ml-data-challenge.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>It is difficult to overstate the importance of data. It is half of the equation for machine learning but is often utterly neglected. We can speculate that there are two reasons for this. Firstly, data cleaning is perceived as tedious. It doesn’t seem to consist of the same intellectual challenges that are inherent in constructing complex mathematical models and implementing them in code. Secondly, data cleaning is highly complex, it requires a deep understanding of how machine learning systems operate and good intuitions about the data itself, the domain from which data is drawn (e.g. Supply Chain) and what downstream problems might be caused by poor data quality.</p>
-<p>A consequence of these two reasons, data cleaning seems difficult to formulate into a readily teachable set of principles. As a result, it is heavily neglected in courses on machine learning and data science. Despite data being half the equation, most University courses spend little to no time on its challenges.</p>
-<h2 id="the-data-crisis">The Data Crisis</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/the-data-crisis.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/the-data-crisis.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>Anecdotally, talking to data modelling scientists. Most say they spend 80% of their time acquiring and cleaning data. This is precipitating what I refer to as the “data crisis.” This is an analogy with software. The “software crisis” was the phenomenon of inability to deliver software solutions due to increasing complexity of implementation. There was no single shot solution for the software crisis, it involved better practice (scrum, test orientated development, sprints, code review), improved programming paradigms (object orientated, functional) and better tools (CVS, then SVN, then git).</p>
-<p>However, these challenges aren’t new, they are merely taking a different form. From the computer’s perspective software <em>is</em> data. The first wave of the data crisis was known as the <em>software crisis</em>.</p>
-<h3 id="the-software-crisis">The Software Crisis</h3>
-<p>In the late sixties early software programmers made note of the increasing costs of software development and termed the challenges associated with it as the “<a href="https://en.wikipedia.org/wiki/Software_crisis">Software Crisis</a>.” Edsger Dijkstra referred to the crisis in his 1972 Turing Award winner’s address.</p>
-<blockquote>
-<p>The major cause of the software crisis is that the machines have become several orders of magnitude more powerful! To put it quite bluntly: as long as there were no machines, programming was no problem at all; when we had a few weak computers, programming became a mild problem, and now we have gigantic computers, programming has become an equally gigantic problem.</p>
-<p>Edsger Dijkstra (1930-2002), The Humble Programmer</p>
-</blockquote>
-<blockquote>
-<p>The major cause of the data crisis is that machines have become more interconnected than ever before. Data access is therefore cheap, but data quality is often poor. What we need is cheap high-quality data. That implies that we develop processes for improving and verifying data quality that are efficient.</p>
-<p>There would seem to be two ways for improving efficiency. Firstly, we should not duplicate work. Secondly, where possible we should automate work.</p>
-</blockquote>
-<p>What I term “The Data Crisis” is the modern equivalent of this problem. The quantity of modern data, and the lack of attention paid to data as it is initially “laid down” and the costs of data cleaning are bringing about a crisis in data-driven decision making. This crisis is at the core of the challenge of <em>technical debt</em> in machine learning <span class="citation" data-cites="Sculley:debt15">(Sculley et al., 2015)</span>.</p>
-<p>Just as with software, the crisis is most correctly addressed by ‘scaling’ the manner in which we process our data. Duplication of work occurs because the value of data cleaning is not correctly recognised in management decision making processes. Automation of work is increasingly possible through techniques in “artificial intelligence,” but this will also require better management of the data science pipeline so that data about data science (meta-data science) can be correctly assimilated and processed. The Alan Turing institute has a program focussed on this area, <a href="https://www.turing.ac.uk/research_projects/artificial-intelligence-data-analytics/">AI for Data Analytics</a>.</p>
-<p>Data is the new software, and the data crisis is already upon us. It is driven by the cost of cleaning data, the paucity of tools for monitoring and maintaining our deployments, the provenance of our models (e.g. with respect to the data they’re trained on).</p>
-<p>Three principal changes need to occur in response. They are cultural and infrastructural.</p>
-<h3 id="the-data-first-paradigm">The Data First Paradigm</h3>
-<p>First of all, to excel in data driven decision making we need to move from a <em>software first</em> paradigm to a <em>data first</em> paradigm. That means refocusing on data as the product. Software is the intermediary to producing the data, and its quality standards must be maintained, but not at the expense of the data we are producing. Data cleaning and maintenance need to be prized as highly as software debugging and maintenance. Instead of <em>software</em> as a service, we should refocus around <em>data</em> as a service. This first change is a cultural change in which our teams think about their outputs in terms of data. Instead of decomposing our systems around the software components, we need to decompose them around the data generating and consuming components.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Software first is only an intermediate step on the way to becoming <em>data first</em>. It is a necessary, but not a sufficient condition for efficient machine learning systems design and deployment. We must move from <em>software orientated architecture</em> to a <em>data orientated architecture</em>.</p>
-<h3 id="data-quality">Data Quality</h3>
-<p>Secondly, we need to improve our language around data quality. We cannot assess the costs of improving data quality unless we generate a language around what data quality means. <!--Data Readiness Levels[^data-readiness-levels] are an assessment of data quality that is based on the usage to which data is
-put.
-
-[^data-readiness-levels]: [Data Readiness Levels](http://inverseprobability.com/b2017/01/12/data-readiness-levels) [@Lawrence:drl17] are an attempt to develop a language around data quality that can bridge the gap between technical solutions and decision makers such as managers and project planners. They are inspired by Technology Readiness Levels which attempt to quantify the readiness of technologies for deployment.--></p>
-<h3 id="data-readiness-levels">Data Readiness Levels</h3>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-readiness-levels-short.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-readiness-levels-short.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p><a href="http://inverseprobability.com/2017/01/12/data-readiness-levels">Data Readiness Levels</a> <span class="citation" data-cites="Lawrence-drl17">(Lawrence, 2017)</span> are an attempt to develop a language around data quality that can bridge the gap between technical solutions and decision makers such as managers and project planners. They are inspired by Technology Readiness Levels which attempt to quantify the readiness of technologies for deployment.</p>
-<p>See this blog post on <a href="http://inverseprobability.com/2017/01/12/data-readiness-levels">Data Readiness Levels</a>.</p>
-<h3 id="three-grades-of-data-readiness">Three Grades of Data Readiness</h3>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/three-grades-of-data-readiness.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/three-grades-of-data-readiness.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>Data-readiness describes, at its coarsest level, three separate stages of data graduation.</p>
-<ul>
-<li>Grade C - accessibility
-<ul>
-<li>Transition: data becomes electronically available</li>
-</ul></li>
-<li>Grade B - validity
-<ul>
-<li>Transition: pose a question to the data.</li>
-</ul></li>
-<li>Grade A - usability</li>
-</ul>
-<p>The important definitions are at the transition. The move from Grade C data to Grade B data is delimited by the <em>electronic availability</em> of the data. The move from Grade B to Grade A data is delimited by posing a question or task to the data <span class="citation" data-cites="Lawrence:drl17">(<strong>Lawrence:drl17?</strong>)</span>.</p>
-<p><strong>Recommendation</strong>: Build a shared understanding of the language of data readiness levels for use in planning documents and costing of data cleaning and the benefits of reusing cleaned data.</p>
-<h3 id="move-beyond-software-engineering-to-data-engineering">Move Beyond Software Engineering to Data Engineering</h3>
-<p>Thirdly, we need to improve our mental model of the separation of data science from applied science. A common trap in our thinking around data is to see data science (and data engineering, data preparation) as a sub-set of the software engineer’s or applied scientist’s skill set. As a result, we recruit and deploy the wrong type of resource. Data preparation and question formulation is superficially similar to both because of the need for programming skills, but the day to day problems faced are very different.</p>
-<h2 id="combining-data-and-systems-design">Combining Data and Systems Design</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/ml-combining-data-and-systems-design-challenge.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/ml-combining-data-and-systems-design-challenge.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<h2 id="data-science-as-debugging">Data Science as Debugging</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-science-as-debugging.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-science-as-debugging.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>One challenge for existing information technology professionals is realizing the extent to which a software ecosystem based on data differs from a classical ecosystem. In particular, by ingesting data we bring unknowns/uncontrollables into our decision-making system. This presents opportunity for adversarial exploitation and unforeseen operation.</p>
-<p>blog post on <a href="http://inverseprobability.com/2017/03/14/data-science-as-debugging">Data Science as Debugging</a>.</p>
-<p>Starting with the analysis of a data set, the nature of data science is somewhat difference from classical software engineering.</p>
-<p>One analogy I find helpful for understanding the depth of change we need is the following. Imagine as a software engineer, you find a USB stick on the ground. And for some reason you <em>know</em> that on that USB stick is a particular API call that will enable you to make a significant positive difference on a business problem. You don’t know which of the many library functions on the USB stick are the ones that will help. And it could be that some of those library functions will hinder, perhaps because they are just inappropriate or perhaps because they have been placed there maliciously. The most secure thing to do would be to <em>not</em> introduce this code into your production system at all. But what if your manager told you to do so, how would you go about incorporating this code base?</p>
-<p>The answer is <em>very</em> carefully. You would have to engage in a process more akin to debugging than regular software engineering. As you understood the code base, for your work to be reproducible, you should be documenting it, not just what you discovered, but how you discovered it. In the end, you typically find a single API call that is the one that most benefits your system. But more thought has been placed into this line of code than any line of code you have written before.</p>
-<p>An enormous amount of debugging would be required. As the nature of the code base is understood, software tests to verify it also need to be constructed. At the end of all your work, the lines of software you write to actually interact with the software on the USB stick are likely to be minimal. But more thought would be put into those lines than perhaps any other lines of code in the system.</p>
-<p>Even then, when your API code is introduced into your production system, it needs to be deployed in an environment that monitors it. We cannot rely on an individual’s decision making to ensure the quality of all our systems. We need to create an environment that includes quality controls, checks and bounds, tests, all designed to ensure that assumptions made about this foreign code base are remaining valid.</p>
-<p>This situation is akin to what we are doing when we incorporate data in our production systems. When we are consuming data from others, we cannot assume that it has been produced in alignment with our goals for our own systems. Worst case, it may have been adversarially produced. A further challenge is that data is dynamic. So, in effect, the code on the USB stick is evolving over time.</p>
-<p>It might see that this process is easy to formalize now, we simply need to check what the formal software engineering process is for debugging, because that is the current software engineering activity that data science is closest to. But when we look for a formalization of debugging, we find that there is none. Indeed, modern software engineering mainly focusses on ensuring that code is written without bugs in the first place.</p>
-<p><strong>Recommendation</strong>: Anecdotally, resolving a machine learning challenge requires 80% of the resource to be focused on the data and perhaps 20% to be focused on the model. But many companies are too keen to employ machine learning engineers who focus on the models, not the data. We should change our hiring priorities and training. Universities cannot provide the understanding of how to data-wrangle. Companies must fill this gap.</p>
-<div class="figure">
-<div id="derwent-valley-resevoir-figure" class="figure-frame">
-<div class="centered centered" style="">
-<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//data-science/water-bridge-hill-transport-arch-calm-544448-pxhere.jpg" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-<div id="derwent-valley-resevoir-magnify" class="magnify" onclick="magnifyFigure(&#39;derwent-valley-resevoir&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="derwent-valley-resevoir-caption" class="caption-frame">
-<p>Figure: A reservoir of data has more value if the data is consumable. The data crisis can only be addressed if we focus on outputs rather than inputs.</p>
-</div>
-</div>
-<div class="figure">
-<div id="lake-district-stream-figure" class="figure-frame">
-<div class="centered centered" style="">
-<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//data-science/1024px-Lake_District_picture.jpg" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-<div id="lake-district-stream-magnify" class="magnify" onclick="magnifyFigure(&#39;lake-district-stream&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="lake-district-stream-caption" class="caption-frame">
-<p>Figure: For a data first architecture we need to clean our data at source, rather than individually cleaning data for each task. This involves a shift of focus from our inputs to our outputs. We should provide data streams that are consumable by many teams without purification.</p>
-</div>
-</div>
-<p><strong>Recommendation</strong>: We need to share best practice around data deployment across our teams. We should make best use of our processes where applicable, but we need to develop them to become <em>data first</em> organizations. Data needs to be cleaned at <em>output</em> not at <em>input</em>.</p>
-<h2 id="outlook-for-machine-learning">Outlook for Machine Learning</h2>
-<p>Machine learning has risen to prominence as an approach to <em>scaling</em> our activities. For us to continue to automate in the manner we have over the last two decades, we need to make more use of computer-based automation. Machine learning is allowing us to automate processes that were out of reach before.</p>
 <h2 id="data-science-and-professionalisation">Data Science and Professionalisation</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/a-time-for-professionalisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/a-time-for-professionalisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
@@ -538,7 +434,7 @@ put.
 <p>The Crash Map Kampala project is a good example of a data science project where a major challenge was <em>access</em>.</p>
 <div class="centered" style="">
 <svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip1">
+<defs> <clipPath id="clip0">
 <style>
 circle {
   fill: black;
@@ -548,10 +444,10 @@ circle {
 <title>
 Bagonza Jimmy Kinyonyi
 </title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/bagonza-jimmy-owa-kinyonyi.jpg" clip-path="url(#clip1)"/>
+<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/bagonza-jimmy-owa-kinyonyi.jpg" clip-path="url(#clip0)"/>
 </svg>
 <svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip2">
+<defs> <clipPath id="clip1">
 <style>
 circle {
   fill: black;
@@ -561,7 +457,7 @@ circle {
 <title>
 Michael T. Smith
 </title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/michael-t-smith.png" clip-path="url(#clip2)"/>
+<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/michael-t-smith.png" clip-path="url(#clip1)"/>
 </svg>
 </div>
 <div class="figure">
@@ -661,7 +557,7 @@ Michael T. Smith
 </div>
 <div class="centered" style="">
 <svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip3">
+<defs> <clipPath id="clip2">
 <style>
 circle {
   fill: black;
@@ -671,7 +567,7 @@ circle {
 <title>
 Joyce Nakatumba-Nabende
 </title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/joyce-nabende.jpg" clip-path="url(#clip3)"/>
+<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/joyce-nabende.jpg" clip-path="url(#clip2)"/>
 </svg>
 </div>
 <p>We consider a case study from Joyce Nabende, Head of the <a href="https://air.ug/">Makerere AI Lab</a>. This case study is based on a presentation given by Joyce to the DSA Research Grants, “Project Progress” session on 20th August 2021.</p>
@@ -877,162 +773,9 @@ Joyce Nakatumba-Nabende
 <p>Figure: Here Frank Hutter gives a tutorial on AutoML, one of the approaches to automating address.</p>
 </div>
 </div>
-<h2 id="data-readiness-levels-1">Data Readiness Levels</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-readiness-levels.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-readiness-levels.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<h2 id="accessibility-grade-c">Accessibility: Grade C</h2>
-<p>The first grade refers to the accessibility of data. Most data science practitioners will be used to working with data-providers who, perhaps having had little experience of data-science before, state that they “have the data.” More often than not, they have not verified this. A convenient term for this is “Hearsay Data,” someone has <em>heard</em> that they have the data so they <em>say</em> they have it. This is the lowest grade of data readiness.</p>
-<p>Progressing through Grade C involves ensuring that this data is accessible. Not just in terms of digital accessiblity, but also for regulatory, ethical and intellectual property reasons.</p>
-<h2 id="validity-grade-b">Validity: Grade B</h2>
-<p>Data transits from Grade C to Grade B once we can begin digital analysis on the computer. Once the challenges of access to the data have been resolved, we can make the data available either via API, or for direct loading into analysis software (such as Python, R, Matlab, Mathematica or SPSS). Once this has occured the data is at B4 level. Grade B involves the <em>validity</em> of the data. Does the data really represent what it purports to? There are challenges such as missing values, outliers, record duplication. Each of these needs to be investigated.</p>
-<p>Grade B and C are important as if the work done in these grades is documented well, it can be reused in other projects. Reuse of this labour is key to reducing the costs of data-driven automated decision making. There is a strong overlap between the work required in this grade and the statistical field of <a href="https://en.wikipedia.org/wiki/Exploratory_data_analysis"><em>exploratory data analysis</em></a> <span class="citation" data-cites="Tukey:exploratory77">(Tukey, 1977)</span>.</p>
-<p>The need for Grade B emerges due to the fundamental change in the availability of data. Classically, the scientific question came first, and the data came later. This is still the approach in a randomized control trial, e.g. in A/B testing or clinical trials for drugs. Today data is being laid down by happenstance, and the question we wish to ask about the data often comes after the data has been created. The Grade B of data readiness ensures thought can be put into data quality <em>before</em> the question is defined. It is this work that is reusable across multiple teams. It is these processes that the team which is <em>standing up</em> the data must deliver.</p>
-<h2 id="usability-grade-a">Usability: Grade A</h2>
-<p>Once the validity of the data is determined, the data set can be considered for use in a particular task. This stage of data readiness is more akin to what machine learning scientists are used to doing in Universities. Bringing an algorithm to bear on a well understood data set.</p>
-<p>In Grade A we are concerned about the utility of the data given a particular task. Grade A may involve additional data collection (experimental design in statistics) to ensure that the task is fulfilled.</p>
-<p>This is the stage where the data and the model are brought together, so expertise in learning algorithms and their application is key. Further ethical considerations, such as the fairness of the resulting predictions are required at this stage. At the end of this stage a prototype model is ready for deployment.</p>
-<p>Deployment and maintenance of machine learning models in production is another important issue which Data Readiness Levels are only a part of the solution for.</p>
-<h2 id="recursive-effects">Recursive Effects</h2>
-<p>To find out more, or to contribute ideas go to <a href="http://data-readiness.org" class="uri">http://data-readiness.org</a></p>
-<p>Throughout the data preparation pipeline, it is important to have close interaction between data scientists and application domain experts. Decisions on data preparation taken outside the context of application have dangerous downstream consequences. This provides an additional burden on the data scientist as they are required for each project, but it should also be seen as a learning and familiarization exercise for the domain expert. Long term, just as biologists have found it necessary to assimilate the skills of the bioinformatician to be effective in their science, most domains will also require a familiarity with the nature of data driven decision making and its application. Working closely with data-scientists on data preparation is one way to begin this sharing of best practice.</p>
-<p>The processes involved in Grade C and B are often badly taught in courses on data science. Perhaps not due to a lack of interest in the areas, but maybe more due to a lack of access to real world examples where data quality is poor.</p>
-<p>These stages of data science are also ridden with ambiguity. In the long term they could do with more formalization, and automation, but best practice needs to be understood by a wider community before that can happen.</p>
-<h1 id="assessing-the-organizations-readiness">Assessing the Organizations Readiness</h1>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-joel-tests.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-joel-tests.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>Assessing the readiness of data for analysis is one action that can be taken, but assessing teams that need to assimilate the information in the data is the other side of the coin. With this in mind both <a href="https://medium.com/@damoncivin/the-joel-test-for-data-readiness-4882aae64753">Damon Civin</a> and <a href="https://blog.dominodatalab.com/joel-test-data-science/">Nick Elprin</a> have independently proposed the idea of a “Data Joel Test.” A “<a href="https://www.joelonsoftware.com/2000/08/09/the-joel-test-12-steps-to-better-code/">Joel Test</a>” is a short questionaire to establish the ability of a team to handle software engineering tasks. It is designed as a rough and ready capability assessment. A “Data Joel Test” is similar, but for assessing the capability of a team in performing data science.</p>
-<h2 id="deploying-artificial-intelligence">Deploying Artificial Intelligence</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/deploying-ai.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/deploying-ai.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>With the wide availability of new techniques, we are currently creating Artifical Intelligence through combination of machine learning algorithms to form machine learning systems.</p>
-<p>This effect is amplified through the growth in sensorics, in particular the movement of cloud computing towards the customer. The barrier between cloud and device is blurring. This phenomenon is sometimes known as fog computing, or <em>computing on the edge</em>.</p>
-<p>This presents major new challenges for machine learning systems design. We would like an internet of <em>intelligence</em> but currently our AI systems are <em>fragile</em>. A classical systems approach to design does not handle evolving environments well.</p>
-<h2 id="machine-learning-systems-design">Machine Learning Systems Design</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/ml-systems-design-short.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/ml-systems-design-short.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>The challenges of integrating different machine learning components into a whole that acts effectively as a system seem unresolved. In software engineering, separating parts of a system in this way is known as <a href="">component-based software engineering</a>. The core idea is that the different parts of the system can be independently designed according to a sub-specfication. This is sometimes known as <em>separation of concerns</em>. However, once the components are machine learning based, tighter coupling becomes a side effect of the learned nature of the system. For example if a driverless car’s detection of cyclist is dependent on its detection of the road surface, a change in the road surface detection algorithm will have downstream effects on the cyclist detection. Even if the road detection system has been improved by objective measures, the cyclist detection system may have become sensitive to the foibles of the previous version of road detection and will need to be retrained.</p>
-<p>Most of our experience with deployment relies on some approximation to the component based model, this is also important for verification of the system. If the components of the system can be verified then the composed system can also, potentially, be verified.</p>
-<h2 id="pigeonholing">Pigeonholing</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/pigeonholing.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/pigeonholing.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<div class="figure">
-<div id="too-many-pigeons-figure" class="figure-frame">
-<div class="centered centered" style="">
-<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//TooManyPigeons.jpg" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-<div id="too-many-pigeons-magnify" class="magnify" onclick="magnifyFigure(&#39;too-many-pigeons&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="too-many-pigeons-caption" class="caption-frame">
-<p>Figure: Decompartmentalization of the model into parts can be seen as pigeonholing the separate tasks that are required.</p>
-</div>
-</div>
-<p>To deal with the complexity of systems design, a common approach is to break complex systems down into a series of tasks. An approach we can think of as “pigeonholing.” Classically, a sub-task could be thought of as a particular stage in machining (by analogy to productionlines in factories) or a sub-routine call in computing. Machine learning allows any complex sub-task, that was difficult to decompose by classical methods, to be reconstituted by acquiring data. In particular, when we think of emulating a human, we can ask many humans to perform the sub-task many times and fit machine learning models to reconstruct the performance, or to <em>emulate</em> the human in the performance of the task. For example, the decomposition of a complex process such as driving a car into apparently obvious sub-tasks (following the road, identifying pedestrians, etc).</p>
-<p>The practitioner’s approach to deploying artificial intelligence systems is to build up systems of machine learning components. To build a machine learning system, we decompose the task into parts, each of which we can emulate with ML methods. These parts are typically independently constructed and verified. For example, in a driverless car we can decompose the tasks into components such as “pedestrian detection” and “road line detection.” Each of these components can be constructed with, for example, a classification algorithm. Nowadays, people will often deploy a deep neural network, but for many tasks a random forest algorithm may be sufficient. We can then superimpose a logic on top. For example, “Follow the road line unless you detect a pedestrian in the road.”</p>
-<p>This allows for verification of car performance, as long as we can verify the individual components. However, it also implies that the AI systems we deploy are <em>fragile</em>.</p>
-<p>Our intelligent systems are composed by “pigeonholing” each indvidual task, then substituting with a machine learning model.</p>
-<p>But this is not a robust approach to systems design. The definition of sub-tasks can lead to a single point of failure, where if any sub-task fails, the entire system fails.</p>
-<h2 id="rapid-reimplementation">Rapid Reimplementation</h2>
-<p>This is also the classical approach to automation, but in traditional automation we also ensure the <em>environment</em> in which the system operates becomes controlled. For example, trains run on railway lines, fast cars run on motorways, goods are manufactured in a controlled factory environment.</p>
-<p>The difference with modern automated decision making systems is our intention is to deploy them in the <em>uncontrolled</em> environment that makes up our own world.</p>
-<p>This exposes us to either unforseen circumstances or adversarial action. And yet it is unclear our our intelligent systems are capable of adapting to this.</p>
-<p>We become exposed to mischief and adversaries. Adversaries intentially may wish to take over the artificial intelligence system, and mischief is the constant practice of many in our society. Simply watching a 10 year old interact with a voice agent such as Alexa or Siri shows that they are delighted when the can make the the “intelligent” agent seem foolish.</p>
-<h2 id="the-centrifugal-governor">The Centrifugal Governor</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/centrifugal-governor.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/centrifugal-governor.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<div class="figure">
-<div id="science-holborn-viaduct-figure" class="figure-frame">
-<div class="centered centered" style="">
-<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//science-holborn-viaduct.jpg" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-<div id="science-holborn-viaduct-magnify" class="magnify" onclick="magnifyFigure(&#39;science-holborn-viaduct&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="science-holborn-viaduct-caption" class="caption-frame">
-<p>Figure: Centrifugal governor as held by “Science” on Holborn Viaduct</p>
-</div>
-</div>
-<h2 id="boulton-and-watts-steam-engine">Boulton and Watt’s Steam Engine</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/watt-steam-engine.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/watt-steam-engine.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<div class="figure">
-<div id="steam-engine-boulton-watt-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="negate" src="https://mlatcl.github.io/ads/./slides/diagrams//SteamEngine_Boulton&Watt_1784.png" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-<div id="steam-engine-boulton-watt-magnify" class="magnify" onclick="magnifyFigure(&#39;steam-engine-boulton-watt&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="steam-engine-boulton-watt-caption" class="caption-frame">
-<p>Figure: Watt’s Steam Engine which made Steam Power Efficient and Practical.</p>
-</div>
-</div>
-<p>James Watt’s steam engine contained an early machine learning device. In the same way that modern systems are component based, his engine was composed of components. One of which is a speed regulator sometimes known as <em>Watt’s governor</em>. The two balls in the center of the image, when spun fast, rise, and through a linkage mechanism.</p>
-<p>The centrifugal governor was made famous by Boulton and Watt when it was deployed in the steam engine. Studying stability in the governor is the main subject of James Clerk Maxwell’s paper on the theoretical analysis of governors <span class="citation" data-cites="Maxwell:governors1867">(Maxwell, 1867)</span>. This paper is a founding paper of control theory. In an acknowledgment of its influence, Wiener used the name <a href="https://en.wikipedia.org/wiki/Cybernetics"><em>cybernetics</em></a> to describe the field of control and communication in animals and the machine <span class="citation" data-cites="Wiener:cybernetics48">(Wiener, 1948)</span>. Cybernetics is the Greek word for governor, which comes from the latin for helmsman.</p>
-<p>A governor is one of the simplest artificial intelligence systems. It senses the speed of an engine, and acts to change the position of the valve on the engine to slow it down.</p>
-<p>Although it’s a mechanical system a governor can be seen as automating a role that a human would have traditionally played. It is an early example of artificial intelligence.</p>
-<p>The centrifugal governor has several parameters, the weight of the balls used, the length of the linkages and the limits on the balls movement.</p>
-<p>Two principle differences exist between the centrifugal governor and artificial intelligence systems of today.</p>
-<ol type="1">
-<li>The centrifugal governor is a physical system and it is an integral part of a wider physical system that it regulates (the engine).</li>
-<li>The parameters of the governor were set by hand, our modern artificial intelligence systems have their parameters set by <em>data</em>.</li>
-</ol>
-<div class="figure">
-<div id="centrifugal-governor-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="negate" src="https://mlatcl.github.io/ads/./slides/diagrams//Centrifugal_governor.png" width="70%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-<div id="centrifugal-governor-magnify" class="magnify" onclick="magnifyFigure(&#39;centrifugal-governor&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="centrifugal-governor-caption" class="caption-frame">
-<p>Figure: The centrifugal governor, an early example of a decision making system. The parameters of the governor include the lengths of the linkages (which effect how far the throttle opens in response to movement in the balls), the weight of the balls (which effects inertia) and the limits of to which the balls can rise.</p>
-</div>
-</div>
-<p>This has the basic components of sense and act that we expect in an intelligent system, and this system saved the need for a human operator to manually adjust the system in the case of overspeed. Overspeed has the potential to destroy an engine, so the governor operates as a safety device.</p>
-<p>The first wave of automation did bring about sabotoage as a worker’s response. But if machinery was sabotaged, for example, if the linkage between sensor (the spinning balls) and action (the valve closure) was broken, this would be obvious to the engine operator at start up time. The machine could be repaired before operation.</p>
-<p>The centrifugal governor was a key component in the Boulton-Watt steam engine. It senses increases in speed in the engine and closed the steam valve to prevent the engine overspeeding and destroying itself. Until the invention of this device, it was a human job to do this.</p>
-<p>The formal study of governors and other feedback control devices was then began by <a href="https://en.wikipedia.org/wiki/James_Clerk_Maxwell">James Clerk Maxwell</a>, the Scottish physicist. This field became the foundation of our modern techniques of artificial intelligence through Norbert Wiener’s book <em>Cybernetics</em> <span class="citation" data-cites="Wiener:cybernetics48">(Wiener, 1948)</span>. Cybernetics is Greek for governor, a word that in itself simply means helmsman in English.</p>
-<p>The recent WannaCry virus that had a wide impact on our health services ecosystem was exploiting a security flaw in Windows systems that was first exploited by a virus called Stuxnet.</p>
-<p>Stuxnet was a virus designed to infect the Iranian nuclear program’s Uranium enrichment centrifuges. A centrifuge is prevented from overspeed by a controller, just like the centrifugal governor. Only now it is implemented in control logic, in this case on a Siemens PLC controller.</p>
-<p>Stuxnet infected these controllers and took over the response signal in the centrifuge, fooling the system into thinking that no overspeed was occuring. As a result, the centrifuges destroyed themselves through spinning too fast.</p>
-<p>This is equivalent to detaching the governor from the steam engine. Such sabotage would be easily recognized by a steam engine operator. The challenge for the operators of the Iranian Uranium centrifuges was that the sabotage was occurring inside the electronics.</p>
-<p>That is the effect of an adversary on an intelligent system, but even without adveraries, the mischief of a 10 year old can confuse our AIs.</p>
-<h2 id="peppercorns">Peppercorns</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/peppercorn.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/peppercorn.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<div class="figure">
-<div id="peppercorn-siri-figure" class="figure-frame">
-<iframe width="600" height="450" src="https://www.youtube.com/embed/1y2UKz47gew?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
-</div>
-<div id="peppercorn-siri-magnify" class="magnify" onclick="magnifyFigure(&#39;peppercorn-siri&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="peppercorn-siri-caption" class="caption-frame">
-<p>Figure: A peppercorn is a system design failure which is not a bug, but a conformance to design specification that causes problems when the system is deployed in the real world with mischevious and adversarial actors.</p>
-</div>
-</div>
-<p>Asking Siri “What is a trillion to the power of a thousand minus one?” leads to a 30 minute response<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> consisting of only 9s. I found this out because my nine year old grabbed my phone and did it. The only way to stop Siri was to force closure. This is an interesting example of a system feature that’s <em>not</em> a bug, in fact it requires clever processing from Wolfram Alpha. But it’s an unexpected result from the system performing correctly.</p>
-<p>This challenge of facing a circumstance that was unenvisaged in design but has consequences in deployment becomes far larger when the environment is uncontrolled. Or in the extreme case, where actions of the intelligent system effect the wider environment and change it.</p>
-<p>These unforseen circumstances are likely to lead to need for much more efficient turn-around and update for our intelligent systems. Whether we are correcting for security flaws (which <em>are</em> bugs) or unenvisaged circumstantial challenges: an issue I’m referring to as <em>peppercorns</em>. Rapid deployment of system updates is required. For example, Apple have “fixed” the problem of Siri returning long numbers.</p>
-<p>Here’s another one from Reddit, of a Tesla Model 3 system hallucinating traffic lights.</p>
-<iframe id="reddit-embed" width="600" height="450" src="https://www.redditmedia.com/r/teslamotors/comments/nrs8kf/you_think_ice_cream_truck_stop_signs_are_a_problem/?ref_source=embed&amp;ref=share&amp;embed=true" sandbox="allow-scripts allow-same-origin allow-popups" frameborder="0" scrolling="no">
-</iframe>
-<p>The challenge is particularly acute because of the <em>scale</em> at which we can deploy AI solutions. This means when something does go wrong, it may be going wrong in billions of households simultaneously.</p>
-<p>You can also check this blog post on <a href="http://inverseprobability.com/2017/11/15/decision-making">Decision Making and Diversity</a>. and this blog post on <a href="http://inverseprobability.com/2018/02/06/natural-and-artificial-intelligence">Natural vs Artifical Intelligence</a>..</p>
+<h2 id="conclusions">Conclusions</h2>
+<p>The particular circumstances of the Covid-19 pandemic have highlighted the challenges of integrating scientific ideas to answer policy questions. In this talk, we’ve given a formal introduction to the problem, the difficulty of communicating between individuals (particularly from different domains) and reviewed the ideas and solutions we used in the Delve initiative.</p>
+<p>Recommendations from the DELVE Data report suggest that more effort needs to be placed into working in this manner in normal circumstances, so that when an emergency occurs we are better prepared to deal with the questions we face.</p>
 <h2 id="thanks">Thanks!</h2>
 <p>For more information on these subjects and more you might want to check the following resources.</p>
 <ul>
@@ -1040,8 +783,8 @@ Joyce Nakatumba-Nabende
 <li><p>podcast: <a href="http://thetalkingmachines.com">The Talking Machines</a></p></li>
 <li><p>newspaper: <a href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile Page</a></p></li>
 <li><p>blog posts:</p></li>
-<li><p><a href="https://medium.com/@karpathy/software-2-0-a64152b37c35">Andrej Karpathy’s Medium Post</a></p></li>
 <li><p><a href="https://medium.com/@mijordan3/artificial-intelligence-the-revolution-hasnt-happened-yet-5e1d5812e1e7">Mike Jordan’s Medium Post</a></p></li>
+<li><p><a href="https://medium.com/@karpathy/software-2-0-a64152b37c35">Andrej Karpathy’s Medium Post</a></p></li>
 </ul>
 <h1 class="unnumbered" id="references">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
@@ -1057,9 +800,6 @@ Chapman, P., Clinton, J., Kerber, R., Khabaza, T., Reinartz, T., Shearer, C., Wi
 <div id="ref-Chater:mindisflat19" class="csl-entry" role="doc-biblioentry">
 Chater, N., 2019. The mind is flat. Penguin.
 </div>
-<div id="ref-Felin-data20" class="csl-entry" role="doc-biblioentry">
-Felin, T., Koenderink, J., Krueger, J.I., Noble, D., Ellis, G.F.R., 2021. The data-hypothesis relationship. Genome Biology 22. <a href="https://doi.org/10.1186/s13059-021-02276-4">https://doi.org/10.1186/s13059-021-02276-4</a>
-</div>
 <div id="ref-Heider:interpersonal58" class="csl-entry" role="doc-biblioentry">
 Heider, F., 1958. The psychology of interpersonal relations. John Wiley.
 </div>
@@ -1074,9 +814,6 @@ Kahneman, D., 2011. Thinking fast and slow.
 </div>
 <div id="ref-Lawrence-drl17" class="csl-entry" role="doc-biblioentry">
 Lawrence, N.D., 2017. Data readiness levels. ArXiv.
-</div>
-<div id="ref-Lawrence:licsbintro10" class="csl-entry" role="doc-biblioentry">
-Lawrence, N.D., 2010. Introduction to learning and inference in computational systems biology.
 </div>
 <div id="ref-Lawrence-maturity20" class="csl-entry" role="doc-biblioentry">
 Lawrence, N.D., Montgomery, J., Paquet, U., 2020. Organisational data maturity. The Royal Society.
@@ -1102,12 +839,6 @@ Russakovsky, O., Deng, J., Su, H., Krause, J., Satheesh, S., Ma, S., Huang, Z., 
 <div id="ref-Sculley:debt15" class="csl-entry" role="doc-biblioentry">
 Sculley, D., Holt, G., Golovin, D., Davydov, E., Phillips, T., Ebner, D., Chaudhary, V., Young, M., Crespo, J.-F., Dennison, D., 2015. Hidden technical debt in machine learning systems, in: Cortes, C., Lawrence, N.D., Lee, D.D., Sugiyama, M., Garnett, R. (Eds.), Advances in Neural Information Processing Systems 28. Curran Associates, Inc., pp. 2503–2511.
 </div>
-<div id="ref-Simons-gorillas99" class="csl-entry" role="doc-biblioentry">
-Simons, D.J., Chabris, C.F., 1999. Gorillas in our midst: Sustained inattentional blindness for dynamic events. Perception 28, 1059–1074. <a href="https://doi.org/10.1068/p281059">https://doi.org/10.1068/p281059</a>
-</div>
-<div id="ref-Spiegelhalter-art19" class="csl-entry" role="doc-biblioentry">
-Spiegelhalter, D.J., 2019. The art of statistics. Pelican.
-</div>
 <div id="ref-Stoica:systemsml17" class="csl-entry" role="doc-biblioentry">
 Stoica, I., Song, D., Popa, R.A., Patterson, D.A., Mahoney, M.W., Katz, R.H., Joseph, A.D., Jordan, M., Hellerstein, J.M., Gonzalez, J., Goldberg, K., Ghodsi, A., Culler, D.E., Abbeel, P., 2017. A berkeley view of systems challenges for AI (No. UCB/EECS-2017-159). EECS Department, University of California, Berkeley.
 </div>
@@ -1132,9 +863,6 @@ The DELVE Initiative, 2020b. Test, trace, isolate. The Royal Society.
 <div id="ref-Delve-vaccine20" class="csl-entry" role="doc-biblioentry">
 The DELVE Initiative, 2020f. SARS-CoV-2 vaccine development &amp; implementation; scenarios, options, key decisions. The Royal Society.
 </div>
-<div id="ref-Tukey:exploratory77" class="csl-entry" role="doc-biblioentry">
-Tukey, J.W., 1977. Exploratory data analysis. Addison-Wesley.
-</div>
 <div id="ref-Valera-automatic17" class="csl-entry" role="doc-biblioentry">
 Valera, I., Ghahramani, Z., 2017. Automatic discovery of the statistical types of variables in a dataset, in: Precup, D., Teh, Y.W. (Eds.), Proceedings of the 34th International Conference on Machine Learning, Proceedings of Machine Learning Research. PMLR, pp. 3521–3529.
 </div>
@@ -1144,16 +872,12 @@ Vorhemus, C., Schikuta, E., 2017. A data-oriented architecture for loosely coupl
 <div id="ref-Wiener:cybernetics48" class="csl-entry" role="doc-biblioentry">
 Wiener, N., 1948. Cybernetics: Control and communication in the animal and the machine. MIT Press, Cambridge, MA.
 </div>
-<div id="ref-Yanai-hypothesis20" class="csl-entry" role="doc-biblioentry">
-Yanai, I., Lercher, M., 2020. A hypothesis is a liability. Genome Biology 21.
-</div>
 </div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>This is related to challenges of machine learning and technical debt <span class="citation" data-cites="Sculley:debt15">(Sculley et al., 2015)</span>, although we are trying to frame the solution here rather than the problem.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>Apple has fixed this issue so that Siri no longer does this.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2" role="doc-endnote"><p>See for example <a href="https://www.technologyreview.com/s/604087/the-dark-secret-at-the-heart-of-ai/">“The Dark Secret at the Heart of AI” in Technology Review</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p>Apple has fixed this issue so that Siri no longer does this.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
