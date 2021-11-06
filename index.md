@@ -9,6 +9,8 @@ Your assessment is [available in Moodle](https://www.vle.cam.ac.uk/). The assess
 
 * [Discussion forum for the module on Reddit](https://www.reddit.com/r/CST_ADS/).
 
+*If this page isn't rendering properly for you, it's likely because your ad-blocker is stopping the CSS loading (the base url is "ads").*
+
 ## Lectures
 
 {% assign lastone = site.lectures | last %}
