@@ -159,8 +159,8 @@ sns.set_palette('colorblind')}-->
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>longitude <span class="op">=</span> <span class="fl">32.582520</span> <span class="co"># Kampala langitude</span></span></code></pre></div>
 <div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>placestub <span class="op">=</span> place_name.lower().replace(<span class="st">&#39; &#39;</span>, <span class="st">&#39;-&#39;</span>).replace(<span class="st">&#39;,&#39;</span>,<span class="st">&#39;&#39;</span>)</span></code></pre></div>
 <p>We’ll create a bounding box which is 0.2 degrees wide, 1 degree is around 111km (<a href="https://en.wikipedia.org/wiki/Metre">circumference of the Earth is around 40,000 km</a> and 40,000/360=111km).</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>box_width <span class="op">=</span> <span class="fl">0.2</span> <span class="co"># About 22 km</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>box_height <span class="op">=</span> <span class="fl">0.2</span></span>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>box_width <span class="op">=</span> <span class="fl">0.02</span> <span class="co"># About 2.2 km</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>box_height <span class="op">=</span> <span class="fl">0.02</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>north <span class="op">=</span> latitude <span class="op">+</span> box_height<span class="op">/</span><span class="dv">2</span></span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>south <span class="op">=</span> latitude <span class="op">-</span> box_width<span class="op">/</span><span class="dv">2</span></span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> longitude <span class="op">-</span> box_width<span class="op">/</span><span class="dv">2</span></span>
@@ -173,16 +173,12 @@ sns.set_palette('colorblind')}-->
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;leisure&quot;</span>: <span class="va">True</span>, </span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;shop&quot;</span>: <span class="va">True</span>, </span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;tourism&quot;</span>: <span class="va">True</span>}</span></code></pre></div>
-<p>Now we can use <code>osmx</code> to download all such points of interest within a given bounding baox.</p>
+<p>Now we can use <code>osmx</code> to download all such points of interest within a given bounding box.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pois <span class="op">=</span> ox.geometries_from_bbox(north, south, east, west, tags)</span></code></pre></div>
 <p>That operation can take some time, particularly as the bounding box grows larger. Once it is complete we can check how many points of interest we have found.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>```{<span class="bu">print</span>(<span class="st">&quot;There are </span><span class="sc">{number}</span><span class="st"> points of interest surrounding </span><span class="sc">{placename}</span><span class="st"> latitude: </span><span class="sc">{latitude}</span><span class="st">, longitude: </span><span class="sc">{longitude}</span><span class="st">&quot;</span>.<span class="bu">format</span>(number<span class="op">=</span><span class="bu">len</span>(pois), placename<span class="op">=</span>place_name, latitude<span class="op">=</span>latitude, longitude<span class="op">=</span>longitude))</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>And then we can examine their contents <span class="kw">in</span> more detail.</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>```{.python}</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>pois.info</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;There are </span><span class="sc">{number}</span><span class="st"> points of interest surrounding </span><span class="sc">{placename}</span><span class="st"> latitude: </span><span class="sc">{latitude}</span><span class="st">, longitude: </span><span class="sc">{longitude}</span><span class="st">&quot;</span>.<span class="bu">format</span>(number<span class="op">=</span><span class="bu">len</span>(pois), placename<span class="op">=</span>place_name, latitude<span class="op">=</span>latitude, longitude<span class="op">=</span>longitude))</span></code></pre></div>
+<p>And then we can examine their contents in more detail.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>pois.info</span></code></pre></div>
 <p>We notice a few things.</p>
 <ol type="1">
 <li><p>Points of interest do not have a consistent OpenStreetMap <code>element_type</code>, some are <code>node</code>, others are <code>relation</code> and we also have <code>way</code>. You can find out more about elements in OpenStreetMap on <a href="https://wiki.openstreetmap.org/wiki/Elements">this wiki page</a>. This will become important when tidying up the data for next stage processing.</p></li>
@@ -191,38 +187,38 @@ sns.set_palette('colorblind')}-->
 </ol>
 <p>Nodes, ways and relations in OpenStreetMap all have different <em>keys</em> associated with them. The data is not structured in standard database columns. Different points of interest might have different keys present or absent. The <code>gdf</code> we recover places these keys in its columns, but if</p>
 <p>So we might be interested in the following keys.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>keys <span class="op">=</span> [<span class="st">&quot;name&quot;</span>,</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;addr:city&quot;</span>,</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;addr:postcode&quot;</span>,</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;amenity&quot;</span>,</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;building&quot;</span>,</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;building:name&quot;</span>,</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;building:colour&quot;</span>,</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;building:material&quot;</span>,</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;historic&quot;</span>,</span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;memorial&quot;</span>,</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;religion&quot;</span>,</span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;tourism&quot;</span>,</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;emergency&quot;</span>,</span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;leisure&quot;</span>,</span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;shop&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>keys <span class="op">=</span> [<span class="st">&quot;name&quot;</span>,</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;addr:city&quot;</span>,</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;addr:postcode&quot;</span>,</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;amenity&quot;</span>,</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;building&quot;</span>,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;building:name&quot;</span>,</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;building:colour&quot;</span>,</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;building:material&quot;</span>,</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;historic&quot;</span>,</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;memorial&quot;</span>,</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;religion&quot;</span>,</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;tourism&quot;</span>,</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;emergency&quot;</span>,</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;leisure&quot;</span>,</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;shop&quot;</span>]</span></code></pre></div>
 <p>But our downloaded <code>gdf</code> may have fewer keys.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pois.columns.values</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>pois.columns.values</span></code></pre></div>
 <p>We can write a short piece of code to discover which keys are missing drom the data frame’s columns.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key <span class="kw">in</span> keys:</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> key <span class="kw">not</span> <span class="kw">in</span> pois.columns:</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(key)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>present_keys <span class="op">=</span> [key <span class="cf">for</span> key <span class="kw">in</span> keys <span class="cf">if</span> key <span class="kw">in</span> pois.columns]</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>pois[present_keys]</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key <span class="kw">in</span> keys:</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> key <span class="kw">not</span> <span class="kw">in</span> pois.columns:</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(key)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>present_keys <span class="op">=</span> [key <span class="cf">for</span> key <span class="kw">in</span> keys <span class="cf">if</span> key <span class="kw">in</span> pois.columns]</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>pois[present_keys]</span></code></pre></div>
 <p>This gives us the relevant points of interest (part of the map). If we’d like to see the entire street network, we can download the entire graph from the location.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> ox.graph_from_bbox(north, south, east, west)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve nodes and edges</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>nodes, edges <span class="op">=</span> ox.graph_to_gdfs(graph)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Get place boundary related to the place name as a geodataframe</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>area <span class="op">=</span> ox.geocode_to_gdf(place_name)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> ox.graph_from_bbox(north, south, east, west)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve nodes and edges</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>nodes, edges <span class="op">=</span> ox.graph_to_gdfs(graph)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Get place boundary related to the place name as a geodataframe</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>area <span class="op">=</span> ox.geocode_to_gdf(place_name)</span></code></pre></div>
 <p>Which we can then render as follows.</p>
 <p><a href="https://towardsdatascience.com/4-must-have-jupyterlab-extensions-for-geospatial-data-science-f3cf7822de4b" class="uri">https://towardsdatascience.com/4-must-have-jupyterlab-extensions-for-geospatial-data-science-f3cf7822de4b</a></p>
 <div class="figure">
@@ -238,7 +234,7 @@ sns.set_palette('colorblind')}-->
 <p>Figure: Points of Interest as identified in Open Street Map.</p>
 </div>
 </div>
-<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>tourist_places <span class="op">=</span> pois[pois.tourism.notnull()]</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>tourist_places <span class="op">=</span> pois[pois.tourism.notnull()]</span></code></pre></div>
 <div class="figure">
 <div id="kampala-uganda-tourist-sites-figure" class="figure-frame">
 <div class="centered" style="">
@@ -253,9 +249,9 @@ sns.set_palette('colorblind')}-->
 </div>
 </div>
 <p>We have the POIs that are associated with tourist places in a geodataframe. To work with them in a machine learning algorithm, it will be easier to conveert them to a <code>pandas</code> DataFrame. This means dealing with the geometry. If we examine the POIs.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>tourist_places.loc[<span class="st">&quot;node&quot;</span>]</span></code></pre></div>
-<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> tourist_places[<span class="st">&quot;geometry&quot;</span>][<span class="st">&quot;way&quot;</span>]:</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;latitude: </span><span class="sc">{latitude}</span><span class="st">, longitude: </span><span class="sc">{longitude}</span><span class="st">&quot;</span>.<span class="bu">format</span>(latitude<span class="op">=</span>i.centroid.y, longitude<span class="op">=</span>i.centroid.x))</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>tourist_places.loc[<span class="st">&quot;node&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> tourist_places[<span class="st">&quot;geometry&quot;</span>][<span class="st">&quot;way&quot;</span>]:</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;latitude: </span><span class="sc">{latitude}</span><span class="st">, longitude: </span><span class="sc">{longitude}</span><span class="st">&quot;</span>.<span class="bu">format</span>(latitude<span class="op">=</span>i.centroid.y, longitude<span class="op">=</span>i.centroid.x))</span></code></pre></div>
 <h2 id="matching-openstreetmap-and-nmis-data">Matching OpenStreetMap and NMIS Data</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/open-street-map-nigeria-nmis-exercise.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/open-street-map-nigeria-nmis-exercise.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
