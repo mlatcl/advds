@@ -156,7 +156,7 @@ sns.set_palette('colorblind')}-->
 <div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>place_name <span class="op">=</span> <span class="st">&quot;Kampala, Uganda&quot;</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>latitude <span class="op">=</span> <span class="fl">0.347596</span> <span class="co"># Kampala latitude</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>longitude <span class="op">=</span> <span class="fl">32.582520</span> <span class="co"># Kampala langitude</span></span></code></pre></div>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>longitude <span class="op">=</span> <span class="fl">32.582520</span> <span class="co"># Kampala longitude</span></span></code></pre></div>
 <div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>placestub <span class="op">=</span> place_name.lower().replace(<span class="st">&#39; &#39;</span>, <span class="st">&#39;-&#39;</span>).replace(<span class="st">&#39;,&#39;</span>,<span class="st">&#39;&#39;</span>)</span></code></pre></div>
 <p>We’ll create a bounding box which is 0.2 degrees wide, 1 degree is around 111km (<a href="https://en.wikipedia.org/wiki/Metre">circumference of the Earth is around 40,000 km</a> and 40,000/360=111km).</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>box_width <span class="op">=</span> <span class="fl">0.02</span> <span class="co"># About 2.2 km</span></span>
@@ -220,12 +220,10 @@ sns.set_palette('colorblind')}-->
 <span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Get place boundary related to the place name as a geodataframe</span></span>
 <span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>area <span class="op">=</span> ox.geocode_to_gdf(place_name)</span></code></pre></div>
 <p>Which we can then render as follows.</p>
-<p><a href="https://towardsdatascience.com/4-must-have-jupyterlab-extensions-for-geospatial-data-science-f3cf7822de4b" class="uri">https://towardsdatascience.com/4-must-have-jupyterlab-extensions-for-geospatial-data-science-f3cf7822de4b</a></p>
 <div class="figure">
 <div id="kampala-uganda-pois-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//maps/kampala-uganda-pois.png" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
+<object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//maps/kampala-uganda-pois.svg" width="40%" style=" ">
+</object>
 </div>
 <div id="kampala-uganda-pois-magnify" class="magnify" onclick="magnifyFigure(&#39;kampala-uganda-pois&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
@@ -237,9 +235,8 @@ sns.set_palette('colorblind')}-->
 <div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>tourist_places <span class="op">=</span> pois[pois.tourism.notnull()]</span></code></pre></div>
 <div class="figure">
 <div id="kampala-uganda-tourist-sites-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//maps/kampala-uganda-tourist-sites.png" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
+<object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//maps/kampala-uganda-tourist-sites.svg" width="40%" style=" ">
+</object>
 </div>
 <div id="kampala-uganda-tourist-sites-magnify" class="magnify" onclick="magnifyFigure(&#39;kampala-uganda-tourist-sites&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
