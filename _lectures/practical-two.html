@@ -109,6 +109,7 @@ sns.set_palette('colorblind')}-->
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> files</span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>uploaded <span class="op">=</span> files.upload()</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(io.StringIO(uploaded[<span class="st">&quot;data.csv&quot;</span>].decode(<span class="st">&quot;utf-8&quot;</span>)))</span></code></pre></div>
+<h3 id="name-the-drawdata-dataframe">Name the Drawdata Dataframe</h3>
 <div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>drawdata_data <span class="op">=</span> data</span></code></pre></div>
 <h2 id="simpsons-paradox">Simpson’s Paradox</h2>
 <p>We introduced <a href="https://en.wikipedia.org/wiki/Simpson%27s_paradox">Simpson’s paradox</a> briefly in the “Review and Refresh” lab session.</p>
