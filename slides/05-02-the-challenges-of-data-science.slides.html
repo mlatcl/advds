@@ -187,37 +187,50 @@ Convention for the Protection of <em>Individuals</em> with regard to Automatic P
 </ul></li>
 </ul>
 </section>
-<section id="societal-effects" class="slide level2">
-<h2>Societal Effects</h2>
+<section id="data-science-as-debugging" class="slide level2">
+<h2>Data Science as Debugging</h2>
 <ul>
-<li>This phenomenon has already revolutionised biology.
-<ul>
-<li>Large scale data acquisition and distribution.</li>
-<li>Transcriptomics, genomics, epigenomics, ‘rich phenomics.’</li>
-</ul></li>
-<li>Great <em>promise</em> for personalized health.</li>
+<li>Analogies: For Software Engineers <a href="http://inverseprobability.com/2017/03/14/data-science-as-debugging">describe data science as <em>debugging</em></a>.</li>
 </ul>
 </section>
-<section id="societal-effects-1" class="slide level2">
-<h2>Societal Effects</h2>
+<section id="in-data-science" class="slide level2">
+<h2>80/20 in Data Science</h2>
 <ul>
-<li>Automated decision making within the computer based only on the data.</li>
-<li>Subjective biases need to be better understood.</li>
-<li>Particularly important where treatments are being prescribed.
+<li>Anecdotally for a given challenge
 <ul>
-<li>Interventions could be far more subtle.</li>
+<li>80% of time is spent on data wrangling.</li>
+<li>20% of time spent on modelling.</li>
 </ul></li>
+<li>Many companies employ ML Engineers focussing on <em>models</em> not <em>data</em>.</li>
 </ul>
 </section>
-<section id="societal-effects-2" class="slide level2">
-<h2>Societal Effects</h2>
+<section id="lessons" class="slide level2">
+<h2>Lessons</h2>
+<ol type="1">
+<li>When you begin an analysis behave as a debugger</li>
+</ol>
 <ul>
-<li>Shift in dynamic:
+<li>Write test code as you go.
 <ul>
-<li>from direct human-data to indirect human-computer-data</li>
-<li>modern data analysis is mediated by the machine</li>
+<li>document tests … maket them accessible.</li>
 </ul></li>
-<li>This change of dynamics gives us the modern and emerging domain of data science</li>
+<li>Be constantly skeptical.</li>
+<li>Develop deep understanding of best tools.</li>
+<li>Share your experience of challenges, have others review work</li>
+</ul>
+</section>
+<section id="lessons-1" class="slide level2">
+<h2>Lessons</h2>
+<ol start="2" type="1">
+<li>When managing a data science process.</li>
+</ol>
+<ul>
+<li>Don’t deploy standard agile development. Explore modifications e.g. Kanban</li>
+<li>Don’t leave data scientist alone to wade through mess.</li>
+<li>Integrate the data analysis with other team activities
+<ul>
+<li>Have software engineers and domain experts work closely with data scientists</li>
+</ul></li>
 </ul>
 </section>
 <section id="complexity-in-action" class="slide level2">
@@ -339,57 +352,6 @@ David Spiegelhalter
 <a href="https://www.amazon.co.uk/Art-Statistics-Learning-Pelican-Books-ebook/dp/B07HQDJD99">The Art of Statistics by David Spiegelhalter</a> is an excellent read on the pitfalls of data interpretation.
 </aside>
 </section>
-<section id="increasing-need-for-human-judgment" class="slide level2">
-<h2>Increasing Need for Human Judgment</h2>
-<div class="figure">
-<div id="-figure" class="figure-frame">
-<iframe width="600" height="450" src="https://www.youtube.com/embed/ori6J8oR0jI?start=1350" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
-</div>
-</div>
-<aside class="notes">
-Diane Coyle’s Fitzwilliam Lecture where she emphasises as data increases, human judgment is <em>more</em> needed.
-</aside>
-</section>
-<section id="section-3" class="slide level2">
-<h2></h2>
-<div class="centered" style="">
-<svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip1">
-<style>
-circle {
-  fill: black;
-}
-</style>
-<circle cx="100" cy="100" r="100"/> </clipPath> </defs>
-<title>
-Diane Coyle
-</title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/diane-coyle.png" clip-path="url(#clip1)"/>
-</svg>
-</div>
-<blockquote>
-<p>The domain of human judgment is increasing.</p>
-<p>How these firms use knowledge. How do they generate ideas?</p>
-</blockquote>
-</section>
-<section id="data-science-as-debugging" class="slide level2">
-<h2>Data Science as Debugging</h2>
-<ul>
-<li>Analogies: For Software Engineers <a href="http://inverseprobability.com/2017/03/14/data-science-as-debugging">describe data science as <em>debugging</em></a>.</li>
-</ul>
-</section>
-<section id="in-data-science" class="slide level2">
-<h2>80/20 in Data Science</h2>
-<ul>
-<li>Anecdotally for a given challenge
-<ul>
-<li>80% of time is spent on data wrangling.</li>
-<li>20% of time spent on modelling.</li>
-</ul></li>
-<li>Many companies employ ML Engineers focussing on <em>models</em> not <em>data</em>.</li>
-</ul>
-</section>
 <section id="challenges" class="slide level2">
 <h2>Challenges</h2>
 <ol type="1">
@@ -397,6 +359,39 @@ Diane Coyle
 <li><p>Quantifying the Value of Data</p></li>
 <li><p>Privacy, loss of control, marginalization</p></li>
 </ol>
+</section>
+<section id="societal-effects" class="slide level2">
+<h2>Societal Effects</h2>
+<ul>
+<li>This phenomenon has already revolutionised biology.
+<ul>
+<li>Large scale data acquisition and distribution.</li>
+<li>Transcriptomics, genomics, epigenomics, ‘rich phenomics.’</li>
+</ul></li>
+<li>Great <em>promise</em> for personalized health.</li>
+</ul>
+</section>
+<section id="societal-effects-1" class="slide level2">
+<h2>Societal Effects</h2>
+<ul>
+<li>Automated decision making within the computer based only on the data.</li>
+<li>Subjective biases need to be better understood.</li>
+<li>Particularly important where treatments are being prescribed.
+<ul>
+<li>Interventions could be far more subtle.</li>
+</ul></li>
+</ul>
+</section>
+<section id="societal-effects-2" class="slide level2">
+<h2>Societal Effects</h2>
+<ul>
+<li>Shift in dynamic:
+<ul>
+<li>from direct human-data to indirect human-computer-data</li>
+<li>modern data analysis is mediated by the machine</li>
+</ul></li>
+<li>This change of dynamics gives us the modern and emerging domain of data science</li>
+</ul>
 </section>
 <section id="the-big-data-paradox" class="slide level2">
 <h2>The Big Data Paradox</h2>
@@ -520,22 +515,22 @@ New beech leaves growing in the Gribskov Forest in the northern part of Sealand,
 </ul></li>
 </ul>
 </section>
-<section id="section-4" class="slide level2">
+<section id="section-3" class="slide level2">
 <h2></h2>
 <object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//pomdp001.svg" width="80%" style=" ">
 </object>
 </section>
-<section id="section-5" class="slide level2">
+<section id="section-4" class="slide level2">
 <h2></h2>
 <object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//pomdp002.svg" width="80%" style=" ">
 </object>
 </section>
-<section id="section-6" class="slide level2">
+<section id="section-5" class="slide level2">
 <h2></h2>
 <object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//pomdp003.svg" width="80%" style=" ">
 </object>
 </section>
-<section id="section-7" class="slide level2">
+<section id="section-6" class="slide level2">
 <h2></h2>
 <object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//pomdp004.svg" width="80%" style=" ">
 </object>
@@ -690,59 +685,59 @@ New beech leaves growing in the Gribskov Forest in the northern part of Sealand,
 <li>Individual is becoming easier to monitor</li>
 </ul>
 </section>
-<section id="section-8" class="slide level2">
+<section id="section-7" class="slide level2">
 <h2></h2>
 </section>
-<section id="section-9" class="slide level2">
+<section id="section-8" class="slide level2">
 <h2></h2>
 <div class="anne-bob-conversation" style="maxwidth:100vw; max-height:100vh">
 <object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//anne-bob-conversation000.svg" width="70%" style=" ">
 </object>
 </div>
 </section>
-<section id="section-10" class="slide level2">
+<section id="section-9" class="slide level2">
 <h2></h2>
 <div class="anne-bob-conversation" style="maxwidth:100vw; max-height:100vh">
 <object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//anne-bob-conversation001.svg" width="70%" style=" ">
 </object>
 </div>
 </section>
-<section id="section-11" class="slide level2">
+<section id="section-10" class="slide level2">
 <h2></h2>
 <div class="anne-bob-conversation" style="maxwidth:100vw; max-height:100vh">
 <object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//anne-bob-conversation002.svg" width="70%" style=" ">
 </object>
 </div>
 </section>
-<section id="section-12" class="slide level2">
+<section id="section-11" class="slide level2">
 <h2></h2>
 <div class="anne-bob-conversation" style="maxwidth:100vw; max-height:100vh">
 <object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//anne-bob-conversation003.svg" width="70%" style=" ">
 </object>
 </div>
 </section>
-<section id="section-13" class="slide level2">
+<section id="section-12" class="slide level2">
 <h2></h2>
 <div class="anne-bob-conversation" style="maxwidth:100vw; max-height:100vh">
 <object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//anne-bob-conversation004.svg" width="70%" style=" ">
 </object>
 </div>
 </section>
-<section id="section-14" class="slide level2">
+<section id="section-13" class="slide level2">
 <h2></h2>
 <div class="anne-bob-conversation" style="maxwidth:100vw; max-height:100vh">
 <object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//anne-bob-conversation005.svg" width="70%" style=" ">
 </object>
 </div>
 </section>
-<section id="section-15" class="slide level2">
+<section id="section-14" class="slide level2">
 <h2></h2>
 <div class="anne-bob-conversation" style="maxwidth:100vw; max-height:100vh">
 <object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//anne-bob-conversation006.svg" width="70%" style=" ">
 </object>
 </div>
 </section>
-<section id="section-16" class="slide level2">
+<section id="section-15" class="slide level2">
 <h2></h2>
 <div class="anne-bob-conversation" style="maxwidth:100vw; max-height:100vh">
 <object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//anne-bob-conversation007.svg" width="70%" style=" ">
@@ -805,7 +800,7 @@ New beech leaves growing in the Gribskov Forest in the northern part of Sealand,
 A woman tends her house in a village in Uganda.
 </aside>
 </section>
-<section id="section-17" class="slide level2">
+<section id="section-16" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="data-science-africa-figure" class="figure-frame">
@@ -819,7 +814,7 @@ Data Science Africa <a href="http://datascienceafrica.org" class="uri">http://da
 </aside>
 <p>Data Science Africa is a bottom up initiative for capacity building in data science, machine learning and AI on the African continent</p>
 </section>
-<section id="section-18" class="slide level2">
+<section id="section-17" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="dsa-events-october-2021-figure" class="figure-frame">
@@ -831,7 +826,7 @@ Data Science Africa <a href="http://datascienceafrica.org" class="uri">http://da
 Data Science Africa meetings held up to October 2021.
 </aside>
 </section>
-<section id="section-19" class="slide level2">
+<section id="section-18" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="africa-benefit-data-revolution-figure" class="figure-frame">
@@ -849,7 +844,7 @@ Data Science Africa meetings held up to October 2021.
 <h2>Example: Prediction of Malaria Incidence in Uganda</h2>
 <div class="centered" style="">
 <svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip2">
+<defs> <clipPath id="clip1">
 <style>
 circle {
   fill: black;
@@ -859,7 +854,20 @@ circle {
 <title>
 Martin Mubangizi
 </title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/martin-mubangizi.png" clip-path="url(#clip2)"/>
+<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/martin-mubangizi.png" clip-path="url(#clip1)"/>
+</svg>
+<svg viewBox="0 0 200 200" style="width:15%">
+<defs> <clipPath id="clip2">
+<style>
+circle {
+  fill: black;
+}
+</style>
+<circle cx="100" cy="100" r="100"/> </clipPath> </defs>
+<title>
+Ricardo Andrade Pacecho
+</title>
+<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/ricardo-andrade-pacheco.png" clip-path="url(#clip2)"/>
 </svg>
 <svg viewBox="0 0 200 200" style="width:15%">
 <defs> <clipPath id="clip3">
@@ -870,22 +878,9 @@ circle {
 </style>
 <circle cx="100" cy="100" r="100"/> </clipPath> </defs>
 <title>
-Ricardo Andrade Pacecho
-</title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/ricardo-andrade-pacheco.png" clip-path="url(#clip3)"/>
-</svg>
-<svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip4">
-<style>
-circle {
-  fill: black;
-}
-</style>
-<circle cx="100" cy="100" r="100"/> </clipPath> </defs>
-<title>
 John Quinn
 </title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/john-quinn.jpg" clip-path="url(#clip4)"/>
+<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/john-quinn.jpg" clip-path="url(#clip3)"/>
 </svg>
 </div>
 <ul>
@@ -1014,7 +1009,7 @@ The map of Ugandan districts with an overview of the Malaria situation in each d
 <section id="personal-data-trusts" class="slide level2">
 <h2>Personal Data Trusts</h2>
 </section>
-<section id="section-20" class="slide level2">
+<section id="section-19" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="data-trusts-figure" class="figure-frame">
@@ -1028,7 +1023,7 @@ The map of Ugandan districts with an overview of the Malaria situation in each d
 .
 </aside>
 </section>
-<section id="section-21" class="slide level2">
+<section id="section-20" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="hall-presenti-report-figure" class="figure-frame">

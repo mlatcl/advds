@@ -63,15 +63,41 @@ categories:
 <center>
 Convention for the Protection of <em>Individuals</em> with regard to Automatic Processing of <em>Personal Data</em> (1981/1/28)
 </center>
-<h2 id="societal-effects">Societal Effects</h2>
+<h2 id="data-science-as-debugging">Data Science as Debugging</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/societal-effects.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/societal-effects.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-science-as-debugging.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-science-as-debugging.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>We have already seen the effects of this changed dynamic in biology and computational biology. Improved sensorics have led to the new domains of transcriptomics, epigenomics, and ‘rich phenomics’ as well as considerably augmenting our capabilities in genomics.</p>
-<p>Biologists have had to become data-savvy, they require a rich understanding of the available data resources and need to assimilate existing data sets in their hypothesis generation as well as their experimental design. Modern biology has become a far more quantitative science, but the quantitativeness has required new methods developed in the domains of <em>computational biology</em> and <em>bioinformatics</em>.</p>
-<p>There is also great promise for personalized health, but in health the wide data-sharing that has underpinned success in the computational biology community is much harder to cary out.</p>
-<p>We can expect to see these phenomena reflected in wider society. Particularly as we make use of more automated decision making based only on data. This is leading to a requirement to better understand our own subjective biases to ensure that the human to computer interface allows domain experts to assimilate data driven conclusions in a well calibrated manner. This is particularly important where medical treatments are being prescribed. It also offers potential for different kinds of medical intervention. More subtle interventions are possible when the digital environment is able to respond to users in an bespoke manner. This has particular implications for treatment of mental health conditions.</p>
-<p>The main phenomenon we see across the board is the shift in dynamic from the direct pathway between human and data, as traditionally mediated by classical statistics, to a new flow of information via the computer. This change of dynamics gives us the modern and emerging domain of <em>data science</em>, where the interactions between human and data are mediated by the machine.</p>
+<p>One challenge for existing information technology professionals is realizing the extent to which a software ecosystem based on data differs from a classical ecosystem. In particular, by ingesting data we bring unknowns/uncontrollables into our decision-making system. This presents opportunity for adversarial exploitation and unforeseen operation.</p>
+<p>blog post on <a href="http://inverseprobability.com/2017/03/14/data-science-as-debugging">Data Science as Debugging</a>.</p>
+<p>Starting with the analysis of a data set, the nature of data science is somewhat difference from classical software engineering.</p>
+<p>One analogy I find helpful for understanding the depth of change we need is the following. Imagine as a software engineer, you find a USB stick on the ground. And for some reason you <em>know</em> that on that USB stick is a particular API call that will enable you to make a significant positive difference on a business problem. You don’t know which of the many library functions on the USB stick are the ones that will help. And it could be that some of those library functions will hinder, perhaps because they are just inappropriate or perhaps because they have been placed there maliciously. The most secure thing to do would be to <em>not</em> introduce this code into your production system at all. But what if your manager told you to do so, how would you go about incorporating this code base?</p>
+<p>The answer is <em>very</em> carefully. You would have to engage in a process more akin to debugging than regular software engineering. As you understood the code base, for your work to be reproducible, you should be documenting it, not just what you discovered, but how you discovered it. In the end, you typically find a single API call that is the one that most benefits your system. But more thought has been placed into this line of code than any line of code you have written before.</p>
+<p>An enormous amount of debugging would be required. As the nature of the code base is understood, software tests to verify it also need to be constructed. At the end of all your work, the lines of software you write to actually interact with the software on the USB stick are likely to be minimal. But more thought would be put into those lines than perhaps any other lines of code in the system.</p>
+<p>Even then, when your API code is introduced into your production system, it needs to be deployed in an environment that monitors it. We cannot rely on an individual’s decision making to ensure the quality of all our systems. We need to create an environment that includes quality controls, checks and bounds, tests, all designed to ensure that assumptions made about this foreign code base are remaining valid.</p>
+<p>This situation is akin to what we are doing when we incorporate data in our production systems. When we are consuming data from others, we cannot assume that it has been produced in alignment with our goals for our own systems. Worst case, it may have been adversarially produced. A further challenge is that data is dynamic. So, in effect, the code on the USB stick is evolving over time.</p>
+<p>It might see that this process is easy to formalize now, we simply need to check what the formal software engineering process is for debugging, because that is the current software engineering activity that data science is closest to. But when we look for a formalization of debugging, we find that there is none. Indeed, modern software engineering mainly focusses on ensuring that code is written without bugs in the first place.</p>
+<h3 id="lessons">Lessons</h3>
+<ol type="1">
+<li>When you begin an analysis, behave as a debugger.</li>
+</ol>
+<ul>
+<li>Write test code as you go. Document those tests and ensure they are accessible by others.</li>
+<li>Understand the landscape of your data. Be prepared to try several different approaches to the data set.</li>
+<li>Be constantly skeptical.</li>
+<li>Use the best tools available, develop a deep understand how they work.</li>
+<li>Share your experience of what challenges you’re facing. Have others (software engineers, fellow data analysts, your manager) review your work.</li>
+<li>Never go straight for the goal: you’d never try and write the API call straight away on the discarded hard drive, so why are you launching your classification algorithm before visualising the data?</li>
+<li>Ensure your analysis is documented and accessible. If your code does go wrong in production you’ll need to be able to retrace to where the error crept in.</li>
+</ul>
+<ol start="2" type="1">
+<li>When managing the data science process, don’t treat it as standard code development.</li>
+</ol>
+<ul>
+<li>Don’t deploy a traditional agile development pipeline and expect it to work the same way it does for standard code development. Think about how you handle bugs, think about how you would handle very many bugs.</li>
+<li>Don’t leave the data scientist alone to wade through the mess.</li>
+<li>Integrate the data analysis with your other team activities. Have the software engineers and domain experts work closely with the data scientists. This is vital for providing the data scientists with the technical support they need, but also managing the expectations of the engineers in terms of when and how the data will be able to deliver.</li>
+</ul>
+<p><strong>Recommendation</strong>: Anecdotally, resolving a machine learning challenge requires 80% of the resource to be focused on the data and perhaps 20% to be focused on the model. But many companies are too keen to employ machine learning engineers who focus on the models, not the data. We should change our hiring priorities and training. Universities cannot provide the understanding of how to data-wrangle. Companies must fill this gap.</p>
 <h2 id="complexity-in-action">Complexity in Action</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_psychology/includes/selective-attention-bias.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_psychology/includes/selective-attention-bias.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
@@ -246,57 +272,21 @@ David Spiegelhalter
 </div>
 </div>
 <p>David’s <span class="citation" data-cites="Spiegelhalter-art19">(Spiegelhalter, 2019)</span> book brings important examples from statistics to life in an intelligent and entertaining way. It is highly readable and gives an opportunity to fast-track towards the important skill of data-skepticism that is the mark of a professional statistician.</p>
-<h2 id="increasing-need-for-human-judgment">Increasing Need for Human Judgment</h2>
-<div class="figure">
-<div id="-figure" class="figure-frame">
-<iframe width="600" height="450" src="https://www.youtube.com/embed/ori6J8oR0jI?start=1350" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
-</div>
-<div id="-magnify" class="magnify" onclick="magnifyFigure(&#39;&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="-caption" class="caption-frame">
-<p>Figure: Diane Coyle’s Fitzwilliam Lecture where she emphasises as data increases, human judgment is <em>more</em> needed.</p>
-</div>
-</div>
-<div class="centered" style="">
-<svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip1">
-<style>
-circle {
-  fill: black;
-}
-</style>
-<circle cx="100" cy="100" r="100"/> </clipPath> </defs>
-<title>
-Diane Coyle
-</title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/diane-coyle.png" clip-path="url(#clip1)"/>
-</svg>
-</div>
-<blockquote>
-<p>The domain of human judgment is increasing.</p>
-<p>How these firms use knowledge. How do they generate ideas?</p>
-</blockquote>
-<h2 id="data-science-as-debugging">Data Science as Debugging</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-science-as-debugging.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-science-as-debugging.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>One challenge for existing information technology professionals is realizing the extent to which a software ecosystem based on data differs from a classical ecosystem. In particular, by ingesting data we bring unknowns/uncontrollables into our decision-making system. This presents opportunity for adversarial exploitation and unforeseen operation.</p>
-<p>blog post on <a href="http://inverseprobability.com/2017/03/14/data-science-as-debugging">Data Science as Debugging</a>.</p>
-<p>Starting with the analysis of a data set, the nature of data science is somewhat difference from classical software engineering.</p>
-<p>One analogy I find helpful for understanding the depth of change we need is the following. Imagine as a software engineer, you find a USB stick on the ground. And for some reason you <em>know</em> that on that USB stick is a particular API call that will enable you to make a significant positive difference on a business problem. You don’t know which of the many library functions on the USB stick are the ones that will help. And it could be that some of those library functions will hinder, perhaps because they are just inappropriate or perhaps because they have been placed there maliciously. The most secure thing to do would be to <em>not</em> introduce this code into your production system at all. But what if your manager told you to do so, how would you go about incorporating this code base?</p>
-<p>The answer is <em>very</em> carefully. You would have to engage in a process more akin to debugging than regular software engineering. As you understood the code base, for your work to be reproducible, you should be documenting it, not just what you discovered, but how you discovered it. In the end, you typically find a single API call that is the one that most benefits your system. But more thought has been placed into this line of code than any line of code you have written before.</p>
-<p>An enormous amount of debugging would be required. As the nature of the code base is understood, software tests to verify it also need to be constructed. At the end of all your work, the lines of software you write to actually interact with the software on the USB stick are likely to be minimal. But more thought would be put into those lines than perhaps any other lines of code in the system.</p>
-<p>Even then, when your API code is introduced into your production system, it needs to be deployed in an environment that monitors it. We cannot rely on an individual’s decision making to ensure the quality of all our systems. We need to create an environment that includes quality controls, checks and bounds, tests, all designed to ensure that assumptions made about this foreign code base are remaining valid.</p>
-<p>This situation is akin to what we are doing when we incorporate data in our production systems. When we are consuming data from others, we cannot assume that it has been produced in alignment with our goals for our own systems. Worst case, it may have been adversarially produced. A further challenge is that data is dynamic. So, in effect, the code on the USB stick is evolving over time.</p>
-<p>It might see that this process is easy to formalize now, we simply need to check what the formal software engineering process is for debugging, because that is the current software engineering activity that data science is closest to. But when we look for a formalization of debugging, we find that there is none. Indeed, modern software engineering mainly focusses on ensuring that code is written without bugs in the first place.</p>
-<p><strong>Recommendation</strong>: Anecdotally, resolving a machine learning challenge requires 80% of the resource to be focused on the data and perhaps 20% to be focused on the model. But many companies are too keen to employ machine learning engineers who focus on the models, not the data. We should change our hiring priorities and training. Universities cannot provide the understanding of how to data-wrangle. Companies must fill this gap.</p>
 <h2 id="challenges">Challenges</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/three-data-science-challenges.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/three-data-science-challenges.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <p>The field of data science is rapidly evolving. Different practitioners from different domains have their own perspectives. In this post we identify three broad challenges that are emerging. Challenges which have not been addressed in the traditional sub-domains of data science. The challenges have social implications but require technological advance for their solutions.</p>
+<p>You can also check this blog post on <a href="http://inverseprobability.com/2016/07/01/data-science-challenges">Three Data Science Challenges</a>..</p>
+<h2 id="societal-effects">Societal Effects</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/societal-effects.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/societal-effects.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>We have already seen the effects of this changed dynamic in biology and computational biology. Improved sensorics have led to the new domains of transcriptomics, epigenomics, and ‘rich phenomics’ as well as considerably augmenting our capabilities in genomics.</p>
+<p>Biologists have had to become data-savvy, they require a rich understanding of the available data resources and need to assimilate existing data sets in their hypothesis generation as well as their experimental design. Modern biology has become a far more quantitative science, but the quantitativeness has required new methods developed in the domains of <em>computational biology</em> and <em>bioinformatics</em>.</p>
+<p>There is also great promise for personalized health, but in health the wide data-sharing that has underpinned success in the computational biology community is much harder to cary out.</p>
+<p>We can expect to see these phenomena reflected in wider society. Particularly as we make use of more automated decision making based only on data. This is leading to a requirement to better understand our own subjective biases to ensure that the human to computer interface allows domain experts to assimilate data driven conclusions in a well calibrated manner. This is particularly important where medical treatments are being prescribed. It also offers potential for different kinds of medical intervention. More subtle interventions are possible when the digital environment is able to respond to users in an bespoke manner. This has particular implications for treatment of mental health conditions.</p>
+<p>The main phenomenon we see across the board is the shift in dynamic from the direct pathway between human and data, as traditionally mediated by classical statistics, to a new flow of information via the computer. This change of dynamics gives us the modern and emerging domain of <em>data science</em>, where the interactions between human and data are mediated by the machine.</p>
 <h2 id="the-big-data-paradox">The Big Data Paradox</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/big-data-paradox.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/big-data-paradox.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
@@ -571,7 +561,7 @@ Diane Coyle
 </div>
 <div class="centered" style="">
 <svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip2">
+<defs> <clipPath id="clip1">
 <style>
 circle {
   fill: black;
@@ -581,7 +571,20 @@ circle {
 <title>
 Martin Mubangizi
 </title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/martin-mubangizi.png" clip-path="url(#clip2)"/>
+<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/martin-mubangizi.png" clip-path="url(#clip1)"/>
+</svg>
+<svg viewBox="0 0 200 200" style="width:15%">
+<defs> <clipPath id="clip2">
+<style>
+circle {
+  fill: black;
+}
+</style>
+<circle cx="100" cy="100" r="100"/> </clipPath> </defs>
+<title>
+Ricardo Andrade Pacecho
+</title>
+<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/ricardo-andrade-pacheco.png" clip-path="url(#clip2)"/>
 </svg>
 <svg viewBox="0 0 200 200" style="width:15%">
 <defs> <clipPath id="clip3">
@@ -592,22 +595,9 @@ circle {
 </style>
 <circle cx="100" cy="100" r="100"/> </clipPath> </defs>
 <title>
-Ricardo Andrade Pacecho
-</title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/ricardo-andrade-pacheco.png" clip-path="url(#clip3)"/>
-</svg>
-<svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip4">
-<style>
-circle {
-  fill: black;
-}
-</style>
-<circle cx="100" cy="100" r="100"/> </clipPath> </defs>
-<title>
 John Quinn
 </title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/john-quinn.jpg" clip-path="url(#clip4)"/>
+<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/john-quinn.jpg" clip-path="url(#clip3)"/>
 </svg>
 </div>
 <p>As an example of using Gaussian process models within the full pipeline from data to decsion, we’ll consider the prediction of Malaria incidence in Uganda. For the purposes of this study malaria reports come in two forms, HMIS reports from health centres and Sentinel data, which is curated by the WHO. There are limited sentinel sites and many HMIS sites.</p>
@@ -805,7 +795,6 @@ John Quinn
 <p>Addressing challenges in privacy, loss of control and marginalization includes ensuring that the individual retains control of their own data. We accept privacy in our real loves, we need to accept it in our digital persona. This is vital for our control of persona and our ability to project ourselves.</p>
 <p>Fairness goes hand in hand with privacy to protect the individual. Regulations like the GDPR date from a time where the main worry was <em>consequential</em> decision making but today we also face problems from accumulation of inconsequential decisions leading to a resulting consequential effect.</p>
 <p>Capacity building in different contexts, empowering domain experts to solve their own problems, is one aspect to the solution. A further proposal is the use of data trusts to reintroduce control of personal data for the individual.</p>
-<p>You can also check this blog post on <a href="http://inverseprobability.com/2016/07/01/data-science-challenges">Three Data Science Challenges</a>..</p>
 <h1 id="references">References</h1>
 <h2 id="thanks">Thanks!</h2>
 <p>For more information on these subjects and more you might want to check the following resources.</p>
