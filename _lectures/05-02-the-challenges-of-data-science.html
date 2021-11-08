@@ -140,52 +140,6 @@ Convention for the Protection of <em>Individuals</em> with regard to Automatic P
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-inattention-bias.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-inattention-bias.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <p>We are going to see how inattention biases can play out in data analysis by going through a simple example. The analysis involves body mass index and activity information.</p>
-<h2 id="bmi-steps-data">BMI Steps Data</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/bmi-steps-data.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/bmi-steps-data.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>The BMI Steps example is taken from <span class="citation" data-cites="Yanai-hypothesis20">Yanai and Lercher (2020)</span>. We are given a data set of body-mass index measurements against step counts. For convenience we have packaged the data so that it can be easily downloaded.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.bmi_steps()</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>] </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span></code></pre></div>
-<p>It is good practice to give our variables interpretable names so that the analysis may be clearly understood by others. Here the <code>steps</code> count is the first dimension of the covariate, the <code>bmi</code> is the second dimension and the <code>gender</code> is stored in <code>y</code> with <code>1</code> for female and <code>0</code> for male.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>steps <span class="op">=</span> X[:, <span class="dv">0</span>]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>bmi <span class="op">=</span> X[:, <span class="dv">1</span>]</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gender <span class="op">=</span> y[:, <span class="dv">0</span>]</span></code></pre></div>
-<p>We can check the mean steps and the mean of the BMI.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Steps mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>steps.mean()))</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;BMI mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>bmi.mean()))</span></code></pre></div>
-<h2 id="bmi-steps-data-analysis">BMI Steps Data Analysis</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/bmi-steps-analysis.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/bmi-steps-analysis.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>We can also separate out the means from the male and female populations. In python this can be done by setting male and female indices as follows.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>male_ind <span class="op">=</span> (gender<span class="op">==</span><span class="dv">0</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>female_ind <span class="op">=</span> (gender<span class="op">==</span><span class="dv">1</span>)</span></code></pre></div>
-<p>And now we can extract the variables for the two populations.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>male_steps <span class="op">=</span> steps[male_ind]</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>male_bmi <span class="op">=</span> bmi[male_ind]</span></code></pre></div>
-<p>And as before we compute the mean.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Male steps mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>male_steps.mean()))</span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Male BMI mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>male_bmi.mean()))</span></code></pre></div>
-<p>Similarly, we can get the same result for the female portion of the populaton.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>female_steps <span class="op">=</span> steps[female_ind]</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>female_bmi <span class="op">=</span> bmi[female_ind]</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Female steps mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>female_steps.mean()))</span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Female BMI mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>female_bmi.mean()))</span></code></pre></div>
-<p>Interesting, the female BMI average is slightly higher than the male BMI average. The number of steps in the male group is higher than that in the female group. Perhaps the steps and the BMI are anti-correlated. The more steps, the lower the BMI.</p>
-<p>Python provides a statistics package. We’ll import this in <code>python</code> so that we can try and understand the correlation between the <code>steps</code> and the <code>BMI</code>.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> pearsonr</span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>corr, _ <span class="op">=</span> pearsonr(steps, bmi)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Pearson&#39;s overall correlation: </span><span class="sc">{corr}</span><span class="st">&quot;</span>.<span class="bu">format</span>(corr<span class="op">=</span>corr))</span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>male_corr, _ <span class="op">=</span> pearsonr(male_steps, male_bmi)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Pearson&#39;s correlation for males: </span><span class="sc">{corr}</span><span class="st">&quot;</span>.<span class="bu">format</span>(corr<span class="op">=</span>male_corr))</span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>female_corr, _ <span class="op">=</span> pearsonr(female_steps, female_bmi)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Pearson&#39;s correlation for females: </span><span class="sc">{corr}</span><span class="st">&quot;</span>.<span class="bu">format</span>(corr<span class="op">=</span>female_corr))</span></code></pre></div>
 <h2 id="a-hypothesis-as-a-liability">A Hypothesis as a Liability</h2>
 <p>This analysis is from an article titled “A Hypothesis as a Liability” <span class="citation" data-cites="Yanai-hypothesis20">(Yanai and Lercher, 2020)</span>, they start their article with the following quite from Herman Hesse.</p>
 <blockquote>
@@ -451,40 +405,6 @@ David Spiegelhalter
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/privacy-intro.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/privacy-intro.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <p>Society is becoming harder to monitor, but the individual is becoming easier to monitor. Social media monitoring for ‘hate speech’ can easily be turned to monitoring of political dissent. Marketing becomes more sinister when the target of the marketing is so well understood and the digital environment of the target is so well controlled.</p>
-<h3 id="bandwidth-constrained-conversations">Bandwidth Constrained Conversations</h3>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/anne-bob-talk.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/anne-bob-talk.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<div class="figure">
-<div id="anne-bob-conversation-civil-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//anne-bob-conversation006.svg" width="70%" style=" ">
-</object>
-</div>
-<div id="anne-bob-conversation-civil-magnify" class="magnify" onclick="magnifyFigure(&#39;anne-bob-conversation-civil&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="anne-bob-conversation-civil-caption" class="caption-frame">
-<p>Figure: Conversation relies on internal models of other individuals.</p>
-</div>
-</div>
-<div class="figure">
-<div id="anne-bob-conversation-argument-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//anne-bob-conversation007.svg" width="70%" style=" ">
-</object>
-</div>
-<div id="anne-bob-conversation-argument-magnify" class="magnify" onclick="magnifyFigure(&#39;anne-bob-conversation-argument&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="anne-bob-conversation-argument-caption" class="caption-frame">
-<p>Figure: Misunderstanding of context and who we are talking to leads to arguments.</p>
-</div>
-</div>
-<p>Embodiment factors imply that, in our communication between humans, what is <em>not</em> said is, perhaps, more important than what is said. To communicate with each other we need to have a model of who each of us are.</p>
-<p>To aid this, in society, we are required to perform roles. Whether as a parent, a teacher, an employee or a boss. Each of these roles requires that we conform to certain standards of behaviour to facilitate communication between ourselves.</p>
-<p>Control of self is vitally important to these communications.</p>
-<p>The high availability of data available to humans undermines human-to-human communication channels by providing new routes to undermining our control of self.</p>
-<p>The consequences between this mismatch of power and delivery are to be seen all around us. Because, just as driving an F1 car with bicycle wheels would be a fine art, so is the process of communication between humans.</p>
-<p>If I have a thought and I wish to communicate it, I first of all need to have a model of what you think. I should think before I speak. When I speak, you may react. You have a model of who I am and what I was trying to say, and why I chose to say what I said. Now we begin this dance, where we are each trying to better understand each other and what we are saying. When it works, it is beautiful, but when misdeployed, just like a badly driven F1 car, there is a horrible crash, an argument.</p>
 <h2 id="marketing-and-free-will">Marketing and Free Will</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/marketing-and-free-will.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/marketing-and-free-will.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
@@ -507,6 +427,13 @@ David Spiegelhalter
 </div>
 <p>Statistics as a community is also focussed on the single consequential effect of an analysis (efficacy of drugs, or distribution of Mosquito nets). Associated with happenstance data is <em>happenstance decision making</em>.</p>
 <p>These algorithms behind these decisions are developed in a particular context. The so-called Silicon Valley bubble. But they are deployed across the world. To address this, a key challenge is capacity building in contexts which are remote from the Western norm.</p>
+<h2 id="amelioration">Amelioration</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/privacy-amelioration.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/privacy-amelioration.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>Addressing challenges in privacy, loss of control and marginalization includes ensuring that the individual retains control of their own data. We accept privacy in our real loves, we need to accept it in our digital persona. This is vital for our control of persona and our ability to project ourselves.</p>
+<p>Fairness goes hand in hand with privacy to protect the individual. Regulations like the GDPR date from a time where the main worry was <em>consequential</em> decision making but today we also face problems from accumulation of inconsequential decisions leading to a resulting consequential effect.</p>
+<p>Capacity building in different contexts, empowering domain experts to solve their own problems, is one aspect to the solution. A further proposal is the use of data trusts to reintroduce control of personal data for the individual.</p>
 <h2 id="data-science-africa">Data Science Africa</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-science-africa.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-science-africa.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
@@ -555,184 +482,93 @@ David Spiegelhalter
 </div>
 </div>
 <p>Guardian article on <a href="https://www.theguardian.com/media-network/2015/aug/25/africa-benefit-data-science-information">Data Science Africa</a></p>
-<h2 id="example-prediction-of-malaria-incidence-in-uganda">Example: Prediction of Malaria Incidence in Uganda</h2>
+<h2 id="data-governance-toolkit">Data Governance Toolkit</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_health/includes/malaria-gp.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_health/includes/malaria-gp.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_governance/includes/data-governance-toolkit.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_governance/includes/data-governance-toolkit.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<div class="centered" style="">
-<svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip1">
-<style>
-circle {
-  fill: black;
-}
-</style>
-<circle cx="100" cy="100" r="100"/> </clipPath> </defs>
-<title>
-Martin Mubangizi
-</title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/martin-mubangizi.png" clip-path="url(#clip1)"/>
-</svg>
-<svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip2">
-<style>
-circle {
-  fill: black;
-}
-</style>
-<circle cx="100" cy="100" r="100"/> </clipPath> </defs>
-<title>
-Ricardo Andrade Pacecho
-</title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/ricardo-andrade-pacheco.png" clip-path="url(#clip2)"/>
-</svg>
-<svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip3">
-<style>
-circle {
-  fill: black;
-}
-</style>
-<circle cx="100" cy="100" r="100"/> </clipPath> </defs>
-<title>
-John Quinn
-</title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/ads/./slides/diagrams//people/john-quinn.jpg" clip-path="url(#clip3)"/>
-</svg>
-</div>
-<p>As an example of using Gaussian process models within the full pipeline from data to decsion, we’ll consider the prediction of Malaria incidence in Uganda. For the purposes of this study malaria reports come in two forms, HMIS reports from health centres and Sentinel data, which is curated by the WHO. There are limited sentinel sites and many HMIS sites.</p>
-<p>The work is from Ricardo Andrade Pacheco’s PhD thesis, completed in collaboration with John Quinn and Martin Mubangizi <span class="citation" data-cites="Andrade:consistent14 Mubangizi:malaria14">(Andrade-Pacheco et al., 2014; Mubangizi et al., 2014)</span>. John and Martin were initally from the AI-DEV group from the University of Makerere in Kampala and more latterly they were based at UN Global Pulse in Kampala. You can see the work summarized on the UN Global Pulse <a href="https://diseaseoutbreaks.unglobalpulse.net/uganda/">disease outbreaks project site here</a>.</p>
-<ul>
-<li>See <a href="https://diseaseoutbreaks.unglobalpulse.net/uganda/">UN Global Pulse Disease Outbreaks Site</a></li>
-</ul>
-<p>Malaria data is spatial data. Uganda is split into districts, and health reports can be found for each district. This suggests that models such as conditional random fields could be used for spatial modelling, but there are two complexities with this. First of all, occasionally districts split into two. Secondly, sentinel sites are a specific location within a district, such as Nagongera which is a sentinel site based in the Tororo district.</p>
 <div class="figure">
-<div id="uganda-districts-2006-figure" class="figure-frame">
+<div id="decision-tree-for-data-sharing-figure" class="figure-frame">
 <div class="centered" style="">
-<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//health/uganda-districts-2006.png" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//governance/decision-tree-for-data-sharing.png" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="uganda-districts-2006-magnify" class="magnify" onclick="magnifyFigure(&#39;uganda-districts-2006&#39;)">
+<div id="decision-tree-for-data-sharing-magnify" class="magnify" onclick="magnifyFigure(&#39;decision-tree-for-data-sharing&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="uganda-districts-2006-caption" class="caption-frame">
-<p>Figure: Ugandan districts. Data SRTM/NASA from <a href="https://dds.cr.usgs.gov/srtm/version2_1" class="uri">https://dds.cr.usgs.gov/srtm/version2_1</a>.</p>
+<div id="decision-tree-for-data-sharing-caption" class="caption-frame">
+<p>Figure: Decision tree for data sharing. The root node splits agreements into those where the data has and hasn’t been collected. The scope and nature of rights pertaining to the data is the next branch.</p>
 </div>
 </div>
-<div style="text-align:right">
-<span class="citation" data-cites="Andrade:consistent14 Mubangizi:malaria14">(Andrade-Pacheco et al., 2014; Mubangizi et al., 2014)</span>
-</div>
-<p>The common standard for collecting health data on the African continent is from the Health management information systems (HMIS). However, this data suffers from missing values <span class="citation" data-cites="Gething:hmis06">(Gething et al., 2006)</span> and diagnosis of diseases like typhoid and malaria may be confounded.</p>
 <div class="figure">
-<div id="tororo-district-in-uganda-figure" class="figure-frame">
-<object class data="https://mlatcl.github.io/ads/./slides/diagrams//health/Tororo_District_in_Uganda.svg" width="50%" style=" ">
+<div id="data-governance-color-wheel-figure" class="figure-frame">
+<object class data="https://mlatcl.github.io/ads/./slides/diagrams//governance/color-wheel.svg" width="100%" style=" ">
 </object>
 </div>
-<div id="tororo-district-in-uganda-magnify" class="magnify" onclick="magnifyFigure(&#39;tororo-district-in-uganda&#39;)">
+<div id="data-governance-color-wheel-magnify" class="magnify" onclick="magnifyFigure(&#39;data-governance-color-wheel&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="tororo-district-in-uganda-caption" class="caption-frame">
-<p>Figure: The Tororo district, where the sentinel site, Nagongera, is located.</p>
+<div id="data-governance-color-wheel-caption" class="caption-frame">
+<p>Figure: Governance considerations can be grouped in four parts, individuals, society, enfranchisement and vulnerabilities.</p>
 </div>
 </div>
-<p><a href="https://www.who.int/immunization/monitoring_surveillance/burden/vpd/surveillance_type/sentinel/en/">World Health Organization Sentinel Surveillance systems</a> are set up “when high-quality data are needed about a particular disease that cannot be obtained through a passive system.” Several sentinel sites give accurate assessment of malaria disease levels in Uganda, including a site in Nagongera.</p>
+<p>With Sylvie Delacroix and Jessica Montgomery we’ve been working towards a data governance toolkit. Trying to understand the different approaches to data sharing and access we may need for different types of data. Some of the</p>
+<p>One major challenge to data sharing is that it means different things to different people and different institutions. The objectives of data sharing can differ amoung different sharing parties. This leads to a great deal of confusion when discussing mechanisms for data sharing.</p>
+<p>For example, in 2016, inspired by conversations with Jonathan Price, I proposed the idea of Data Trusts. This was a data sharing idea specifically targeted at protecting indviduals from the vulnerabilities they are exposed to when sharing personal data.</p>
+<p>Unfortunately, the idea has since been promoted as a universal panacea for data sharing. As a result, the original concept is inevitably misunderstood, watered down or derided. It seems clear that we need a better understanding of the data sharing landscape. Some steps have been taken to outlining the legal implications of different data sharing structures in a report <a href="https://www.adalovelaceinstitute.org/report/legal-mechanisms-data-stewardship/">“Exploring legal mechanisms for data stewardship”</a> from the Ada Lovelace Institute in collaboration with the UK’s AI Council.</p>
+<p>The framework we’re using comes from discussions with Sylvie Delacroix and Jess Montgomery on how to characterise the data governenance process. We’ve developed the color wheel shown above. See our <a href="https://datatrusts.uk/blogs/selectingdatastructures">blog post here</a>.</p>
+<p>The color wheel is meant to broadly characterise the different considerations we need to have when developing data governance frameworks and some of the tensions we experience when describing different approaches to data sharing.</p>
 <div class="figure">
-<div id="sentinel-nagongera-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="negate" src="https://mlatcl.github.io/ads/./slides/diagrams//health/sentinel_nagongera.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-<div id="sentinel-nagongera-magnify" class="magnify" onclick="magnifyFigure(&#39;sentinel-nagongera&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="sentinel-nagongera-caption" class="caption-frame">
-<p>Figure: Sentinel and HMIS data along with rainfall and temperature for the Nagongera sentinel station in the Tororo district.</p>
-</div>
-</div>
-<p>In collaboration with the AI Research Group at Makerere we chose to investigate whether Gaussian process models could be used to assimilate information from these two different sources of disease informaton. Further, we were interested in whether local information on rainfall and temperature could be used to improve malaria estimates.</p>
-<p>The aim of the project was to use WHO Sentinel sites, alongside rainfall and temperature, to improve predictions from HMIS data of levels of malaria.</p>
-<div class="figure">
-<div id="mubende-district-in-uganda-figure" class="figure-frame">
-<object class data="https://mlatcl.github.io/ads/./slides/diagrams//health/Mubende_District_in_Uganda.svg" width="50%" style=" ">
+<div id="society-figure" class="figure-frame">
+<object class data="https://mlatcl.github.io/ads/./slides/diagrams//governance/society.svg" width="100%" style=" ">
 </object>
 </div>
-<div id="mubende-district-in-uganda-magnify" class="magnify" onclick="magnifyFigure(&#39;mubende-district-in-uganda&#39;)">
+<div id="society-magnify" class="magnify" onclick="magnifyFigure(&#39;society&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="mubende-district-in-uganda-caption" class="caption-frame">
-<p>Figure: The Mubende District.</p>
+<div id="society-caption" class="caption-frame">
+<p>Figure: The society diagram shows the different words associated with positive outcomes and negative outcomes for different data sharing frameworks based around society. On the positive spectrum we can imagine wordslike safety, health, egality all associated with the utopian version of society. At the dystopian end we have terror, pollution, disease.</p>
 </div>
 </div>
+<p>Typical social benefits derived from data sharing include better health, and better security. By sharing information widely about society we can better understand how to manage society to wider benefit.</p>
 <div class="figure">
-<div id="malaria-prediction-mubende-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//health/mubende.png" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-<div id="malaria-prediction-mubende-magnify" class="magnify" onclick="magnifyFigure(&#39;malaria-prediction-mubende&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="malaria-prediction-mubende-caption" class="caption-frame">
-<p>Figure: Prediction of malaria incidence in Mubende.</p>
-</div>
-</div>
-<div class="figure">
-<div id="-figure" class="figure-frame">
-<div class="centered centered" style="">
-<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//gpss/1157497_513423392066576_1845599035_n.jpg" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-<div id="-magnify" class="magnify" onclick="magnifyFigure(&#39;&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="-caption" class="caption-frame">
-<p>Figure: The project arose out of the Gaussian process summer school held at Makerere in Kampala in 2013. The school led, in turn, to the Data Science Africa initiative.</p>
-</div>
-</div>
-<h2 id="early-warning-systems">Early Warning Systems</h2>
-<div class="figure">
-<div id="kabarole-district-in-uganda-figure" class="figure-frame">
-<object class data="https://mlatcl.github.io/ads/./slides/diagrams//health/Kabarole_District_in_Uganda.svg" width="50%" style=" ">
+<div id="vulnerability-figure" class="figure-frame">
+<object class data="https://mlatcl.github.io/ads/./slides/diagrams//governance/vulnerabilities.svg" width="100%" style=" ">
 </object>
 </div>
-<div id="kabarole-district-in-uganda-magnify" class="magnify" onclick="magnifyFigure(&#39;kabarole-district-in-uganda&#39;)">
+<div id="vulnerability-magnify" class="magnify" onclick="magnifyFigure(&#39;vulnerability&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="kabarole-district-in-uganda-caption" class="caption-frame">
-<p>Figure: The Kabarole district in Uganda.</p>
+<div id="vulnerability-caption" class="caption-frame">
+<p>Figure: Thinking of how data governance must protect vulnerability. In the utopian case we can image support and the flourishing of people regardless of vulnearabilities, at the dystopian end we can imagin moder slavery, abuse, exploitation.</p>
 </div>
 </div>
+<p>There are individuals in society who are vulnerable due to disempowerment. Many of these vulnerabilities are due to minority status or particular conditions. Protecting vulnerable individuals is a vital component of good governance. This is reflected in, for example, data rights legislation such as the GDPR which defines protected characteristics and prohibited discriminations around sensitive areas such as health, race, religion, sexuality and gender. These protections very often recognise past injustices or systemic biases that we wish to prevent in future. Other vulnerable groups include those we don’t empower to decide for themselves, such as children.</p>
 <div class="figure">
-<div id="kabarole-disease-over-time-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//health/kabarole.gif" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<div id="enfranchisement-figure" class="figure-frame">
+<object class data="https://mlatcl.github.io/ads/./slides/diagrams//governance/enfranchisement.svg" width="100%" style=" ">
+</object>
 </div>
-</div>
-<div id="kabarole-disease-over-time-magnify" class="magnify" onclick="magnifyFigure(&#39;kabarole-disease-over-time&#39;)">
+<div id="enfranchisement-magnify" class="magnify" onclick="magnifyFigure(&#39;enfranchisement&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="kabarole-disease-over-time-caption" class="caption-frame">
-<p>Figure: Estimate of the current disease situation in the Kabarole district over time. Estimate is constructed with a Gaussian process with an additive covariance funciton.</p>
+<div id="enfranchisement-caption" class="caption-frame">
+<p>Figure: How our opinons are represented is another important part of data governance, the enfrahcnisement. In the utopian case we have representation, redress, empowerment, whereas in the dystopian extreme we have autocracy, authoratarianism or anarchy.</p>
 </div>
 </div>
-<p>Health monitoring system for the Kabarole district. Here we have fitted the reports with a Gaussian process with an additive covariance function. It has two components, one is a long time scale component (in red above) the other is a short time scale component (in blue).</p>
-<p>Monitoring proceeds by considering two aspects of the curve. Is the blue line (the short term report signal) above the red (which represents the long term trend? If so we have higher than expected reports. If this is the case <em>and</em> the gradient is still positive (i.e. reports are going up) we encode this with a <em>red</em> color. If it is the case and the gradient of the blue line is negative (i.e. reports are going down) we encode this with an <em>amber</em> color. Conversely, if the blue line is below the red <em>and</em> decreasing, we color <em>green</em>. On the other hand if it is below red but increasing, we color <em>yellow</em>.</p>
-<p>This gives us an early warning system for disease. Red is a bad situation getting worse, amber is bad, but improving. Green is good and getting better and yellow good but degrading.</p>
-<p>Finally, there is a gray region which represents when the scale of the effect is small.</p>
+<p>In any governance structure, the route for individuals (or institutions) that are participating in the structure to represent their own opinion, query decision making and realign the values of the governance organisation with there own is a criticial component. Considering groups that are currently disenfranchised (for example, in digital systems, the elderly) also forms a component of the design of the governance structure. Dealing with power asymmetries, such as those we’re experiencing in our current somewhat feudal system of data governance is also a key challenge for the enfranchisement.</p>
 <div class="figure">
-<div id="early-warning-system-map-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//health/monitor.gif" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<div id="individuals-figure" class="figure-frame">
+<object class data="https://mlatcl.github.io/ads/./slides/diagrams//governance/individuals.svg" width="100%" style=" ">
+</object>
 </div>
-</div>
-<div id="early-warning-system-map-magnify" class="magnify" onclick="magnifyFigure(&#39;early-warning-system-map&#39;)">
+<div id="individuals-magnify" class="magnify" onclick="magnifyFigure(&#39;individuals&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="early-warning-system-map-caption" class="caption-frame">
-<p>Figure: The map of Ugandan districts with an overview of the Malaria situation in each district.</p>
+<div id="individuals-caption" class="caption-frame">
+<p>Figure:</p>
 </div>
 </div>
-<p>These colors can now be observed directly on a spatial map of the districts to give an immediate impression of the current status of the disease across the country.</p>
+<p>Representing individual aspirations as part of the governance structure relates strongly to traditional notions of liberty which involve freedom of action. A particular sense in which we think of individual liberty in digital systems is in terms of control we each have around our individual aspirations.</p>
 <h2 id="personal-data-trusts">Personal Data Trusts</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_governance/includes/data-trusts.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_governance/includes/data-trusts.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
@@ -788,13 +624,9 @@ John Quinn
 <p>Figure: The Data Trusts Initiative (<a href="https://datatrusts.uk/" target="_blank">http://datatrusts.uk</a>) hosts blog posts helping build understanding of data trusts and supports research and pilot projects.</p>
 </div>
 </div>
-<h2 id="amelioration">Amelioration</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/privacy-amelioration.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/privacy-amelioration.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>Addressing challenges in privacy, loss of control and marginalization includes ensuring that the individual retains control of their own data. We accept privacy in our real loves, we need to accept it in our digital persona. This is vital for our control of persona and our ability to project ourselves.</p>
-<p>Fairness goes hand in hand with privacy to protect the individual. Regulations like the GDPR date from a time where the main worry was <em>consequential</em> decision making but today we also face problems from accumulation of inconsequential decisions leading to a resulting consequential effect.</p>
-<p>Capacity building in different contexts, empowering domain experts to solve their own problems, is one aspect to the solution. A further proposal is the use of data trusts to reintroduce control of personal data for the individual.</p>
+<h2 id="conclusions">Conclusions</h2>
+<p>In today’s lecture we’ve drilled down further on a difficult aspect of data science. By focussing to much on the data and the technical challenges we face, we can forget the context. But to do data science well, we must not forget the context of the data. We need to pay attention to domain experts introduce their understanding to our analysis. Above all we must not forget that data is almost always (in the end) about people.</p>
+<p>We separated the challenges we face into three groups: (1) paradoxes of the odern data society, (2) quantifying the value of data and (3) privacy loss of control and marginalization. We’ve noted the origins of the paradoxes, speculating that it is based in a form of data (or modelling) inattention bias demonstrated through the Gorilla. We’ve drawn parallels between challenges of rewarding the addition of value and the credit assignment problem in reinforecement learning and we’ve looked at approaches to introduce the voice of marginalized societies and people into the conversation.</p>
 <h1 id="references">References</h1>
 <h2 id="thanks">Thanks!</h2>
 <p>For more information on these subjects and more you might want to check the following resources.</p>
@@ -805,9 +637,6 @@ John Quinn
 <li>blog: <a href="http://inverseprobability.com/blog.html">http://inverseprobability.com</a></li>
 </ul>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-Andrade:consistent14" class="csl-entry" role="doc-biblioentry">
-Andrade-Pacheco, R., Mubangizi, M., Quinn, J., Lawrence, N.D., 2014. Consistent mapping of government malaria records across a changing territory delimitation. Malaria Journal 13. <a href="https://doi.org/10.1186/1475-2875-13-S1-P5">https://doi.org/10.1186/1475-2875-13-S1-P5</a>
-</div>
 <div id="ref-Delacroix:trusts18" class="csl-entry" role="doc-biblioentry">
 Delacroix, S., Lawrence, N.D., 2018. Disturbing the <span>‘one size fits all’</span> approach to data governance: Bottom-up data trusts. SSRN. <a href="https://doi.org/10.1093/idpl/ipz01410.2139/ssrn.3265315">https://doi.org/10.1093/idpl/ipz01410.2139/ssrn.3265315</a>
 </div>
@@ -820,9 +649,6 @@ Felin, T., Koenderink, J., Krueger, J.I., Noble, D., Ellis, G.F.R., 2021. The da
 <div id="ref-Gelman:multilevel06" class="csl-entry" role="doc-biblioentry">
 Gelman, A., Hill, J., 2006. Data analysis using regression and multilevel/hierarchical models, Analytical methods for social research. Cambridge University Press, Cambridge, UK. <a href="https://doi.org/10.1017/CBO9780511790942">https://doi.org/10.1017/CBO9780511790942</a>
 </div>
-<div id="ref-Gething:hmis06" class="csl-entry" role="doc-biblioentry">
-Gething, P.W., Noor, A.M., Gikandi, P.W., Ogara, E.A.A., Hay, S.I., Nixon, M.S., Snow, R.W., Atkinson, P.M., 2006. Improving imperfect data from health management information systems in <span>A</span>frica using space–time geostatistics. PLoS Medicine 3. <a href="https://doi.org/10.1371/journal.pmed.0030271">https://doi.org/10.1371/journal.pmed.0030271</a>
-</div>
 <div id="ref-Lawrence-drl17" class="csl-entry" role="doc-biblioentry">
 Lawrence, N.D., 2017. Data readiness levels. ArXiv.
 </div>
@@ -834,9 +660,6 @@ Lawrence, N.D., 2015. How <span>A</span>frica can benefit from the data revoluti
 </div>
 <div id="ref-Lawrence:licsbintro10" class="csl-entry" role="doc-biblioentry">
 Lawrence, N.D., 2010. Introduction to learning and inference in computational systems biology.
-</div>
-<div id="ref-Mubangizi:malaria14" class="csl-entry" role="doc-biblioentry">
-Mubangizi, M., Andrade-Pacheco, R., Smith, M.T., Quinn, J., Lawrence, N.D., 2014. Malaria surveillance with multiple data sources using <span>Gaussian</span> process models, in: 1st International Conference on the Use of Mobile <span>ICT</span> in Africa.
 </div>
 <div id="ref-Simons-gorillas99" class="csl-entry" role="doc-biblioentry">
 Simons, D.J., Chabris, C.F., 1999. Gorillas in our midst: Sustained inattentional blindness for dynamic events. Perception 28, 1059–1074. <a href="https://doi.org/10.1068/p281059">https://doi.org/10.1068/p281059</a>
