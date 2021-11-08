@@ -482,7 +482,7 @@ sns.set_palette('colorblind')}-->
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  rows <span class="op">=</span> select_top(conn, table, n)</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> r <span class="kw">in</span> rows:</span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(r)</span></code></pre></div>
-<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>head(conn, <span class="st">&quot;facilities&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>head(conn, <span class="st">&quot;hospitals_zones_joined&quot;</span>)</span></code></pre></div>
 <p>Great! We now have the database in and some python functions that operate on the data base by wrapping SQL commands.</p>
 <p>We will return to the SQL command style after download and add the other datasets to the database using a combination of <code>pandas</code> and the database utilities.</p>
 <p>Our next task will be to introduce data on COVID19 so that we can join that to our other data sets.</p>
