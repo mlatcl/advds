@@ -171,7 +171,7 @@ sns.set_palette('colorblind')}-->
 <div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>box_width <span class="op">=</span> <span class="fl">0.02</span> <span class="co"># About 2.2 km</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>box_height <span class="op">=</span> <span class="fl">0.02</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>north <span class="op">=</span> latitude <span class="op">+</span> box_height<span class="op">/</span><span class="dv">2</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>south <span class="op">=</span> latitude <span class="op">-</span> box_width<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>south <span class="op">=</span> latitude <span class="op">-</span> box_height<span class="op">/</span><span class="dv">2</span></span>
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> longitude <span class="op">-</span> box_width<span class="op">/</span><span class="dv">2</span></span>
 <span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> longitude <span class="op">+</span> box_width<span class="op">/</span><span class="dv">2</span></span></code></pre></div>
 <p>Now we’ll download a set of points of interest from OpenStreetMap. We can specify the points of interest we’re interested in by building a small dictionary containing their labels as follows.</p>
