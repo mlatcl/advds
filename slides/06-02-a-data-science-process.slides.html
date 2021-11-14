@@ -98,302 +98,6 @@
 </ul></li>
 </ul>
 </section>
-<section id="machine-learning-systems-design" class="slide level2">
-<h2>Machine Learning Systems Design</h2>
-<aside class="notes">
-But how are we building these AI systems? Predominant technology is machine learning, but those are merely components being injected into a system.
-</aside>
-</section>
-<section id="fragility-of-ai-systems" class="slide level2">
-<h2>Fragility of AI Systems</h2>
-<ul>
-<li>They are componentwise built from ML Capabilities.</li>
-<li>Each capability is independently constructed and verified.
-<ul>
-<li>Pedestrian detection</li>
-<li>Road line detection</li>
-</ul></li>
-<li>Important for verification purposes.</li>
-</ul>
-<aside class="notes">
-Our current AI systems are composed of components that often have machine learning algorithms at the core (or they may have an OR model, or an economics model or even a logic model).
-</aside>
-</section>
-<section id="pigeonholing" class="slide level2">
-<h2>Pigeonholing</h2>
-<div class="figure">
-<div id="too-many-pigeons-figure" class="figure-frame">
-<div class="centered centered" style="">
-<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//TooManyPigeons.jpg" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-</div>
-<aside class="notes">
-Decompartmentalization of the model into parts can be seen as pigeonholing the separate tasks that are required.
-</aside>
-</section>
-<section id="robust" class="slide level2">
-<h2>Robust</h2>
-<ul>
-<li>Need to move beyond pigeonholing tasks.</li>
-<li>Need new approaches to both the design of the individual components, and the combination of components within our AI systems.</li>
-</ul>
-</section>
-<section id="rapid-reimplementation" class="slide level2">
-<h2>Rapid Reimplementation</h2>
-<ul>
-<li>Whole systems are being deployed.</li>
-<li>But they change their environment.</li>
-<li>The experience evolved adversarial behaviour.</li>
-</ul>
-</section>
-<section id="machine-learning-systems-design-1" class="slide level2">
-<h2>Machine Learning Systems Design</h2>
-</section>
-<section id="section" class="slide level2">
-<h2></h2>
-<div class="figure">
-<div id="science-holborn-viaduct-figure" class="figure-frame">
-<div class="centered centered" style="">
-<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//science-holborn-viaduct.jpg" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-</div>
-<aside class="notes">
-Centrifugal governor as held by “Science” on Holborn Viaduct
-</aside>
-<div class="caption" style="">
-Figure: Science on Holborn Viaduct, cradling the Centrifugal Governor.
-</div>
-<p><a href="http://www.maths.ed.ac.uk/~v1ranick/papers/maxwell1.pdf">On Governors</a>, James Clerk Maxwell 1868</p>
-</section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-<div class="figure">
-<div id="steam-engine-boulton-watt-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="negate" src="https://mlatcl.github.io/ads/./slides/diagrams//SteamEngine_Boulton&Watt_1784.png" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-</div>
-<aside class="notes">
-Watt’s Steam Engine which made Steam Power Efficient and Practical.
-</aside>
-</section>
-<section id="section-2" class="slide level2">
-<h2></h2>
-<div class="figure">
-<div id="centrifugal-governor-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="negate" src="https://mlatcl.github.io/ads/./slides/diagrams//Centrifugal_governor.png" width="70%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-</div>
-<aside class="notes">
-The centrifugal governor, an early example of a decision making system. The parameters of the governor include the lengths of the linkages (which effect how far the throttle opens in response to movement in the balls), the weight of the balls (which effects inertia) and the limits of to which the balls can rise.
-</aside>
-</section>
-<section id="adversaries" class="slide level2">
-<h2>Adversaries</h2>
-<ul>
-<li>Stuxnet</li>
-<li>Mischevious-Adversarial</li>
-</ul>
-</section>
-<section id="an-intelligent-system" class="slide level2">
-<h2>An Intelligent System</h2>
-<div class="figure">
-<div class="figure-frame" id="paolo-save-figure">
-<video width="80%" height="" controls preload="none">
-<source src="https://mlatcl.github.io/ads/./slides/diagrams//personal/paolo-save.mp4" type="video/mp4"/>
-</video>
-</div>
-</div>
-<aside class="notes">
-An advanced adaptable machine learning system.
-</aside>
-<div style="text-align:right">
-<small>Joint work with M. Milo</small>
-</div>
-</section>
-<section id="an-intelligent-system-1" class="slide level2">
-<h2>An Intelligent System</h2>
-<div class="figure">
-<div class="figure-frame" id="paolo-peppercorn-figure">
-<video width="40%" height="" controls preload="none">
-<source src="https://mlatcl.github.io/ads/./slides/diagrams//personal/paolo-peppercorn.mp4" type="video/mp4"/>
-</video>
-</div>
-</div>
-<aside class="notes">
-A peppercorn is a system failure that’s the result of designed behavior.
-</aside>
-<div style="text-align:right">
-<small>Joint work with M. Milo</small>
-</div>
-</section>
-<section id="peppercorns" class="slide level2">
-<h2>Peppercorns</h2>
-<ul>
-<li>A new name for system failures which aren’t bugs.</li>
-<li>Difference between finding a fly in your soup vs a peppercorn in your soup.</li>
-</ul>
-</section>
-<section id="peppercorns-1" class="slide level2">
-<h2>Peppercorns</h2>
-<div class="figure">
-<div id="peppercorn-siri-figure" class="figure-frame">
-<iframe width="600" height="450" src="https://www.youtube.com/embed/1y2UKz47gew?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
-</div>
-</div>
-<aside class="notes">
-A peppercorn is a system design failure which is not a bug, but a conformance to design specification that causes problems when the system is deployed in the real world with mischevious and adversarial actors.
-</aside>
-</section>
-<section id="section-3" class="slide level2">
-<h2></h2>
-<iframe id="reddit-embed" width="600" height="450" src="https://www.redditmedia.com/r/teslamotors/comments/nrs8kf/you_think_ice_cream_truck_stop_signs_are_a_problem/?ref_source=embed&amp;ref=share&amp;embed=true" sandbox="allow-scripts allow-same-origin allow-popups" frameborder="0" scrolling="no">
-</iframe>
-</section>
-<section id="turnaround-and-update" class="slide level2">
-<h2>Turnaround And Update</h2>
-<ul>
-<li>There is a massive need for turn around and update</li>
-<li>A redeploy of the entire system.
-<ul>
-<li>This involves changing the way we design and deploy.</li>
-</ul></li>
-<li>Interface between security engineering and machine learning.</li>
-</ul>
-</section>
-<section id="the-three-ds-of-machine-learning-systems-design" class="slide level2">
-<h2>The Three Ds of Machine Learning Systems Design</h2>
-<ul>
-<li>Three primary challenges of Machine Learning Systems Design.</li>
-</ul>
-<ol type="1">
-<li>Decomposition</li>
-<li>Data</li>
-<li>Deployment</li>
-</ol>
-</section>
-<section id="data-science-and-professionalisation" class="slide level2">
-<h2>Data Science and Professionalisation</h2>
-<ul>
-<li>Industrial Revolution 4.0?</li>
-<li><em>Industrial Revolution</em> (1760-1840) term coined by Arnold Toynbee (1852-1883).</li>
-<li>Maybe: But this one is dominated by <em>data</em> not <em>capital</em></li>
-<li>A revolution in <em>information</em> rather than <em>energy</em>.</li>
-<li>That presents <em>challenges</em> and <em>opportunities</em></li>
-<li>Consider Apple vs Nokia: How you handle disruption.</li>
-</ul>
-<p>compare <a href="https://www.theguardian.com/media-network/2015/mar/05/digital-oligarchy-algorithms-personal-data">digital oligarchy</a> vs <a href="https://www.theguardian.com/media-network/2015/aug/25/africa-benefit-data-science-information">how Africa can benefit from the data revolution</a></p>
-</section>
-<section id="a-time-for-professionalisation" class="slide level2">
-<h2>A Time for Professionalisation?</h2>
-<ul>
-<li>New technologies historically led to new professions:
-<ul>
-<li>Brunel (born 1806): Civil, mechanical, naval</li>
-<li>Tesla (born 1856): Electrical and power</li>
-<li>William Shockley (born 1910): Electronic</li>
-<li>Watts S. Humphrey (born 1927): Software</li>
-</ul></li>
-</ul>
-</section>
-<section id="why" class="slide level2">
-<h2>Why?</h2>
-<ul>
-<li>Codification of best practice.</li>
-<li>Developing trust</li>
-</ul>
-</section>
-<section id="where-are-we" class="slide level2">
-<h2>Where are we?</h2>
-<ul>
-<li>Perhaps around the 1980s of programming.
-<ul>
-<li>We understand <code>if</code>, <code>for</code>, and procedures</li>
-<li>But we don’t share best practice.</li>
-</ul></li>
-<li>Let’s <em>avoid</em> the over formalisation of software engineering.</li>
-</ul>
-</section>
-<section id="data-as-a-convener" class="slide level2">
-<h2>Data as a Convener</h2>
-<ul>
-<li>Data allows externalisation of cognition.</li>
-<li>Even when not existing, can ask: What data would we want?</li>
-</ul>
-</section>
-<section id="section-4" class="slide level2">
-<h2></h2>
-<div class="figure">
-<div id="anne-bob-model-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//policy/anne-bob-model.svg" width="70%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-Models can also be used to externalise cognition, but if the model is highly complex it’s difficult for two individuals to understand each others’ models. This shuts down conversation, often “mathematical intimidation” is used to shut down a line of questioning. This is highly destructive of the necessary cognitive diversity.
-</aside>
-</section>
-<section id="section-5" class="slide level2">
-<h2></h2>
-<div class="figure">
-<div id="anne-bob-data-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//policy/anne-bob-data.svg" width="70%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-Data can be queried, but the simplest query, what data do we need? Doesn’t even require the data to exist. It seems data can be highly effective for convening a multidisciplinary conversation.
-</aside>
-<!-- SECTION Delve -->
-</section>
-<section id="delve" class="slide level2">
-<h2>Delve</h2>
-</section>
-<section id="delve-reports" class="slide level2">
-<h2>Delve Reports</h2>
-<ol type="1">
-<li>Facemasks <em>4th May 2020</em> <small><span class="citation" data-cites="Delve-facemasks20">(The DELVE Initiative, 2020a)</span></small></li>
-<li>Test, Trace, Isolate <em>27th May 2020</em> <small><span class="citation" data-cites="Delve-tti20">(The DELVE Initiative, 2020b)</span></small></li>
-<li>Nosocomial Infections <em>6th July 2020</em> <small><span class="citation" data-cites="Delve-hospital20">(The DELVE Initiative, 2020c)</span></small></li>
-<li>Schools <em>24th July 2020</em> <small><span class="citation" data-cites="Delve-schools20">(The DELVE Initiative, 2020d)</span></small></li>
-<li>Economics <em>14th August 2020</em> <small><span class="citation" data-cites="Delve-economics20">(The DELVE Initiative, 2020e)</span></small></li>
-<li>Vaccines <em>1st October 2020</em> <small><span class="citation" data-cites="Delve-vaccine20">(The DELVE Initiative, 2020f)</span></small></li>
-<li>Data <em>24th November 2020</em> <small><span class="citation" data-cites="Delve-data20">(The DELVE Initiative, 2020g)</span></small></li>
-</ol>
-</section>
-<section id="delve-data-report" class="slide level2">
-<h2>Delve Data Report</h2>
-<ul>
-<li>Surveillance data situation.
-<ul>
-<li>REACT Study (Imperial)</li>
-<li>ONS Coronavirus (COVID-19) Infection Survey</li>
-<li>RECOVERY Trial (Dexamethasone)</li>
-</ul></li>
-<li>Happenstance data.
-<ul>
-<li>Our report’s focus <span class="citation" data-cites="Delve-data20">(The DELVE Initiative, 2020g)</span></li>
-</ul></li>
-</ul>
-</section>
-<section id="delve-data-report-recommendations" class="slide level2">
-<h2>Delve Data Report: Recommendations</h2>
-<ul>
-<li>Update statutory objective of <em>ONS to accommodate happenstance data</em>.</li>
-<li>ONS and ICO to collaborate on <em>data driving license</em> to standardise access processes.</li>
-<li>Interdisciplinary <em>pathfinder</em> projects across <em>government, business and academia</em>
-<ul>
-<li>Nowcasting of <em>economic metrics</em></li>
-<li>Movement of populations (mobile phone data).</li>
-</ul></li>
-</ul>
-</section>
 <section id="the-fynesse-framework" class="slide level2">
 <h2>The Fynesse Framework</h2>
 <ul>
@@ -442,14 +146,14 @@ showDivs(0, 'dm-ds-google-trends');
 </object>
 </div>
 </section>
-<section id="section-6" class="slide level2">
+<section id="section" class="slide level2">
 <h2></h2>
 <blockquote>
 <p>More generally, a data scientist is someone who knows how to extract meaning from and interpret data, which requires both tools and methods from statistics and machine learning, as well as being human. She spends a lot of time in the process of collecting, cleaning, and munging data, because data is never clean. This process requires persistence, statistics, and software engineering skills—skills that are also necessary for understanding biases in the data, and for debugging logging output from code.</p>
 <p>Cathy O’Neil and Rachel Strutt </p>
 </blockquote>
 </section>
-<section id="section-7" class="slide level2">
+<section id="section-1" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="data-science-process-oneil-figure" class="figure-frame">
@@ -466,7 +170,7 @@ Another perspective on the data science process, this one from <span class="cita
 <h2>Experiment, Analyze, Design</h2>
 <!--These challenges are not just there for Amazon and Formula 1. In Sheffield, we worked closely with a Chesterfield based company called Fusion Group. They make joints that fuse PTFE pipes together. These pipes are used for transporting both water and gas. Their founder, Eric Bridgstock, was an engineer who introduced PTFE piping to the UK when working for DuPont. Eric set up Fusion group to manufacture the fusion fittings. Because PTFE pipes carry water or gas at high pressure, when these fittings fail significant damage can occur. When these fittings were originally installed in the early 1980s, the job was done by a specialist, but nowadays the pipe weld is compelted by the same team that digs the hole. While costs have come down, the number of PTFE weld failures went up. Eric's company focussed on new systems for auto-->
 </section>
-<section id="section-8" class="slide level2">
+<section id="section-2" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="experiment-analyze-design-figure" class="figure-frame">
@@ -494,7 +198,7 @@ Experiment, analyze and design is a flywheel of knowledge that is the dual of th
 <li>Data readiness levels.</li>
 </ul>
 </section>
-<section id="section-9" class="slide level2">
+<section id="section-3" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="policy-science-convening-power-of-data-figure" class="figure-frame">
@@ -542,7 +246,7 @@ Data oriented architecture. Now the joins and the updates are exposed within the
 Data-oriented programing. There is a requirement for an estimate of the driver allocation to give a rough cost estimate before the user has confirmed the ride. In data-oriented programming, this is achieved through declaring a hypothetical stream which approximates the true driver allocation, but with restricted input information and constraints on the computational latency.
 </aside>
 </section>
-<section id="section-10" class="slide level2">
+<section id="section-4" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="-figure" class="figure-frame">
@@ -708,18 +412,310 @@ Here Frank Hutter gives a tutorial on AutoML, one of the approaches to automatin
 <section id="thanks" class="slide level2 scrollable">
 <h2 class="scrollable">Thanks!</h2>
 <ul>
-<li><p>twitter: <a href="https://twitter.com/lawrennd">@lawrennd</a></p></li>
-<li><p>podcast: <a href="http://thetalkingmachines.com">The Talking Machines</a></p></li>
-<li><p>newspaper: <a href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile Page</a></p></li>
-<li><p>blog posts:</p>
-<p><a href="http://inverseprobability.com/2017/11/15/decision-making">Decision Making and Diversity</a></p>
-<p><a href="http://inverseprobability.com/2018/02/06/natural-and-artificial-intelligence">Natural vs Artifical Intelligence</a></p></li>
-<li><p><a href="https://medium.com/@mijordan3/artificial-intelligence-the-revolution-hasnt-happened-yet-5e1d5812e1e7">Mike Jordan’s Medium Post</a></p></li>
-<li><p><a href="https://medium.com/@karpathy/software-2-0-a64152b37c35">Andrej Karpathy’s Medium Post</a></p></li>
+<li>twitter: <a href="https://twitter.com/lawrennd">@lawrennd</a></li>
+<li>podcast: <a href="http://thetalkingmachines.com">The Talking Machines</a></li>
+<li>newspaper: <a href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile Page</a></li>
+<li>blog: <a href="http://inverseprobability.com/blog.html">http://inverseprobability.com</a></li>
 </ul>
 </section>
-<section id="references" class="slide level2 unnumbered scrollable">
-<h2 class="unnumbered scrollable">References</h2>
+<section id="references" class="slide level2 scrollable">
+<h2 class="scrollable">References</h2>
+</section>
+<section id="machine-learning-systems-design" class="slide level2">
+<h2>Machine Learning Systems Design</h2>
+<aside class="notes">
+But how are we building these AI systems? Predominant technology is machine learning, but those are merely components being injected into a system.
+</aside>
+</section>
+<section id="fragility-of-ai-systems" class="slide level2">
+<h2>Fragility of AI Systems</h2>
+<ul>
+<li>They are componentwise built from ML Capabilities.</li>
+<li>Each capability is independently constructed and verified.
+<ul>
+<li>Pedestrian detection</li>
+<li>Road line detection</li>
+</ul></li>
+<li>Important for verification purposes.</li>
+</ul>
+<aside class="notes">
+Our current AI systems are composed of components that often have machine learning algorithms at the core (or they may have an OR model, or an economics model or even a logic model).
+</aside>
+</section>
+<section id="pigeonholing" class="slide level2">
+<h2>Pigeonholing</h2>
+<div class="figure">
+<div id="too-many-pigeons-figure" class="figure-frame">
+<div class="centered centered" style="">
+<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//TooManyPigeons.jpg" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+</div>
+<aside class="notes">
+Decompartmentalization of the model into parts can be seen as pigeonholing the separate tasks that are required.
+</aside>
+</section>
+<section id="robust" class="slide level2">
+<h2>Robust</h2>
+<ul>
+<li>Need to move beyond pigeonholing tasks.</li>
+<li>Need new approaches to both the design of the individual components, and the combination of components within our AI systems.</li>
+</ul>
+</section>
+<section id="rapid-reimplementation" class="slide level2">
+<h2>Rapid Reimplementation</h2>
+<ul>
+<li>Whole systems are being deployed.</li>
+<li>But they change their environment.</li>
+<li>The experience evolved adversarial behaviour.</li>
+</ul>
+</section>
+<section id="machine-learning-systems-design-1" class="slide level2">
+<h2>Machine Learning Systems Design</h2>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+<div class="figure">
+<div id="science-holborn-viaduct-figure" class="figure-frame">
+<div class="centered centered" style="">
+<img class="" src="https://mlatcl.github.io/ads/./slides/diagrams//science-holborn-viaduct.jpg" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+</div>
+<aside class="notes">
+Centrifugal governor as held by “Science” on Holborn Viaduct
+</aside>
+<div class="caption" style="">
+Figure: Science on Holborn Viaduct, cradling the Centrifugal Governor.
+</div>
+<p><a href="http://www.maths.ed.ac.uk/~v1ranick/papers/maxwell1.pdf">On Governors</a>, James Clerk Maxwell 1868</p>
+</section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+<div class="figure">
+<div id="steam-engine-boulton-watt-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="negate" src="https://mlatcl.github.io/ads/./slides/diagrams//SteamEngine_Boulton&Watt_1784.png" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+</div>
+<aside class="notes">
+Watt’s Steam Engine which made Steam Power Efficient and Practical.
+</aside>
+</section>
+<section id="section-7" class="slide level2">
+<h2></h2>
+<div class="figure">
+<div id="centrifugal-governor-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="negate" src="https://mlatcl.github.io/ads/./slides/diagrams//Centrifugal_governor.png" width="70%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+</div>
+<aside class="notes">
+The centrifugal governor, an early example of a decision making system. The parameters of the governor include the lengths of the linkages (which effect how far the throttle opens in response to movement in the balls), the weight of the balls (which effects inertia) and the limits of to which the balls can rise.
+</aside>
+</section>
+<section id="adversaries" class="slide level2">
+<h2>Adversaries</h2>
+<ul>
+<li>Stuxnet</li>
+<li>Mischevious-Adversarial</li>
+</ul>
+</section>
+<section id="an-intelligent-system" class="slide level2">
+<h2>An Intelligent System</h2>
+<div class="figure">
+<div class="figure-frame" id="paolo-save-figure">
+<video width="80%" height="" controls preload="none">
+<source src="https://mlatcl.github.io/ads/./slides/diagrams//personal/paolo-save.mp4" type="video/mp4"/>
+</video>
+</div>
+</div>
+<aside class="notes">
+An advanced adaptable machine learning system.
+</aside>
+<div style="text-align:right">
+<small>Joint work with M. Milo</small>
+</div>
+</section>
+<section id="an-intelligent-system-1" class="slide level2">
+<h2>An Intelligent System</h2>
+<div class="figure">
+<div class="figure-frame" id="paolo-peppercorn-figure">
+<video width="40%" height="" controls preload="none">
+<source src="https://mlatcl.github.io/ads/./slides/diagrams//personal/paolo-peppercorn.mp4" type="video/mp4"/>
+</video>
+</div>
+</div>
+<aside class="notes">
+A peppercorn is a system failure that’s the result of designed behavior.
+</aside>
+<div style="text-align:right">
+<small>Joint work with M. Milo</small>
+</div>
+</section>
+<section id="peppercorns" class="slide level2">
+<h2>Peppercorns</h2>
+<ul>
+<li>A new name for system failures which aren’t bugs.</li>
+<li>Difference between finding a fly in your soup vs a peppercorn in your soup.</li>
+</ul>
+</section>
+<section id="peppercorns-1" class="slide level2">
+<h2>Peppercorns</h2>
+<div class="figure">
+<div id="peppercorn-siri-figure" class="figure-frame">
+<iframe width="600" height="450" src="https://www.youtube.com/embed/1y2UKz47gew?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</div>
+</div>
+<aside class="notes">
+A peppercorn is a system design failure which is not a bug, but a conformance to design specification that causes problems when the system is deployed in the real world with mischevious and adversarial actors.
+</aside>
+</section>
+<section id="section-8" class="slide level2">
+<h2></h2>
+<iframe id="reddit-embed" width="600" height="450" src="https://www.redditmedia.com/r/teslamotors/comments/nrs8kf/you_think_ice_cream_truck_stop_signs_are_a_problem/?ref_source=embed&amp;ref=share&amp;embed=true" sandbox="allow-scripts allow-same-origin allow-popups" frameborder="0" scrolling="no">
+</iframe>
+</section>
+<section id="turnaround-and-update" class="slide level2">
+<h2>Turnaround And Update</h2>
+<ul>
+<li>There is a massive need for turn around and update</li>
+<li>A redeploy of the entire system.
+<ul>
+<li>This involves changing the way we design and deploy.</li>
+</ul></li>
+<li>Interface between security engineering and machine learning.</li>
+</ul>
+</section>
+<section id="the-three-ds-of-machine-learning-systems-design" class="slide level2">
+<h2>The Three Ds of Machine Learning Systems Design</h2>
+<ul>
+<li>Three primary challenges of Machine Learning Systems Design.</li>
+</ul>
+<ol type="1">
+<li>Decomposition</li>
+<li>Data</li>
+<li>Deployment</li>
+</ol>
+</section>
+<section id="data-science-and-professionalisation" class="slide level2">
+<h2>Data Science and Professionalisation</h2>
+<ul>
+<li>Industrial Revolution 4.0?</li>
+<li><em>Industrial Revolution</em> (1760-1840) term coined by Arnold Toynbee (1852-1883).</li>
+<li>Maybe: But this one is dominated by <em>data</em> not <em>capital</em></li>
+<li>A revolution in <em>information</em> rather than <em>energy</em>.</li>
+<li>That presents <em>challenges</em> and <em>opportunities</em></li>
+<li>Consider Apple vs Nokia: How you handle disruption.</li>
+</ul>
+<p>compare <a href="https://www.theguardian.com/media-network/2015/mar/05/digital-oligarchy-algorithms-personal-data">digital oligarchy</a> vs <a href="https://www.theguardian.com/media-network/2015/aug/25/africa-benefit-data-science-information">how Africa can benefit from the data revolution</a></p>
+</section>
+<section id="a-time-for-professionalisation" class="slide level2">
+<h2>A Time for Professionalisation?</h2>
+<ul>
+<li>New technologies historically led to new professions:
+<ul>
+<li>Brunel (born 1806): Civil, mechanical, naval</li>
+<li>Tesla (born 1856): Electrical and power</li>
+<li>William Shockley (born 1910): Electronic</li>
+<li>Watts S. Humphrey (born 1927): Software</li>
+</ul></li>
+</ul>
+</section>
+<section id="why" class="slide level2">
+<h2>Why?</h2>
+<ul>
+<li>Codification of best practice.</li>
+<li>Developing trust</li>
+</ul>
+</section>
+<section id="where-are-we" class="slide level2">
+<h2>Where are we?</h2>
+<ul>
+<li>Perhaps around the 1980s of programming.
+<ul>
+<li>We understand <code>if</code>, <code>for</code>, and procedures</li>
+<li>But we don’t share best practice.</li>
+</ul></li>
+<li>Let’s <em>avoid</em> the over formalisation of software engineering.</li>
+</ul>
+</section>
+<section id="data-as-a-convener" class="slide level2">
+<h2>Data as a Convener</h2>
+<ul>
+<li>Data allows externalisation of cognition.</li>
+<li>Even when not existing, can ask: What data would we want?</li>
+</ul>
+</section>
+<section id="section-9" class="slide level2">
+<h2></h2>
+<div class="figure">
+<div id="anne-bob-model-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//policy/anne-bob-model.svg" width="70%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+Models can also be used to externalise cognition, but if the model is highly complex it’s difficult for two individuals to understand each others’ models. This shuts down conversation, often “mathematical intimidation” is used to shut down a line of questioning. This is highly destructive of the necessary cognitive diversity.
+</aside>
+</section>
+<section id="section-10" class="slide level2">
+<h2></h2>
+<div class="figure">
+<div id="anne-bob-data-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//policy/anne-bob-data.svg" width="70%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+Data can be queried, but the simplest query, what data do we need? Doesn’t even require the data to exist. It seems data can be highly effective for convening a multidisciplinary conversation.
+</aside>
+<!-- SECTION Delve -->
+</section>
+<section id="delve" class="slide level2">
+<h2>Delve</h2>
+</section>
+<section id="delve-reports" class="slide level2">
+<h2>Delve Reports</h2>
+<ol type="1">
+<li>Facemasks <em>4th May 2020</em> <small><span class="citation" data-cites="Delve-facemasks20">(The DELVE Initiative, 2020a)</span></small></li>
+<li>Test, Trace, Isolate <em>27th May 2020</em> <small><span class="citation" data-cites="Delve-tti20">(The DELVE Initiative, 2020b)</span></small></li>
+<li>Nosocomial Infections <em>6th July 2020</em> <small><span class="citation" data-cites="Delve-hospital20">(The DELVE Initiative, 2020c)</span></small></li>
+<li>Schools <em>24th July 2020</em> <small><span class="citation" data-cites="Delve-schools20">(The DELVE Initiative, 2020d)</span></small></li>
+<li>Economics <em>14th August 2020</em> <small><span class="citation" data-cites="Delve-economics20">(The DELVE Initiative, 2020e)</span></small></li>
+<li>Vaccines <em>1st October 2020</em> <small><span class="citation" data-cites="Delve-vaccine20">(The DELVE Initiative, 2020f)</span></small></li>
+<li>Data <em>24th November 2020</em> <small><span class="citation" data-cites="Delve-data20">(The DELVE Initiative, 2020g)</span></small></li>
+</ol>
+</section>
+<section id="delve-data-report" class="slide level2">
+<h2>Delve Data Report</h2>
+<ul>
+<li>Surveillance data situation.
+<ul>
+<li>REACT Study (Imperial)</li>
+<li>ONS Coronavirus (COVID-19) Infection Survey</li>
+<li>RECOVERY Trial (Dexamethasone)</li>
+</ul></li>
+<li>Happenstance data.
+<ul>
+<li>Our report’s focus <span class="citation" data-cites="Delve-data20">(The DELVE Initiative, 2020g)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="delve-data-report-recommendations" class="slide level2">
+<h2>Delve Data Report: Recommendations</h2>
+<ul>
+<li>Update statutory objective of <em>ONS to accommodate happenstance data</em>.</li>
+<li>ONS and ICO to collaborate on <em>data driving license</em> to standardise access processes.</li>
+<li>Interdisciplinary <em>pathfinder</em> projects across <em>government, business and academia</em>
+<ul>
+<li>Nowcasting of <em>economic metrics</em></li>
+<li>Movement of populations (mobile phone data).</li>
+</ul></li>
+</ul>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-Lloyd-automatic14" class="csl-entry" role="doc-biblioentry">
 James Robert Lloyd, R.G., David Duvenaud, Ghahramani., Z., 2014. Automatic construction and natural-language description of nonparametric regression models, in: AAAI.
