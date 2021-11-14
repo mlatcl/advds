@@ -281,7 +281,7 @@ sns.set_palette('colorblind')}-->
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_systems/includes/nigeria-nmis-mariadb.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_systems/includes/nigeria-nmis-mariadb.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>hosp_state_joined.to_csv(<span class="st">&#39;hospitals_zones_joined.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>hosp_state_joined.to_csv(<span class="st">&#39;hospitals_zones_joined.csv&#39;</span>, header<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
 <p>We will now set up a <code>MariaDB</code> database instance for storing our data.</p>
 <h2 id="creating-a-mariadb-server-on-aws">Creating a MariaDB Server on AWS</h2>
 <div style="text-align:right">
@@ -422,26 +422,54 @@ sns.set_palette('colorblind')}-->
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Table structure <span class="cf">for</span> table `hospitals_zones_joined`</span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>DROP TABLE IF EXISTS `hospitals_zones_joined`<span class="op">;</span></span>
 <span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>CREATE TABLE IF NOT EXISTS `hospitals_zones_joined` (</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  `transaction_unique_identifier` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  `price` <span class="bu">int</span>(<span class="dv">10</span>) unsigned NOT NULL,</span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  `date_of_transfer` date NOT NULL,</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  `postcode` varchar(<span class="dv">8</span>) COLLATE utf8_bin NOT NULL,</span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  `property_type` varchar(<span class="dv">1</span>) COLLATE utf8_bin NOT NULL,</span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  `new_build_flag` varchar(<span class="dv">1</span>) COLLATE utf8_bin NOT NULL,</span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  `tenure_type` varchar(<span class="dv">1</span>) COLLATE utf8_bin NOT NULL,</span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>  `primary_addressable_object_name` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>  `secondary_addressable_object_name` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>  `street` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>  `locality` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>  `town_city` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>  `district` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>  `county` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>  `ppd_category_type` varchar(<span class="dv">2</span>) COLLATE utf8_bin NOT NULL,</span>
-<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>  `record_status` varchar(<span class="dv">2</span>) COLLATE utf8_bin NOT NULL,</span>
-<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>  `db_id` bigint(<span class="dv">20</span>) unsigned NOT NULL</span>
-<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>) DEFAULT CHARSET<span class="op">=</span>utf8 COLLATE<span class="op">=</span>utf8_bin AUTO_INCREMENT<span class="op">=</span><span class="dv">1</span> <span class="op">;</span></span></code></pre></div>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  `db_id` bigint(<span class="dv">20</span>) unsigned NOT NULL,</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  `facility_name` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  `facility_type_display` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  `maternal_health_delivery_services` BOOLEAN COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  `emergency_transport` BOOLEAN COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  `skilled_birth_attendant` BOOLEAN COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  `num_chews_fulltime` bigint(<span class="dv">20</span>) unsigned NOT NULL,</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>  `phcn_electricity` BOOLEAN COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>  `c_section_yn` BOOLEAN COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>  `child_health_measles_immun_calc` BOOLEAN COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>  `num_nurses_fulltime` bigint(<span class="dv">20</span>) unsigned NOT NULL,</span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>  `num_nursemidwives_fulltime` bigint(<span class="dv">20</span>) unsigned NOT NULL,</span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>  `num_doctors_fulltime` bigint(<span class="dv">20</span>) unsigned NOT NULL,</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>  `date_of_survey` date NOT NULL,</span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>  `facility_id` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>  `community` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>  `ward` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>  `management` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>  `improved_water_supply` BOOLEAN COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>  `improved_sanitation` BOOLEAN COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>  `vaccines_fridge_freezer` BOOLEAN COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>  `antenatal_care_yn` BOOLEAN COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a>  `family_planning_yn` BOOLEAN COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>  `malaria_treatment_artemisinin` BOOLEAN COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>  `sector` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a>  `formhub_photo_id` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a>  `gps` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a>  `survey_id` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a>  `unique_lga` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a>  `latitude` decimal(<span class="dv">11</span>,<span class="dv">8</span>) NOT NULL,</span>
+<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a>  `longitude` decimal(<span class="dv">10</span>,<span class="dv">8</span>) NOT NULL,</span>
+<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a>  `geometry` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-39"><a href="#cb38-39" aria-hidden="true" tabindex="-1"></a>  `index_right` bigint(<span class="dv">20</span>) unsigned NOT NULL,</span>
+<span id="cb38-40"><a href="#cb38-40" aria-hidden="true" tabindex="-1"></a>  `admin1Name_en` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-41"><a href="#cb38-41" aria-hidden="true" tabindex="-1"></a>  `admin1Pcode` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-42"><a href="#cb38-42" aria-hidden="true" tabindex="-1"></a>  `admin1RefName` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-43"><a href="#cb38-43" aria-hidden="true" tabindex="-1"></a>  `admin1AltName1_en` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-44"><a href="#cb38-44" aria-hidden="true" tabindex="-1"></a>  `admin1AltName2_en` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-45"><a href="#cb38-45" aria-hidden="true" tabindex="-1"></a>  `admin0Name_en` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-46"><a href="#cb38-46" aria-hidden="true" tabindex="-1"></a>  `admin0Pcode` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb38-47"><a href="#cb38-47" aria-hidden="true" tabindex="-1"></a>  `date` date NOT NULL,</span>
+<span id="cb38-48"><a href="#cb38-48" aria-hidden="true" tabindex="-1"></a>  `validOn` date NOT NULL,</span>
+<span id="cb38-49"><a href="#cb38-49" aria-hidden="true" tabindex="-1"></a>  `validTo` date NOT NULL,</span>
+<span id="cb38-50"><a href="#cb38-50" aria-hidden="true" tabindex="-1"></a>  `Shape_Length` decimal(<span class="dv">10</span>,<span class="dv">10</span>) NOT NULL,</span>
+<span id="cb38-51"><a href="#cb38-51" aria-hidden="true" tabindex="-1"></a>  `Shape_Area` decimal(<span class="dv">10</span>,<span class="dv">10</span>) NOT NULL  </span>
+<span id="cb38-52"><a href="#cb38-52" aria-hidden="true" tabindex="-1"></a>) DEFAULT CHARSET<span class="op">=</span>utf8 COLLATE<span class="op">=</span>utf8_bin AUTO_INCREMENT<span class="op">=</span><span class="dv">1</span> <span class="op">;</span></span></code></pre></div>
 <p>We also need to tell the server what the index of the data base is. Here we’re adding <code>db_id</code> as the primary key in the index.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
@@ -460,6 +488,7 @@ sns.set_palette('colorblind')}-->
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>LOAD DATA LOCAL INFILE <span class="st">&#39;hospitals_zones_joined.csv&#39;</span> INTO TABLE hospitals_zones_joined</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>FIELDS TERMINATED BY <span class="st">&#39;,&#39;</span></span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>LINES STARTING BY <span class="st">&#39;&#39;</span> TERMINATED BY <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span><span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql SELECT <span class="op">*</span> FROM hospitals_zones_joined LIMIT <span class="dv">10</span></span></code></pre></div>
 <p>In the database there can be several ‘tables.’ Each table can be thought of as like a separate dataframe. The table name we’ve just saved is <code>hospitals_zones_joined</code>.</p>
 <h2 id="accessing-the-sql-database">Accessing the SQL Database</h2>
 <p>Now that we have a SQL database, we can create a connection to it and query it using SQL commands. Let’s try to simply select the data we wrote to it, to make sure it’s the same.</p>
@@ -471,18 +500,18 @@ sns.set_palette('colorblind')}-->
 <p>in python code. This SQL command selects the first <code>N</code> entries from a given database called <code>table_name</code>.</p>
 <p>We can pass the <code>table_name</code> and number of rows, <code>n</code>, to the python command.</p>
 <p>Now we make the connection using the details stored in <code>credentials</code> and <code>database_details</code>.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> create_connection(user<span class="op">=</span>credentials[<span class="st">&quot;username&quot;</span>], </span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>                         password<span class="op">=</span>credentials[<span class="st">&quot;password&quot;</span>], </span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>                         host<span class="op">=</span>database_details[<span class="st">&quot;url&quot;</span>],</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>                         database<span class="op">=</span><span class="st">&quot;nigeria_nmis&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> create_connection(user<span class="op">=</span>credentials[<span class="st">&quot;username&quot;</span>], </span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>                         password<span class="op">=</span>credentials[<span class="st">&quot;password&quot;</span>], </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>                         host<span class="op">=</span>database_details[<span class="st">&quot;url&quot;</span>],</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>                         database<span class="op">=</span><span class="st">&quot;nigeria_nmis&quot;</span>)</span></code></pre></div>
 <p>Now that we have a connection, we can write a command and pass it to the database.</p>
 <p>The python library, <code>pymysql</code>, allows us to access the SQL database directly from python.</p>
 <p>Let’s have a go at calling the command to extract the first three facilities from our health center database. Let’s try creating a function that does the same thing the pandas <code>.head()</code> method does so we can inspect our database.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> head(conn, table, n<span class="op">=</span><span class="dv">5</span>):</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  rows <span class="op">=</span> select_top(conn, table, n)</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> r <span class="kw">in</span> rows:</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(r)</span></code></pre></div>
-<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>head(conn, <span class="st">&quot;hospitals_zones_joined&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> head(conn, table, n<span class="op">=</span><span class="dv">5</span>):</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  rows <span class="op">=</span> select_top(conn, table, n)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> r <span class="kw">in</span> rows:</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(r)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>head(conn, <span class="st">&quot;hospitals_zones_joined&quot;</span>)</span></code></pre></div>
 <p>Great! We now have the database in and some python functions that operate on the data base by wrapping SQL commands.</p>
 <p>We will return to the SQL command style after download and add the other datasets to the database using a combination of <code>pandas</code> and the database utilities.</p>
 <p>Our next task will be to introduce data on COVID19 so that we can join that to our other data sets.</p>
@@ -499,21 +528,21 @@ sns.set_palette('colorblind')}-->
 </div>
 <p>At the beginning of the COVID-19 outbreak, the Consortium for African COVID-19 Data formed to bring together data from across the African continent on COVID-19 cases <span class="citation" data-cites="Marivate-covid20">(Marivate et al., 2020)</span>. These cases are recorded in the following GitHub repository: <a href="https://github.com/dsfsi/covid19africa" class="uri">https://github.com/dsfsi/covid19africa</a>.</p>
 <p>For ease of use we’ve packaged this data set in the <code>pods</code> library</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
-<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.nigerian_covid()[<span class="st">&#39;Y&#39;</span>]</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.nigerian_covid()[<span class="st">&#39;Y&#39;</span>]</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div>
 <p>Alternatively, you can access the data directly with the following commands.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>urllib.request.urlretrieve(<span class="st">&#39;https://raw.githubusercontent.com/dsfsi/covid19africa/master/data/line_lists/line-list-nigeria.csv&#39;</span>, <span class="st">&#39;line-list-nigeria.csv&#39;</span>)</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">&#39;line-list-nigeria.csv&#39;</span>, parse_dates<span class="op">=</span>[<span class="st">&#39;date&#39;</span>, </span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>                                                         <span class="st">&#39;date_confirmation&#39;</span>, </span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>                                                         <span class="st">&#39;date_admission_hospital&#39;</span>, </span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>                                                         <span class="st">&#39;date_onset_symptoms&#39;</span>,</span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>                                                         <span class="st">&#39;death_date&#39;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>urllib.request.urlretrieve(<span class="st">&#39;https://raw.githubusercontent.com/dsfsi/covid19africa/master/data/line_lists/line-list-nigeria.csv&#39;</span>, <span class="st">&#39;line-list-nigeria.csv&#39;</span>)</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">&#39;line-list-nigeria.csv&#39;</span>, parse_dates<span class="op">=</span>[<span class="st">&#39;date&#39;</span>, </span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>                                                         <span class="st">&#39;date_confirmation&#39;</span>, </span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>                                                         <span class="st">&#39;date_admission_hospital&#39;</span>, </span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>                                                         <span class="st">&#39;date_onset_symptoms&#39;</span>,</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>                                                         <span class="st">&#39;death_date&#39;</span>])</span></code></pre></div>
 <p>Once it is loaded in the data can be summarized using the <code>describe</code> method in pandas.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>data.describe()</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>data.describe()</span></code></pre></div>
 <div class="figure">
 <div id="nigerian-covid-data-figure" class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/ads/./slides/diagrams//datasets/nigerian-covid-data.svg" width="80%" style=" ">
@@ -526,51 +555,50 @@ sns.set_palette('colorblind')}-->
 <p>Figure: Evolution of COVID-19 cases in Nigeria.</p>
 </div>
 </div>
-<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>covid_data<span class="op">=</span>data</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>covid_data.to_csv(<span class="st">&#39;cases.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>covid_data<span class="op">=</span>data</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>covid_data.to_csv(<span class="st">&#39;cases.csv&#39;</span>, header<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
 <p>Now we convert this CSV file we’ve downloaded into a new table in the database file.</p>
 <p>Once again we have to construct a schema for the data.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Table structure <span class="cf">for</span> table `cases`</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>CREATE TABLE IF NOT EXISTS `cases` (</span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>  `index` <span class="bu">int</span>(<span class="dv">10</span>) unsigned NOT NULL,</span>
-<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>  `case_id` <span class="bu">int</span>(<span class="dv">10</span>) unsigned NOT NULL,</span>
-<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>  `origin_case_id` <span class="bu">int</span>(<span class="dv">10</span>) unsigned NOT NULL,</span>
-<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>  `date` date NOT NULL,</span>
-<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>  `age` <span class="bu">int</span>(<span class="dv">10</span>),</span>
-<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>  `gender` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>  `city` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>  `province<span class="op">/</span>state` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>  `country` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>  `current_status` tinytext COLLATE utf8_bin,</span>
-<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>  `source` text COLLATE utf8_bin,</span>
-<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>  `symptoms` text COLLATE utf8_bin,</span>
-<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a>  `date_onset_symptoms` date,</span>
-<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a>  `date_admission_hospital` date,</span>
-<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>  `date_confirmation` date,</span>
-<span id="cb51-22"><a href="#cb51-22" aria-hidden="true" tabindex="-1"></a>  `underlying_conditions` text COLLATE utf8_bin,</span>
-<span id="cb51-23"><a href="#cb51-23" aria-hidden="true" tabindex="-1"></a>  `travel_history_dates` text COLLATE utf8_bin,</span>
-<span id="cb51-24"><a href="#cb51-24" aria-hidden="true" tabindex="-1"></a>  `travel_history_location` text COLLATE utf8_bin,</span>
-<span id="cb51-25"><a href="#cb51-25" aria-hidden="true" tabindex="-1"></a>  `death_date` date,</span>
-<span id="cb51-26"><a href="#cb51-26" aria-hidden="true" tabindex="-1"></a>  `notes_for_discussion` text COLLATE utf8_bin,</span>
-<span id="cb51-27"><a href="#cb51-27" aria-hidden="true" tabindex="-1"></a>  `Unnamed: <span class="dv">19</span>` text COLLATE utf8_bin,</span>
-<span id="cb51-28"><a href="#cb51-28" aria-hidden="true" tabindex="-1"></a>  `db_id` bigint(<span class="dv">20</span>) unsigned NOT NULL</span>
-<span id="cb51-29"><a href="#cb51-29" aria-hidden="true" tabindex="-1"></a>) DEFAULT CHARSET<span class="op">=</span>utf8 COLLATE<span class="op">=</span>utf8_bin AUTO_INCREMENT<span class="op">=</span><span class="dv">1</span> <span class="op">;</span></span></code></pre></div>
-<p>And now we can load the data into the table.</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>LOAD DATA LOCAL INFILE <span class="st">&#39;cases.csv&#39;</span> INTO TABLE cases</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>FIELDS TERMINATED BY <span class="st">&#39;,&#39;</span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>LINES STARTING BY <span class="st">&#39;&#39;</span> TERMINATED BY <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span><span class="op">;</span></span></code></pre></div>
-<p>Once gain we need to set the index.</p>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Table structure <span class="cf">for</span> table `cases`</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>DROP TABLE IF EXISTS `cases`<span class="op">;</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>CREATE TABLE IF NOT EXISTS `cases` (</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  `index` <span class="bu">int</span>(<span class="dv">10</span>) unsigned NOT NULL,</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>  `case_id` <span class="bu">int</span>(<span class="dv">10</span>) unsigned NOT NULL,</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>  `origin_case_id` <span class="bu">int</span>(<span class="dv">10</span>) unsigned NOT NULL,</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>  `date` date NOT NULL,</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>  `age` <span class="bu">int</span>(<span class="dv">10</span>),</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>  `gender` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>  `city` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>  `province<span class="op">/</span>state` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>  `country` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>  `current_status` tinytext COLLATE utf8_bin,</span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>  `source` text COLLATE utf8_bin,</span>
+<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a>  `symptoms` text COLLATE utf8_bin,</span>
+<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a>  `date_onset_symptoms` date,</span>
+<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a>  `date_admission_hospital` date,</span>
+<span id="cb52-21"><a href="#cb52-21" aria-hidden="true" tabindex="-1"></a>  `date_confirmation` date,</span>
+<span id="cb52-22"><a href="#cb52-22" aria-hidden="true" tabindex="-1"></a>  `underlying_conditions` text COLLATE utf8_bin,</span>
+<span id="cb52-23"><a href="#cb52-23" aria-hidden="true" tabindex="-1"></a>  `travel_history_dates` text COLLATE utf8_bin,</span>
+<span id="cb52-24"><a href="#cb52-24" aria-hidden="true" tabindex="-1"></a>  `travel_history_location` text COLLATE utf8_bin,</span>
+<span id="cb52-25"><a href="#cb52-25" aria-hidden="true" tabindex="-1"></a>  `death_date` date,</span>
+<span id="cb52-26"><a href="#cb52-26" aria-hidden="true" tabindex="-1"></a>  `notes_for_discussion` text COLLATE utf8_bin,</span>
+<span id="cb52-27"><a href="#cb52-27" aria-hidden="true" tabindex="-1"></a>  `Unnamed: <span class="dv">19</span>` text COLLATE utf8_bin</span>
+<span id="cb52-28"><a href="#cb52-28" aria-hidden="true" tabindex="-1"></a>) DEFAULT CHARSET<span class="op">=</span>utf8 COLLATE<span class="op">=</span>utf8_bin AUTO_INCREMENT<span class="op">=</span><span class="dv">1</span> <span class="op">;</span></span></code></pre></div>
+<p>Once again we need to set the index.</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Indexes <span class="cf">for</span> table `cases`</span>
 <span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
 <span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>ALTER TABLE `cases`</span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a> ADD PRIMARY KEY (`db_id`)<span class="op">;</span></span></code></pre></div>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a> ADD PRIMARY KEY (`index`)<span class="op">;</span></span></code></pre></div>
+<p>And now we can load the data into the table.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>LOAD DATA LOCAL INFILE <span class="st">&#39;cases.csv&#39;</span> INTO TABLE cases</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>FIELDS TERMINATED BY <span class="st">&#39;,&#39;</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>LINES STARTING BY <span class="st">&#39;&#39;</span> TERMINATED BY <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span><span class="op">;</span></span></code></pre></div>
 <h2 id="population-data">Population Data</h2>
 <p>Now we have information about COVID cases, and we have information about how many health centers and how many doctors and nurses there are in each health center. But unless we understand how many people there are in each state, then we cannot make decisions about where they may be problems with the disease.</p>
 <p>If we were running our ride hailing service, we would also need information about how many people there were in different areas, so we could understand what the <em>demand</em> for the boda boda rides might be.</p>
@@ -584,27 +612,27 @@ sns.set_palette('colorblind')}-->
 <p>If we were running our ride hailing service, we would also need information about how many people there were in different areas, so we could understand what the demand for the boda boda rides might be.</p>
 <p>To access the number of people we can get population statistics from the <a href="https://data.humdata.org/">Humanitarian Data Exchange</a>.</p>
 <p>We also want to have population data for each state in Nigeria, so that we can see attributes like whether there are zones of high health facility density but low population density.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>pop_url <span class="op">=</span> <span class="st">&quot;https://data.humdata.org/dataset/a7c3de5e-ff27-4746-99cd-05f2ad9b1066/resource/d9fc551a-b5e4-4bed-9d0d-b047b6961817/download/nga_admpop_adm1_2020.csv&quot;</span></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>_, msg <span class="op">=</span> urllib.request.urlretrieve(pop_url,<span class="st">&quot;nga_admpop_adm1_2020.csv&quot;</span>)</span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">&quot;nga_admpop_adm1_2020.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>pop_url <span class="op">=</span> <span class="st">&quot;https://data.humdata.org/dataset/a7c3de5e-ff27-4746-99cd-05f2ad9b1066/resource/d9fc551a-b5e4-4bed-9d0d-b047b6961817/download/nga_admpop_adm1_2020.csv&quot;</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>_, msg <span class="op">=</span> urllib.request.urlretrieve(pop_url,<span class="st">&quot;nga_admpop_adm1_2020.csv&quot;</span>)</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">&quot;nga_admpop_adm1_2020.csv&quot;</span>)</span></code></pre></div>
 <p>To do joins with this data, we must first make sure that the columns have the right names. The name should match the same name of the column in our existing data. So we reset the column names, and the name of the index, as follows.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>data.dropna(axis<span class="op">=</span><span class="dv">0</span>, how<span class="op">=</span><span class="st">&quot;all&quot;</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>data.dropna(axis<span class="op">=</span><span class="dv">1</span>, how<span class="op">=</span><span class="st">&quot;all&quot;</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>data.rename(columns <span class="op">=</span> {<span class="st">&quot;ADM0_NAME&quot;</span> : <span class="st">&quot;admin0Name_en&quot;</span>, </span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;ADM0_PCODE&quot;</span> : <span class="st">&quot;admin0Pcode&quot;</span>, </span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;ADM1_NAME&quot;</span> : <span class="st">&quot;admin1Name_en&quot;</span>, </span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;ADM1_PCODE&quot;</span> : <span class="st">&quot;admin1Pcode&quot;</span>, </span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;T_TL&quot;</span> : <span class="st">&quot;population&quot;</span>},</span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>            inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;admin0Name_en&quot;</span>] <span class="op">=</span> data[<span class="st">&quot;admin0Name_en&quot;</span>].<span class="bu">str</span>.title()</span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;admin1Name_en&quot;</span>] <span class="op">=</span> data[<span class="st">&quot;admin1Name_en&quot;</span>].<span class="bu">str</span>.title()</span>
-<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.set_index(<span class="st">&quot;admin1Name_en&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.nigerian_population()[<span class="st">&quot;Y&quot;</span>]</span></code></pre></div>
-<div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div>
-<div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>pop_data<span class="op">=</span>data</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>data.dropna(axis<span class="op">=</span><span class="dv">0</span>, how<span class="op">=</span><span class="st">&quot;all&quot;</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>data.dropna(axis<span class="op">=</span><span class="dv">1</span>, how<span class="op">=</span><span class="st">&quot;all&quot;</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>data.rename(columns <span class="op">=</span> {<span class="st">&quot;ADM0_NAME&quot;</span> : <span class="st">&quot;admin0Name_en&quot;</span>, </span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;ADM0_PCODE&quot;</span> : <span class="st">&quot;admin0Pcode&quot;</span>, </span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;ADM1_NAME&quot;</span> : <span class="st">&quot;admin1Name_en&quot;</span>, </span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;ADM1_PCODE&quot;</span> : <span class="st">&quot;admin1Pcode&quot;</span>, </span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;T_TL&quot;</span> : <span class="st">&quot;population&quot;</span>},</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>            inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;admin0Name_en&quot;</span>] <span class="op">=</span> data[<span class="st">&quot;admin0Name_en&quot;</span>].<span class="bu">str</span>.title()</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;admin1Name_en&quot;</span>] <span class="op">=</span> data[<span class="st">&quot;admin1Name_en&quot;</span>].<span class="bu">str</span>.title()</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.set_index(<span class="st">&quot;admin1Name_en&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.nigerian_population()[<span class="st">&quot;Y&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>pop_data<span class="op">=</span>data</span></code></pre></div>
 <p>When doing this for real world data, you should also make sure that the names used in the rows are the same across the different data bases. For example, has someone decided to use an abbreviation for ‘Federal Capital Territory’ and set it as ‘FCT.’ The computer won’t understand these are the same states, and if you do a join with such data, you can get duplicate entries or missing entries. This sort of thing happens a lot in real world data and takes a lot of time to sort out. Fortunately, in this case, the data is well curated, and we don’t have these problems.</p>
 <h2 id="save-to-database-file">Save to database file</h2>
 <p>The next step is to add this new CSV file as an additional table in our database.</p>
@@ -620,44 +648,44 @@ sns.set_palette('colorblind')}-->
 <p>In GeoPandas we used an outer join. In an outer join you keep all rows from both tables, even if there is no match on the key. In an inner join, you only keep the rows if the two tables have a matching key.</p>
 <p>This is sometimes where problems can creep in. If in one table Abuja’s state is encoded as ‘FCT’ or ‘FCT-Abuja,’ and in another table it’s encoded as ‘Federal Capital Territory,’ they won’t match, and that data wouldn’t appear in the joined table.</p>
 <p>In simple terms, a JOIN operation takes two tables (or dataframes) and combines them based on some key, in this case the index of the Pandas data frame which is the state name.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>zones_gdf.set_index(<span class="st">&quot;admin1Name_en&quot;</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>pop_joined <span class="op">=</span> zones_gdf.join(pop_data[<span class="st">&#39;population&#39;</span>], how<span class="op">=</span><span class="st">&#39;inner&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>zones_gdf.set_index(<span class="st">&quot;admin1Name_en&quot;</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>pop_joined <span class="op">=</span> zones_gdf.join(pop_data[<span class="st">&#39;population&#39;</span>], how<span class="op">=</span><span class="st">&#39;inner&#39;</span>)</span></code></pre></div>
 <h2 id="groupby-in-pandas">GroupBy in Pandas</h2>
 <p>Our COVID19 data is in the form of individual cases. But we are interested in total case counts for each state. There is a special data base operation known as <code>GROUP BY</code> for collecting information about the individual states. The type of information you might want could be a sum, the maximum value, an average, the minimum value. We can use a GroupBy operation in <code>pandas</code> and SQL to summarize the counts of covid cases in each state.</p>
 <p>A <code>GROUPBY</code> operation groups rows with the same key (in this case ‘province/state’) into separate objects, that we can operate on further such as to count the rows in each group, or to sum or take the mean over the values in some column (imagine each case row had the age of the patient, and you were interested in the mean age of patients.)</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>covid_cases_by_state <span class="op">=</span> covid_data.groupby([<span class="st">&#39;province/state&#39;</span>]).count()[<span class="st">&#39;case_id&#39;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>covid_cases_by_state <span class="op">=</span> covid_data.groupby([<span class="st">&#39;province/state&#39;</span>]).count()[<span class="st">&#39;case_id&#39;</span>]</span></code></pre></div>
 <p>The <code>.groupby()</code> method on the dataframe has now given us a new data series that contains the total number of covid cases in each state. We can examine it to check we have something sensible.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>covid_cases_by_state</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>covid_cases_by_state</span></code></pre></div>
 <p>Now we have this new data series, it can be added to the pandas dataframe as a new column.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>pop_joined[<span class="st">&#39;covid_cases_by_state&#39;</span>] <span class="op">=</span> covid_cases_by_state</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>pop_joined[<span class="st">&#39;covid_cases_by_state&#39;</span>] <span class="op">=</span> covid_cases_by_state</span></code></pre></div>
 <p>The spatial join we did on the original data frame to obtain hosp_state_joined introduced a new column, <code>index_right</code> that contains the state of each of the hospitals. Let’s have a quick look at it below.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>hosp_state_joined[<span class="st">&#39;index_right&#39;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>hosp_state_joined[<span class="st">&#39;index_right&#39;</span>]</span></code></pre></div>
 <p>To count the hospitals in each of the states, we first create a grouped series where we’ve grouped on these states.</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> hosp_state_joined.groupby(<span class="st">&#39;admin1Name_en&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> hosp_state_joined.groupby(<span class="st">&#39;admin1Name_en&#39;</span>)</span></code></pre></div>
 <p>This python operation now goes through each of the groups and counts how many hospitals there are in each state. It stores the result in a dictionary. If you’re new to python, then to understand this code you need to understand what a ‘dictionary comprehension’ is. In this case the dictionary comprehension is being used to create a python dictionary of states and total hospital counts. That’s then being converted into a <code>pandas</code> Data Series and added to the <code>pop_joined</code> dataframe.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
-<div class="sourceCode" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>counted_groups <span class="op">=</span> {k: <span class="bu">len</span>(v) <span class="cf">for</span> k, v <span class="kw">in</span> grouped.groups.items()}</span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>pop_joined[<span class="st">&#39;hosp_state&#39;</span>] <span class="op">=</span> pd.Series(counted_groups)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>counted_groups <span class="op">=</span> {k: <span class="bu">len</span>(v) <span class="cf">for</span> k, v <span class="kw">in</span> grouped.groups.items()}</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>pop_joined[<span class="st">&#39;hosp_state&#39;</span>] <span class="op">=</span> pd.Series(counted_groups)</span></code></pre></div>
 <p>For convenience, we can now add a new data series to the data frame that contains the per capita information about hospitals. that makes it easy to retrieve later.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>pop_joined[<span class="st">&#39;hosp_per_capita_10k&#39;</span>] <span class="op">=</span> (pop_joined[<span class="st">&#39;hosp_state&#39;</span>] <span class="op">*</span> <span class="dv">10000</span> )<span class="op">/</span> pop_joined[<span class="st">&#39;population&#39;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>pop_joined[<span class="st">&#39;hosp_per_capita_10k&#39;</span>] <span class="op">=</span> (pop_joined[<span class="st">&#39;hosp_state&#39;</span>] <span class="op">*</span> <span class="dv">10000</span> )<span class="op">/</span> pop_joined[<span class="st">&#39;population&#39;</span>]</span></code></pre></div>
 <h2 id="sql-style">SQL-style</h2>
 <p>That’s the <code>pandas</code> approach to doing it. But <code>pandas</code> itself is inspired by database languages, in particular relational databases such as SQL. To do these types of joins at scale, e.g., for a ride hailing app, we need to do these joins in a database.</p>
 <p>As before, we’ll wrap the underlying SQL commands with a convenient python command.</p>
-<p>What you see below gives the full SQL command. There is a <a href="https://www.w3schools.com/sql/sql_select.asp"><code>SELECT</code> command</a>, which extracts <code>FROM</code> a particular table. It then completes an <a href="https://www.w3schools.com/sql/sql_join_inner.asp"><code>INNER JOIN</code></a> using particular columns (<code>province/state</code> and <code>index_right</code>)</p>
+<p>What you see below gives the full SQL command. There is a <a href="https://www.w3schools.com/sql/sql_select.asp"><code>SELECT</code> command</a>, which extracts <code>FROM</code> a particular table. It then completes an <a href="https://www.w3schools.com/sql/sql_join_inner.asp"><code>INNER JOIN</code></a> using particular columns (<code>province/state</code> and <code>admin1Name_en</code>)</p>
 <p>Now we’ve created our python wrapper, we can connect to the data base and run our SQL command on the database using the wrapper.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> create_connection(user<span class="op">=</span>credentials[<span class="st">&quot;username&quot;</span>], </span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>                         password<span class="op">=</span>credentials[<span class="st">&quot;password&quot;</span>],</span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>             host<span class="op">=</span>database_details[<span class="st">&quot;url&quot;</span>],</span>
-<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>             database<span class="op">=</span><span class="st">&quot;nigeria_nmis&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb69"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>state_cases_hosps <span class="op">=</span> join_counts(conn)</span></code></pre></div>
-<div class="sourceCode" id="cb70"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> state_cases_hosps:</span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;State </span><span class="sc">{}</span><span class="st"> </span><span class="ch">\t\t</span><span class="st"> Covid Cases </span><span class="sc">{}</span><span class="st"> </span><span class="ch">\t\t</span><span class="st"> Health Facilities </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(row[<span class="dv">0</span>], row[<span class="dv">1</span>], row[<span class="dv">2</span>]))</span></code></pre></div>
-<div class="sourceCode" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> nigeria_gdf.plot(color<span class="op">=</span><span class="st">&#39;white&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, alpha<span class="op">=</span><span class="dv">0</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">11</span>))</span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;population&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Population of Nigerian States&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> create_connection(user<span class="op">=</span>credentials[<span class="st">&quot;username&quot;</span>], </span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>                         password<span class="op">=</span>credentials[<span class="st">&quot;password&quot;</span>],</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>             host<span class="op">=</span>database_details[<span class="st">&quot;url&quot;</span>],</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>             database<span class="op">=</span><span class="st">&quot;nigeria_nmis&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>state_cases_hosps <span class="op">=</span> join_counts(conn)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> state_cases_hosps:</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;State </span><span class="sc">{}</span><span class="st"> </span><span class="ch">\t\t</span><span class="st"> Covid Cases </span><span class="sc">{}</span><span class="st"> </span><span class="ch">\t\t</span><span class="st"> Health Facilities </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(row[<span class="dv">0</span>], row[<span class="dv">1</span>], row[<span class="dv">2</span>]))</span></code></pre></div>
 <div class="sourceCode" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> nigeria_gdf.plot(color<span class="op">=</span><span class="st">&#39;white&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, alpha<span class="op">=</span><span class="dv">0</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">11</span>))</span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;hosp_per_capita_10k&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Hospitals Per Capita (10k) of Nigerian States&quot;</span>)</span></code></pre></div>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;population&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Population of Nigerian States&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> nigeria_gdf.plot(color<span class="op">=</span><span class="st">&#39;white&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, alpha<span class="op">=</span><span class="dv">0</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">11</span>))</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;hosp_per_capita_10k&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Hospitals Per Capita (10k) of Nigerian States&quot;</span>)</span></code></pre></div>
 <h3 id="exercise-1">Exercise 1</h3>
 <p>Add a new column the dataframe for covid cases per 10,000 population, in the same way we computed health facilities per 10k capita.</p>
 <h3 id="exercise-2">Exercise 2</h3>
@@ -666,18 +694,18 @@ sns.set_palette('colorblind')}-->
 <p>Do this in both the SQL and the Pandas styles to get a feel for how they differ.</p>
 <h3 id="exercise-4">Exercise 4</h3>
 <p>Perform an inner join using SQL on your databases and convert the result into a <code>pandas</code> DataFrame.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pop_joined[&#39;cases_per_capita_10k&#39;] = ???</span></span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="co"># pop_joined[&#39;cases_per_facility&#39;] = ???</span></span></code></pre></div>
-<div class="sourceCode" id="cb74"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> nigeria_gdf.plot(color<span class="op">=</span><span class="st">&#39;white&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, alpha<span class="op">=</span><span class="dv">0</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">11</span>))</span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;cases_per_capita_10k&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Covid Cases Per Capita (10k) of Nigerian States&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pop_joined[&#39;cases_per_capita_10k&#39;] = ???</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="co"># pop_joined[&#39;cases_per_facility&#39;] = ???</span></span></code></pre></div>
 <div class="sourceCode" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> nigeria_gdf.plot(color<span class="op">=</span><span class="st">&#39;white&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, alpha<span class="op">=</span><span class="dv">0</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">11</span>))</span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;covid_cases_by_state&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Covid Cases by State&quot;</span>)</span></code></pre></div>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;cases_per_capita_10k&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Covid Cases Per Capita (10k) of Nigerian States&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb76"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> nigeria_gdf.plot(color<span class="op">=</span><span class="st">&#39;white&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, alpha<span class="op">=</span><span class="dv">0</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">11</span>))</span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;cases_per_facility&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Covid Cases per Health Facility&quot;</span>)</span></code></pre></div>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;covid_cases_by_state&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Covid Cases by State&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> nigeria_gdf.plot(color<span class="op">=</span><span class="st">&#39;white&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, alpha<span class="op">=</span><span class="dv">0</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">11</span>))</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;cases_per_facility&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Covid Cases per Health Facility&quot;</span>)</span></code></pre></div>
 <h2 id="thanks">Thanks!</h2>
 <p>For more information on these subjects and more you might want to check the following resources.</p>
 <ul>
