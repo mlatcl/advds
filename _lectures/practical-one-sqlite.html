@@ -183,7 +183,8 @@ sns.set_palette('colorblind')}-->
 </div>
 <p>For ease of use we’ve packaged this data set in the <code>pods</code> library</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.nigerian_administrative_zones()[<span class="st">&#39;Y&#39;</span>]</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>data.set_index(<span class="st">&quot;admin1Name_en&quot;</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div>
 <p>Alternatively you can access the data directly with the following commands.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> zipfile</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -427,7 +428,7 @@ sns.set_palette('colorblind')}-->
 <h2 id="sql-style">SQL-style</h2>
 <p>That’s the <code>pandas</code> approach to doing it. But <code>pandas</code> itself is inspired by database languages, in particular relational databases such as SQL. To do these types of joins at scale, e.g., for a ride hailing app, we need to do these joins in a database.</p>
 <p>As before, we’ll wrap the underlying SQL commands with a convenient python command.</p>
-<p>What you see below gives the full SQL command. There is a <a href="https://www.w3schools.com/sql/sql_select.asp"><code>SELECT</code> command</a>, which extracts <code>FROM</code> a particular table. It then completes an <a href="https://www.w3schools.com/sql/sql_join_inner.asp"><code>INNER JOIN</code></a> using particular columns (<code>province/state</code> and <code>index_right</code>)</p>
+<p>What you see below gives the full SQL command. There is a <a href="https://www.w3schools.com/sql/sql_select.asp"><code>SELECT</code> command</a>, which extracts <code>FROM</code> a particular table. It then completes an <a href="https://www.w3schools.com/sql/sql_join_inner.asp"><code>INNER JOIN</code></a> using particular columns (<code>province/state</code> and <code>admin1Name_en</code>)</p>
 <p>Now we’ve created our python wrapper, we can connect to the data base and run our SQL command on the database using the wrapper.</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> create_connection(<span class="st">&quot;db.sqlite&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>state_cases_hosps <span class="op">=</span> join_counts(conn)</span></code></pre></div>
