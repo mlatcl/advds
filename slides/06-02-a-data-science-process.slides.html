@@ -116,7 +116,7 @@
 </div>
 </div>
 <aside class="notes">
-The CRISP Data Mining Process diagram.
+The CRISP Data Mining Process diagram: it stands for cross industry standard process for data mining. The process was defined in 2000 (<span class="citation" data-cites="Chapman-step00">Chapman et al. (2000)</span>), well before the modern service oriented architecture approach to software engineering emerged.
 </aside>
 </section>
 <section id="google-trends" class="slide level2">
@@ -149,8 +149,8 @@ showDivs(0, 'dm-ds-google-trends');
 <section id="section" class="slide level2">
 <h2></h2>
 <blockquote>
-<p>More generally, a data scientist is someone who knows how to extract meaning from and interpret data, which requires both tools and methods from statistics and machine learning, as well as being human. She spends a lot of time in the process of collecting, cleaning, and munging data, because data is never clean. This process requires persistence, statistics, and software engineering skills—skills that are also necessary for understanding biases in the data, and for debugging logging output from code.</p>
-<p>Cathy O’Neil and Rachel Strutt </p>
+<p>More generally, a data scientist is someone who knows how to extract meaning from and interpret data, which requires both tools and methods from statistics and machine learning, as well as being human. She spends a lot of time in the process of collecting, cleaning, and munging data, because data is never clean. This process requires persistence, statistics, and software engineering skills–—skills that are also necessary for understanding biases in the data, and for debugging logging output from code.</p>
+<p>Cathy O’Neil and Rachel Strutt from <span class="citation" data-cites="ONeil-doing13">O’Neil and Schutt (2013)</span></p>
 </blockquote>
 </section>
 <section id="section-1" class="slide level2">
@@ -246,6 +246,17 @@ Data oriented architecture. Now the joins and the updates are exposed within the
 Data-oriented programing. There is a requirement for an estimate of the driver allocation to give a rough cost estimate before the user has confirmed the ride. In data-oriented programming, this is achieved through declaring a hypothetical stream which approximates the true driver allocation, but with restricted input information and constraints on the computational latency.
 </aside>
 </section>
+<section id="inspiration" class="slide level2">
+<h2>Inspiration</h2>
+<ul>
+<li>Operational data science with:
+<ul>
+<li>Data Science Africa</li>
+<li>Amazon (particularly in supply chain)</li>
+<li>The Royal Society DELVE Group (pandemic advice)</li>
+</ul></li>
+</ul>
+</section>
 <section id="section-4" class="slide level2">
 <h2></h2>
 <div class="figure">
@@ -258,8 +269,32 @@ Data-oriented programing. There is a requirement for an estimate of the driver a
 The challenges of operational data science are closer to the challenges of deploying software and machine learning solutions than a classical analysis. The AutoAI project at Cambridge is focussed on maintaining and explaining AI solutions.
 </aside>
 </section>
+<section id="the-fynesse-framework-1" class="slide level2">
+<h2>The Fynesse Framework</h2>
+<ul>
+<li>Three <em>aspects</em>
+<ul>
+<li>Access - before data is available electronically</li>
+<li>Assess - work that can be done <em>without</em> the question</li>
+<li>Address - giving answers to question at hand</li>
+</ul></li>
+</ul>
+</section>
 <section id="access" class="slide level2">
 <h2>Access</h2>
+<ul>
+<li>Work to make data electronically accessible.</li>
+<li>Legal work</li>
+<li>Ethical work</li>
+<li>Extraction of data form where it’s held
+<ul>
+<li>mobile phones, within software ecosystem, physical log books</li>
+</ul></li>
+<li>Associated with data readiness level C.</li>
+</ul>
+</section>
+<section id="access-case-study-crash-map-kampala" class="slide level2">
+<h2>Access Case Study: Crash Map Kampala</h2>
 <div class="centered" style="">
 <svg viewBox="0 0 200 200" style="width:15%">
 <defs> <clipPath id="clip0">
@@ -314,6 +349,7 @@ Crash Map Kampala was an initiative by Michael T. Smith and Bagonza Jimmy Owa Ki
 <li>This ensures <em>assess</em> is reusable across tasks.</li>
 </ul></li>
 <li>Driven by happenstance data.</li>
+<li>Associated with data readiness level B</li>
 </ul>
 </section>
 <section id="case-study-text-mining-for-covid-misinformation" class="slide level2">
@@ -378,6 +414,7 @@ The AI for Data Analytics project is an attempt to automate some of the challeng
 <li>Visualisation through a dashboard</li>
 <li>An Excel spreadsheet</li>
 </ul></li>
+<li>Associated with data readiness level A.</li>
 </ul>
 </section>
 <section id="automating-address" class="slide level2">
@@ -750,6 +787,9 @@ Data can be queried, but the simplest query, what data do we need? Doesn’t eve
 </ul></li>
 </ul>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Chapman-step00" class="csl-entry" role="doc-biblioentry">
+Chapman, P., Clinton, J., Kerber, R., Khabaza, T., Reinartz, T., Shearer, C., Wirth, R., 2000. CRISP-DM 1.0: Step-by-step data mining guide.
+</div>
 <div id="ref-Lloyd-automatic14" class="csl-entry" role="doc-biblioentry">
 James Robert Lloyd, R.G., David Duvenaud, Ghahramani., Z., 2014. Automatic construction and natural-language description of nonparametric regression models, in: AAAI.
 </div>
