@@ -1,0 +1,56 @@
+hero:
+  title: About Us
+body: >-
+  #### **Achieving the full potential of AI – and its benefits for society and
+  the economy – requires the ability to safely and effectively deploy AI systems
+  at scale.**
+
+
+  Through research at the frontiers of machine learning methods, applications, and policymaking, ML@CL supports the deployment of machine learning to tackle real-world challenges. Our ambition is to create a new generation of machine learning and AI technologies that serve science and society. 
+
+
+  ML@CL’s research programmes tackle different aspects of AI systems design and deployment. Our work on AI for innovation considers the opportunities AI creates for scientific discovery, and the new research agendas that emerge at the interface of AI and the sciences. Our programme on machine learning in deployment is investigating how technical advances can help address issues of interpretability, reliability, resilience and fairness in large AI systems. We examine where, how and for whose benefit machine learning systems are developed and deployed through our policy programme. 
+
+
+  Active research projects in the group span:
+
+
+  * fundamental concepts in machine learning theory and methods;
+
+  * systems and software engineering for machine learning deployment;
+
+  * statistical emulation and probabilistic modelling;
+
+  * real-time inference and decision making;
+
+  * applications of machine learning in healthcare, biology, physics, and related challenges in science and industry;
+
+  * strategies for trustworthy data stewardship;
+
+  * the development of policy frameworks for trustworthy AI and data governance. 
+
+
+  Across our work, we engage closely with practitioners, domain experts and policymakers to develop AI tools that are fit for real-world deployment. On this site, you can find out more about our current projects and activities. Our Current Opportunities page provides further information about job vacancies and opportunities for student projects supervised by ML@CL team members.
+partners:
+  - link: https://www.cam.ac.uk
+    image: /assets/images/university-of-cambridge.png
+  - image: /assets/images/alan-turing-institute.png
+    link: http://turing.ac.uk
+  - image: /assets/images/pjmf.png
+    link: https://www.mcgovern.org
+  - image: /assets/images/schmidt-futures.png
+    link: https://schmidtfutures.com
+  - image: /assets/images/wellcome-trust-alt.png
+    link: https://wellcome.org
+grid:
+  - title: Our Research
+    description: Our work addresses the full pipeline of AI system development, from
+      policy development to data acquisition, through model development to
+      system deployment.
+    link: /research/
+    image: /assets/images/nasa-q1p7bh3shj8-unsplash.jpg
+  - description: Our team combines expertise in systems design, machine learning
+      methods, software engineering, policy, and public engagement.
+    title: Our People
+    image: /assets/images/mike-kononov-lfv0v3_2h6s-unsplash.jpg
+    link: /people/
