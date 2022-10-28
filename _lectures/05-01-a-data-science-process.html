@@ -1,7 +1,11 @@
 ---
 title: "A Data Science Process"
 venue: "LT2, William Gates Building"
-abstract: "<p>In this lecture we introduce a data science process: access, assess and address. The process Given the landscape we’ve outlined, in this lecture we will look at the challenges of deploying data science solutions in practice. We categorize them into three groups.</p>"
+abstract: "<p>In this lecture we introduce a data science process:
+access, assess and address. The process Given the landscape we’ve
+outlined, in this lecture we will look at the challenges of deploying
+data science solutions in practice. We categorize them into three
+groups.</p>"
 author:
 - given: Neil D.
   family: Lawrence
@@ -17,8 +21,8 @@ time: "10:00"
 week: 5
 session: 1
 reveal: 05-01-a-data-science-process.slides.html
-transition: None
 youtube: "kDOCnZcVEQA"
+edit_url: https://github.com/lawrennd/talks/edit/gh-pages/_advds/a-data-science-process.md
 layout: lecture
 categories:
 - notes
@@ -34,58 +38,123 @@ categories:
 <!--
 
 -->
-<p>We separated the challenges we face into three groups: (1) paradoxes of the odern data society, (2) quantifying the value of data and (3) privacy loss of control and marginalization. We’ve noted the origins of the paradoxes, speculating that it is based in a form of data (or modelling) inattention bias demonstrated through the Gorilla. We’ve drawn parallels between challenges of rewarding the addition of value and the credit assignment problem in reinforecement learning and we’ve looked at approaches to introduce the voice of marginalized societies and people into the conversation.</p>
-<h2 id="deploying-artificial-intelligence">Deploying Artificial Intelligence</h2>
+<p>We separated the challenges we face into three groups: (1) paradoxes
+of the odern data society, (2) quantifying the value of data and (3)
+privacy loss of control and marginalization. We’ve noted the origins of
+the paradoxes, speculating that it is based in a form of data (or
+modelling) inattention bias demonstrated through the Gorilla. We’ve
+drawn parallels between challenges of rewarding the addition of value
+and the credit assignment problem in reinforecement learning and we’ve
+looked at approaches to introduce the voice of marginalized societies
+and people into the conversation.</p>
+<h2 id="deploying-artificial-intelligence">Deploying Artificial
+Intelligence</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/deploying-ai.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/deploying-ai.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/deploying-ai.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/deploying-ai.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>With the wide availability of new techniques, we are currently creating Artifical Intelligence through combination of machine learning algorithms to form machine learning systems.</p>
-<p>This effect is amplified through the growth in sensorics, in particular the movement of cloud computing towards the customer. The barrier between cloud and device is blurring. This phenomenon is sometimes known as fog computing, or <em>computing on the edge</em>.</p>
-<p>This presents major new challenges for machine learning systems design. We would like an internet of <em>intelligence</em> but currently our AI systems are <em>fragile</em>. A classical systems approach to design does not handle evolving environments well.</p>
+<p>With the wide availability of new techniques, we are currently
+creating Artifical Intelligence through combination of machine learning
+algorithms to form machine learning systems.</p>
+<p>This effect is amplified through the growth in sensorics, in
+particular the movement of cloud computing towards the customer. The
+barrier between cloud and device is blurring. This phenomenon is
+sometimes known as fog computing, or <em>computing on the edge</em>.</p>
+<p>This presents major new challenges for machine learning systems
+design. We would like an internet of <em>intelligence</em> but currently
+our AI systems are <em>fragile</em>. A classical systems approach to
+design does not handle evolving environments well.</p>
 <h2 id="the-fynesse-framework">The Fynesse Framework</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/access-assess-address.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/access-assess-address.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/access-assess-address.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/access-assess-address.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>Here we present a new framework for thinking about data science. The Fynesse framework splits the activities of the data scientist into three aspects, each aspect is repressented by a one of three words that highlight different activities that occur within a data science project: we call them access, assess and address.</p>
-<p>Before going deeper into the framework, we will contextualise by looking at some other formalisations of the data analysis pipeline.</p>
+<p>Here we present a new framework for thinking about data science. The
+Fynesse framework splits the activities of the data scientist into three
+aspects, each aspect is repressented by a one of three words that
+highlight different activities that occur within a data science project:
+we call them access, assess and address.</p>
+<p>Before going deeper into the framework, we will contextualise by
+looking at some other formalisations of the data analysis pipeline.</p>
 <div class="figure">
 <div id="crisp-dm-diagram-figure" class="figure-frame">
 <div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/1022px-CRISP-DM_Process_Diagram.png" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="crisp-dm-diagram-magnify" class="magnify" onclick="magnifyFigure(&#39;crisp-dm-diagram&#39;)">
+<div id="crisp-dm-diagram-magnify" class="magnify"
+onclick="magnifyFigure(&#39;crisp-dm-diagram&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="crisp-dm-diagram-caption" class="caption-frame">
-<p>Figure: The CRISP Data Mining Process diagram: it stands for cross industry standard process for data mining. The process was defined in 2000 (<span class="citation" data-cites="Chapman-step00">Chapman et al. (2000)</span>), well before the modern service oriented architecture approach to software engineering emerged.</p>
+<p>Figure: The CRISP Data Mining Process diagram: it stands for cross
+industry standard process for data mining. The process was defined in
+2000 (<span class="citation" data-cites="Chapman-step00">Chapman et al.
+(2000)</span>), well before the modern service oriented architecture
+approach to software engineering emerged.</p>
 </div>
 </div>
-<p>There are formal processes designed for, e.g., data mining, but they are not always appropriate for operational science or continuous deployment. One is the CRISP-DM <span class="citation" data-cites="Chapman-step00">Chapman et al. (2000)</span> process, which does a nice job of capturing the cyclic nature of these processes, but fails to capture the need to build resources that answer questions in real time that occurs in operational science and continuous deployment.</p>
+<p>There are formal processes designed for, e.g., data mining, but they
+are not always appropriate for operational science or continuous
+deployment. One is the CRISP-DM <span class="citation"
+data-cites="Chapman-step00">Chapman et al. (2000)</span> process, which
+does a nice job of capturing the cyclic nature of these processes, but
+fails to capture the need to build resources that answer questions in
+real time that occurs in operational science and continuous
+deployment.</p>
 <h2 id="google-trends">Google Trends</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-base.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-base.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-base.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-base.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install pytrends</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install pytrends</span></code></pre></div>
 <div class="figure">
-<div id="dm-ds-gartner-hype-cycle-google-trends-figure" class="figure-frame">
+<div id="dm-ds-gartner-hype-cycle-google-trends-figure"
+class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/dm-ds-google-trends.svg" width="80%" style=" ">
 </object>
 </div>
-<div id="dm-ds-gartner-hype-cycle-google-trends-magnify" class="magnify" onclick="magnifyFigure(&#39;dm-ds-gartner-hype-cycle-google-trends&#39;)">
+<div id="dm-ds-gartner-hype-cycle-google-trends-magnify" class="magnify"
+onclick="magnifyFigure(&#39;dm-ds-gartner-hype-cycle-google-trends&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="dm-ds-gartner-hype-cycle-google-trends-caption" class="caption-frame">
-<p>Figure: A Google trends search for ‘data mining,’ ‘data science’ as different technological terms gives us insight into their popularity over time.</p>
+<div id="dm-ds-gartner-hype-cycle-google-trends-caption"
+class="caption-frame">
+<p>Figure: A Google trends search for ‘data mining’, ‘data science’ as
+different technological terms gives us insight into their popularity
+over time.</p>
 </div>
 </div>
-<p>Google trends gives us insight into the interest for different terms over time.</p>
-<p>We note that the term <em>data mining</em> is falling somewhat out of favour, and the CRISP-DM data mining process also feels somewhat dated. In particular software engineering has moved on a great deal since it was defined, with modern software engineering more focussed on service oriented architectures. Software design has a pervasive effect on our ability to do data science.</p>
-<p>When thinking about the data science process it is important to consider the <em>software architectures</em> that are used in large scale decision making systems, and understand what it is that they are bring to help solve these problems.</p>
-<p>A more modern view from the O’Reilly book <em>Doing Data Science</em> frames the problem as shown in Figure .</p>
+<p>Google trends gives us insight into the interest for different terms
+over time.</p>
+<p>We note that the term <em>data mining</em> is falling somewhat out of
+favour, and the CRISP-DM data mining process also feels somewhat dated.
+In particular software engineering has moved on a great deal since it
+was defined, with modern software engineering more focussed on service
+oriented architectures. Software design has a pervasive effect on our
+ability to do data science.</p>
+<p>When thinking about the data science process it is important to
+consider the <em>software architectures</em> that are used in large
+scale decision making systems, and understand what it is that they are
+bring to help solve these problems.</p>
+<p>A more modern view from the O’Reilly book <em>Doing Data Science</em>
+frames the problem as shown in Figure <span
+class="math inline">\(\ref{data-science-process-oneil}\)</span>.</p>
 <blockquote>
-<p>More generally, a data scientist is someone who knows how to extract meaning from and interpret data, which requires both tools and methods from statistics and machine learning, as well as being human. She spends a lot of time in the process of collecting, cleaning, and munging data, because data is never clean. This process requires persistence, statistics, and software engineering skills–—skills that are also necessary for understanding biases in the data, and for debugging logging output from code.</p>
-<p>Cathy O’Neil and Rachel Strutt from <span class="citation" data-cites="ONeil-doing13">O’Neil and Schutt (2013)</span></p>
+<p>More generally, a data scientist is someone who knows how to extract
+meaning from and interpret data, which requires both tools and methods
+from statistics and machine learning, as well as being human. She spends
+a lot of time in the process of collecting, cleaning, and munging data,
+because data is never clean. This process requires persistence,
+statistics, and software engineering skills–—skills that are also
+necessary for understanding biases in the data, and for debugging
+logging output from code.</p>
+<p>Cathy O’Neil and Rachel Strutt from <span class="citation"
+data-cites="ONeil-doing13">O’Neil and Schutt (2013)</span></p>
 </blockquote>
 <div class="figure">
 <div id="data-science-process-oneil-figure" class="figure-frame">
@@ -93,116 +162,269 @@ categories:
 <img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/dnds_0202.png" width="70%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="data-science-process-oneil-magnify" class="magnify" onclick="magnifyFigure(&#39;data-science-process-oneil&#39;)">
+<div id="data-science-process-oneil-magnify" class="magnify"
+onclick="magnifyFigure(&#39;data-science-process-oneil&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="data-science-process-oneil-caption" class="caption-frame">
-<p>Figure: Another perspective on the data science process, this one from <span class="citation" data-cites="ONeil-doing13">O’Neil and Schutt (2013)</span>.</p>
+<p>Figure: Another perspective on the data science process, this one
+from <span class="citation" data-cites="ONeil-doing13">O’Neil and Schutt
+(2013)</span>.</p>
 </div>
 </div>
-<p>One thing about working in an industrial environment, is the way that short-term thinking actions become important. For example, in Formula One, the teams are working on a two-week cycle to digest information from the previous week’s race and incorporate updates to the car or their strategy.</p>
-<p>However, businesses must also think about more medium-term horizons. For example, in Formula 1 you need to worry about next year’s car. So, while you’re working on updating this year’s car, you also need to think about what will happen for next year and prioritize these conflicting needs appropriately.</p>
-<p>In the Amazon supply chain, there are equivalent demands. If we accept that an artificial intelligence is just an automated decision-making system. And if we measure in terms of money automatically spent, or goods automatically moved, then Amazon’s buying system is perhaps the world’s largest AI.</p>
-<p>Those decisions are being made on short time schedules; purchases are made by the system on weekly cycles. But just as in Formula 1, there is also a need to think about what needs to be done next month, next quarter and next year. Planning meetings are held not only on a weekly basis (known as weekly business reviews), but monthly, quarterly, and then yearly meetings for planning spends and investments.</p>
-<p>Amazon is known for being longer term thinking than many companies, and a lot of this is coming from the CEO. One quote from Jeff Bezos that stuck with me was the following.</p>
+<p>One thing about working in an industrial environment, is the way that
+short-term thinking actions become important. For example, in Formula
+One, the teams are working on a two-week cycle to digest information
+from the previous week’s race and incorporate updates to the car or
+their strategy.</p>
+<p>However, businesses must also think about more medium-term horizons.
+For example, in Formula 1 you need to worry about next year’s car. So,
+while you’re working on updating this year’s car, you also need to think
+about what will happen for next year and prioritize these conflicting
+needs appropriately.</p>
+<p>In the Amazon supply chain, there are equivalent demands. If we
+accept that an artificial intelligence is just an automated
+decision-making system. And if we measure in terms of money
+automatically spent, or goods automatically moved, then Amazon’s buying
+system is perhaps the world’s largest AI.</p>
+<p>Those decisions are being made on short time schedules; purchases are
+made by the system on weekly cycles. But just as in Formula 1, there is
+also a need to think about what needs to be done next month, next
+quarter and next year. Planning meetings are held not only on a weekly
+basis (known as weekly business reviews), but monthly, quarterly, and
+then yearly meetings for planning spends and investments.</p>
+<p>Amazon is known for being longer term thinking than many companies,
+and a lot of this is coming from the CEO. One quote from Jeff Bezos that
+stuck with me was the following.</p>
 <blockquote>
-<p>“I very frequently get the question: ‘What’s going to change in the next 10 years?’ And that is a very interesting question; it’s a very common one. I almost never get the question: ‘What’s not going to change in the next 10 years?’ And I submit to you that that second question is actually the more important of the two – because you can build a business strategy around the things that are stable in time. … [I]n our retail business, we know that customers want low prices, and I know that’s going to be true 10 years from now. They want fast delivery; they want vast selection. It’s impossible to imagine a future 10 years from now where a customer comes up and says, ‘Jeff I love Amazon; I just wish the prices were a little higher,’ [or] ‘I love Amazon; I just wish you’d deliver a little more slowly.’ Impossible. And so the effort we put into those things, spinning those things up, we know the energy we put into it today will still be paying off dividends for our customers 10 years from now. When you have something that you know is true, even over the long term, you can afford to put a lot of energy into it.”</p>
+<p>“I very frequently get the question: ‘What’s going to change in the
+next 10 years?’ And that is a very interesting question; it’s a very
+common one. I almost never get the question: ‘What’s not going to change
+in the next 10 years?’ And I submit to you that that second question is
+actually the more important of the two – because you can build a
+business strategy around the things that are stable in time. … [I]n our
+retail business, we know that customers want low prices, and I know
+that’s going to be true 10 years from now. They want fast delivery; they
+want vast selection. It’s impossible to imagine a future 10 years from
+now where a customer comes up and says, ‘Jeff I love Amazon; I just wish
+the prices were a little higher,’ [or] ‘I love Amazon; I just wish you’d
+deliver a little more slowly.’ Impossible. And so the effort we put into
+those things, spinning those things up, we know the energy we put into
+it today will still be paying off dividends for our customers 10 years
+from now. When you have something that you know is true, even over the
+long term, you can afford to put a lot of energy into it.”</p>
 </blockquote>
-<p>This quote is incredibly important for long term thinking. Indeed, it’s a failure of many of our simulations that they focus on what is going to happen, not what will not happen. In Amazon, this meant that there was constant focus on these three areas, keeping costs low, making delivery fast and improving selection. For example, shortly before I left Amazon moved its entire US network from two-day delivery to one-day delivery. This involves changing the way the entire buying system operates. Or, more recently, the company has had to radically change the portfolio of products it buys in the face of Covid19.</p>
+<p>This quote is incredibly important for long term thinking. Indeed,
+it’s a failure of many of our simulations that they focus on what is
+going to happen, not what will not happen. In Amazon, this meant that
+there was constant focus on these three areas, keeping costs low, making
+delivery fast and improving selection. For example, shortly before I
+left Amazon moved its entire US network from two-day delivery to one-day
+delivery. This involves changing the way the entire buying system
+operates. Or, more recently, the company has had to radically change the
+portfolio of products it buys in the face of Covid19.</p>
 <!--These challenges are not just there for Amazon and Formula 1. In Sheffield, we worked closely with a Chesterfield based company called Fusion Group. They make joints that fuse PTFE pipes together. These pipes are used for transporting both water and gas. Their founder, Eric Bridgstock, was an engineer who introduced PTFE piping to the UK when working for DuPont. Eric set up Fusion group to manufacture the fusion fittings. Because PTFE pipes carry water or gas at high pressure, when these fittings fail significant damage can occur. When these fittings were originally installed in the early 1980s, the job was done by a specialist, but nowadays the pipe weld is compelted by the same team that digs the hole. While costs have come down, the number of PTFE weld failures went up. Eric's company focussed on new systems for auto-->
 <div class="figure">
 <div id="experiment-analyze-design-figure" class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/experiment-analyze-design.svg" width="50%" style=" ">
 </object>
 </div>
-<div id="experiment-analyze-design-magnify" class="magnify" onclick="magnifyFigure(&#39;experiment-analyze-design&#39;)">
+<div id="experiment-analyze-design-magnify" class="magnify"
+onclick="magnifyFigure(&#39;experiment-analyze-design&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="experiment-analyze-design-caption" class="caption-frame">
-<p>Figure: Experiment, analyze and design is a flywheel of knowledge that is the dual of the model, data and compute. By running through this spiral, we refine our hypothesis/model and develop new experiments which can be analyzed to further refine our hypothesis.</p>
+<p>Figure: Experiment, analyze and design is a flywheel of knowledge
+that is the dual of the model, data and compute. By running through this
+spiral, we refine our hypothesis/model and develop new experiments which
+can be analyzed to further refine our hypothesis.</p>
 </div>
 </div>
-<p>From the perspective of the team that we had in the supply chain, we looked at what we most needed to focus on. Amazon moves very quickly, but we could also take a leaf out of Jeff’s book, and instead of worrying about what was going to change, remember what wasn’t going to change.</p>
+<p>From the perspective of the team that we had in the supply chain, we
+looked at what we most needed to focus on. Amazon moves very quickly,
+but we could also take a leaf out of Jeff’s book, and instead of
+worrying about what was going to change, remember what wasn’t going to
+change.</p>
 <blockquote>
-<p>We don’t know what science we’ll want to do in five years’ time, but we won’t want slower experiments, we won’t want more expensive experiments and we won’t want a narrower selection of experiments.</p>
+<p>We don’t know what science we’ll want to do in five years’ time, but
+we won’t want slower experiments, we won’t want more expensive
+experiments and we won’t want a narrower selection of experiments.</p>
 </blockquote>
-<p>As a result, our focus was on how to speed up the process of experiments, increase the diversity of experiments that we can do, and keep the experiments price as low as possible.</p>
-<p>The faster the innovation flywheel can be iterated, then the quicker we can ask about different parts of the supply chain, and the better we can tailor systems to answering those questions.</p>
-<p>We need faster, cheaper and more diverse experiments which implies we need better ecosystems for experimentation. This has led us to focus on the software frameworks we’re using to develop machine learning systems including data oriented architectures (<span class="citation" data-cites="Borchert-dataoriented20">Borchert (2020)</span>;<span class="citation" data-cites="Lawrence-dop19">Lawrence (2019)</span>;<span class="citation" data-cites="Vorhemus-doa17">Vorhemus and Schikuta (2017)</span>;<span class="citation" data-cites="Joshi-doa07">Joshi (2007)</span>), data maturity assessments (<span class="citation" data-cites="Lawrence-maturity20">Lawrence et al. (2020)</span>) and data readiness levels (See this blog post on <a href="http://inverseprobability.com/2017/01/12/data-readiness-levels">Data Readiness Levels</a>. and <span class="citation" data-cites="Lawrence-drl17">Lawrence (2017)</span>;<span class="citation" data-cites="Delve-data20">The DELVE Initiative (2020a)</span>)</p>
-<p>One challenge for data science and data science processes is that they do not always accommodate the real-time and evolving nature of data science advice as required, for example in pandemic response or in managing an international supply chain.</p>
+<p>As a result, our focus was on how to speed up the process of
+experiments, increase the diversity of experiments that we can do, and
+keep the experiments price as low as possible.</p>
+<p>The faster the innovation flywheel can be iterated, then the quicker
+we can ask about different parts of the supply chain, and the better we
+can tailor systems to answering those questions.</p>
+<p>We need faster, cheaper and more diverse experiments which implies we
+need better ecosystems for experimentation. This has led us to focus on
+the software frameworks we’re using to develop machine learning systems
+including data oriented architectures (<span class="citation"
+data-cites="Borchert-dataoriented20">Borchert (2020)</span>;<span
+class="citation" data-cites="Lawrence-dop19">Lawrence
+(2019)</span>;<span class="citation"
+data-cites="Vorhemus-doa17">Vorhemus and Schikuta (2017)</span>;<span
+class="citation" data-cites="Joshi-doa07">Joshi (2007)</span>), data
+maturity assessments (<span class="citation"
+data-cites="Lawrence-maturity20">Lawrence et al. (2020)</span>) and data
+readiness levels (See this blog post on <a
+href="http://inverseprobability.com/2017/01/12/data-readiness-levels">Data
+Readiness Levels</a>. and <span class="citation"
+data-cites="Lawrence-drl17">Lawrence (2017)</span>;<span
+class="citation" data-cites="Delve-data20">The DELVE Initiative
+(2020a)</span>)</p>
+<p>One challenge for data science and data science processes is that
+they do not always accommodate the real-time and evolving nature of data
+science advice as required, for example in pandemic response or in
+managing an international supply chain.</p>
 <div class="figure">
-<div id="policy-science-convening-power-of-data-figure" class="figure-frame">
+<div id="policy-science-convening-power-of-data-figure"
+class="figure-frame">
 <iframe width="600" height="450" src="https://www.youtube.com/embed/-QjJLgRni-M?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
 </iframe>
 </div>
-<div id="policy-science-convening-power-of-data-magnify" class="magnify" onclick="magnifyFigure(&#39;policy-science-convening-power-of-data&#39;)">
+<div id="policy-science-convening-power-of-data-magnify" class="magnify"
+onclick="magnifyFigure(&#39;policy-science-convening-power-of-data&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="policy-science-convening-power-of-data-caption" class="caption-frame">
-<p>Figure: Data science processes do not always accommodate the real-time and evolving nature of data science advice as required, for example, for policy advice as described in this presentation.</p>
+<div id="policy-science-convening-power-of-data-caption"
+class="caption-frame">
+<p>Figure: Data science processes do not always accommodate the
+real-time and evolving nature of data science advice as required, for
+example, for policy advice as described in this presentation.</p>
 </div>
 </div>
-<h2 id="ride-sharing-service-oriented-to-data-oriented">Ride Sharing: Service Oriented to Data Oriented</h2>
+<h2 id="ride-sharing-service-oriented-to-data-oriented">Ride Sharing:
+Service Oriented to Data Oriented</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/ride-sharing-soa-doa.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/ride-sharing-soa-doa.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/ride-sharing-soa-doa.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/ride-sharing-soa-doa.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <div class="figure">
 <div id="ride-share-service-soa-figure" class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/ride-share-service-soa.svg" width="80%" style=" ">
 </object>
 </div>
-<div id="ride-share-service-soa-magnify" class="magnify" onclick="magnifyFigure(&#39;ride-share-service-soa&#39;)">
+<div id="ride-share-service-soa-magnify" class="magnify"
+onclick="magnifyFigure(&#39;ride-share-service-soa&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="ride-share-service-soa-caption" class="caption-frame">
-<p>Figure: Service oriented architecture. The data access is buried in the cost allocation service. Data dependencies of the service cannot be found without trawling through the underlying code base.</p>
+<p>Figure: Service oriented architecture. The data access is buried in
+the cost allocation service. Data dependencies of the service cannot be
+found without trawling through the underlying code base.</p>
 </div>
 </div>
-<p>The modern approach to software systems design is known as a <em>service-oriented architectures</em> (SOA). The idea is that software engineers are responsible for the availability and reliability of the API that accesses the service they own. Quality of service is maintained by rigorous standards around <em>testing</em> of software systems.</p>
+<p>The modern approach to software systems design is known as a
+<em>service-oriented architectures</em> (SOA). The idea is that software
+engineers are responsible for the availability and reliability of the
+API that accesses the service they own. Quality of service is maintained
+by rigorous standards around <em>testing</em> of software systems.</p>
 <div class="figure">
 <div id="ride-share-service-doa-figure" class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/ride-share-service-doa.svg" width="80%" style=" ">
 </object>
 </div>
-<div id="ride-share-service-doa-magnify" class="magnify" onclick="magnifyFigure(&#39;ride-share-service-doa&#39;)">
+<div id="ride-share-service-doa-magnify" class="magnify"
+onclick="magnifyFigure(&#39;ride-share-service-doa&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="ride-share-service-doa-caption" class="caption-frame">
-<p>Figure: Data oriented architecture. Now the joins and the updates are exposed within the streaming ecosystem. We can programatically determine the factor graph which gives the thread through the model.</p>
+<p>Figure: Data oriented architecture. Now the joins and the updates are
+exposed within the streaming ecosystem. We can programatically determine
+the factor graph which gives the thread through the model.</p>
 </div>
 </div>
-<p>In data driven decision-making systems, the quality of decision-making is determined by the quality of the data. We need to extend the notion of <em>service</em>-oriented architecture to <em>data</em>-oriented architecture (DOA).</p>
-<p>The focus in SOA is eliminating <em>hard</em> failures. Hard failures can occur due to bugs or systems overload. This notion needs to be extended in ML systems to capture <em>soft failures</em> associated with declining data quality, incorrect modeling assumptions and inappropriate re-deployments of models. We need to focus on data quality assessments. In data-oriented architectures engineering teams are responsible for the <em>quality</em> of their output data streams in addition to the <em>availability</em> of the service they support <span class="citation" data-cites="Lawrence-drl17">(Lawrence, 2017)</span>. Quality here is not just accuracy, but fairness and explainability. This important cultural change would be capable of addressing both the challenge of <em>technical debt</em> <span class="citation" data-cites="Sculley:debt15">(Sculley et al., 2015)</span> and the social responsibility of ML systems.</p>
-<p>Software development proceeds with a <em>test-oriented</em> culture. One where tests are written before software, and software is not incorporated in the wider system until all tests pass. We must apply the same standards of care to our ML systems, although for ML we need statistical tests for quality, fairness and consistency within the environment. Fortunately, the main burden of this testing need not fall to the engineers themselves: through leveraging <em>classical statistics</em> and <em>emulation</em> we will automate the creation and redeployment of these tests across the software ecosystem, we call this <em>ML hypervision</em> (WP5 ).</p>
-<p>Modern AI can be based on ML models with many millions of parameters, trained on very large data sets. In ML, strong emphasis is placed on <em>predictive accuracy</em> whereas sister-fields such as statistics have a strong emphasis on <em>interpretability</em>. ML models are said to be ‘black boxes’ which make decisions that are not explainable.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>In data driven decision-making systems, the quality of
+decision-making is determined by the quality of the data. We need to
+extend the notion of <em>service</em>-oriented architecture to
+<em>data</em>-oriented architecture (DOA).</p>
+<p>The focus in SOA is eliminating <em>hard</em> failures. Hard failures
+can occur due to bugs or systems overload. This notion needs to be
+extended in ML systems to capture <em>soft failures</em> associated with
+declining data quality, incorrect modeling assumptions and inappropriate
+re-deployments of models. We need to focus on data quality assessments.
+In data-oriented architectures engineering teams are responsible for the
+<em>quality</em> of their output data streams in addition to the
+<em>availability</em> of the service they support <span class="citation"
+data-cites="Lawrence-drl17">(Lawrence, 2017)</span>. Quality here is not
+just accuracy, but fairness and explainability. This important cultural
+change would be capable of addressing both the challenge of
+<em>technical debt</em> <span class="citation"
+data-cites="Sculley:debt15">(Sculley et al., 2015)</span> and the social
+responsibility of ML systems.</p>
+<p>Software development proceeds with a <em>test-oriented</em> culture.
+One where tests are written before software, and software is not
+incorporated in the wider system until all tests pass. We must apply the
+same standards of care to our ML systems, although for ML we need
+statistical tests for quality, fairness and consistency within the
+environment. Fortunately, the main burden of this testing need not fall
+to the engineers themselves: through leveraging <em>classical
+statistics</em> and <em>emulation</em> we will automate the creation and
+redeployment of these tests across the software ecosystem, we call this
+<em>ML hypervision</em> (WP5 <span
+class="math inline">\(\ref{sec:hypervision}\)</span>).</p>
+<p>Modern AI can be based on ML models with many millions of parameters,
+trained on very large data sets. In ML, strong emphasis is placed on
+<em>predictive accuracy</em> whereas sister-fields such as statistics
+have a strong emphasis on <em>interpretability</em>. ML models are said
+to be ‘black boxes’ which make decisions that are not explainable.<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a></p>
 <div class="figure">
-<div id="ride-share-service-doa-hypothetical-figure" class="figure-frame">
+<div id="ride-share-service-doa-hypothetical-figure"
+class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/ride-share-service-doa-hypothetical.svg" width="80%" style=" ">
 </object>
 </div>
-<div id="ride-share-service-doa-hypothetical-magnify" class="magnify" onclick="magnifyFigure(&#39;ride-share-service-doa-hypothetical&#39;)">
+<div id="ride-share-service-doa-hypothetical-magnify" class="magnify"
+onclick="magnifyFigure(&#39;ride-share-service-doa-hypothetical&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="ride-share-service-doa-hypothetical-caption" class="caption-frame">
-<p>Figure: Data-oriented programing. There is a requirement for an estimate of the driver allocation to give a rough cost estimate before the user has confirmed the ride. In data-oriented programming, this is achieved through declaring a hypothetical stream which approximates the true driver allocation, but with restricted input information and constraints on the computational latency.</p>
+<div id="ride-share-service-doa-hypothetical-caption"
+class="caption-frame">
+<p>Figure: Data-oriented programing. There is a requirement for an
+estimate of the driver allocation to give a rough cost estimate before
+the user has confirmed the ride. In data-oriented programming, this is
+achieved through declaring a hypothetical stream which approximates the
+true driver allocation, but with restricted input information and
+constraints on the computational latency.</p>
 </div>
 </div>
-<p>For the ride sharing system, we start to see a common issue with a more complex algorithmic decision-making system. Several decisions are being made multilple times. Let’s look at the decisions we need along with some design criteria.</p>
+<p>For the ride sharing system, we start to see a common issue with a
+more complex algorithmic decision-making system. Several decisions are
+being made multilple times. Let’s look at the decisions we need along
+with some design criteria.</p>
 <ol type="1">
-<li>Driver Availability: Estimate time to arrival for Anne’s ride using Anne’s location and local available car locations. Latency 50 milliseconds</li>
-<li>Cost Estimate: Estimate cost for journey using Anne’s destination, location and local available car current destinations and availability. Latency 50 milliseconds</li>
-<li>Driver Allocation: Allocate car to minimize transport cost to destination. Latency 2 seconds.</li>
+<li>Driver Availability: Estimate time to arrival for Anne’s ride using
+Anne’s location and local available car locations. Latency 50
+milliseconds</li>
+<li>Cost Estimate: Estimate cost for journey using Anne’s destination,
+location and local available car current destinations and availability.
+Latency 50 milliseconds</li>
+<li>Driver Allocation: Allocate car to minimize transport cost to
+destination. Latency 2 seconds.</li>
 </ol>
 <p>So we need:</p>
 <ol type="1">
-<li>a hypothetical to estimate availability. It is constrained by lacking destination information and a low latency requirement.</li>
-<li>a hypothetical to estimate cost. It is constrained by low latency requirement and</li>
+<li>a hypothetical to estimate availability. It is constrained by
+lacking destination information and a low latency requirement.</li>
+<li>a hypothetical to estimate cost. It is constrained by low latency
+requirement and</li>
 </ol>
-<p>Simultaneously, drivers in this data ecosystem have an app which notifies them about new jobs and recommends them where to go.</p>
-<p>Further advantages. Strategies for data retention (when to snapshot) can be set globally.</p>
-<p>A few decisions need to be made in this system. First of all, when the user opens the app, the estimate of the time to the nearest ride may need to be computed quickly, to avoid latency in the service.</p>
+<p>Simultaneously, drivers in this data ecosystem have an app which
+notifies them about new jobs and recommends them where to go.</p>
+<p>Further advantages. Strategies for data retention (when to snapshot)
+can be set globally.</p>
+<p>A few decisions need to be made in this system. First of all, when
+the user opens the app, the estimate of the time to the nearest ride may
+need to be computed quickly, to avoid latency in the service.</p>
 <p>This may require a quick estimate of the ride availability.</p>
-<p>The Fynesse paradigm is inspired by experience in operational data science working with <a href="http://www.datascienceafrica.org">Data Science Africa</a>, deploying in the Amazon supply chain and in the UK Covid-19 pandemic response.</p>
+<p>The Fynesse paradigm is inspired by experience in operational data
+science working with <a href="http://www.datascienceafrica.org">Data
+Science Africa</a>, deploying in the Amazon supply chain and in the UK
+Covid-19 pandemic response.</p>
 <div class="figure">
 <div id="-figure" class="figure-frame">
 <iframe width="600" height="450" src="https://www.youtube.com/embed/5PdHgR6zz1o?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
@@ -212,20 +434,55 @@ categories:
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="-caption" class="caption-frame">
-<p>Figure: The challenges of operational data science are closer to the challenges of deploying software and machine learning solutions than a classical analysis. The AutoAI project at Cambridge is focussed on maintaining and explaining AI solutions.</p>
+<p>Figure: The challenges of operational data science are closer to the
+challenges of deploying software and machine learning solutions than a
+classical analysis. The AutoAI project at Cambridge is focussed on
+maintaining and explaining AI solutions.</p>
 </div>
 </div>
-<p>Arguably the challenges for automated data science and deploying complex machine learning solutions are similar. The AutoAI project at Cambridge is focussed on maintaining and explaining machine learning systems. The assumption is that such systems are generally made up of interacting components that make decisions in a composite manner. They have interfaces to the real world where that data is collected, but they also generate data within themselelves. The challenge of collecting data is sometimes less the challenge of pacing the streets and more the challenge of extracting it from existing systems.</p>
+<p>Arguably the challenges for automated data science and deploying
+complex machine learning solutions are similar. The AutoAI project at
+Cambridge is focussed on maintaining and explaining machine learning
+systems. The assumption is that such systems are generally made up of
+interacting components that make decisions in a composite manner. They
+have interfaces to the real world where that data is collected, but they
+also generate data within themselelves. The challenge of collecting data
+is sometimes less the challenge of pacing the streets and more the
+challenge of extracting it from existing systems.</p>
 <h2 id="the-fynesse-framework-1">The Fynesse Framework</h2>
-<p>The Fynesse paradigm considers three <em>aspects</em> to data analysis: Access, Assess, Address. In this way it builds on many two stage processes that consider <em>data collection</em> and <em>data wrangling</em> to be two separate stages. There are two key differences to the Fynesse process. Firstly, the attempt to separate data wrangling tasks into (a) those that can be done <em>without</em> knowing the downstream task (Assess) and (b) those that can only be done <em>with</em> knowing the downstream task (Address). Naturally, this won’t turn out to be a clean separation. But the ethos is to ensure that any reusable tasks that is done in the process of data wrgangling is labelled as such and pushed back into the data ecosystem. Secondly, our use of the term <em>aspects</em> instead of stages acknowledges the fact that although there is a natural ordering to the aspects, we find that in practice the data scientist is often moving quicly across the different aspects, so that the mind set of “stages” can be unhelpful</p>
+<p>The Fynesse paradigm considers three <em>aspects</em> to data
+analysis: Access, Assess, Address. In this way it builds on many two
+stage processes that consider <em>data collection</em> and <em>data
+wrangling</em> to be two separate stages. There are two key differences
+to the Fynesse process. Firstly, the attempt to separate data wrangling
+tasks into (a) those that can be done <em>without</em> knowing the
+downstream task (Assess) and (b) those that can only be done
+<em>with</em> knowing the downstream task (Address). Naturally, this
+won’t turn out to be a clean separation. But the ethos is to ensure that
+any reusable tasks that is done in the process of data wrgangling is
+labelled as such and pushed back into the data ecosystem. Secondly, our
+use of the term <em>aspects</em> instead of stages acknowledges the fact
+that although there is a natural ordering to the aspects, we find that
+in practice the data scientist is often moving quicly across the
+different aspects, so that the mind set of “stages” can be unhelpful</p>
 <h2 id="access">Access</h2>
-<p>The first aspect we’ll consider is <em>accessing</em> the data. Depending on domain, the skills needed to address this challenge will vary greatly. For example, <a href="https://www.sheffield.ac.uk/dcs/people/academic/michael-smith">Michael T. Smith</a> was leading a project in collaboration with the Kampala police force to collate accident data.</p>
-<p>The <em>access</em> aspect is associated with data readiness level C (<span class="citation" data-cites="Lawrence-drl17">Lawrence (2017)</span>).</p>
+<p>The first aspect we’ll consider is <em>accessing</em> the data.
+Depending on domain, the skills needed to address this challenge will
+vary greatly. For example, <a
+href="https://www.sheffield.ac.uk/dcs/people/academic/michael-smith">Michael
+T. Smith</a> was leading a project in collaboration with the Kampala
+police force to collate accident data.</p>
+<p>The <em>access</em> aspect is associated with data readiness level C
+(<span class="citation" data-cites="Lawrence-drl17">Lawrence
+(2017)</span>).</p>
 <h2 id="crash-map-kampala">Crash Map Kampala</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/crash-map-kampala.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/crash-map-kampala.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/crash-map-kampala.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/crash-map-kampala.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>The Crash Map Kampala project is a good example of a data science project where a major challenge was <em>access</em>.</p>
+<p>The Crash Map Kampala project is a good example of a data science
+project where a major challenge was <em>access</em>.</p>
 <div class="centered" style="">
 <svg viewBox="0 0 200 200" style="width:15%">
 <defs> <clipPath id="clip0">
@@ -260,96 +517,209 @@ Michael T. Smith
 <img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/crash-map-kampala.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="crash-map-kampala-magnify" class="magnify" onclick="magnifyFigure(&#39;crash-map-kampala&#39;)">
+<div id="crash-map-kampala-magnify" class="magnify"
+onclick="magnifyFigure(&#39;crash-map-kampala&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="crash-map-kampala-caption" class="caption-frame">
-<p>Figure: Crash Map Kampala was an initiative by Michael T. Smith and Bagonza Jimmy Owa Kinyonyi to map the location, date and severity of vehicle accidents across the city of Kampala. Original storage location for the data was in police log books.</p>
+<p>Figure: Crash Map Kampala was an initiative by Michael T. Smith and
+Bagonza Jimmy Owa Kinyonyi to map the location, date and severity of
+vehicle accidents across the city of Kampala. Original storage location
+for the data was in police log books.</p>
 </div>
 </div>
-<p>The project is work from <a href="https://www.linkedin.com/in/bagonza-jimmy-kinyonyi-b73620125/?originalSubdomain=ug">Bagonza Jimmy Owa Kinyony</a> when he was an MSc student and <a href="https://www.sheffield.ac.uk/dcs/people/academic/michael-smith">Michael T. Smith</a> when he was based at <a href="https://air.ug/">Makerere University AI-LAB</a>.</p>
-<p>The project was inspired by the observation that road traffic accidents are a leading cause of death for the young in many contexts, but the scale of the cause is difficult to compare directly because the number of deaths and serious injuries are difficult to access.</p>
-<p>In Kampala this data is stored in log books at local police stations. Jimmy was in the Kampala police at the time, so the project focus was transcribing this information into a digital format where it could be mapped.</p>
-<p>Due to the scale of the task, the approach of crowd sourcing the work was considered. This approach was also what launched the AI revolution through the ImageNet challenge, where data was labelled through Mechanical Turk (<span class="citation" data-cites="Russakovsky-imagenet15">Russakovsky et al. (2015)</span>).</p>
+<p>The project is work from <a
+href="https://www.linkedin.com/in/bagonza-jimmy-kinyonyi-b73620125/?originalSubdomain=ug">Bagonza
+Jimmy Owa Kinyony</a> when he was an MSc student and <a
+href="https://www.sheffield.ac.uk/dcs/people/academic/michael-smith">Michael
+T. Smith</a> when he was based at <a href="https://air.ug/">Makerere
+University AI-LAB</a>.</p>
+<p>The project was inspired by the observation that road traffic
+accidents are a leading cause of death for the young in many contexts,
+but the scale of the cause is difficult to compare directly because the
+number of deaths and serious injuries are difficult to access.</p>
+<p>In Kampala this data is stored in log books at local police stations.
+Jimmy was in the Kampala police at the time, so the project focus was
+transcribing this information into a digital format where it could be
+mapped.</p>
+<p>Due to the scale of the task, the approach of crowd sourcing the work
+was considered. This approach was also what launched the AI revolution
+through the ImageNet challenge, where data was labelled through
+Mechanical Turk (<span class="citation"
+data-cites="Russakovsky-imagenet15">Russakovsky et al.
+(2015)</span>).</p>
 <div class="figure">
-<div id="The location of the crash requires some local understanding of Kampala and how different locations may be referred to locally vs by the map provider.-figure" class="figure-frame">
+<div
+id="The location of the crash requires some local understanding of Kampala and how different locations may be referred to locally vs by the map provider.-figure"
+class="figure-frame">
 <div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/crash-map-kampala-location.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="The location of the crash requires some local understanding of Kampala and how different locations may be referred to locally vs by the map provider.-magnify" class="magnify" onclick="magnifyFigure(&#39;The location of the crash requires some local understanding of Kampala and how different locations may be referred to locally vs by the map provider.&#39;)">
+<div
+id="The location of the crash requires some local understanding of Kampala and how different locations may be referred to locally vs by the map provider.-magnify"
+class="magnify"
+onclick="magnifyFigure(&#39;The location of the crash requires some local understanding of Kampala and how different locations may be referred to locally vs by the map provider.&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="The location of the crash requires some local understanding of Kampala and how different locations may be referred to locally vs by the map provider.-caption" class="caption-frame">
+<div
+id="The location of the crash requires some local understanding of Kampala and how different locations may be referred to locally vs by the map provider.-caption"
+class="caption-frame">
 <p>Figure:</p>
 </div>
 </div>
-<p>But there are additional challenges with this data. The log books are typically accessed only by members of Kampala’s police force, in their recording of the accidents. So, permission from the police force was important. Additionally, personal information about those involved in the accidents might have been revealed in the process of crowdsourcing the work.</p>
+<p>But there are additional challenges with this data. The log books are
+typically accessed only by members of Kampala’s police force, in their
+recording of the accidents. So, permission from the police force was
+important. Additionally, personal information about those involved in
+the accidents might have been revealed in the process of crowdsourcing
+the work.</p>
 <div class="figure">
 <div id="crash-map-kampala-date-time-figure" class="figure-frame">
 <div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/crash-map-kampala-date-time.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="crash-map-kampala-date-time-magnify" class="magnify" onclick="magnifyFigure(&#39;crash-map-kampala-date-time&#39;)">
+<div id="crash-map-kampala-date-time-magnify" class="magnify"
+onclick="magnifyFigure(&#39;crash-map-kampala-date-time&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="crash-map-kampala-date-time-caption" class="caption-frame">
-<p>Figure: Alongside the location, the date and time of the crash gives more information that can be used to map crashes over time.</p>
+<p>Figure: Alongside the location, the date and time of the crash gives
+more information that can be used to map crashes over time.</p>
 </div>
 </div>
-<p>Much of the work here was therefore in the <em>access</em> of the data. Photographing the log books, obtaining legal permission from the Kampala police, ensuring that personal information was unlikely to be divulged.</p>
+<p>Much of the work here was therefore in the <em>access</em> of the
+data. Photographing the log books, obtaining legal permission from the
+Kampala police, ensuring that personal information was unlikely to be
+divulged.</p>
 <div class="figure">
 <div id="crash-map-kampala-severity-figure" class="figure-frame">
 <div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/crash-map-kampala-severity.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="crash-map-kampala-severity-magnify" class="magnify" onclick="magnifyFigure(&#39;crash-map-kampala-severity&#39;)">
+<div id="crash-map-kampala-severity-magnify" class="magnify"
+onclick="magnifyFigure(&#39;crash-map-kampala-severity&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="crash-map-kampala-severity-caption" class="caption-frame">
-<p>Figure: The severity of the crash is helpful in understanding how people are being affected by road accidents.</p>
+<p>Figure: The severity of the crash is helpful in understanding how
+people are being affected by road accidents.</p>
 </div>
 </div>
-<p>As well as software design and build, the work has legal and ethical issues. An important aspect in gaining progress was that Jimmy worked for the Kampala police. Indeed, the work eventually stalled when Jimmy was moved to a differen police location.</p>
+<p>As well as software design and build, the work has legal and ethical
+issues. An important aspect in gaining progress was that Jimmy worked
+for the Kampala police. Indeed, the work eventually stalled when Jimmy
+was moved to a differen police location.</p>
 <div class="figure">
 <div id="crash-map-kampala-vehicles-figure" class="figure-frame">
 <div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/crash-map-kampala-vehicles.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="crash-map-kampala-vehicles-magnify" class="magnify" onclick="magnifyFigure(&#39;crash-map-kampala-vehicles&#39;)">
+<div id="crash-map-kampala-vehicles-magnify" class="magnify"
+onclick="magnifyFigure(&#39;crash-map-kampala-vehicles&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="crash-map-kampala-vehicles-caption" class="caption-frame">
-<p>Figure: Understanding which vehicles are involved in accidents could also help with interventions that may be necessary.</p>
+<p>Figure: Understanding which vehicles are involved in accidents could
+also help with interventions that may be necessary.</p>
 </div>
 </div>
-<p>The possiblity of leaking personal information was reduced, by presenting only a portion of each log book page to users for analysis. So we can see in Figure  the interface for obtainin the location from the log book. But the the date and time (Figure ) the severity of the accident (Figure ) and the vehicles involved (Figure ) are all dealt with in separate parts of the interface.</p>
+<p>The possiblity of leaking personal information was reduced, by
+presenting only a portion of each log book page to users for analysis.
+So we can see in Figure <span
+class="math inline">\(\ref{crash-map-kampala-location}\)</span> the
+interface for obtainin the location from the log book. But the the date
+and time (Figure <span
+class="math inline">\(\ref{crash-map-kampala-date-time}\)</span>) the
+severity of the accident (Figure <span
+class="math inline">\(\ref{crash-map-kampala-severity}\)</span>) and the
+vehicles involved (Figure <span
+class="math inline">\(\ref{crash-map-kampala-vehicles}\)</span>) are all
+dealt with in separate parts of the interface.</p>
 <div class="figure">
 <div id="crash-map-kampala-vehicles-2-figure" class="figure-frame">
 <div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/crash-map-kampala-vehicles-2.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="crash-map-kampala-vehicles-2-magnify" class="magnify" onclick="magnifyFigure(&#39;crash-map-kampala-vehicles-2&#39;)">
+<div id="crash-map-kampala-vehicles-2-magnify" class="magnify"
+onclick="magnifyFigure(&#39;crash-map-kampala-vehicles-2&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="crash-map-kampala-vehicles-2-caption" class="caption-frame">
 <p>Figure:</p>
 </div>
 </div>
-<p>It seems a great challenge to automate all the different aspects of the process of data access, but this challenge is underway already through the process of what is commonly called <em>digital transformation</em>. The process of digital transformation takes data away from physical log books and into digital devices. But that transformation process itself comes with challenges. For example, the Kampala police force is not currently equipped to store this data in purely digital form. It would require not only devices (which many officers <em>will</em> have access to) but a system of backup and storage that is beyond the capabilities of many organisations.</p>
-<p>Legal complications around data are still a major barrier though. In the EU and the US database schema and indices are subject to copyright law. Companies making data available often require license fees. As many data sources are combined, the composite effect of the different license agreements often makes the legal challenges insurmountable. This was a common challenge in the pandemic, where academics who were capable of dealing with complex data predictions were excluded from data access due to challenges around licensing. A nice counter example was the work led by Nuria Oliver in Spain who after a call to arms in a national newspaper (<span class="citation" data-cites="Oliver-valor20">Oliver (2020)</span>) was able to bring the ecosystem together around mobility data.</p>
-<p>However, even when organisation is fully digital, and license issues are overcome, there are issues around how the data is managed stored, accessed. The discoverability of the data and the recording of its provenance are too often neglected in the process of digtial transformation. Further, once an organisation has gone through digital transformation, they begin making predictions around the data. These predictions are data themselves, and their presence in the data ecosystem needs recording. Automating this portion requires structured thinking around our data ecosystems.</p>
+<p>It seems a great challenge to automate all the different aspects of
+the process of data access, but this challenge is underway already
+through the process of what is commonly called <em>digital
+transformation</em>. The process of digital transformation takes data
+away from physical log books and into digital devices. But that
+transformation process itself comes with challenges. For example, the
+Kampala police force is not currently equipped to store this data in
+purely digital form. It would require not only devices (which many
+officers <em>will</em> have access to) but a system of backup and
+storage that is beyond the capabilities of many organisations.</p>
+<p>Legal complications around data are still a major barrier though. In
+the EU and the US database schema and indices are subject to copyright
+law. Companies making data available often require license fees. As many
+data sources are combined, the composite effect of the different license
+agreements often makes the legal challenges insurmountable. This was a
+common challenge in the pandemic, where academics who were capable of
+dealing with complex data predictions were excluded from data access due
+to challenges around licensing. A nice counter example was the work led
+by Nuria Oliver in Spain who after a call to arms in a national
+newspaper (<span class="citation" data-cites="Oliver-valor20">Oliver
+(2020)</span>) was able to bring the ecosystem together around mobility
+data.</p>
+<p>However, even when organisation is fully digital, and license issues
+are overcome, there are issues around how the data is managed stored,
+accessed. The discoverability of the data and the recording of its
+provenance are too often neglected in the process of digtial
+transformation. Further, once an organisation has gone through digital
+transformation, they begin making predictions around the data. These
+predictions are data themselves, and their presence in the data
+ecosystem needs recording. Automating this portion requires structured
+thinking around our data ecosystems.</p>
 <h2 id="assess">Assess</h2>
-<p>Data that is accessible can be imported (via APIs or database calls or reading a CSV) into the machine and work can be done understanding the nature of the data. The important thing to say about the assess aspect is that it only includes things you can do <em>without</em> the question in mind. This runs counter to many ideas about how we do data analytics. The history of statistics was that we think of the question <em>before</em> we collect data. But that was because data was expensive, and it needed to be excplicitly collected. The same mantra is true today of <em>surveillance data</em>. But the new challenge is around <em>happenstance data</em>, data that is cheaply available but may be of poor quality. The nature of the data needs to be understood before its integrated into analysis. Unfortunately, because the work is conflated with other aspects, decisions are sometimes made during assessment (for example approaches to imputing missing values) which may be useful in one context, but are useless in others. So the aim in <em>assess</em> is to only do work that is repeatable, and make that work available to others who may also want to use the data.</p>
-<p>The assess aspect renders the Fynesse framework quite different form other data science frameworks that split the process into data <em>wrangling</em> and data <em>modelling</em>. It acknowledges that there is a component to both wrangling and modelling that is specific to the task (this occurs in the <em>address</em> aspect) and a component that is useful across tasks (the <em>assess</em> aspect). This is important in the wider system because any reusable work can be shared. By keeping this uppermost in the mind through the <em>assess</em> aspect, then the wider data ecosystem benefits.</p>
-<p>The <em>assess</em> aspect is associated with data readiness level B (<span class="citation" data-cites="Lawrence-drl17">Lawrence (2017)</span>).</p>
-<h2 id="case-study-text-mining-for-misinformation">Case Study: Text Mining for Misinformation</h2>
+<p>Data that is accessible can be imported (via APIs or database calls
+or reading a CSV) into the machine and work can be done understanding
+the nature of the data. The important thing to say about the assess
+aspect is that it only includes things you can do <em>without</em> the
+question in mind. This runs counter to many ideas about how we do data
+analytics. The history of statistics was that we think of the question
+<em>before</em> we collect data. But that was because data was
+expensive, and it needed to be excplicitly collected. The same mantra is
+true today of <em>surveillance data</em>. But the new challenge is
+around <em>happenstance data</em>, data that is cheaply available but
+may be of poor quality. The nature of the data needs to be understood
+before its integrated into analysis. Unfortunately, because the work is
+conflated with other aspects, decisions are sometimes made during
+assessment (for example approaches to imputing missing values) which may
+be useful in one context, but are useless in others. So the aim in
+<em>assess</em> is to only do work that is repeatable, and make that
+work available to others who may also want to use the data.</p>
+<p>The assess aspect renders the Fynesse framework quite different form
+other data science frameworks that split the process into data
+<em>wrangling</em> and data <em>modelling</em>. It acknowledges that
+there is a component to both wrangling and modelling that is specific to
+the task (this occurs in the <em>address</em> aspect) and a component
+that is useful across tasks (the <em>assess</em> aspect). This is
+important in the wider system because any reusable work can be shared.
+By keeping this uppermost in the mind through the <em>assess</em>
+aspect, then the wider data ecosystem benefits.</p>
+<p>The <em>assess</em> aspect is associated with data readiness level B
+(<span class="citation" data-cites="Lawrence-drl17">Lawrence
+(2017)</span>).</p>
+<h2 id="case-study-text-mining-for-misinformation">Case Study: Text
+Mining for Misinformation</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/joyce-nabende-text-mining-case-study.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/joyce-nabende-text-mining-case-study.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/joyce-nabende-text-mining-case-study.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/joyce-nabende-text-mining-case-study.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <div class="centered" style="">
 <svg viewBox="0 0 200 200" style="width:15%">
@@ -366,83 +736,157 @@ Joyce Nakatumba-Nabende
 <image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/advds/./slides/diagrams//people/joyce-nabende.jpg" clip-path="url(#clip2)"/>
 </svg>
 </div>
-<p>We consider a case study from Joyce Nabende, Head of the <a href="https://air.ug/">Makerere AI Lab</a>. This case study is based on a presentation given by Joyce to the DSA Research Grants, “Project Progress” session on 20th August 2021.</p>
-<p>The aim of the case study is to map some of the approaches used by Joyce onto the Access, Assess, Address paradigm.</p>
-<p>The aim of the project is to develop tools for automated misinformation detection. Web, mobile based social media platforms. Social media posts are invalid, inaccurate, potentially harmful. This is set within the context of the Covid-19 pandemic within Uganda.</p>
+<p>We consider a case study from Joyce Nabende, Head of the <a
+href="https://air.ug/">Makerere AI Lab</a>. This case study is based on
+a presentation given by Joyce to the DSA Research Grants, “Project
+Progress” session on 20th August 2021.</p>
+<p>The aim of the case study is to map some of the approaches used by
+Joyce onto the Access, Assess, Address paradigm.</p>
+<p>The aim of the project is to develop tools for automated
+misinformation detection. Web, mobile based social media platforms.
+Social media posts are invalid, inaccurate, potentially harmful. This is
+set within the context of the Covid-19 pandemic within Uganda.</p>
 <div class="figure">
 <div id="uganda-social-medial-killing-figure" class="figure-frame">
 <div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/joyce-nabende-uganda-social-media-killing.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="uganda-social-medial-killing-magnify" class="magnify" onclick="magnifyFigure(&#39;uganda-social-medial-killing&#39;)">
+<div id="uganda-social-medial-killing-magnify" class="magnify"
+onclick="magnifyFigure(&#39;uganda-social-medial-killing&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="uganda-social-medial-killing-caption" class="caption-frame">
-<p>Figure: Misinformation through media has been a challenge for as long as we’ve been communicating. Social media misinformation is a particular challenge due to the number of possible sources, the scale and speed with which it can propagate. Slide from Joyce Nabende’s presentation.</p>
+<p>Figure: Misinformation through media has been a challenge for as long
+as we’ve been communicating. Social media misinformation is a particular
+challenge due to the number of possible sources, the scale and speed
+with which it can propagate. Slide from Joyce Nabende’s
+presentation.</p>
 </div>
 </div>
-<p>In common with many applications of data science, and in line with traditional statistics, the question here comes first, at the beginning of the data collection. But the access of the data is made easier by the fact that the data exists in the digital space already. There are APIs for collecting data from Facebook and Twitter.</p>
-<p>The focus here will be trying to understand which parts of this data collection process might be reusable for others. The aim is to separate those reusable parts from aspects that are specific to the question.</p>
+<p>In common with many applications of data science, and in line with
+traditional statistics, the question here comes first, at the beginning
+of the data collection. But the access of the data is made easier by the
+fact that the data exists in the digital space already. There are APIs
+for collecting data from Facebook and Twitter.</p>
+<p>The focus here will be trying to understand which parts of this data
+collection process might be reusable for others. The aim is to separate
+those reusable parts from aspects that are specific to the question.</p>
 <div class="figure">
-<div id="napoleoncat-social-media-statistics-facebook-users-in-uganda_2021_06-figure" class="figure-frame">
+<div
+id="napoleoncat-social-media-statistics-facebook-users-in-uganda_2021_06-figure"
+class="figure-frame">
 <div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/napoleoncat-social-media-statistics-facebook-users-in-uganda_2021_06.png" width="70%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="napoleoncat-social-media-statistics-facebook-users-in-uganda_2021_06-magnify" class="magnify" onclick="magnifyFigure(&#39;napoleoncat-social-media-statistics-facebook-users-in-uganda_2021_06&#39;)">
+<div
+id="napoleoncat-social-media-statistics-facebook-users-in-uganda_2021_06-magnify"
+class="magnify"
+onclick="magnifyFigure(&#39;napoleoncat-social-media-statistics-facebook-users-in-uganda_2021_06&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="napoleoncat-social-media-statistics-facebook-users-in-uganda_2021_06-caption" class="caption-frame">
-<p>Figure: Social media is widespread in Uganda, perhaps largely due to widespread availability of mobile phone access.</p>
+<div
+id="napoleoncat-social-media-statistics-facebook-users-in-uganda_2021_06-caption"
+class="caption-frame">
+<p>Figure: Social media is widespread in Uganda, perhaps largely due to
+widespread availability of mobile phone access.</p>
 </div>
 </div>
-<p>As with any data science problem, it’s vital that domain knowledge is included in the analysis of the problem. To set context, we see in Figure  how widespread use of social media is in Uganda for different age groups. The total population of Uganda is around 47 million.</p>
+<p>As with any data science problem, it’s vital that domain knowledge is
+included in the analysis of the problem. To set context, we see in
+Figure <span
+class="math inline">\(\ref{napoleoncat-social-media-statistics-facebook-users-in-uganda_2021_06}\)</span>
+how widespread use of social media is in Uganda for different age
+groups. The total population of Uganda is around 47 million.</p>
 <div class="figure">
-<div id="joyce-nabende-data-science-objective-figure" class="figure-frame">
+<div id="joyce-nabende-data-science-objective-figure"
+class="figure-frame">
 <div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/joyce-nabende-data-science-objective.png" width="90%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="joyce-nabende-data-science-objective-magnify" class="magnify" onclick="magnifyFigure(&#39;joyce-nabende-data-science-objective&#39;)">
+<div id="joyce-nabende-data-science-objective-magnify" class="magnify"
+onclick="magnifyFigure(&#39;joyce-nabende-data-science-objective&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="joyce-nabende-data-science-objective-caption" class="caption-frame">
-<p>Figure: The objective of the project is to track misinformation and understandperceptions of Ugandan Government’s COVID-19 transmission mitigation strategies.</p>
+<div id="joyce-nabende-data-science-objective-caption"
+class="caption-frame">
+<p>Figure: The objective of the project is to track misinformation and
+understandperceptions of Ugandan Government’s COVID-19 transmission
+mitigation strategies.</p>
 </div>
 </div>
-<p>One particular challenge for this project is dealing with a data set with multiple languages. In Uganda, people don’t just communicate in English, but they will <a href="https://en.wikipedia.org/wiki/Code-switching">code-switch</a> or communicate purely in, e.g. Luganda. Tools and resources for dealing with code-switching or the Lugandan language in NLP are much less common than tools for dealing with high resource languages (e.g. German, English, French, Spanish, Mandarin). See <span class="citation" data-cites="Magueresse-lowresource20">Magueresse et al. (2020)</span> for a review of NLP in low resource languages, multilingual data sets bring their own problems <span class="citation" data-cites="Aman-dataset20">Aman Ullah et al. (2020)</span>.</p>
-<p>The Luganda language is the most widely spoken indigenous language in Uganda with more than seven million speakers. By definition, a low resourced language has less capabilities for data annotation and augmentation, e.g. part of speech taggers.</p>
+<p>One particular challenge for this project is dealing with a data set
+with multiple languages. In Uganda, people don’t just communicate in
+English, but they will <a
+href="https://en.wikipedia.org/wiki/Code-switching">code-switch</a> or
+communicate purely in, e.g. Luganda. Tools and resources for dealing
+with code-switching or the Lugandan language in NLP are much less common
+than tools for dealing with high resource languages (e.g. German,
+English, French, Spanish, Mandarin). See <span class="citation"
+data-cites="Magueresse-lowresource20">Magueresse et al. (2020)</span>
+for a review of NLP in low resource languages, multilingual data sets
+bring their own problems <span class="citation"
+data-cites="Aman-dataset20">Aman Ullah et al. (2020)</span>.</p>
+<p>The Luganda language is the most widely spoken indigenous language in
+Uganda with more than seven million speakers. By definition, a low
+resourced language has less capabilities for data annotation and
+augmentation, e.g. part of speech taggers.</p>
 <h2 id="data-access">Data Access</h2>
-<p>The social media data was collected from a set of pages (media institutions, ministry of health, media personalities, top twitter/facebook users from Uganda. All data was then filtered using keywords, ‘ssenyiga,’ ‘kolona,’ ‘corona’ ,‘virus’ ,‘obulwadde,’ ‘corona,’ ‘covid,’ ‘abalwadde,’ ‘ekirwadde,’ ‘akawuka,’ ‘staysafeug,’ ‘stayhome,’ ‘tonsemberera,’ ‘tokwatakudereva,’ ‘vaccine’ to select with Covid-19 related tweets. Very short Facebook posts were also removed. Data was collected in two phases, from March 2020 - March 2021 and then from June 2021 - August 2021. Raw data points 15,354 posts from twitter and 430,075 from Facebook.</p>
-<p>Note that in this case, knowledge of the question has been used in accessing the data. The context of the data is Uganda and the focus is Covid-19. That focus is driven by the pandemic. However, as we see when we get to data assessment, there is still an amount of reusable work that could/should be automated.</p>
+<p>The social media data was collected from a set of pages (media
+institutions, ministry of health, media personalities, top
+twitter/facebook users from Uganda. All data was then filtered using
+keywords, ‘ssenyiga’, ‘kolona’, ‘corona’ ,‘virus’ ,‘obulwadde’,
+‘corona’, ‘covid’, ‘abalwadde’, ‘ekirwadde’, ‘akawuka’, ‘staysafeug’,
+‘stayhome’, ‘tonsemberera’, ‘tokwatakudereva’, ‘vaccine’ to select with
+Covid-19 related tweets. Very short Facebook posts were also removed.
+Data was collected in two phases, from March 2020 - March 2021 and then
+from June 2021 - August 2021. Raw data points 15,354 posts from twitter
+and 430,075 from Facebook.</p>
+<p>Note that in this case, knowledge of the question has been used in
+accessing the data. The context of the data is Uganda and the focus is
+Covid-19. That focus is driven by the pandemic. However, as we see when
+we get to data assessment, there is still an amount of reusable work
+that could/should be automated.</p>
 <h2 id="data-assessment">Data Assessment</h2>
-<p>After collecting data, the initial assessment was formed to understand the data, uncover patterns and gain insights. Here various visualisations can be used to find any unexpected factors in the data.</p>
+<p>After collecting data, the initial assessment was formed to
+understand the data, uncover patterns and gain insights. Here various
+visualisations can be used to find any unexpected factors in the
+data.</p>
 <div class="figure">
 <div id="joyce-nabende-word-cloud-twitter-figure" class="figure-frame">
 <div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/joyce-nabende-word-cloud-twitter.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="joyce-nabende-word-cloud-twitter-magnify" class="magnify" onclick="magnifyFigure(&#39;joyce-nabende-word-cloud-twitter&#39;)">
+<div id="joyce-nabende-word-cloud-twitter-magnify" class="magnify"
+onclick="magnifyFigure(&#39;joyce-nabende-word-cloud-twitter&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="joyce-nabende-word-cloud-twitter-caption" class="caption-frame">
-<p>Figure: Word cloud from the Twitter data collected through the filtering.</p>
+<div id="joyce-nabende-word-cloud-twitter-caption"
+class="caption-frame">
+<p>Figure: Word cloud from the Twitter data collected through the
+filtering.</p>
 </div>
 </div>
-<p>In the case of the Uganda data set, Joyce found that mixed in with the Covid-19 data were topics focussed on popular Ugandan TV shows and the Ugandan election.</p>
+<p>In the case of the Uganda data set, Joyce found that mixed in with
+the Covid-19 data were topics focussed on popular Ugandan TV shows and
+the Ugandan election.</p>
 <div class="figure">
 <div id="joyce-nabende-word-cloud-twitter-figure" class="figure-frame">
 <div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/joyce-nabende-word-cloud-facebook.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="joyce-nabende-word-cloud-twitter-magnify" class="magnify" onclick="magnifyFigure(&#39;joyce-nabende-word-cloud-twitter&#39;)">
+<div id="joyce-nabende-word-cloud-twitter-magnify" class="magnify"
+onclick="magnifyFigure(&#39;joyce-nabende-word-cloud-twitter&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="joyce-nabende-word-cloud-twitter-caption" class="caption-frame">
-<p>Figure: Word cloud from the Facebook data collected through the filtering.</p>
+<div id="joyce-nabende-word-cloud-twitter-caption"
+class="caption-frame">
+<p>Figure: Word cloud from the Facebook data collected through the
+filtering.</p>
 </div>
 </div>
 <div class="figure">
@@ -451,27 +895,41 @@ Joyce Nakatumba-Nabende
 <img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/joyce-nabende-lda-topics.png" width="90%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="joyce-nabende-lda-topics-magnify" class="magnify" onclick="magnifyFigure(&#39;joyce-nabende-lda-topics&#39;)">
+<div id="joyce-nabende-lda-topics-magnify" class="magnify"
+onclick="magnifyFigure(&#39;joyce-nabende-lda-topics&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="joyce-nabende-lda-topics-caption" class="caption-frame">
-<p>Figure: LDA topics and topic distance maps. Interspersed with the Covid-19 topics are topics associated with television dance shows, elections, and the president showing the importance of having domain knowledge.</p>
+<p>Figure: LDA topics and topic distance maps. Interspersed with the
+Covid-19 topics are topics associated with television dance shows,
+elections, and the president showing the importance of having domain
+knowledge.</p>
 </div>
 </div>
-<p>Topic modeling highlights the different subjects present in the data, and how they interrelate.</p>
+<p>Topic modeling highlights the different subjects present in the data,
+and how they interrelate.</p>
 <ul>
 <li>Annotation attributes:
 <ol type="a">
 <li>Data source [Facebook, Twitter]</li>
 <li>Language [English, Luganda, and codemixed]</li>
-<li>Aspect [truck drivers, hospitals, vaccine, cases, SOPs, NPIs, Testing, Border, Covid19_Impact, Presidential address, death, elections and Covid19]</li>
+<li>Aspect [truck drivers, hospitals, vaccine, cases, SOPs, NPIs,
+Testing, Border, Covid19_Impact, Presidential address, death, elections
+and Covid19]</li>
 <li>Sentiment [positive, negative and neutral]</li>
 <li>Misinformation [Not Fake, Fake, Partially Fake, and Others]</li>
 </ol></li>
-<li>As part of quality assurance, the data was reviewed by an independent team to ensure that the annotation guidelines were followed.}</li>
+<li>As part of quality assurance, the data was reviewed by an
+independent team to ensure that the annotation guidelines were
+followed.}</li>
 </ul>
-<p>Annotation carried out by seven annotators who could understand both English and Luganda. The data was labeled with the <a href="https://github.com/doccano/doccano">Doccano</a> text annotation tool. Annotations included the data source, the language, the label, the sentiment and the misinformation status.</p>
-<p>{Quality assurance performed by reviewing data with an independent team for ensuring annotation guidelines were followed.</p>
+<p>Annotation carried out by seven annotators who could understand both
+English and Luganda. The data was labeled with the <a
+href="https://github.com/doccano/doccano">Doccano</a> text annotation
+tool. Annotations included the data source, the language, the label, the
+sentiment and the misinformation status.</p>
+<p>{Quality assurance performed by reviewing data with an independent
+team for ensuring annotation guidelines were followed.</p>
 <div class="table">
 <div id="annotated-portion-of-data-caption" class="caption-frame">
 <p>Table: Portion of data that was annotated.</p>
@@ -481,11 +939,13 @@ Joyce Nakatumba-Nabende
 Initial dataset | 15,354 | 430,075 |<br />
 Dataset after Annotation | 3,527 | 4,479 |</div>
 </div>
-<div id="annotated-portion-of-data-magnify" class="magnify" onclick="magnifyFigure(&#39;annotated-portion-of-data&#39;)">
+<div id="annotated-portion-of-data-magnify" class="magnify"
+onclick="magnifyFigure(&#39;annotated-portion-of-data&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 </div>
-<p><a href="https://en.wikipedia.org/wiki/Cohen%27s_kappa">Cohen’s kappa</a> inter-annotation used to measure annotator agreement.</p>
+<p><a href="https://en.wikipedia.org/wiki/Cohen%27s_kappa">Cohen’s
+kappa</a> inter-annotation used to measure annotator agreement.</p>
 <div class="table">
 <div id="cohen-kappa-agreement-caption" class="caption-frame">
 <p>Table: Cohen’s kappa agreement scores for the data.</p>
@@ -496,58 +956,104 @@ Aspect | 0.69 |<br />
 Sentiment | 0.73 |<br />
 Misinformation | 0.74 |</div>
 </div>
-<div id="cohen-kappa-agreement-magnify" class="magnify" onclick="magnifyFigure(&#39;cohen-kappa-agreement&#39;)">
+<div id="cohen-kappa-agreement-magnify" class="magnify"
+onclick="magnifyFigure(&#39;cohen-kappa-agreement&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 </div>
 <div class="figure">
-<div id="joyce-nabende-data-annotation-example-figure" class="figure-frame">
+<div id="joyce-nabende-data-annotation-example-figure"
+class="figure-frame">
 <div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/joyce-nabende-data-annotation-example.png" width="70%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="joyce-nabende-data-annotation-example-magnify" class="magnify" onclick="magnifyFigure(&#39;joyce-nabende-data-annotation-example&#39;)">
+<div id="joyce-nabende-data-annotation-example-magnify" class="magnify"
+onclick="magnifyFigure(&#39;joyce-nabende-data-annotation-example&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="joyce-nabende-data-annotation-example-caption" class="caption-frame">
-<p>Figure: Example of data annotation for sentiment and misinformation from the data set.</p>
+<div id="joyce-nabende-data-annotation-example-caption"
+class="caption-frame">
+<p>Figure: Example of data annotation for sentiment and misinformation
+from the data set.</p>
 </div>
 </div>
-<p>The idea of the analysis is to bring this information together for sentiment and misinformation analysis in a <a href="https://dsa-uganda.herokuapp.com/dashboard/">dashboard for Covid-19 in Uganda</a>.</p>
+<p>The idea of the analysis is to bring this information together for
+sentiment and misinformation analysis in a <a
+href="https://dsa-uganda.herokuapp.com/dashboard/">dashboard for
+Covid-19 in Uganda</a>.</p>
 <h2 id="automating-assess">Automating Assess</h2>
-<p>There are lots of interesting projects around automating the assessment of the data, for example one can consider automation of schema and data type detection (<span class="citation" data-cites="Valera-automatic17">Valera and Ghahramani (2017)</span>) or the AI for Data Analytics Project (see <span class="citation" data-cites="Nazabal-engineering20">Nazábal et al. (2020)</span> for an overview of issues and case studies and the video in Figure  for details on the project). We may even view projects like the automatic statistician as automating of assessment (<span class="citation" data-cites="Lloyd-automatic14">James Robert Lloyd and Ghahramani. (2014)</span>), although arguably one could suggest that the choice of data set used in those projects itself is reflective of the <em>question</em> or <em>context</em>. This highlights the difficulty in separating the aspects. The key quesiton to ask in any given context is whether the augmentation you are performing for the data set is going to be helpful or a hindrance to those that may wish to reuse your data.</p>
+<p>There are lots of interesting projects around automating the
+assessment of the data, for example one can consider automation of
+schema and data type detection (<span class="citation"
+data-cites="Valera-automatic17">Valera and Ghahramani (2017)</span>) or
+the AI for Data Analytics Project (see <span class="citation"
+data-cites="Nazabal-engineering20">Nazábal et al. (2020)</span> for an
+overview of issues and case studies and the video in Figure <span
+class="math inline">\(\ref{ai-for-data-analytics}\)</span> for details
+on the project). We may even view projects like the automatic
+statistician as automating of assessment (<span class="citation"
+data-cites="Lloyd-automatic14">James Robert Lloyd and Ghahramani.
+(2014)</span>), although arguably one could suggest that the choice of
+data set used in those projects itself is reflective of the
+<em>question</em> or <em>context</em>. This highlights the difficulty in
+separating the aspects. The key quesiton to ask in any given context is
+whether the augmentation you are performing for the data set is going to
+be helpful or a hindrance to those that may wish to reuse your data.</p>
 <div class="figure">
 <div id="ai-for-data-analytics-figure" class="figure-frame">
 <iframe width="600" height="450" src="https://www.youtube.com/embed/wFfeyGmNOAI?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
 </iframe>
 </div>
-<div id="ai-for-data-analytics-magnify" class="magnify" onclick="magnifyFigure(&#39;ai-for-data-analytics&#39;)">
+<div id="ai-for-data-analytics-magnify" class="magnify"
+onclick="magnifyFigure(&#39;ai-for-data-analytics&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="ai-for-data-analytics-caption" class="caption-frame">
-<p>Figure: The AI for Data Analytics project is an attempt to automate some of the challenges of automated data assessment.</p>
+<p>Figure: The AI for Data Analytics project is an attempt to automate
+some of the challenges of automated data assessment.</p>
 </div>
 </div>
 <h2 id="address">Address</h2>
-<p>The final aspect of the process is to <em>address</em> the question. We’ll spend the least time on this aspect here, because it’s the one that is most widely formally taught and the one that most researchers are familiar with. In statistics, this might involve some confirmatory data analysis. In machine learning it may involve designing a predictive model. In many domains it will involve figuring out how best to visualise the data to present it to those who need to make the decisions. That could involve a dashboard, a plot or even summarisation in an Excel spreadsheet.</p>
-<p>The <em>address</em> aspect is associated with data readiness level A (<span class="citation" data-cites="Lawrence-drl17">Lawrence (2017)</span>).</p>
+<p>The final aspect of the process is to <em>address</em> the question.
+We’ll spend the least time on this aspect here, because it’s the one
+that is most widely formally taught and the one that most researchers
+are familiar with. In statistics, this might involve some confirmatory
+data analysis. In machine learning it may involve designing a predictive
+model. In many domains it will involve figuring out how best to
+visualise the data to present it to those who need to make the
+decisions. That could involve a dashboard, a plot or even summarisation
+in an Excel spreadsheet.</p>
+<p>The <em>address</em> aspect is associated with data readiness level A
+(<span class="citation" data-cites="Lawrence-drl17">Lawrence
+(2017)</span>).</p>
 <h2 id="automating-address">Automating Address</h2>
-<p>Perhaps the most widespread approach to automating the address aspect is known as AutoML (see video in Figure ). This is an automatic approach to creating ML prediction models. The automatic statistician we mentioned in assess also has some of these goals in mind for automating confirmatory data analysis. But there are clearly other aspects we may wish to automate, particularly around visualization.</p>
+<p>Perhaps the most widespread approach to automating the address aspect
+is known as AutoML (see video in Figure <span
+class="math inline">\(\ref{frank-hutter-automl}\)</span>). This is an
+automatic approach to creating ML prediction models. The automatic
+statistician we mentioned in assess also has some of these goals in mind
+for automating confirmatory data analysis. But there are clearly other
+aspects we may wish to automate, particularly around visualization.</p>
 <div class="figure">
 <div id="frank-hutter-automl-figure" class="figure-frame">
 <iframe width="600" height="450" src="https://www.youtube.com/embed/5A4xbv5nd8c?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
 </iframe>
 </div>
-<div id="frank-hutter-automl-magnify" class="magnify" onclick="magnifyFigure(&#39;frank-hutter-automl&#39;)">
+<div id="frank-hutter-automl-magnify" class="magnify"
+onclick="magnifyFigure(&#39;frank-hutter-automl&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="frank-hutter-automl-caption" class="caption-frame">
-<p>Figure: Here Frank Hutter gives a tutorial on AutoML, one of the approaches to automating address.</p>
+<p>Figure: Here Frank Hutter gives a tutorial on AutoML, one of the
+approaches to automating address.</p>
 </div>
 </div>
 <h2 id="fynesse-template">Fynesse Template</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/fynesse-template.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/fynesse-template.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/fynesse-template.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/fynesse-template.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <div class="figure">
 <div id="fynesse-template-figure" class="figure-frame">
@@ -555,14 +1061,26 @@ Misinformation | 0.74 |</div>
 <img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/fynesse-template.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="fynesse-template-magnify" class="magnify" onclick="magnifyFigure(&#39;fynesse-template&#39;)">
+<div id="fynesse-template-magnify" class="magnify"
+onclick="magnifyFigure(&#39;fynesse-template&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="fynesse-template-caption" class="caption-frame">
-<p>Figure: The Fynesse Template gives you a starting point for building your data science library. You can fork the template, and then create a new repository from the template. You can use that repository for your analysis.</p>
+<p>Figure: The Fynesse Template gives you a starting point for building
+your data science library. You can fork the template, and then create a
+new repository from the template. You can use that repository for your
+analysis.</p>
 </div>
 </div>
-<p>To help you think about the aspects of the Fynesse data science framework, we’ve created a small github template that’s available <a href="https://github.com/lawrennd/fynesse_template">here</a>. We suggest the following approach to using the template. Firstly: <em>fork the template</em> to your own github account. Then you can base your analysis software on the template. If there are aspects to the template that you think need updating (including things you don’t like!), then you can update those and submit a pull request so that others can benefit.</p>
+<p>To help you think about the aspects of the Fynesse data science
+framework, we’ve created a small github template that’s available <a
+href="https://github.com/lawrennd/fynesse_template">here</a>. We suggest
+the following approach to using the template. Firstly: <em>fork the
+template</em> to your own github account. Then you can base your
+analysis software on the template. If there are aspects to the template
+that you think need updating (including things you don’t like!), then
+you can update those and submit a pull request so that others can
+benefit.</p>
 <div class="figure">
 <div id="-figure" class="figure-frame">
 <div class="centered" style="">
@@ -573,32 +1091,75 @@ Misinformation | 0.74 |</div>
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="-caption" class="caption-frame">
-<p>Figure: Setting up a new repository in github from a template. By basing your repository on the fynesse template, you will have a starting point for your analysis framework.</p>
+<p>Figure: Setting up a new repository in github from a template. By
+basing your repository on the fynesse template, you will have a starting
+point for your analysis framework.</p>
 </div>
 </div>
-<p>Github makes it easy to create a new repository from this framework. Although you should feel free to use your own tools for source code control if you find them more convenient.</p>
-<p>For your assignment in this unit, we’d like you to base your submission around the Fynesse framework<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. You can do this by forking the Fynesse template, or simply creating a python library which reflects that organisational structure.</p>
+<p>Github makes it easy to create a new repository from this framework.
+Although you should feel free to use your own tools for source code
+control if you find them more convenient.</p>
+<p>For your assignment in this unit, we’d like you to base your
+submission around the Fynesse framework<a href="#fn2"
+class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.
+You can do this by forking the Fynesse template, or simply creating a
+python library which reflects that organisational structure.</p>
 <h2 id="conclusions">Conclusions</h2>
-<p>The particular circumstances of the Covid-19 pandemic have highlighted the challenges of integrating scientific ideas to answer policy questions. In this talk, we’ve given a formal introduction to the problem, the difficulty of communicating between individuals (particularly from different domains) and reviewed the ideas and solutions we used in the Delve initiative.</p>
-<p>Recommendations from the DELVE Data report suggest that more effort needs to be placed into working in this manner in normal circumstances, so that when an emergency occurs we are better prepared to deal with the questions we face.</p>
+<p>The particular circumstances of the Covid-19 pandemic have
+highlighted the challenges of integrating scientific ideas to answer
+policy questions. In this talk, we’ve given a formal introduction to the
+problem, the difficulty of communicating between individuals
+(particularly from different domains) and reviewed the ideas and
+solutions we used in the Delve initiative.</p>
+<p>Recommendations from the DELVE Data report suggest that more effort
+needs to be placed into working in this manner in normal circumstances,
+so that when an emergency occurs we are better prepared to deal with the
+questions we face.</p>
 <h2 id="thanks">Thanks!</h2>
-<p>For more information on these subjects and more you might want to check the following resources.</p>
+<p>For more information on these subjects and more you might want to
+check the following resources.</p>
 <ul>
 <li>twitter: <a href="https://twitter.com/lawrennd">@lawrennd</a></li>
-<li>podcast: <a href="http://thetalkingmachines.com">The Talking Machines</a></li>
-<li>newspaper: <a href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile Page</a></li>
-<li>blog: <a href="http://inverseprobability.com/blog.html">http://inverseprobability.com</a></li>
+<li>podcast: <a href="http://thetalkingmachines.com">The Talking
+Machines</a></li>
+<li>newspaper: <a
+href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile
+Page</a></li>
+<li>blog: <a
+href="http://inverseprobability.com/blog.html">http://inverseprobability.com</a></li>
 </ul>
 <h1 id="references">References</h1>
-<h2 id="machine-learning-systems-design">Machine Learning Systems Design</h2>
+<h2 id="machine-learning-systems-design">Machine Learning Systems
+Design</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/ml-systems-design-short.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/ml-systems-design-short.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/ml-systems-design-short.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/ml-systems-design-short.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>The challenges of integrating different machine learning components into a whole that acts effectively as a system seem unresolved. In software engineering, separating parts of a system in this way is known as <a href="">component-based software engineering</a>. The core idea is that the different parts of the system can be independently designed according to a sub-specfication. This is sometimes known as <em>separation of concerns</em>. However, once the components are machine learning based, tighter coupling becomes a side effect of the learned nature of the system. For example if a driverless car’s detection of cyclist is dependent on its detection of the road surface, a change in the road surface detection algorithm will have downstream effects on the cyclist detection. Even if the road detection system has been improved by objective measures, the cyclist detection system may have become sensitive to the foibles of the previous version of road detection and will need to be retrained.</p>
-<p>Most of our experience with deployment relies on some approximation to the component based model, this is also important for verification of the system. If the components of the system can be verified then the composed system can also, potentially, be verified.</p>
+<p>The challenges of integrating different machine learning components
+into a whole that acts effectively as a system seem unresolved. In
+software engineering, separating parts of a system in this way is known
+as <a href="">component-based software engineering</a>. The core idea is
+that the different parts of the system can be independently designed
+according to a sub-specfication. This is sometimes known as
+<em>separation of concerns</em>. However, once the components are
+machine learning based, tighter coupling becomes a side effect of the
+learned nature of the system. For example if a driverless car’s
+detection of cyclist is dependent on its detection of the road surface,
+a change in the road surface detection algorithm will have downstream
+effects on the cyclist detection. Even if the road detection system has
+been improved by objective measures, the cyclist detection system may
+have become sensitive to the foibles of the previous version of road
+detection and will need to be retrained.</p>
+<p>Most of our experience with deployment relies on some approximation
+to the component based model, this is also important for verification of
+the system. If the components of the system can be verified then the
+composed system can also, potentially, be verified.</p>
 <h2 id="pigeonholing">Pigeonholing</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/pigeonholing.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/pigeonholing.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/pigeonholing.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/pigeonholing.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <div class="figure">
 <div id="too-many-pigeons-figure" class="figure-frame">
@@ -606,26 +1167,71 @@ Misinformation | 0.74 |</div>
 <img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//TooManyPigeons.jpg" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="too-many-pigeons-magnify" class="magnify" onclick="magnifyFigure(&#39;too-many-pigeons&#39;)">
+<div id="too-many-pigeons-magnify" class="magnify"
+onclick="magnifyFigure(&#39;too-many-pigeons&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="too-many-pigeons-caption" class="caption-frame">
-<p>Figure: Decompartmentalization of the model into parts can be seen as pigeonholing the separate tasks that are required.</p>
+<p>Figure: Decompartmentalization of the model into parts can be seen as
+pigeonholing the separate tasks that are required.</p>
 </div>
 </div>
-<p>To deal with the complexity of systems design, a common approach is to break complex systems down into a series of tasks. An approach we can think of as “pigeonholing.” Classically, a sub-task could be thought of as a particular stage in machining (by analogy to productionlines in factories) or a sub-routine call in computing. Machine learning allows any complex sub-task, that was difficult to decompose by classical methods, to be reconstituted by acquiring data. In particular, when we think of emulating a human, we can ask many humans to perform the sub-task many times and fit machine learning models to reconstruct the performance, or to <em>emulate</em> the human in the performance of the task. For example, the decomposition of a complex process such as driving a car into apparently obvious sub-tasks (following the road, identifying pedestrians, etc).</p>
-<p>The practitioner’s approach to deploying artificial intelligence systems is to build up systems of machine learning components. To build a machine learning system, we decompose the task into parts, each of which we can emulate with ML methods. These parts are typically independently constructed and verified. For example, in a driverless car we can decompose the tasks into components such as “pedestrian detection” and “road line detection.” Each of these components can be constructed with, for example, a classification algorithm. Nowadays, people will often deploy a deep neural network, but for many tasks a random forest algorithm may be sufficient. We can then superimpose a logic on top. For example, “Follow the road line unless you detect a pedestrian in the road.”</p>
-<p>This allows for verification of car performance, as long as we can verify the individual components. However, it also implies that the AI systems we deploy are <em>fragile</em>.</p>
-<p>Our intelligent systems are composed by “pigeonholing” each indvidual task, then substituting with a machine learning model.</p>
-<p>But this is not a robust approach to systems design. The definition of sub-tasks can lead to a single point of failure, where if any sub-task fails, the entire system fails.</p>
+<p>To deal with the complexity of systems design, a common approach is
+to break complex systems down into a series of tasks. An approach we can
+think of as “pigeonholing”. Classically, a sub-task could be thought of
+as a particular stage in machining (by analogy to productionlines in
+factories) or a sub-routine call in computing. Machine learning allows
+any complex sub-task, that was difficult to decompose by classical
+methods, to be reconstituted by acquiring data. In particular, when we
+think of emulating a human, we can ask many humans to perform the
+sub-task many times and fit machine learning models to reconstruct the
+performance, or to <em>emulate</em> the human in the performance of the
+task. For example, the decomposition of a complex process such as
+driving a car into apparently obvious sub-tasks (following the road,
+identifying pedestrians, etc).</p>
+<p>The practitioner’s approach to deploying artificial intelligence
+systems is to build up systems of machine learning components. To build
+a machine learning system, we decompose the task into parts, each of
+which we can emulate with ML methods. These parts are typically
+independently constructed and verified. For example, in a driverless car
+we can decompose the tasks into components such as “pedestrian
+detection” and “road line detection”. Each of these components can be
+constructed with, for example, a classification algorithm. Nowadays,
+people will often deploy a deep neural network, but for many tasks a
+random forest algorithm may be sufficient. We can then superimpose a
+logic on top. For example, “Follow the road line unless you detect a
+pedestrian in the road”.</p>
+<p>This allows for verification of car performance, as long as we can
+verify the individual components. However, it also implies that the AI
+systems we deploy are <em>fragile</em>.</p>
+<p>Our intelligent systems are composed by “pigeonholing” each indvidual
+task, then substituting with a machine learning model.</p>
+<p>But this is not a robust approach to systems design. The definition
+of sub-tasks can lead to a single point of failure, where if any
+sub-task fails, the entire system fails.</p>
 <h2 id="rapid-reimplementation">Rapid Reimplementation</h2>
-<p>This is also the classical approach to automation, but in traditional automation we also ensure the <em>environment</em> in which the system operates becomes controlled. For example, trains run on railway lines, fast cars run on motorways, goods are manufactured in a controlled factory environment.</p>
-<p>The difference with modern automated decision making systems is our intention is to deploy them in the <em>uncontrolled</em> environment that makes up our own world.</p>
-<p>This exposes us to either unforseen circumstances or adversarial action. And yet it is unclear our our intelligent systems are capable of adapting to this.</p>
-<p>We become exposed to mischief and adversaries. Adversaries intentially may wish to take over the artificial intelligence system, and mischief is the constant practice of many in our society. Simply watching a 10 year old interact with a voice agent such as Alexa or Siri shows that they are delighted when the can make the the “intelligent” agent seem foolish.</p>
+<p>This is also the classical approach to automation, but in traditional
+automation we also ensure the <em>environment</em> in which the system
+operates becomes controlled. For example, trains run on railway lines,
+fast cars run on motorways, goods are manufactured in a controlled
+factory environment.</p>
+<p>The difference with modern automated decision making systems is our
+intention is to deploy them in the <em>uncontrolled</em> environment
+that makes up our own world.</p>
+<p>This exposes us to either unforseen circumstances or adversarial
+action. And yet it is unclear our our intelligent systems are capable of
+adapting to this.</p>
+<p>We become exposed to mischief and adversaries. Adversaries
+intentially may wish to take over the artificial intelligence system,
+and mischief is the constant practice of many in our society. Simply
+watching a 10 year old interact with a voice agent such as Alexa or Siri
+shows that they are delighted when the can make the the “intelligent”
+agent seem foolish.</p>
 <h2 id="the-centrifugal-governor">The Centrifugal Governor</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/centrifugal-governor.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/centrifugal-governor.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/centrifugal-governor.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/centrifugal-governor.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <div class="figure">
 <div id="science-holborn-viaduct-figure" class="figure-frame">
@@ -633,16 +1239,21 @@ Misinformation | 0.74 |</div>
 <img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//science-holborn-viaduct.jpg" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="science-holborn-viaduct-magnify" class="magnify" onclick="magnifyFigure(&#39;science-holborn-viaduct&#39;)">
+<div id="science-holborn-viaduct-magnify" class="magnify"
+onclick="magnifyFigure(&#39;science-holborn-viaduct&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="science-holborn-viaduct-caption" class="caption-frame">
-<p>Figure: Centrifugal governor as held by “Science” on Holborn Viaduct</p>
+<p>Figure: Centrifugal governor as held by “Science” on Holborn
+Viaduct</p>
 </div>
 </div>
-<h2 id="boulton-and-watts-steam-engine">Boulton and Watt’s Steam Engine</h2>
+<h2 id="boulton-and-watts-steam-engine">Boulton and Watt’s Steam
+Engine</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/watt-steam-engine.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/watt-steam-engine.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/watt-steam-engine.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/watt-steam-engine.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <div class="figure">
 <div id="steam-engine-boulton-watt-figure" class="figure-frame">
@@ -650,22 +1261,50 @@ Misinformation | 0.74 |</div>
 <img class="negate" src="https://mlatcl.github.io/advds/./slides/diagrams//SteamEngine_Boulton&Watt_1784.png" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="steam-engine-boulton-watt-magnify" class="magnify" onclick="magnifyFigure(&#39;steam-engine-boulton-watt&#39;)">
+<div id="steam-engine-boulton-watt-magnify" class="magnify"
+onclick="magnifyFigure(&#39;steam-engine-boulton-watt&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="steam-engine-boulton-watt-caption" class="caption-frame">
-<p>Figure: Watt’s Steam Engine which made Steam Power Efficient and Practical.</p>
+<p>Figure: Watt’s Steam Engine which made Steam Power Efficient and
+Practical.</p>
 </div>
 </div>
-<p>James Watt’s steam engine contained an early machine learning device. In the same way that modern systems are component based, his engine was composed of components. One of which is a speed regulator sometimes known as <em>Watt’s governor</em>. The two balls in the center of the image, when spun fast, rise, and through a linkage mechanism.</p>
-<p>The centrifugal governor was made famous by Boulton and Watt when it was deployed in the steam engine. Studying stability in the governor is the main subject of James Clerk Maxwell’s paper on the theoretical analysis of governors <span class="citation" data-cites="Maxwell:governors1867">(Maxwell, 1867)</span>. This paper is a founding paper of control theory. In an acknowledgment of its influence, Wiener used the name <a href="https://en.wikipedia.org/wiki/Cybernetics"><em>cybernetics</em></a> to describe the field of control and communication in animals and the machine <span class="citation" data-cites="Wiener:cybernetics48">(Wiener, 1948)</span>. Cybernetics is the Greek word for governor, which comes from the latin for helmsman.</p>
-<p>A governor is one of the simplest artificial intelligence systems. It senses the speed of an engine, and acts to change the position of the valve on the engine to slow it down.</p>
-<p>Although it’s a mechanical system a governor can be seen as automating a role that a human would have traditionally played. It is an early example of artificial intelligence.</p>
-<p>The centrifugal governor has several parameters, the weight of the balls used, the length of the linkages and the limits on the balls movement.</p>
-<p>Two principle differences exist between the centrifugal governor and artificial intelligence systems of today.</p>
+<p>James Watt’s steam engine contained an early machine learning device.
+In the same way that modern systems are component based, his engine was
+composed of components. One of which is a speed regulator sometimes
+known as <em>Watt’s governor</em>. The two balls in the center of the
+image, when spun fast, rise, and through a linkage mechanism.</p>
+<p>The centrifugal governor was made famous by Boulton and Watt when it
+was deployed in the steam engine. Studying stability in the governor is
+the main subject of James Clerk Maxwell’s paper on the theoretical
+analysis of governors <span class="citation"
+data-cites="Maxwell:governors1867">(Maxwell, 1867)</span>. This paper is
+a founding paper of control theory. In an acknowledgment of its
+influence, Wiener used the name <a
+href="https://en.wikipedia.org/wiki/Cybernetics"><em>cybernetics</em></a>
+to describe the field of control and communication in animals and the
+machine <span class="citation"
+data-cites="Wiener:cybernetics48">(Wiener, 1948)</span>. Cybernetics is
+the Greek word for governor, which comes from the latin for
+helmsman.</p>
+<p>A governor is one of the simplest artificial intelligence systems. It
+senses the speed of an engine, and acts to change the position of the
+valve on the engine to slow it down.</p>
+<p>Although it’s a mechanical system a governor can be seen as
+automating a role that a human would have traditionally played. It is an
+early example of artificial intelligence.</p>
+<p>The centrifugal governor has several parameters, the weight of the
+balls used, the length of the linkages and the limits on the balls
+movement.</p>
+<p>Two principle differences exist between the centrifugal governor and
+artificial intelligence systems of today.</p>
 <ol type="1">
-<li>The centrifugal governor is a physical system and it is an integral part of a wider physical system that it regulates (the engine).</li>
-<li>The parameters of the governor were set by hand, our modern artificial intelligence systems have their parameters set by <em>data</em>.</li>
+<li>The centrifugal governor is a physical system and it is an integral
+part of a wider physical system that it regulates (the engine).</li>
+<li>The parameters of the governor were set by hand, our modern
+artificial intelligence systems have their parameters set by
+<em>data</em>.</li>
 </ol>
 <div class="figure">
 <div id="centrifugal-governor-figure" class="figure-frame">
@@ -673,229 +1312,570 @@ Misinformation | 0.74 |</div>
 <img class="negate" src="https://mlatcl.github.io/advds/./slides/diagrams//Centrifugal_governor.png" width="70%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="centrifugal-governor-magnify" class="magnify" onclick="magnifyFigure(&#39;centrifugal-governor&#39;)">
+<div id="centrifugal-governor-magnify" class="magnify"
+onclick="magnifyFigure(&#39;centrifugal-governor&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="centrifugal-governor-caption" class="caption-frame">
-<p>Figure: The centrifugal governor, an early example of a decision making system. The parameters of the governor include the lengths of the linkages (which effect how far the throttle opens in response to movement in the balls), the weight of the balls (which effects inertia) and the limits of to which the balls can rise.</p>
+<p>Figure: The centrifugal governor, an early example of a decision
+making system. The parameters of the governor include the lengths of the
+linkages (which effect how far the throttle opens in response to
+movement in the balls), the weight of the balls (which effects inertia)
+and the limits of to which the balls can rise.</p>
 </div>
 </div>
-<p>This has the basic components of sense and act that we expect in an intelligent system, and this system saved the need for a human operator to manually adjust the system in the case of overspeed. Overspeed has the potential to destroy an engine, so the governor operates as a safety device.</p>
-<p>The first wave of automation did bring about sabotoage as a worker’s response. But if machinery was sabotaged, for example, if the linkage between sensor (the spinning balls) and action (the valve closure) was broken, this would be obvious to the engine operator at start up time. The machine could be repaired before operation.</p>
-<p>The centrifugal governor was a key component in the Boulton-Watt steam engine. It senses increases in speed in the engine and closed the steam valve to prevent the engine overspeeding and destroying itself. Until the invention of this device, it was a human job to do this.</p>
-<p>The formal study of governors and other feedback control devices was then began by <a href="https://en.wikipedia.org/wiki/James_Clerk_Maxwell">James Clerk Maxwell</a>, the Scottish physicist. This field became the foundation of our modern techniques of artificial intelligence through Norbert Wiener’s book <em>Cybernetics</em> <span class="citation" data-cites="Wiener:cybernetics48">(Wiener, 1948)</span>. Cybernetics is Greek for governor, a word that in itself simply means helmsman in English.</p>
-<p>The recent WannaCry virus that had a wide impact on our health services ecosystem was exploiting a security flaw in Windows systems that was first exploited by a virus called Stuxnet.</p>
-<p>Stuxnet was a virus designed to infect the Iranian nuclear program’s Uranium enrichment centrifuges. A centrifuge is prevented from overspeed by a controller, just like the centrifugal governor. Only now it is implemented in control logic, in this case on a Siemens PLC controller.</p>
-<p>Stuxnet infected these controllers and took over the response signal in the centrifuge, fooling the system into thinking that no overspeed was occuring. As a result, the centrifuges destroyed themselves through spinning too fast.</p>
-<p>This is equivalent to detaching the governor from the steam engine. Such sabotage would be easily recognized by a steam engine operator. The challenge for the operators of the Iranian Uranium centrifuges was that the sabotage was occurring inside the electronics.</p>
-<p>That is the effect of an adversary on an intelligent system, but even without adveraries, the mischief of a 10 year old can confuse our AIs.</p>
+<p>This has the basic components of sense and act that we expect in an
+intelligent system, and this system saved the need for a human operator
+to manually adjust the system in the case of overspeed. Overspeed has
+the potential to destroy an engine, so the governor operates as a safety
+device.</p>
+<p>The first wave of automation did bring about sabotoage as a worker’s
+response. But if machinery was sabotaged, for example, if the linkage
+between sensor (the spinning balls) and action (the valve closure) was
+broken, this would be obvious to the engine operator at start up time.
+The machine could be repaired before operation.</p>
+<p>The centrifugal governor was a key component in the Boulton-Watt
+steam engine. It senses increases in speed in the engine and closed the
+steam valve to prevent the engine overspeeding and destroying itself.
+Until the invention of this device, it was a human job to do this.</p>
+<p>The formal study of governors and other feedback control devices was
+then began by <a
+href="https://en.wikipedia.org/wiki/James_Clerk_Maxwell">James Clerk
+Maxwell</a>, the Scottish physicist. This field became the foundation of
+our modern techniques of artificial intelligence through Norbert
+Wiener’s book <em>Cybernetics</em> <span class="citation"
+data-cites="Wiener:cybernetics48">(Wiener, 1948)</span>. Cybernetics is
+Greek for governor, a word that in itself simply means helmsman in
+English.</p>
+<p>The recent WannaCry virus that had a wide impact on our health
+services ecosystem was exploiting a security flaw in Windows systems
+that was first exploited by a virus called Stuxnet.</p>
+<p>Stuxnet was a virus designed to infect the Iranian nuclear program’s
+Uranium enrichment centrifuges. A centrifuge is prevented from overspeed
+by a controller, just like the centrifugal governor. Only now it is
+implemented in control logic, in this case on a Siemens PLC
+controller.</p>
+<p>Stuxnet infected these controllers and took over the response signal
+in the centrifuge, fooling the system into thinking that no overspeed
+was occuring. As a result, the centrifuges destroyed themselves through
+spinning too fast.</p>
+<p>This is equivalent to detaching the governor from the steam engine.
+Such sabotage would be easily recognized by a steam engine operator. The
+challenge for the operators of the Iranian Uranium centrifuges was that
+the sabotage was occurring inside the electronics.</p>
+<p>That is the effect of an adversary on an intelligent system, but even
+without adveraries, the mischief of a 10 year old can confuse our
+AIs.</p>
 <h2 id="peppercorns">Peppercorns</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/peppercorn.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/peppercorn.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/peppercorn.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/peppercorn.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <div class="figure">
 <div id="peppercorn-siri-figure" class="figure-frame">
 <iframe width="600" height="450" src="https://www.youtube.com/embed/1y2UKz47gew?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
 </iframe>
 </div>
-<div id="peppercorn-siri-magnify" class="magnify" onclick="magnifyFigure(&#39;peppercorn-siri&#39;)">
+<div id="peppercorn-siri-magnify" class="magnify"
+onclick="magnifyFigure(&#39;peppercorn-siri&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="peppercorn-siri-caption" class="caption-frame">
-<p>Figure: A peppercorn is a system design failure which is not a bug, but a conformance to design specification that causes problems when the system is deployed in the real world with mischevious and adversarial actors.</p>
+<p>Figure: A peppercorn is a system design failure which is not a bug,
+but a conformance to design specification that causes problems when the
+system is deployed in the real world with mischevious and adversarial
+actors.</p>
 </div>
 </div>
-<p>Asking Siri “What is a trillion to the power of a thousand minus one?” leads to a 30 minute response<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> consisting of only 9s. I found this out because my nine year old grabbed my phone and did it. The only way to stop Siri was to force closure. This is an interesting example of a system feature that’s <em>not</em> a bug, in fact it requires clever processing from Wolfram Alpha. But it’s an unexpected result from the system performing correctly.</p>
-<p>This challenge of facing a circumstance that was unenvisaged in design but has consequences in deployment becomes far larger when the environment is uncontrolled. Or in the extreme case, where actions of the intelligent system effect the wider environment and change it.</p>
-<p>These unforseen circumstances are likely to lead to need for much more efficient turn-around and update for our intelligent systems. Whether we are correcting for security flaws (which <em>are</em> bugs) or unenvisaged circumstantial challenges: an issue I’m referring to as <em>peppercorns</em>. Rapid deployment of system updates is required. For example, Apple have “fixed” the problem of Siri returning long numbers.</p>
-<p>Here’s another one from Reddit, of a Tesla Model 3 system hallucinating traffic lights.</p>
+<p>Asking Siri “What is a trillion to the power of a thousand minus
+one?” leads to a 30 minute response<a href="#fn3" class="footnote-ref"
+id="fnref3" role="doc-noteref"><sup>3</sup></a> consisting of only 9s. I
+found this out because my nine year old grabbed my phone and did it. The
+only way to stop Siri was to force closure. This is an interesting
+example of a system feature that’s <em>not</em> a bug, in fact it
+requires clever processing from Wolfram Alpha. But it’s an unexpected
+result from the system performing correctly.</p>
+<p>This challenge of facing a circumstance that was unenvisaged in
+design but has consequences in deployment becomes far larger when the
+environment is uncontrolled. Or in the extreme case, where actions of
+the intelligent system effect the wider environment and change it.</p>
+<p>These unforseen circumstances are likely to lead to need for much
+more efficient turn-around and update for our intelligent systems.
+Whether we are correcting for security flaws (which <em>are</em> bugs)
+or unenvisaged circumstantial challenges: an issue I’m referring to as
+<em>peppercorns</em>. Rapid deployment of system updates is required.
+For example, Apple have “fixed” the problem of Siri returning long
+numbers.</p>
+<p>Here’s another one from Reddit, of a Tesla Model 3 system
+hallucinating traffic lights.</p>
 <iframe id="reddit-embed" width="600" height="450" src="https://www.redditmedia.com/r/teslamotors/comments/nrs8kf/you_think_ice_cream_truck_stop_signs_are_a_problem/?ref_source=embed&amp;ref=share&amp;embed=true" sandbox="allow-scripts allow-same-origin allow-popups" frameborder="0" scrolling="no">
 </iframe>
-<p>The challenge is particularly acute because of the <em>scale</em> at which we can deploy AI solutions. This means when something does go wrong, it may be going wrong in billions of households simultaneously.</p>
-<p>You can also check this blog post on <a href="http://inverseprobability.com/2017/11/15/decision-making">Decision Making and Diversity</a>. and this blog post on <a href="http://inverseprobability.com/2018/02/06/natural-and-artificial-intelligence">Natural vs Artifical Intelligence</a>..</p>
-<h2 id="the-three-ds-of-machine-learning-systems-design">The Three Ds of Machine Learning Systems Design</h2>
-<p>We can characterize the challenges for integrating machine learning within our systems as the three Ds. Decomposition, Data and Deployment.</p>
-<p>The first two components <em>decomposition</em> and <em>data</em> are interlinked, but we will first outline the decomposition challenge. Below we will mainly focus on <em>supervised learning</em> because this is arguably the technology that is best understood within machine learning.</p>
-<h2 id="data-science-and-professionalisation">Data Science and Professionalisation</h2>
+<p>The challenge is particularly acute because of the <em>scale</em> at
+which we can deploy AI solutions. This means when something does go
+wrong, it may be going wrong in billions of households
+simultaneously.</p>
+<p>You can also check this blog post on <a
+href="http://inverseprobability.com/2017/11/15/decision-making">Decision
+Making and Diversity</a>. and this blog post on <a
+href="http://inverseprobability.com/2018/02/06/natural-and-artificial-intelligence">Natural
+vs Artifical Intelligence</a>..</p>
+<h2 id="the-three-ds-of-machine-learning-systems-design">The Three Ds of
+Machine Learning Systems Design</h2>
+<p>We can characterize the challenges for integrating machine learning
+within our systems as the three Ds. Decomposition, Data and
+Deployment.</p>
+<p>The first two components <em>decomposition</em> and <em>data</em> are
+interlinked, but we will first outline the decomposition challenge.
+Below we will mainly focus on <em>supervised learning</em> because this
+is arguably the technology that is best understood within machine
+learning.</p>
+<h2 id="data-science-and-professionalisation">Data Science and
+Professionalisation</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/a-time-for-professionalisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/a-time-for-professionalisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/a-time-for-professionalisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/a-time-for-professionalisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>The rise in data science and artificial intelligence technologies has been termed “Industrial Revolution 4.0,” so are we in the midst of an industrial change? Maybe, but if so, it is the first part of the industrial revolution to be named before it has happened. The original industrial revolution occurred between 1760 and 1840, but the term was introduced into English by Arnold Toynbee (1852-1883).</p>
-<p>Whether this is a new revolution or an extension of previous revolutions, an important aspect is that this revolution is dominated by <em>data</em> instead of just <em>capital</em>.</p>
-<p>One can also see the modern revolution as a revolution in <em>information</em> rather than <em>energy</em>.</p>
-<p>Disruptive technologies take time to assimilate, and best practices, as well as the pitfalls of new technologies take time to share. Historically, new technologies led to new professions. <a href="https://en.wikipedia.org/wiki/Isambard_Kingdom_Brunel">Isambard Kingdom Brunel</a> (born 1806) was a leading innovator in civil, mechanical and naval engineering. Each of these has its own professional institutions founded in 1818, 1847, and 1860 respectively.</p>
-<p><a href="https://en.wikipedia.org/wiki/Nikola_Tesla">Nikola Tesla</a> developed the modern approach to electrical distribution, he was born in 1856 and the American Instiute for Electrical Engineers was founded in 1884, the UK equivalent was founded in 1871.</p>
-<p><a href="https://en.wikipedia.org/wiki/William_Shockley">William Schockley Jr</a>, born 1910, led the group that developed the transistor, referred to as “the man who brought silicon to Silicon Valley,” in 1963 the American Institute for Electical Engineers merged with the Institute of Radio Engineers to form the Institute of Electrical and Electronic Engineers.</p>
-<p><a href="https://en.wikipedia.org/wiki/Watts_Humphrey">Watts S. Humphrey</a>, born 1927, was known as the “father of software quality,” in the 1980s he founded a program aimed at understanding and managing the software process. The British Computer Society was founded in 1956.</p>
-<p>Why the need for these professions? Much of it is about codification of best practice and developing trust between the public and practitioners. These fundamental characteristics of the professions are shared with the oldest professions (Medicine, Law) as well as the newest (Information Technology).</p>
-<p>So where are we today? My best guess is we are somewhere equivalent to the 1980s for Software Engineering. In terms of professional deployment we have a basic understanding of the equivalent of “programming” but much less understanding of <em>machine learning systems design</em> and <em>data infrastructure</em>. How the components we ahve developed interoperate together in a reliable and accountable manner. Best practice is still evolving, but perhaps isn’t being shared widely enough.</p>
-<p>One problem is that the art of data science is superficially similar to regular software engineering. Although in practice it is rather different. Modern software engineering practice operates to generate code which is well tested as it is written, agile programming techniques provide the appropriate degree of flexibility for the individual programmers alongside sufficient formalization and testing. These techniques have evolved from an overly restrictive formalization that was proposed in the early days of software engineering.</p>
-<p>While data science involves programming, it is different in the following way. Most of the work in data science involves understanding the data and the appropriate manipulations to apply to extract knowledge from the data. The eventual number of lines of code that are required to extract that knowledge are often very few, but the amount of thought and attention that needs to be applied to each line is much more than a traditional line of software code. Testing of those lines is also of a different nature, provisions have to be made for evolving data environments. Any development work is often done on a static snapshot of data, but deployment is made in a live environment where the nature of data changes. Quality control involves checking for degradation in performance arising form unanticipated changes in data quality. It may also need to check for regulatory conformity. For example, in the UK the General Data Protection Regulation stipulates standards of explainability and fairness that may need to be monitored. These concerns do not affect traditional software deployments.</p>
-<p>Others are also pointing out these challenges, <a href="https://medium.com/@karpathy/software-2-0-a64152b37c35">this post</a> from Andrej Karpathy (now head of AI at Tesla) covers the notion of “Software 2.0.” Google researchers have highlighted the challenges of “Technical Debt” in machine learning <span class="citation" data-cites="Sculley:debt15">(Sculley et al., 2015)</span>. Researchers at Berkeley have characterized the systems challenges associated with machine learning <span class="citation" data-cites="Stoica:systemsml17">(Stoica et al., 2017)</span>.</p>
+<p>The rise in data science and artificial intelligence technologies has
+been termed “Industrial Revolution 4.0”, so are we in the midst of an
+industrial change? Maybe, but if so, it is the first part of the
+industrial revolution to be named before it has happened. The original
+industrial revolution occurred between 1760 and 1840, but the term was
+introduced into English by Arnold Toynbee (1852-1883).</p>
+<p>Whether this is a new revolution or an extension of previous
+revolutions, an important aspect is that this revolution is dominated by
+<em>data</em> instead of just <em>capital</em>.</p>
+<p>One can also see the modern revolution as a revolution in
+<em>information</em> rather than <em>energy</em>.</p>
+<p>Disruptive technologies take time to assimilate, and best practices,
+as well as the pitfalls of new technologies take time to share.
+Historically, new technologies led to new professions. <a
+href="https://en.wikipedia.org/wiki/Isambard_Kingdom_Brunel">Isambard
+Kingdom Brunel</a> (born 1806) was a leading innovator in civil,
+mechanical and naval engineering. Each of these has its own professional
+institutions founded in 1818, 1847, and 1860 respectively.</p>
+<p><a href="https://en.wikipedia.org/wiki/Nikola_Tesla">Nikola Tesla</a>
+developed the modern approach to electrical distribution, he was born in
+1856 and the American Instiute for Electrical Engineers was founded in
+1884, the UK equivalent was founded in 1871.</p>
+<p><a href="https://en.wikipedia.org/wiki/William_Shockley">William
+Schockley Jr</a>, born 1910, led the group that developed the
+transistor, referred to as “the man who brought silicon to Silicon
+Valley”, in 1963 the American Institute for Electical Engineers merged
+with the Institute of Radio Engineers to form the Institute of
+Electrical and Electronic Engineers.</p>
+<p><a href="https://en.wikipedia.org/wiki/Watts_Humphrey">Watts S.
+Humphrey</a>, born 1927, was known as the “father of software quality”,
+in the 1980s he founded a program aimed at understanding and managing
+the software process. The British Computer Society was founded in
+1956.</p>
+<p>Why the need for these professions? Much of it is about codification
+of best practice and developing trust between the public and
+practitioners. These fundamental characteristics of the professions are
+shared with the oldest professions (Medicine, Law) as well as the newest
+(Information Technology).</p>
+<p>So where are we today? My best guess is we are somewhere equivalent
+to the 1980s for Software Engineering. In terms of professional
+deployment we have a basic understanding of the equivalent of
+“programming” but much less understanding of <em>machine learning
+systems design</em> and <em>data infrastructure</em>. How the components
+we ahve developed interoperate together in a reliable and accountable
+manner. Best practice is still evolving, but perhaps isn’t being shared
+widely enough.</p>
+<p>One problem is that the art of data science is superficially similar
+to regular software engineering. Although in practice it is rather
+different. Modern software engineering practice operates to generate
+code which is well tested as it is written, agile programming techniques
+provide the appropriate degree of flexibility for the individual
+programmers alongside sufficient formalization and testing. These
+techniques have evolved from an overly restrictive formalization that
+was proposed in the early days of software engineering.</p>
+<p>While data science involves programming, it is different in the
+following way. Most of the work in data science involves understanding
+the data and the appropriate manipulations to apply to extract knowledge
+from the data. The eventual number of lines of code that are required to
+extract that knowledge are often very few, but the amount of thought and
+attention that needs to be applied to each line is much more than a
+traditional line of software code. Testing of those lines is also of a
+different nature, provisions have to be made for evolving data
+environments. Any development work is often done on a static snapshot of
+data, but deployment is made in a live environment where the nature of
+data changes. Quality control involves checking for degradation in
+performance arising form unanticipated changes in data quality. It may
+also need to check for regulatory conformity. For example, in the UK the
+General Data Protection Regulation stipulates standards of
+explainability and fairness that may need to be monitored. These
+concerns do not affect traditional software deployments.</p>
+<p>Others are also pointing out these challenges, <a
+href="https://medium.com/@karpathy/software-2-0-a64152b37c35">this
+post</a> from Andrej Karpathy (now head of AI at Tesla) covers the
+notion of “Software 2.0”. Google researchers have highlighted the
+challenges of “Technical Debt” in machine learning <span
+class="citation" data-cites="Sculley:debt15">(Sculley et al.,
+2015)</span>. Researchers at Berkeley have characterized the systems
+challenges associated with machine learning <span class="citation"
+data-cites="Stoica:systemsml17">(Stoica et al., 2017)</span>.</p>
 <h2 id="data-as-a-convener">Data as a Convener</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_policy/includes/data-as-a-convener.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_policy/includes/data-as-a-convener.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_policy/includes/data-as-a-convener.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_policy/includes/data-as-a-convener.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>To improve communication, we need to ‘externalise cognition’: have objects that are outside our brains, are persistent in the real world, that we can combine with our individual knowledge. Doing otherwise leaves us imagining the world as our personal domain-utopias, ignoring the ugly realities of the way things actual progress.</p>
-<p>Data can provide an excellent convener, because even if it doesn’t exist it allows conversations to occur about what data should or could exist and how it might allow us to address the questions of importance.</p>
-<p>Models, while also of great potential value in externalising cognition, can be two complex to have conversations about and they can entrench beliefs, triggering <em>model induced blindness</em> (a variation on Kahneman’s <em>theory induced blindness</em> <span class="citation" data-cites="Kahneman:fastslow11">(Kahneman, 2011)</span>).</p>
+<p>To improve communication, we need to ‘externalise cognition’: have
+objects that are outside our brains, are persistent in the real world,
+that we can combine with our individual knowledge. Doing otherwise
+leaves us imagining the world as our personal domain-utopias, ignoring
+the ugly realities of the way things actual progress.</p>
+<p>Data can provide an excellent convener, because even if it doesn’t
+exist it allows conversations to occur about what data should or could
+exist and how it might allow us to address the questions of
+importance.</p>
+<p>Models, while also of great potential value in externalising
+cognition, can be two complex to have conversations about and they can
+entrench beliefs, triggering <em>model induced blindness</em> (a
+variation on Kahneman’s <em>theory induced blindness</em> <span
+class="citation" data-cites="Kahneman:fastslow11">(Kahneman,
+2011)</span>).</p>
 <div class="figure">
 <div id="anne-bob-model-figure" class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//policy/anne-bob-model.svg" width="70%" style=" ">
 </object>
 </div>
-<div id="anne-bob-model-magnify" class="magnify" onclick="magnifyFigure(&#39;anne-bob-model&#39;)">
+<div id="anne-bob-model-magnify" class="magnify"
+onclick="magnifyFigure(&#39;anne-bob-model&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="anne-bob-model-caption" class="caption-frame">
-<p>Figure: Models can also be used to externalise cognition, but if the model is highly complex it’s difficult for two individuals to understand each others’ models. This shuts down conversation, often “mathematical intimidation” is used to shut down a line of questioning. This is highly destructive of the necessary cognitive diversity.</p>
+<p>Figure: Models can also be used to externalise cognition, but if the
+model is highly complex it’s difficult for two individuals to understand
+each others’ models. This shuts down conversation, often “mathematical
+intimidation” is used to shut down a line of questioning. This is highly
+destructive of the necessary cognitive diversity.</p>
 </div>
 </div>
-<p>Bandwidth constraints on individuals mean that they tend to focus on their own specialism. This can be particularly problematic for those on the more theoretical side, because mathematical models are complex, and require a lot of deep thought. However, when communicating with others, unless they have the same in depth experience of mathematical modelling as the theoreticians, the models do not bring about good information coherehnce. Indeed, many computational models themselves are so complex now that no individual can understand the model whole.</p>
+<p>Bandwidth constraints on individuals mean that they tend to focus on
+their own specialism. This can be particularly problematic for those on
+the more theoretical side, because mathematical models are complex, and
+require a lot of deep thought. However, when communicating with others,
+unless they have the same in depth experience of mathematical modelling
+as the theoreticians, the models do not bring about good information
+coherehnce. Indeed, many computational models themselves are so complex
+now that no individual can understand the model whole.</p>
 <div class="figure">
 <div id="anne-bob-data-figure" class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//policy/anne-bob-data.svg" width="70%" style=" ">
 </object>
 </div>
-<div id="anne-bob-data-magnify" class="magnify" onclick="magnifyFigure(&#39;anne-bob-data&#39;)">
+<div id="anne-bob-data-magnify" class="magnify"
+onclick="magnifyFigure(&#39;anne-bob-data&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="anne-bob-data-caption" class="caption-frame">
-<p>Figure: Data can be queried, but the simplest query, what data do we need? Doesn’t even require the data to exist. It seems data can be highly effective for convening a multidisciplinary conversation.</p>
+<p>Figure: Data can be queried, but the simplest query, what data do we
+need? Doesn’t even require the data to exist. It seems data can be
+highly effective for convening a multidisciplinary conversation.</p>
 </div>
 </div>
-<p>Fritz Heider referred to happenings that are “<em>psychologically represented</em> in each of the participants” <span class="citation" data-cites="Heider:interpersonal58">(Heider, 1958)</span> as a preqequisite for conversation. Data is a route to that psychological representation.</p>
-<p><em>Note</em>: my introduction to Fritz Heider was through a talk by Nick Chater in 2010, you can read Nick’s thoughts on these issues in his book, <em>The Mind is Flat</em> <span class="citation" data-cites="Chater:mindisflat19">(Chater, 2019)</span>.</p>
+<p>Fritz Heider referred to happenings that are “<em>psychologically
+represented</em> in each of the participants” <span class="citation"
+data-cites="Heider:interpersonal58">(Heider, 1958)</span> as a
+preqequisite for conversation. Data is a route to that psychological
+representation.</p>
+<p><em>Note</em>: my introduction to Fritz Heider was through a talk by
+Nick Chater in 2010, you can read Nick’s thoughts on these issues in his
+book, <em>The Mind is Flat</em> <span class="citation"
+data-cites="Chater:mindisflat19">(Chater, 2019)</span>.</p>
 <h1 id="delve">Delve</h1>
 <h2 id="delve-reports">Delve Reports</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_delve/includes/delve-report-list.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_delve/includes/delve-report-list.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_delve/includes/delve-report-list.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_delve/includes/delve-report-list.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <ol type="1">
-<li>Facemasks <em>4th May 2020</em> <span class="citation" data-cites="Delve-facemasks20">(The DELVE Initiative, 2020b)</span></li>
-<li>Test, Trace, Isolate <em>27th May 2020</em> <span class="citation" data-cites="Delve-tti20">(The DELVE Initiative, 2020c)</span></li>
-<li>Nosocomial Infections <em>6th July 2020</em> <span class="citation" data-cites="Delve-hospital20">(The DELVE Initiative, 2020d)</span></li>
-<li>Schools <em>24th July 2020</em> <span class="citation" data-cites="Delve-schools20">(The DELVE Initiative, 2020e)</span></li>
-<li>Economics <em>14th August 2020</em> <span class="citation" data-cites="Delve-economics20">(The DELVE Initiative, 2020f)</span></li>
-<li>Vaccines <em>1st October 2020</em> <span class="citation" data-cites="Delve-vaccine20">(The DELVE Initiative, 2020g)</span></li>
-<li>Data <em>24th November 2020</em> <span class="citation" data-cites="Delve-data20">(The DELVE Initiative, 2020a)</span></li>
+<li>Facemasks <em>4th May 2020</em> <span class="citation"
+data-cites="Delve-facemasks20">(The DELVE Initiative, 2020b)</span></li>
+<li>Test, Trace, Isolate <em>27th May 2020</em> <span class="citation"
+data-cites="Delve-tti20">(The DELVE Initiative, 2020c)</span></li>
+<li>Nosocomial Infections <em>6th July 2020</em> <span class="citation"
+data-cites="Delve-hospital20">(The DELVE Initiative, 2020d)</span></li>
+<li>Schools <em>24th July 2020</em> <span class="citation"
+data-cites="Delve-schools20">(The DELVE Initiative, 2020e)</span></li>
+<li>Economics <em>14th August 2020</em> <span class="citation"
+data-cites="Delve-economics20">(The DELVE Initiative, 2020f)</span></li>
+<li>Vaccines <em>1st October 2020</em> <span class="citation"
+data-cites="Delve-vaccine20">(The DELVE Initiative, 2020g)</span></li>
+<li>Data <em>24th November 2020</em> <span class="citation"
+data-cites="Delve-data20">(The DELVE Initiative, 2020a)</span></li>
 </ol>
-<p>There is lots of hope for the role data science and AI could play, but we’re still a way off from being AI-ready. Further attention is needed on some of the foundational issues around data use – access, skills, culture – before we can begin to talk in earnest about deploying AI. [link here to data readiness]</p>
+<p>There is lots of hope for the role data science and AI could play,
+but we’re still a way off from being AI-ready. Further attention is
+needed on some of the foundational issues around data use – access,
+skills, culture – before we can begin to talk in earnest about deploying
+AI. [link here to data readiness]</p>
 <h2 id="delve-data-report">Delve Data Report</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_delve/includes/delve-data-report.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_delve/includes/delve-data-report.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_delve/includes/delve-data-report.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_delve/includes/delve-data-report.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>The DELVE Initiative was established with the ambition that data science could play a role in helping develop policy responses to the COVID-19 pandemic, by identifying lessons from the responses of other countries or by combining datasets to generate novel insights. Such analysis requires access to data, which could come from both official statistics, or from so-called happenstance data, generated as a by-product of daily activities. Drawing from a multidisciplinary team of domain experts in policy, public health, economics, education, immunology, epidemiology, and social science, alongside statisticians, mathematicians, computer scientists and machine learning scientists, DELVE set out to provide advice and analysis that could feed into live policy decisions.</p>
-<p>Our report focusses on what more we can do to ensure that this data is readily available <span class="citation" data-cites="Delve-data20">(The DELVE Initiative, 2020a)</span>.</p>
-<h2 id="delve-data-report-recommendations">Delve Data Report: Recommendations</h2>
+<p>The DELVE Initiative was established with the ambition that data
+science could play a role in helping develop policy responses to the
+COVID-19 pandemic, by identifying lessons from the responses of other
+countries or by combining datasets to generate novel insights. Such
+analysis requires access to data, which could come from both official
+statistics, or from so-called happenstance data, generated as a
+by-product of daily activities. Drawing from a multidisciplinary team of
+domain experts in policy, public health, economics, education,
+immunology, epidemiology, and social science, alongside statisticians,
+mathematicians, computer scientists and machine learning scientists,
+DELVE set out to provide advice and analysis that could feed into live
+policy decisions.</p>
+<p>Our report focusses on what more we can do to ensure that this data
+is readily available <span class="citation"
+data-cites="Delve-data20">(The DELVE Initiative, 2020a)</span>.</p>
+<h2 id="delve-data-report-recommendations">Delve Data Report:
+Recommendations</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_delve/includes/data-report-recommendations.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_delve/includes/data-report-recommendations.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_delve/includes/data-report-recommendations.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_delve/includes/data-report-recommendations.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <ul>
-<li><p>Government should update the statutory objective of the Office for National Statistics (ONS) to accommodate trustworthy access to happenstance data to generate national and local statistics. Such statistics are required on very short time frames to facilitate fast decision-making for the nation in the rapidly evolving circumstances of a national emergency.</p></li>
-<li><p>The ONS should collaborate closely with the Information Commissioner’s Office (ICO) to formulate a standardized qualification for data access, equivalent to a ‘data driving license’ that would demonstrate trustworthiness and ensure that qualified experts can get rapid access to different data types with the appropriate standardized ethical and legal training in place.</p></li>
-<li><p>Government should fund interdisciplinary pathfinder data projects. These projects should require collaborations between industries, run across government departments and integrate different academic expertise. Each project should target a specific policy question. Beyond the pathfinder role, the projects will leave a legacy in the form of expertise and guidance in understanding the stages of the data-sharing pipeline. Priority areas for pathfinder projects include:</p>
+<li><p>Government should update the statutory objective of the Office
+for National Statistics (ONS) to accommodate trustworthy access to
+happenstance data to generate national and local statistics. Such
+statistics are required on very short time frames to facilitate fast
+decision-making for the nation in the rapidly evolving circumstances of
+a national emergency.</p></li>
+<li><p>The ONS should collaborate closely with the Information
+Commissioner’s Office (ICO) to formulate a standardized qualification
+for data access, equivalent to a ‘data driving license’ that would
+demonstrate trustworthiness and ensure that qualified experts can get
+rapid access to different data types with the appropriate standardized
+ethical and legal training in place.</p></li>
+<li><p>Government should fund interdisciplinary pathfinder data
+projects. These projects should require collaborations between
+industries, run across government departments and integrate different
+academic expertise. Each project should target a specific policy
+question. Beyond the pathfinder role, the projects will leave a legacy
+in the form of expertise and guidance in understanding the stages of the
+data-sharing pipeline. Priority areas for pathfinder projects
+include:</p>
 <ul>
-<li><p>Nowcasting of economic metrics: At least one of these pathfinder projects should create a close collaboration between Cabinet Office and Treasury around nowcasting of classical economic metrics (such as GDP) from happenstance data (e.g. payments data). Efficient resourcing and strategic implementation of data sharing projects will only be possible if Treasury and Cabinet Office are aligned on plausible benefits and costs of data sharing projects.</p></li>
-<li><p>Mobility data: Another project should drive a step-change in the use of mobility data for public policy. To achieve this, the ONS should act as the trusted body to convert happenstance data into high-frequency population mobility statistics. One pathfinder project should produce daily views of population mobility between geographic regions, aggregated from origin to destination counts from mobile phone operators.</p></li>
+<li><p>Nowcasting of economic metrics: At least one of these pathfinder
+projects should create a close collaboration between Cabinet Office and
+Treasury around nowcasting of classical economic metrics (such as GDP)
+from happenstance data (e.g. payments data). Efficient resourcing and
+strategic implementation of data sharing projects will only be possible
+if Treasury and Cabinet Office are aligned on plausible benefits and
+costs of data sharing projects.</p></li>
+<li><p>Mobility data: Another project should drive a step-change in the
+use of mobility data for public policy. To achieve this, the ONS should
+act as the trusted body to convert happenstance data into high-frequency
+population mobility statistics. One pathfinder project should produce
+daily views of population mobility between geographic regions,
+aggregated from origin to destination counts from mobile phone
+operators.</p></li>
 </ul></li>
 </ul>
-<p>Delivering a rapid response requires the ability to quickly convene teams from across disciplines (and often institutions) around a key question. To facilitate this, we also used ideas from blog post on <a href="http://inverseprobability.com/2014/07/01/open-data-science">open data science</a>. to facilitate communication and understanding.</p>
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<p>Delivering a rapid response requires the ability to quickly convene
+teams from across disciplines (and often institutions) around a key
+question. To facilitate this, we also used ideas from blog post on <a
+href="http://inverseprobability.com/2014/07/01/open-data-science">open
+data science</a>. to facilitate communication and understanding.</p>
+<div id="refs" class="references csl-bib-body hanging-indent"
+role="doc-bibliography">
 <div id="ref-Aman-dataset20" class="csl-entry" role="doc-biblioentry">
-Aman Ullah, M., Azman, N., Mohd Zaki, Z., Monirul Islam, Md., 2020. Dataset creation from multilingual data of social media: Challenges and consequences, in: 2020 IEEE International Women in Engineering (WIE) Conference on Electrical and Computer Engineering (WIECON-ECE). pp. 288–291. <a href="https://doi.org/10.1109/WIECON-ECE52138.2020.9398002">https://doi.org/10.1109/WIECON-ECE52138.2020.9398002</a>
+Aman Ullah, M., Azman, N., Mohd Zaki, Z., Monirul Islam, Md., 2020.
+Dataset creation from multilingual data of social media: Challenges and
+consequences, in: 2020 IEEE International Women in Engineering (WIE)
+Conference on Electrical and Computer Engineering (WIECON-ECE). pp.
+288–291. <a
+href="https://doi.org/10.1109/WIECON-ECE52138.2020.9398002">https://doi.org/10.1109/WIECON-ECE52138.2020.9398002</a>
 </div>
-<div id="ref-Borchert-dataoriented20" class="csl-entry" role="doc-biblioentry">
-Borchert, T., 2020. Milan: An evolution of data-oriented programming.
+<div id="ref-Borchert-dataoriented20" class="csl-entry"
+role="doc-biblioentry">
+Borchert, T., 2020. <a
+href="https://tborchertblog.wordpress.com/2020/02/13/28/">Milan: An
+evolution of data-oriented programming</a>.
 </div>
 <div id="ref-Chapman-step00" class="csl-entry" role="doc-biblioentry">
-Chapman, P., Clinton, J., Kerber, R., Khabaza, T., Reinartz, T., Shearer, C., Wirth, R., 2000. CRISP-DM 1.0: Step-by-step data mining guide.
+Chapman, P., Clinton, J., Kerber, R., Khabaza, T., Reinartz, T.,
+Shearer, C., Wirth, R., 2000. <a
+href="https://www.kde.cs.uni-kassel.de/wp-content/uploads/lehre/ws2012-13/kdd/files/CRISPWP-0800.pdf">CRISP-DM
+1.0: Step-by-step data mining guide</a>.
 </div>
-<div id="ref-Chater:mindisflat19" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Chater:mindisflat19" class="csl-entry"
+role="doc-biblioentry">
 Chater, N., 2019. The mind is flat. Penguin.
 </div>
-<div id="ref-Heider:interpersonal58" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Heider:interpersonal58" class="csl-entry"
+role="doc-biblioentry">
 Heider, F., 1958. The psychology of interpersonal relations. John Wiley.
 </div>
-<div id="ref-Lloyd-automatic14" class="csl-entry" role="doc-biblioentry">
-James Robert Lloyd, R.G., David Duvenaud, Ghahramani., Z., 2014. Automatic construction and natural-language description of nonparametric regression models, in: AAAI.
+<div id="ref-Lloyd-automatic14" class="csl-entry"
+role="doc-biblioentry">
+James Robert Lloyd, R.G., David Duvenaud, Ghahramani., Z., 2014.
+Automatic construction and natural-language description of nonparametric
+regression models, in: AAAI.
 </div>
 <div id="ref-Joshi-doa07" class="csl-entry" role="doc-biblioentry">
-Joshi, R., 2007. A loosely-coupled real-time SOA. Real-Time Innovations Inc.
+Joshi, R., 2007. <a
+href="http://community.rti.com/sites/default/files/archive/Data-Oriented_Architecture.pdf">A
+loosely-coupled real-time SOA</a>. Real-Time Innovations Inc.
 </div>
-<div id="ref-Kahneman:fastslow11" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Kahneman:fastslow11" class="csl-entry"
+role="doc-biblioentry">
 Kahneman, D., 2011. Thinking fast and slow.
 </div>
 <div id="ref-Lawrence-dop19" class="csl-entry" role="doc-biblioentry">
-Lawrence, N.D., 2019. Modern data oriented programming.
+Lawrence, N.D., 2019. <a
+href="http://inverseprobability.com/talks/notes/modern-data-oriented-programming.html">Modern
+data oriented programming</a>.
 </div>
 <div id="ref-Lawrence-drl17" class="csl-entry" role="doc-biblioentry">
 Lawrence, N.D., 2017. Data readiness levels. ArXiv.
 </div>
-<div id="ref-Lawrence-maturity20" class="csl-entry" role="doc-biblioentry">
-Lawrence, N.D., Montgomery, J., Paquet, U., 2020. Organisational data maturity. The Royal Society.
+<div id="ref-Lawrence-maturity20" class="csl-entry"
+role="doc-biblioentry">
+Lawrence, N.D., Montgomery, J., Paquet, U., 2020. <a
+href="https://rs-delve.github.io/addenda/2020/11/24/organizational-data-maturity.html">Organisational
+data maturity</a>. The Royal Society.
 </div>
-<div id="ref-Magueresse-lowresource20" class="csl-entry" role="doc-biblioentry">
-Magueresse, A., Carles, V., Heetderks, E., 2020. Low-resource languages: <span>A</span> review of past work and future challenges. CoRR.
+<div id="ref-Magueresse-lowresource20" class="csl-entry"
+role="doc-biblioentry">
+Magueresse, A., Carles, V., Heetderks, E., 2020. <a
+href="https://arxiv.org/abs/2006.07264">Low-resource languages:
+<span>A</span> review of past work and future challenges</a>. CoRR.
 </div>
-<div id="ref-Maxwell:governors1867" class="csl-entry" role="doc-biblioentry">
-Maxwell, J.C., 1867. On governors. Proceedings of the Royal Society of London 16, 270–283.
+<div id="ref-Maxwell:governors1867" class="csl-entry"
+role="doc-biblioentry">
+Maxwell, J.C., 1867. <a href="http://www.jstor.org/stable/112510">On
+governors</a>. Proceedings of the Royal Society of London 16, 270–283.
 </div>
-<div id="ref-Nazabal-engineering20" class="csl-entry" role="doc-biblioentry">
-Nazábal, A., Williams, C.K.I., Colavizza, G., Smith, C.R., Williams, A., 2020. Data engineering for data analytics: A classification of the issues, and case studies.
+<div id="ref-Nazabal-engineering20" class="csl-entry"
+role="doc-biblioentry">
+Nazábal, A., Williams, C.K.I., Colavizza, G., Smith, C.R., Williams, A.,
+2020. <a href="https://arxiv.org/abs/2004.12929">Data engineering for
+data analytics: A classification of the issues, and case studies</a>.
 </div>
 <div id="ref-ONeil-doing13" class="csl-entry" role="doc-biblioentry">
-O’Neil, C., Schutt, R., 2013. Doing data science: Straight talk from the frontline. O’Reilly.
+O’Neil, C., Schutt, R., 2013. Doing data science: Straight talk from the
+frontline. O’Reilly.
 </div>
 <div id="ref-Oliver-valor20" class="csl-entry" role="doc-biblioentry">
-Oliver, N., 2020. El valor de los móviles y la covid-19 (the value of mobiles and covid-19).
+Oliver, N., 2020. <a
+href="https://elpais.com/elpais/2020/03/12/opinion/1584016142_423943.html">El
+valor de los móviles y la covid-19 (the value of mobiles and
+covid-19)</a>.
 </div>
-<div id="ref-Russakovsky-imagenet15" class="csl-entry" role="doc-biblioentry">
-Russakovsky, O., Deng, J., Su, H., Krause, J., Satheesh, S., Ma, S., Huang, Z., Karpathy, A., Khosla, A., Bernstein, M., Berg, A.C., Fei-Fei, L., 2015. <span>ImageNet Large Scale Visual Recognition Challenge</span>. International Journal of Computer Vision (IJCV) 115, 211–252. <a href="https://doi.org/10.1007/s11263-015-0816-y">https://doi.org/10.1007/s11263-015-0816-y</a>
+<div id="ref-Russakovsky-imagenet15" class="csl-entry"
+role="doc-biblioentry">
+Russakovsky, O., Deng, J., Su, H., Krause, J., Satheesh, S., Ma, S.,
+Huang, Z., Karpathy, A., Khosla, A., Bernstein, M., Berg, A.C., Fei-Fei,
+L., 2015. <span>ImageNet Large Scale Visual Recognition
+Challenge</span>. International Journal of Computer Vision (IJCV) 115,
+211–252. <a
+href="https://doi.org/10.1007/s11263-015-0816-y">https://doi.org/10.1007/s11263-015-0816-y</a>
 </div>
 <div id="ref-Sculley:debt15" class="csl-entry" role="doc-biblioentry">
-Sculley, D., Holt, G., Golovin, D., Davydov, E., Phillips, T., Ebner, D., Chaudhary, V., Young, M., Crespo, J.-F., Dennison, D., 2015. Hidden technical debt in machine learning systems, in: Cortes, C., Lawrence, N.D., Lee, D.D., Sugiyama, M., Garnett, R. (Eds.), Advances in Neural Information Processing Systems 28. Curran Associates, Inc., pp. 2503–2511.
+Sculley, D., Holt, G., Golovin, D., Davydov, E., Phillips, T., Ebner,
+D., Chaudhary, V., Young, M., Crespo, J.-F., Dennison, D., 2015. <a
+href="http://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf">Hidden
+technical debt in machine learning systems</a>, in: Cortes, C.,
+Lawrence, N.D., Lee, D.D., Sugiyama, M., Garnett, R. (Eds.), Advances in
+Neural Information Processing Systems 28. Curran Associates, Inc., pp.
+2503–2511.
 </div>
-<div id="ref-Stoica:systemsml17" class="csl-entry" role="doc-biblioentry">
-Stoica, I., Song, D., Popa, R.A., Patterson, D.A., Mahoney, M.W., Katz, R.H., Joseph, A.D., Jordan, M., Hellerstein, J.M., Gonzalez, J., Goldberg, K., Ghodsi, A., Culler, D.E., Abbeel, P., 2017. A berkeley view of systems challenges for AI (No. UCB/EECS-2017-159). EECS Department, University of California, Berkeley.
+<div id="ref-Stoica:systemsml17" class="csl-entry"
+role="doc-biblioentry">
+Stoica, I., Song, D., Popa, R.A., Patterson, D.A., Mahoney, M.W., Katz,
+R.H., Joseph, A.D., Jordan, M., Hellerstein, J.M., Gonzalez, J.,
+Goldberg, K., Ghodsi, A., Culler, D.E., Abbeel, P., 2017. <a
+href="http://www2.eecs.berkeley.edu/Pubs/TechRpts/2017/EECS-2017-159.html">A
+berkeley view of systems challenges for AI</a> (No. UCB/EECS-2017-159).
+EECS Department, University of California, Berkeley.
 </div>
 <div id="ref-Delve-data20" class="csl-entry" role="doc-biblioentry">
-The DELVE Initiative, 2020a. Data readiness: Lessons from an emergency. The Royal Society.
+The DELVE Initiative, 2020a. <a
+href="http://rs-delve.github.io/reports/2020/11/24/data-readiness-lessons-from-an-emergency.html">Data
+readiness: Lessons from an emergency</a>. The Royal Society.
 </div>
-<div id="ref-Delve-economics20" class="csl-entry" role="doc-biblioentry">
-The DELVE Initiative, 2020f. Economic aspects of the COVID-19 crisis in the UK. The Royal Society.
+<div id="ref-Delve-economics20" class="csl-entry"
+role="doc-biblioentry">
+The DELVE Initiative, 2020f. <a
+href="https://rs-delve.github.io/reports/2020/08/14/economic-aspects-of-the-covid19-crisis-in-the-uk.html">Economic
+aspects of the COVID-19 crisis in the UK</a>. The Royal Society.
 </div>
-<div id="ref-Delve-facemasks20" class="csl-entry" role="doc-biblioentry">
-The DELVE Initiative, 2020b. Face masks for the general public. The Royal Society.
+<div id="ref-Delve-facemasks20" class="csl-entry"
+role="doc-biblioentry">
+The DELVE Initiative, 2020b. <a
+href="https://rs-delve.github.io/reports/2020/05/04/face-masks-for-the-general-public.html">Face
+masks for the general public</a>. The Royal Society.
 </div>
 <div id="ref-Delve-hospital20" class="csl-entry" role="doc-biblioentry">
-The DELVE Initiative, 2020d. Scoping report on hospital and health care acquisition of COVID-19 and its control. The Royal Society.
+The DELVE Initiative, 2020d. <a
+href="https://rs-delve.github.io/reports/2020/07/06/nosocomial-scoping-report.html">Scoping
+report on hospital and health care acquisition of COVID-19 and its
+control</a>. The Royal Society.
 </div>
 <div id="ref-Delve-schools20" class="csl-entry" role="doc-biblioentry">
-The DELVE Initiative, 2020e. Balancing the risks of pupils returning to schools. The Royal Society.
+The DELVE Initiative, 2020e. <a
+href="https://rs-delve.github.io/reports/2020/07/24/balancing-the-risk-of-pupils-returning-to-schools.html">Balancing
+the risks of pupils returning to schools</a>. The Royal Society.
 </div>
 <div id="ref-Delve-tti20" class="csl-entry" role="doc-biblioentry">
-The DELVE Initiative, 2020c. Test, trace, isolate. The Royal Society.
+The DELVE Initiative, 2020c. <a
+href="https://rs-delve.github.io/reports/2020/05/27/test-trace-isolate.html">Test,
+trace, isolate</a>. The Royal Society.
 </div>
 <div id="ref-Delve-vaccine20" class="csl-entry" role="doc-biblioentry">
-The DELVE Initiative, 2020g. SARS-CoV-2 vaccine development &amp; implementation; scenarios, options, key decisions. The Royal Society.
+The DELVE Initiative, 2020g. <a
+href="http://rs-delve.github.io/reports/2020/10/01/covid19-vaccination-report.html">SARS-CoV-2
+vaccine development &amp; implementation; scenarios, options, key
+decisions</a>. The Royal Society.
 </div>
-<div id="ref-Valera-automatic17" class="csl-entry" role="doc-biblioentry">
-Valera, I., Ghahramani, Z., 2017. Automatic discovery of the statistical types of variables in a dataset, in: Precup, D., Teh, Y.W. (Eds.), Proceedings of the 34th International Conference on Machine Learning, Proceedings of Machine Learning Research. PMLR, pp. 3521–3529.
+<div id="ref-Valera-automatic17" class="csl-entry"
+role="doc-biblioentry">
+Valera, I., Ghahramani, Z., 2017. <a
+href="https://proceedings.mlr.press/v70/valera17a.html">Automatic
+discovery of the statistical types of variables in a dataset</a>, in:
+Precup, D., Teh, Y.W. (Eds.), Proceedings of the 34th International
+Conference on Machine Learning, Proceedings of Machine Learning
+Research. PMLR, pp. 3521–3529.
 </div>
 <div id="ref-Vorhemus-doa17" class="csl-entry" role="doc-biblioentry">
-Vorhemus, C., Schikuta, E., 2017. A data-oriented architecture for loosely coupled real-time information systems, in: Proceedings of the 19th International Conference on Information Integration and Web-Based Applications &amp; Services, iiWAS ’17. Association for Computing Machinery, New York, NY, USA, pp. 472–481. <a href="https://doi.org/10.1145/3151759.3151770">https://doi.org/10.1145/3151759.3151770</a>
+Vorhemus, C., Schikuta, E., 2017. A data-oriented architecture for
+loosely coupled real-time information systems, in: Proceedings of the
+19th International Conference on Information Integration and Web-Based
+Applications &amp; Services, iiWAS ’17. Association for Computing
+Machinery, New York, NY, USA, pp. 472–481. <a
+href="https://doi.org/10.1145/3151759.3151770">https://doi.org/10.1145/3151759.3151770</a>
 </div>
-<div id="ref-Wiener:cybernetics48" class="csl-entry" role="doc-biblioentry">
-Wiener, N., 1948. Cybernetics: Control and communication in the animal and the machine. MIT Press, Cambridge, MA.
+<div id="ref-Wiener:cybernetics48" class="csl-entry"
+role="doc-biblioentry">
+Wiener, N., 1948. Cybernetics: Control and communication in the animal
+and the machine. MIT Press, Cambridge, MA.
 </div>
 </div>
-<section class="footnotes" role="doc-endnotes">
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>See for example <a href="https://www.technologyreview.com/s/604087/the-dark-secret-at-the-heart-of-ai/">“The Dark Secret at the Heart of AI” in Technology Review</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>If you find another approach to data science that also takes into account these aspects please feel to use that apparoach. We’ve designed this framework to help you think through the data science process and ensure that your aretefacts are more reusable.}<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p>Apple has fixed this issue so that Siri no longer does this.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>See for example <a
+href="https://www.technologyreview.com/s/604087/the-dark-secret-at-the-heart-of-ai/">“The
+Dark Secret at the Heart of AI” in Technology Review</a>.<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>If you find another approach to data science that also
+takes into account these aspects please feel to use that apparoach.
+We’ve designed this framework to help you think through the data science
+process and ensure that your aretefacts are more reusable.}<a
+href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Apple has fixed this issue so that Siri no longer does
+this.<a href="#fnref3" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
