@@ -1,6 +1,6 @@
 main_nav:
   - label: Overview
-    link: /mlphysical/
+    link: /advds/
   - label: ML@CL Group
     link: /
     submenu_item:

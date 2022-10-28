@@ -19,7 +19,6 @@ session: 1
 reveal: 05-01-a-data-science-process.slides.html
 transition: None
 youtube: "kDOCnZcVEQA"
-edit_url: https://github.com/lawrennd/talks/edit/gh-pages/_advds/a-data-science-process.md
 layout: lecture
 categories:
 - notes
@@ -77,7 +76,7 @@ categories:
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="dm-ds-gartner-hype-cycle-google-trends-caption" class="caption-frame">
-<p>Figure: Google trends for ‘data mining,’ ‘data science’ as different technological terms gives us insight into their popularity over time.</p>
+<p>Figure: A Google trends search for ‘data mining,’ ‘data science’ as different technological terms gives us insight into their popularity over time.</p>
 </div>
 </div>
 <p>Google trends gives us insight into the interest for different terms over time.</p>
@@ -102,8 +101,8 @@ categories:
 </div>
 </div>
 <p>One thing about working in an industrial environment, is the way that short-term thinking actions become important. For example, in Formula One, the teams are working on a two-week cycle to digest information from the previous week’s race and incorporate updates to the car or their strategy.</p>
-<p>However, businesses must also think about more medium-term horizons. For example, in Formula 1 you need to worry about next year’s car. So while you’re working on updating this year’s car, you also need to think about what will happen for next year and prioritize these conflicting needs appropriately.</p>
-<p>In the Amazon supply chain, there are the equivalent demands. If we accept that an artificial intelligence is just an automated decision-making system. And if we measure in terms of money automatically spent, or goods automatically moved, then Amazon’s buying system is perhaps the world’s largest AI.</p>
+<p>However, businesses must also think about more medium-term horizons. For example, in Formula 1 you need to worry about next year’s car. So, while you’re working on updating this year’s car, you also need to think about what will happen for next year and prioritize these conflicting needs appropriately.</p>
+<p>In the Amazon supply chain, there are equivalent demands. If we accept that an artificial intelligence is just an automated decision-making system. And if we measure in terms of money automatically spent, or goods automatically moved, then Amazon’s buying system is perhaps the world’s largest AI.</p>
 <p>Those decisions are being made on short time schedules; purchases are made by the system on weekly cycles. But just as in Formula 1, there is also a need to think about what needs to be done next month, next quarter and next year. Planning meetings are held not only on a weekly basis (known as weekly business reviews), but monthly, quarterly, and then yearly meetings for planning spends and investments.</p>
 <p>Amazon is known for being longer term thinking than many companies, and a lot of this is coming from the CEO. One quote from Jeff Bezos that stuck with me was the following.</p>
 <blockquote>
@@ -129,7 +128,7 @@ categories:
 </blockquote>
 <p>As a result, our focus was on how to speed up the process of experiments, increase the diversity of experiments that we can do, and keep the experiments price as low as possible.</p>
 <p>The faster the innovation flywheel can be iterated, then the quicker we can ask about different parts of the supply chain, and the better we can tailor systems to answering those questions.</p>
-<p>We need faster, cheaper and more diverse experiments which implies we need better ecosystems for experimentation. This has led us to focus on the software frameworks we’re using to develop machine learning systems including data oriented architectures (<span class="citation" data-cites="Borchert-dataoriented20">Borchert (2020)</span>;<span class="citation" data-cites="Lawrence-doa19">(<strong>Lawrence-doa19?</strong>)</span>;<span class="citation" data-cites="Vorhemus-doa17">Vorhemus and Schikuta (2017)</span>;<span class="citation" data-cites="Joshi-doa07">Joshi (2007)</span>), data maturity assessments (<span class="citation" data-cites="Lawrence-maturity20">Lawrence et al. (2020)</span>) and data readiness levels (See this blog post on <a href="http://inverseprobability.com/2017/01/12/data-readiness-levels">Data Readiness Levels</a>. and <span class="citation" data-cites="Lawrence-drl17">Lawrence (2017)</span>;<span class="citation" data-cites="Delve-data20">The DELVE Initiative (2020a)</span>)</p>
+<p>We need faster, cheaper and more diverse experiments which implies we need better ecosystems for experimentation. This has led us to focus on the software frameworks we’re using to develop machine learning systems including data oriented architectures (<span class="citation" data-cites="Borchert-dataoriented20">Borchert (2020)</span>;<span class="citation" data-cites="Lawrence-dop19">Lawrence (2019)</span>;<span class="citation" data-cites="Vorhemus-doa17">Vorhemus and Schikuta (2017)</span>;<span class="citation" data-cites="Joshi-doa07">Joshi (2007)</span>), data maturity assessments (<span class="citation" data-cites="Lawrence-maturity20">Lawrence et al. (2020)</span>) and data readiness levels (See this blog post on <a href="http://inverseprobability.com/2017/01/12/data-readiness-levels">Data Readiness Levels</a>. and <span class="citation" data-cites="Lawrence-drl17">Lawrence (2017)</span>;<span class="citation" data-cites="Delve-data20">The DELVE Initiative (2020a)</span>)</p>
 <p>One challenge for data science and data science processes is that they do not always accommodate the real-time and evolving nature of data science advice as required, for example in pandemic response or in managing an international supply chain.</p>
 <div class="figure">
 <div id="policy-science-convening-power-of-data-figure" class="figure-frame">
@@ -822,10 +821,13 @@ Heider, F., 1958. The psychology of interpersonal relations. John Wiley.
 James Robert Lloyd, R.G., David Duvenaud, Ghahramani., Z., 2014. Automatic construction and natural-language description of nonparametric regression models, in: AAAI.
 </div>
 <div id="ref-Joshi-doa07" class="csl-entry" role="doc-biblioentry">
-Joshi, R., 2007. A loosely-coupled real-time SOA (As more devices and systems get woven into the fabric of our networked world, the scale and the complexity of integration is growing at a rapid pace. Our existing methodologies and training for system software design, rooted in principles of object-oriented design, that worked superbly for small scale systems begin to break down as we discover operational limits which requires frequent and unintended redesigns in programs year over year. Fundamentally, object-oriented thinking leads us to think in terms of tightly-coupled interactions that include strong state assumptions. Large scale distributed systems are often a mix of subsystems created by independent parties, often using different middleware technologies, with misaligned interfaces. Integrating such sub-systems using object-oriented thinking poses some fundamental challenges: (1) it is brittle to incremental and independent development, where interfaces can change without notice; (2) there is often an "impedance mis-match" between sub-systems in the quantity and the quality of information that must be exchanged between the two sides; (3) there is a real need to dynamically adapt in real-time to network topology reconfigurations and failures; (4) scalability, performance, and up-time cannot always be compromised in this dynamic environment . A different paradigm is needed in order to address these new challenges in a systematic manner. As the scale of the integration and complexity grows, the only unifying common denominators between disparate sub-systems (generally numbering more than two) are: (1) the data they produce and consume; (2) the services they use and offer. In order to scale, system software architecture must be organized around a common "shared information model" that spans multiple systems. This leads us to the principle of "data-oriented" design: expose the data and hide the code. In this paper, we will discuss the principles of data-oriented thinking, and discuss why it offers an appropriate paradigm to address large scale system integration. We discuss the critical role played by the middleware infrastructure in applying data-oriented design, and describe a generic data-oriented integration architecture based on the data distribution service (DDS) middleware standard. We analyze popular architectural styles including data flow architecture, event driven architecture, and service oriented architecture from this perspective and establish that they can be viewed as specializations of the generic data-oriented architecture. Finally we illustrate how the data-oriented integration architecture was used to rapidly develop a working demonstration of a real-time package tracking system-of-systems, in a short time frame. The information model is described once. The tool-chain is used to transform and manipulate the shared data model across disparate implementation technologies. ). Real-Time Innovations Inc.
+Joshi, R., 2007. A loosely-coupled real-time SOA. Real-Time Innovations Inc.
 </div>
 <div id="ref-Kahneman:fastslow11" class="csl-entry" role="doc-biblioentry">
 Kahneman, D., 2011. Thinking fast and slow.
+</div>
+<div id="ref-Lawrence-dop19" class="csl-entry" role="doc-biblioentry">
+Lawrence, N.D., 2019. Modern data oriented programming.
 </div>
 <div id="ref-Lawrence-drl17" class="csl-entry" role="doc-biblioentry">
 Lawrence, N.D., 2017. Data readiness levels. ArXiv.
