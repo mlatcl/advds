@@ -1,14 +1,7 @@
 ---
 title: "The Challenges of Data Science"
 venue: "LT2, William Gates Building"
-abstract: "<p>In the first lecture, we laid out the underpinning
-phenomena that give us the landscape of data science. In this lecture we
-unpick the challenges that landscape presents us with. The material
-gives you context for why data science is very different from standard
-software engineering, and how data science problems need to be
-approached including the many different aspects that need to be
-considered. We will look at the challenges of deploying data science
-solutions in practice. We categorize them into three groups.</p>"
+abstract: "<p>In the first lecture, we laid out the underpinning phenomena that give us the landscape of data science. In this lecture we unpick the challenges that landscape presents us with. The material gives you context for why data science is very different from standard software engineering, and how data science problems need to be approached including the many different aspects that need to be considered. We will look at the challenges of deploying data science solutions in practice. We categorize them into three groups.</p>"
 author:
 - given: Neil D.
   family: Lawrence
@@ -43,704 +36,152 @@ categories:
 
 -->
 <h1 id="introduction">Introduction</h1>
-<p>Data science is an emerging discipline. That makes it harder to make
-clean decisions about what any given individual will need to know to
-become a data scientist. Those of you who are studying now will be those
-that define the discipline. As we deploy more data driven decision
-making in the world, the role will be refined. Until we achieve that
-refinement, your knowledge needs to be broad based.</p>
-<p>In this lecture we will first continue our theme of how our
-limitations as humans mean that our analysis of data can be affected,
-and I will introduce an analogy that should help you understand
-<em>how</em> data science differs significantly from traditional
-software engineering. We’ll then contextualize some of the challenges
-the domain into three different groups.</p>
+<p>Data science is an emerging discipline. That makes it harder to make clean decisions about what any given individual will need to know to become a data scientist. Those of you who are studying now will be those that define the discipline. As we deploy more data driven decision making in the world, the role will be refined. Until we achieve that refinement, your knowledge needs to be broad based.</p>
+<p>In this lecture we will first continue our theme of how our limitations as humans mean that our analysis of data can be affected, and I will introduce an analogy that should help you understand <em>how</em> data science differs significantly from traditional software engineering. We’ll then contextualize some of the challenges the domain into three different groups.</p>
 <h2 id="the-gartner-hype-cycle">The Gartner Hype Cycle</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <div class="figure">
 <div id="gartner-hype-cycle-figure" class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//Gartner_Hype_Cycle.svg" width="80%" style=" ">
 </object>
 </div>
-<div id="gartner-hype-cycle-magnify" class="magnify"
-onclick="magnifyFigure(&#39;gartner-hype-cycle&#39;)">
+<div id="gartner-hype-cycle-magnify" class="magnify" onclick="magnifyFigure(&#39;gartner-hype-cycle&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="gartner-hype-cycle-caption" class="caption-frame">
-<p>Figure: The Gartner Hype Cycle places technologies on a graph that
-relates to the expectations we have of a technology against its actual
-influence. Early hope for a new techology is often displaced by
-disillusionment due to the time it takes for a technology to be usefully
-deployed.</p>
+<p>Figure: The Gartner Hype Cycle places technologies on a graph that relates to the expectations we have of a technology against its actual influence. Early hope for a new techology is often displaced by disillusionment due to the time it takes for a technology to be usefully deployed.</p>
 </div>
 </div>
-<p>The <a href="https://en.wikipedia.org/wiki/Hype_cycle">Gartner Hype
-Cycle</a> tries to assess where an idea is in terms of maturity and
-adoption. It splits the evolution of technology into a technological
-trigger, a peak of expectations followed by a trough of disillusionment
-and a final ascension into a useful technology. It looks rather like a
-classical control response to a final set point.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Hype_cycle">Gartner Hype Cycle</a> tries to assess where an idea is in terms of maturity and adoption. It splits the evolution of technology into a technological trigger, a peak of expectations followed by a trough of disillusionment and a final ascension into a useful technology. It looks rather like a classical control response to a final set point.</p>
 <h2 id="cycle-for-ml-terms">Cycle for ML Terms</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-ai-bd-dm-dl-ml.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-ai-bd-dm-dl-ml.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-ai-bd-dm-dl-ml.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-ai-bd-dm-dl-ml.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <h2 id="google-trends">Google Trends</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-base.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-base.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-base.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-base.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install pytrends</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install pytrends</span></code></pre></div>
 <div class="figure">
-<div id="ai-bd-dm-dl-ml-gartner-hype-cycle-google-trends-figure"
-class="figure-frame">
+<div id="ai-bd-dm-dl-ml-gartner-hype-cycle-google-trends-figure" class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/ai-bd-dm-dl-ml-google-trends.svg" width="80%" style=" ">
 </object>
 </div>
-<div id="ai-bd-dm-dl-ml-gartner-hype-cycle-google-trends-magnify"
-class="magnify"
-onclick="magnifyFigure(&#39;ai-bd-dm-dl-ml-gartner-hype-cycle-google-trends&#39;)">
+<div id="ai-bd-dm-dl-ml-gartner-hype-cycle-google-trends-magnify" class="magnify" onclick="magnifyFigure(&#39;ai-bd-dm-dl-ml-gartner-hype-cycle-google-trends&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="ai-bd-dm-dl-ml-gartner-hype-cycle-google-trends-caption"
-class="caption-frame">
-<p>Figure: A Google trends search for ‘artificial intelligence’, ‘big
-data’, ‘data mining’, ‘deep learning’, ‘machine learning’ as different
-technological terms gives us insight into their popularity over
-time.</p>
+<div id="ai-bd-dm-dl-ml-gartner-hype-cycle-google-trends-caption" class="caption-frame">
+<p>Figure: A Google trends search for ‘artificial intelligence,’ ‘big data,’ ‘data mining,’ ‘deep learning,’ ‘machine learning’ as different technological terms gives us insight into their popularity over time.</p>
 </div>
 </div>
-<p>Google trends gives us insight into the interest for different terms
-over time.</p>
-<p>Examining Google trends search for ‘artificial intelligence’, ‘big
-data’, ‘data mining’, ‘deep learning’ and ‘machine learning’ we can see
-that ‘artificial intelligence’ <em>may</em> be entering a plateau of
-productivity, ‘big data’ is entering the trough of disillusionment, and
-‘data mining’ seems to be deeply within the trough. On the other hand,
-‘deep learning’ and ‘machine learning’ appear to be ascending to the
-peak of inflated expectations having experienced a technology
-trigger.</p>
-<p>For deep learning that technology trigger was the ImageNet result of
-2012 <span class="citation"
-data-cites="Krizhevsky:imagenet12">(Krizhevsky et al., n.d.)</span>.
-This step change in performance on object detection in images was
-achieved through convolutional neural networks, popularly known as ‘deep
-learning’.</p>
+<p>Google trends gives us insight into the interest for different terms over time.</p>
+<p>Examining Google trends search for ‘artificial intelligence,’ ‘big data,’ ‘data mining,’ ‘deep learning’ and ‘machine learning’ we can see that ‘artificial intelligence’ <em>may</em> be entering a plateau of productivity, ‘big data’ is entering the trough of disillusionment, and ‘data mining’ seems to be deeply within the trough. On the other hand, ‘deep learning’ and ‘machine learning’ appear to be ascending to the peak of inflated expectations having experienced a technology trigger.</p>
+<p>For deep learning that technology trigger was the ImageNet result of 2012 <span class="citation" data-cites="Krizhevsky:imagenet12">(Krizhevsky et al., n.d.)</span>. This step change in performance on object detection in images was achieved through convolutional neural networks, popularly known as ‘deep learning.’</p>
 <h1 id="what-is-machine-learning">What is Machine Learning?</h1>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-is-ml.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-is-ml.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-is-ml.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-is-ml.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>What is machine learning? At its most basic level machine learning is
-a combination of</p>
-<p><span class="math display">\[\text{data} + \text{model}
-\stackrel{\text{compute}}{\rightarrow} \text{prediction}\]</span></p>
-<p>where <em>data</em> is our observations. They can be actively or
-passively acquired (meta-data). The <em>model</em> contains our
-assumptions, based on previous experience. That experience can be other
-data, it can come from transfer learning, or it can merely be our
-beliefs about the regularities of the universe. In humans our models
-include our inductive biases. The <em>prediction</em> is an action to be
-taken or a categorization or a quality score. The reason that machine
-learning has become a mainstay of artificial intelligence is the
-importance of predictions in artificial intelligence. The data and the
-model are combined through computation.</p>
-<p>In practice we normally perform machine learning using two functions.
-To combine data with a model we typically make use of:</p>
-<p><strong>a prediction function</strong> it is used to make the
-predictions. It includes our beliefs about the regularities of the
-universe, our assumptions about how the world works, e.g., smoothness,
-spatial similarities, temporal similarities.</p>
-<p><strong>an objective function</strong> it defines the ‘cost’ of
-misprediction. Typically, it includes knowledge about the world’s
-generating processes (probabilistic objectives) or the costs we pay for
-mispredictions (empirical risk minimization).</p>
-<p>The combination of data and model through the prediction function and
-the objective function leads to a <em>learning algorithm</em>. The class
-of prediction functions and objective functions we can make use of is
-restricted by the algorithms they lead to. If the prediction function or
-the objective function are too complex, then it can be difficult to find
-an appropriate learning algorithm. Much of the academic field of machine
-learning is the quest for new learning algorithms that allow us to bring
-different types of models and data together.</p>
-<p>A useful reference for state of the art in machine learning is the UK
-Royal Society Report, <a
-href="https://royalsociety.org/~/media/policy/projects/machine-learning/publications/machine-learning-report.pdf">Machine
-Learning: Power and Promise of Computers that Learn by Example</a>.</p>
-<p>You can also check my post blog post on <a
-href="http://inverseprobability.com/2017/07/17/what-is-machine-learning">What
-is Machine Learning?</a>.</p>
-<h2 id="classical-statistical-analysis">Classical Statistical
-Analysis</h2>
+<p>What is machine learning? At its most basic level machine learning is a combination of</p>
+<p><span class="math display">\[\text{data} + \text{model} \stackrel{\text{compute}}{\rightarrow} \text{prediction}\]</span></p>
+<p>where <em>data</em> is our observations. They can be actively or passively acquired (meta-data). The <em>model</em> contains our assumptions, based on previous experience. That experience can be other data, it can come from transfer learning, or it can merely be our beliefs about the regularities of the universe. In humans our models include our inductive biases. The <em>prediction</em> is an action to be taken or a categorization or a quality score. The reason that machine learning has become a mainstay of artificial intelligence is the importance of predictions in artificial intelligence. The data and the model are combined through computation.</p>
+<p>In practice we normally perform machine learning using two functions. To combine data with a model we typically make use of:</p>
+<p><strong>a prediction function</strong> it is used to make the predictions. It includes our beliefs about the regularities of the universe, our assumptions about how the world works, e.g., smoothness, spatial similarities, temporal similarities.</p>
+<p><strong>an objective function</strong> it defines the ‘cost’ of misprediction. Typically, it includes knowledge about the world’s generating processes (probabilistic objectives) or the costs we pay for mispredictions (empirical risk minimization).</p>
+<p>The combination of data and model through the prediction function and the objective function leads to a <em>learning algorithm</em>. The class of prediction functions and objective functions we can make use of is restricted by the algorithms they lead to. If the prediction function or the objective function are too complex, then it can be difficult to find an appropriate learning algorithm. Much of the academic field of machine learning is the quest for new learning algorithms that allow us to bring different types of models and data together.</p>
+<p>A useful reference for state of the art in machine learning is the UK Royal Society Report, <a href="https://royalsociety.org/~/media/policy/projects/machine-learning/publications/machine-learning-report.pdf">Machine Learning: Power and Promise of Computers that Learn by Example</a>.</p>
+<p>You can also check my post blog post on <a href="http://inverseprobability.com/2017/07/17/what-is-machine-learning">What is Machine Learning?</a>.</p>
+<h2 id="classical-statistical-analysis">Classical Statistical Analysis</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/the-challenges-of-data-science.gpp.markdown" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/the-challenges-of-data-science.gpp.markdown', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/the-challenges-of-data-science.gpp.markdown" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/the-challenges-of-data-science.gpp.markdown', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>Despite the shift of emphasis, traditional statistical techniques are
-more important than ever. One of the few ways we have to validate the
-analyses we create is to make use of visualizations, randomized testing
-and other forms of statistical analysis. You will have explored some of
-these ideas in earlier courses in machine learning. In this unit we
-provide some review material in a practical sheet to bring some of those
-ideas together in the context of data science.</p>
-<h2 id="what-does-machine-learning-do">What does Machine Learning
-do?</h2>
+<p>Despite the shift of emphasis, traditional statistical techniques are more important than ever. One of the few ways we have to validate the analyses we create is to make use of visualizations, randomized testing and other forms of statistical analysis. You will have explored some of these ideas in earlier courses in machine learning. In this unit we provide some review material in a practical sheet to bring some of those ideas together in the context of data science.</p>
+<h2 id="what-does-machine-learning-do">What does Machine Learning do?</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-does-machine-learning-do.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-does-machine-learning-do.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-does-machine-learning-do.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-does-machine-learning-do.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>Any process of automation allows us to scale what we do by codifying
-a process in some way that makes it efficient and repeatable. Machine
-learning automates by emulating human (or other actions) found in data.
-Machine learning codifies in the form of a mathematical function that is
-learnt by a computer. If we can create these mathematical functions in
-ways in which they can interconnect, then we can also build systems.</p>
-<p>Machine learning works through codifying a prediction of interest
-into a mathematical function. For example, we can try and predict the
-probability that a customer wants to by a jersey given knowledge of
-their age, and the latitude where they live. The technique known as
-logistic regression estimates the odds that someone will by a jumper as
-a linear weighted sum of the features of interest.</p>
-<p><span class="math display">\[ \text{odds} =
-\frac{p(\text{bought})}{p(\text{not bought})} \]</span></p>
-<p><span class="math display">\[ \log \text{odds}  = \beta_0 + \beta_1
-\text{age} + \beta_2 \text{latitude}.\]</span> Here <span
-class="math inline">\(\beta_0\)</span>, <span
-class="math inline">\(\beta_1\)</span> and <span
-class="math inline">\(\beta_2\)</span> are the parameters of the model.
-If <span class="math inline">\(\beta_1\)</span> and <span
-class="math inline">\(\beta_2\)</span> are both positive, then the
-log-odds that someone will buy a jumper increase with increasing
-latitude and age, so the further north you are and the older you are the
-more likely you are to buy a jumper. The parameter <span
-class="math inline">\(\beta_0\)</span> is an offset parameter and gives
-the log-odds of buying a jumper at zero age and on the equator. It is
-likely to be negative<a href="#fn1" class="footnote-ref" id="fnref1"
-role="doc-noteref"><sup>1</sup></a> indicating that the purchase is
-odds-against. This is also a classical statistical model, and models
-like logistic regression are widely used to estimate probabilities from
-ad-click prediction to risk of disease.</p>
-<p>This is called a generalized linear model, we can also think of it as
-estimating the <em>probability</em> of a purchase as a nonlinear
-function of the features (age, latitude) and the parameters (the <span
-class="math inline">\(\beta\)</span> values). The function is known as
-the <em>sigmoid</em> or <a
-href="https://en.wikipedia.org/wiki/Logistic_regression">logistic
-function</a>, thus the name <em>logistic</em> regression.</p>
-<p><span class="math display">\[ p(\text{bought}) =  \sigma\left(\beta_0
-+ \beta_1 \text{age} + \beta_2 \text{latitude}\right).\]</span> In the
-case where we have <em>features</em> to help us predict, we sometimes
-denote such features as a vector, <span class="math inline">\(\mathbf{
-x}\)</span>, and we then use an inner product between the features and
-the parameters, <span class="math inline">\(\boldsymbol{\beta}^\top
-\mathbf{ x}= \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 ...\)</span>, to
-represent the argument of the sigmoid.</p>
-<p><span class="math display">\[ p(\text{bought})
-=  \sigma\left(\boldsymbol{\beta}^\top \mathbf{ x}\right).\]</span> More
-generally, we aim to predict some aspect of our data, <span
-class="math inline">\(y\)</span>, by relating it through a mathematical
-function, <span class="math inline">\(f(\cdot)\)</span>, to the
-parameters, <span class="math inline">\(\boldsymbol{\beta}\)</span> and
-the data, <span class="math inline">\(\mathbf{ x}\)</span>.</p>
-<p><span class="math display">\[ y=  f\left(\mathbf{ x},
-\boldsymbol{\beta}\right).\]</span> We call <span
-class="math inline">\(f(\cdot)\)</span> the <em>prediction
-function</em>.</p>
-<p>To obtain the fit to data, we use a separate function called the
-<em>objective function</em> that gives us a mathematical representation
-of the difference between our predictions and the real data.</p>
-<p><span class="math display">\[E(\boldsymbol{\beta}, \mathbf{Y},
-\mathbf{X})\]</span> A commonly used examples (for example in a
-regression problem) is least squares, <span
-class="math display">\[E(\boldsymbol{\beta}, \mathbf{Y}, \mathbf{X}) =
-\sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i,
-\boldsymbol{\beta})\right)^2.\]</span></p>
-<p>If a linear prediction function is combined with the least squares
-objective function, then that gives us a classical <em>linear
-regression</em>, another classical statistical model. Statistics often
-focusses on linear models because it makes interpretation of the model
-easier. Interpretation is key in statistics because the aim is normally
-to validate questions by analysis of data. Machine learning has
-typically focused more on the prediction function itself and worried
-less about the interpretation of parameters, which are normally denoted
-by <span class="math inline">\(\mathbf{w}\)</span> instead of <span
-class="math inline">\(\boldsymbol{\beta}\)</span>. As a result,
-<em>non-linear</em> functions are explored more often as they tend to
-improve quality of predictions but at the expense of
-interpretability.</p>
-<h2 id="artificial-intelligence-and-data-science">Artificial
-Intelligence and Data Science</h2>
+<p>Any process of automation allows us to scale what we do by codifying a process in some way that makes it efficient and repeatable. Machine learning automates by emulating human (or other actions) found in data. Machine learning codifies in the form of a mathematical function that is learnt by a computer. If we can create these mathematical functions in ways in which they can interconnect, then we can also build systems.</p>
+<p>Machine learning works through codifying a prediction of interest into a mathematical function. For example, we can try and predict the probability that a customer wants to by a jersey given knowledge of their age, and the latitude where they live. The technique known as logistic regression estimates the odds that someone will by a jumper as a linear weighted sum of the features of interest.</p>
+<p><span class="math display">\[ \text{odds} = \frac{p(\text{bought})}{p(\text{not bought})} \]</span></p>
+<p><span class="math display">\[ \log \text{odds}  = \beta_0 + \beta_1 \text{age} + \beta_2 \text{latitude}.\]</span> Here <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> are the parameters of the model. If <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> are both positive, then the log-odds that someone will buy a jumper increase with increasing latitude and age, so the further north you are and the older you are the more likely you are to buy a jumper. The parameter <span class="math inline">\(\beta_0\)</span> is an offset parameter and gives the log-odds of buying a jumper at zero age and on the equator. It is likely to be negative<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> indicating that the purchase is odds-against. This is also a classical statistical model, and models like logistic regression are widely used to estimate probabilities from ad-click prediction to risk of disease.</p>
+<p>This is called a generalized linear model, we can also think of it as estimating the <em>probability</em> of a purchase as a nonlinear function of the features (age, latitude) and the parameters (the <span class="math inline">\(\beta\)</span> values). The function is known as the <em>sigmoid</em> or <a href="https://en.wikipedia.org/wiki/Logistic_regression">logistic function</a>, thus the name <em>logistic</em> regression.</p>
+<p><span class="math display">\[ p(\text{bought}) =  \sigma\left(\beta_0 + \beta_1 \text{age} + \beta_2 \text{latitude}\right).\]</span> In the case where we have <em>features</em> to help us predict, we sometimes denote such features as a vector, <span class="math inline">\(\mathbf{ x}\)</span>, and we then use an inner product between the features and the parameters, <span class="math inline">\(\boldsymbol{\beta}^\top \mathbf{ x}= \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 ...\)</span>, to represent the argument of the sigmoid.</p>
+<p><span class="math display">\[ p(\text{bought}) =  \sigma\left(\boldsymbol{\beta}^\top \mathbf{ x}\right).\]</span> More generally, we aim to predict some aspect of our data, <span class="math inline">\(y\)</span>, by relating it through a mathematical function, <span class="math inline">\(f(\cdot)\)</span>, to the parameters, <span class="math inline">\(\boldsymbol{\beta}\)</span> and the data, <span class="math inline">\(\mathbf{ x}\)</span>.</p>
+<p><span class="math display">\[ y=  f\left(\mathbf{ x}, \boldsymbol{\beta}\right).\]</span> We call <span class="math inline">\(f(\cdot)\)</span> the <em>prediction function</em>.</p>
+<p>To obtain the fit to data, we use a separate function called the <em>objective function</em> that gives us a mathematical representation of the difference between our predictions and the real data.</p>
+<p><span class="math display">\[E(\boldsymbol{\beta}, \mathbf{Y}, \mathbf{X})\]</span> A commonly used examples (for example in a regression problem) is least squares, <span class="math display">\[E(\boldsymbol{\beta}, \mathbf{Y}, \mathbf{X}) = \sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i, \boldsymbol{\beta})\right)^2.\]</span></p>
+<p>If a linear prediction function is combined with the least squares objective function, then that gives us a classical <em>linear regression</em>, another classical statistical model. Statistics often focusses on linear models because it makes interpretation of the model easier. Interpretation is key in statistics because the aim is normally to validate questions by analysis of data. Machine learning has typically focused more on the prediction function itself and worried less about the interpretation of parameters, which are normally denoted by <span class="math inline">\(\mathbf{w}\)</span> instead of <span class="math inline">\(\boldsymbol{\beta}\)</span>. As a result, <em>non-linear</em> functions are explored more often as they tend to improve quality of predictions but at the expense of interpretability.</p>
+<h2 id="artificial-intelligence-and-data-science">Artificial Intelligence and Data Science</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/data-science-vs-ai.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/data-science-vs-ai.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/data-science-vs-ai.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/data-science-vs-ai.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>Machine learning technologies have been the driver of two related,
-but distinct disciplines. The first is <em>data science</em>. Data
-science is an emerging field that arises from the fact that we now
-collect so much data by happenstance, rather than by <em>experimental
-design</em>. Classical statistics is the science of drawing conclusions
-from data, and to do so statistical experiments are carefully designed.
-In the modern era we collect so much data that there’s a desire to draw
-inferences directly from the data.</p>
-<p>As well as machine learning, the field of data science draws from
-statistics, cloud computing, data storage (e.g. streaming data),
-visualization and data mining.</p>
-<p>In contrast, artificial intelligence technologies typically focus on
-emulating some form of human behaviour, such as understanding an image,
-or some speech, or translating text from one form to another. The recent
-advances in artificial intelligence have come from machine learning
-providing the automation. But in contrast to data science, in artificial
-intelligence the data is normally collected with the specific task in
-mind. In this sense it has strong relations to classical statistics.</p>
-<p>Classically artificial intelligence worried more about <em>logic</em>
-and <em>planning</em> and focused less on data driven decision making.
-Modern machine learning owes more to the field of <em>Cybernetics</em>
-<span class="citation" data-cites="Wiener:cybernetics48">(Wiener,
-1948)</span> than artificial intelligence. Related fields include
-<em>robotics</em>, <em>speech recognition</em>, <em>language
-understanding</em> and <em>computer vision</em>.</p>
-<p>There are strong overlaps between the fields, the wide availability
-of data by happenstance makes it easier to collect data for designing AI
-systems. These relations are coming through wide availability of sensing
-technologies that are interconnected by cellular networks, WiFi and the
-internet. This phenomenon is sometimes known as the <em>Internet of
-Things</em>, but this feels like a dangerous misnomer. We must never
-forget that we are interconnecting people, not things.</p>
+<p>Machine learning technologies have been the driver of two related, but distinct disciplines. The first is <em>data science</em>. Data science is an emerging field that arises from the fact that we now collect so much data by happenstance, rather than by <em>experimental design</em>. Classical statistics is the science of drawing conclusions from data, and to do so statistical experiments are carefully designed. In the modern era we collect so much data that there’s a desire to draw inferences directly from the data.</p>
+<p>As well as machine learning, the field of data science draws from statistics, cloud computing, data storage (e.g. streaming data), visualization and data mining.</p>
+<p>In contrast, artificial intelligence technologies typically focus on emulating some form of human behaviour, such as understanding an image, or some speech, or translating text from one form to another. The recent advances in artificial intelligence have come from machine learning providing the automation. But in contrast to data science, in artificial intelligence the data is normally collected with the specific task in mind. In this sense it has strong relations to classical statistics.</p>
+<p>Classically artificial intelligence worried more about <em>logic</em> and <em>planning</em> and focused less on data driven decision making. Modern machine learning owes more to the field of <em>Cybernetics</em> <span class="citation" data-cites="Wiener:cybernetics48">(Wiener, 1948)</span> than artificial intelligence. Related fields include <em>robotics</em>, <em>speech recognition</em>, <em>language understanding</em> and <em>computer vision</em>.</p>
+<p>There are strong overlaps between the fields, the wide availability of data by happenstance makes it easier to collect data for designing AI systems. These relations are coming through wide availability of sensing technologies that are interconnected by cellular networks, WiFi and the internet. This phenomenon is sometimes known as the <em>Internet of Things</em>, but this feels like a dangerous misnomer. We must never forget that we are interconnecting people, not things.</p>
 <center>
-Convention for the Protection of <em>Individuals</em> with regard to
-Automatic Processing of <em>Personal Data</em> (1981/1/28)
+Convention for the Protection of <em>Individuals</em> with regard to Automatic Processing of <em>Personal Data</em> (1981/1/28)
 </center>
 <h2 id="data-science-as-debugging">Data Science as Debugging</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-science-as-debugging.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-science-as-debugging.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-science-as-debugging.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-science-as-debugging.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>One challenge for existing information technology professionals is
-realizing the extent to which a software ecosystem based on data differs
-from a classical ecosystem. In particular, by ingesting data we bring
-unknowns/uncontrollables into our decision-making system. This presents
-opportunity for adversarial exploitation and unforeseen operation.</p>
-<p>blog post on <a
-href="http://inverseprobability.com/2017/03/14/data-science-as-debugging">Data
-Science as Debugging</a>.</p>
-<p>Starting with the analysis of a data set, the nature of data science
-is somewhat difference from classical software engineering.</p>
-<p>One analogy I find helpful for understanding the depth of change we
-need is the following. Imagine as a software engineer, you find a USB
-stick on the ground. And for some reason you <em>know</em> that on that
-USB stick is a particular API call that will enable you to make a
-significant positive difference on a business problem. You don’t know
-which of the many library functions on the USB stick are the ones that
-will help. And it could be that some of those library functions will
-hinder, perhaps because they are just inappropriate or perhaps because
-they have been placed there maliciously. The most secure thing to do
-would be to <em>not</em> introduce this code into your production system
-at all. But what if your manager told you to do so, how would you go
-about incorporating this code base?</p>
-<p>The answer is <em>very</em> carefully. You would have to engage in a
-process more akin to debugging than regular software engineering. As you
-understood the code base, for your work to be reproducible, you should
-be documenting it, not just what you discovered, but how you discovered
-it. In the end, you typically find a single API call that is the one
-that most benefits your system. But more thought has been placed into
-this line of code than any line of code you have written before.</p>
-<p>An enormous amount of debugging would be required. As the nature of
-the code base is understood, software tests to verify it also need to be
-constructed. At the end of all your work, the lines of software you
-write to interact with the software on the USB stick are likely to be
-minimal. But more thought would be put into those lines than perhaps any
-other lines of code in the system.</p>
-<p>Even then, when your API code is introduced into your production
-system, it needs to be deployed in an environment that monitors it. We
-cannot rely on an individual’s decision making to ensure the quality of
-all our systems. We need to create an environment that includes quality
-controls, checks, and bounds, tests, all designed to ensure that
-assumptions made about this foreign code base are remaining valid.</p>
-<p>This situation is akin to what we are doing when we incorporate data
-in our production systems. When we are consuming data from others, we
-cannot assume that it has been produced in alignment with our goals for
-our own systems. Worst case, it may have been adversarially produced. A
-further challenge is that data is dynamic. So, in effect, the code on
-the USB stick is evolving over time.</p>
-<p>It might see that this process is easy to formalize now, we simply
-need to check what the formal software engineering process is for
-debugging, because that is the current software engineering activity
-that data science is closest to. But when we look for a formalization of
-debugging, we find that there is none. Indeed, modern software
-engineering mainly focusses on ensuring that code is written without
-bugs in the first place.</p>
+<p>One challenge for existing information technology professionals is realizing the extent to which a software ecosystem based on data differs from a classical ecosystem. In particular, by ingesting data we bring unknowns/uncontrollables into our decision-making system. This presents opportunity for adversarial exploitation and unforeseen operation.</p>
+<p>blog post on <a href="http://inverseprobability.com/2017/03/14/data-science-as-debugging">Data Science as Debugging</a>.</p>
+<p>Starting with the analysis of a data set, the nature of data science is somewhat difference from classical software engineering.</p>
+<p>One analogy I find helpful for understanding the depth of change we need is the following. Imagine as a software engineer, you find a USB stick on the ground. And for some reason you <em>know</em> that on that USB stick is a particular API call that will enable you to make a significant positive difference on a business problem. You don’t know which of the many library functions on the USB stick are the ones that will help. And it could be that some of those library functions will hinder, perhaps because they are just inappropriate or perhaps because they have been placed there maliciously. The most secure thing to do would be to <em>not</em> introduce this code into your production system at all. But what if your manager told you to do so, how would you go about incorporating this code base?</p>
+<p>The answer is <em>very</em> carefully. You would have to engage in a process more akin to debugging than regular software engineering. As you understood the code base, for your work to be reproducible, you should be documenting it, not just what you discovered, but how you discovered it. In the end, you typically find a single API call that is the one that most benefits your system. But more thought has been placed into this line of code than any line of code you have written before.</p>
+<p>An enormous amount of debugging would be required. As the nature of the code base is understood, software tests to verify it also need to be constructed. At the end of all your work, the lines of software you write to interact with the software on the USB stick are likely to be minimal. But more thought would be put into those lines than perhaps any other lines of code in the system.</p>
+<p>Even then, when your API code is introduced into your production system, it needs to be deployed in an environment that monitors it. We cannot rely on an individual’s decision making to ensure the quality of all our systems. We need to create an environment that includes quality controls, checks, and bounds, tests, all designed to ensure that assumptions made about this foreign code base are remaining valid.</p>
+<p>This situation is akin to what we are doing when we incorporate data in our production systems. When we are consuming data from others, we cannot assume that it has been produced in alignment with our goals for our own systems. Worst case, it may have been adversarially produced. A further challenge is that data is dynamic. So, in effect, the code on the USB stick is evolving over time.</p>
+<p>It might see that this process is easy to formalize now, we simply need to check what the formal software engineering process is for debugging, because that is the current software engineering activity that data science is closest to. But when we look for a formalization of debugging, we find that there is none. Indeed, modern software engineering mainly focusses on ensuring that code is written without bugs in the first place.</p>
 <h3 id="lessons">Lessons</h3>
 <ol type="1">
 <li>When you begin an analysis, behave as a debugger.</li>
 </ol>
 <ul>
-<li>Write test code as you go. Document those tests and ensure they are
-accessible by others.</li>
-<li>Understand the landscape of your data. Be prepared to try several
-different approaches to the data set.</li>
+<li>Write test code as you go. Document those tests and ensure they are accessible by others.</li>
+<li>Understand the landscape of your data. Be prepared to try several different approaches to the data set.</li>
 <li>Be constantly skeptical.</li>
-<li>Use the best tools available, develop a deep understand how they
-work.</li>
-<li>Share your experience of what challenges you’re facing. Have others
-(software engineers, fellow data analysts, your manager) review your
-work.</li>
-<li>Never go straight for the goal: you’d never try and write the API
-call straight away on the discarded hard drive, so why are you launching
-your classification algorithm before visualizing the data?</li>
-<li>Ensure your analysis is documented and accessible. If your code does
-go wrong in production, you’ll need to be able to retrace to where the
-error crept in.</li>
+<li>Use the best tools available, develop a deep understand how they work.</li>
+<li>Share your experience of what challenges you’re facing. Have others (software engineers, fellow data analysts, your manager) review your work.</li>
+<li>Never go straight for the goal: you’d never try and write the API call straight away on the discarded hard drive, so why are you launching your classification algorithm before visualizing the data?</li>
+<li>Ensure your analysis is documented and accessible. If your code does go wrong in production, you’ll need to be able to retrace to where the error crept in.</li>
 </ul>
 <ol start="2" type="1">
-<li>When managing the data science process, don’t treat it as standard
-code development.</li>
+<li>When managing the data science process, don’t treat it as standard code development.</li>
 </ol>
 <ul>
-<li>Don’t deploy a traditional agile development pipeline and expect it
-to work the same way it does for standard code development. Think about
-how you handle bugs, think about how you would handle very many
-bugs.</li>
+<li>Don’t deploy a traditional agile development pipeline and expect it to work the same way it does for standard code development. Think about how you handle bugs, think about how you would handle very many bugs.</li>
 <li>Don’t leave the data scientist alone to wade through the mess.</li>
-<li>Integrate the data analysis with your other team activities. Have
-the software engineers and domain experts work closely with the data
-scientists. This is vital for providing the data scientists with the
-technical support they need, but also managing the expectations of the
-engineers in terms of when and how the data will be able to
-deliver.</li>
+<li>Integrate the data analysis with your other team activities. Have the software engineers and domain experts work closely with the data scientists. This is vital for providing the data scientists with the technical support they need, but also managing the expectations of the engineers in terms of when and how the data will be able to deliver.</li>
 </ul>
-<p><strong>Recommendation</strong>: Anecdotally, resolving a machine
-learning challenge requires 80% of the resource to be focused on the
-data and perhaps 20% to be focused on the model. But many companies are
-too keen to employ machine learning engineers who focus on the models,
-not the data. We should change our hiring priorities and training.
-Universities cannot provide the understanding of how to data-wrangle.
-Companies must fill this gap.</p>
-<h2 id="complexity-in-action">Complexity in Action</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_psychology/includes/selective-attention-bias.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_psychology/includes/selective-attention-bias.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>As an exercise in understanding complexity, watch the following
-video. You will see the basketball being bounced around, and the players
-moving. Your job is to count the passes of those dressed in white and
-ignore those of the individuals dressed in black.</p>
-<div class="figure">
-<div id="monkey-business-figure" class="figure-frame">
-<iframe width="600" height="450" src="https://www.youtube.com/embed/vJG698U2Mvo?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
-</div>
-<div id="monkey-business-magnify" class="magnify"
-onclick="magnifyFigure(&#39;monkey-business&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="monkey-business-caption" class="caption-frame">
-<p>Figure: Daniel Simon’s famous illusion “monkey business”. Focus on
-the movement of the ball distracts the viewer from seeing other aspects
-of the image.</p>
-</div>
-</div>
-<p>In a classic study <span class="citation"
-data-cites="Simons-gorillas99">Simons and Chabris (1999)</span> ask
-subjects to count the number of passes of the basketball between players
-on the team wearing white shirts. Fifty percent of the time, these
-subjects don’t notice the gorilla moving across the scene.</p>
-<p>The phenomenon of inattentional blindness is well known, e.g in their
-paper Simons and Charbris quote the Hungarian neurologist, Rezsö
-Bálint,</p>
-<blockquote>
-<p>It is a well-known phenomenon that we do not notice anything
-happening in our surroundings while being absorbed in the inspection of
-something; focusing our attention on a certain object may happen to such
-an extent that we cannot perceive other objects placed in the peripheral
-parts of our visual field, although the light rays they emit arrive
-completely at the visual sphere of the cerebral cortex.</p>
-<p>Rezsö Bálint 1907 (translated in Husain and Stein 1988, page 91)</p>
-</blockquote>
-<p>When we combine the complexity of the world with our relatively low
-bandwidth for information, problems can arise. Our focus on what we
-perceive to be the most important problem can cause us to miss other
-(potentially vital) contextual information.</p>
-<p>This phenomenon is known as selective attention or ‘inattentional
-blindness’.</p>
-<div class="figure">
-<div id="daniel-simons-monkey-business-figure" class="figure-frame">
-<iframe width="600" height="450" src="https://www.youtube.com/embed/_oGAzq5wM_Q?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
-</div>
-<div id="daniel-simons-monkey-business-magnify" class="magnify"
-onclick="magnifyFigure(&#39;daniel-simons-monkey-business&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="daniel-simons-monkey-business-caption" class="caption-frame">
-<p>Figure: For a longer talk on inattentional bias from Daniel Simons
-see this video.</p>
-</div>
-</div>
-<h2 id="data-selective-attention-bias">Data Selective Attention
-Bias</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-inattention-bias.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/data-inattention-bias.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>We are going to see how inattention biases can play out in data
-analysis by going through a simple example. The analysis involves body
-mass index and activity information.</p>
-<h2 id="a-hypothesis-as-a-liability">A Hypothesis as a Liability</h2>
-<p>This analysis is from an article titled “A Hypothesis as a Liability”
-<span class="citation" data-cites="Yanai-hypothesis20">(Yanai and
-Lercher, 2020)</span>, they start their article with the following quite
-from Herman Hesse.</p>
-<blockquote>
-<p>“ ‘When someone seeks,’ said Siddhartha, ‘then it easily happens that
-his eyes see only the thing that he seeks, and he is able to find
-nothing, to take in nothing. […] Seeking means: having a goal. But
-finding means: being free, being open, having no goal.’ ”</p>
-<p>Hermann Hesse</p>
-</blockquote>
-<p>Their idea is that having a hypothesis can constrain our thinking.
-However, in answer to their paper <span class="citation"
-data-cites="Felin-data20">Felin et al. (2021)</span> argue that some
-form of hypothesis is always necessary, suggesting that a hypothesis
-<em>can</em> be a liability</p>
-<p>My view is captured in the introductory chapter to an edited volume
-on computational systems biology that I worked on with Mark Girolami,
-Magnus Rattray and Guido Sanguinetti.</p>
-<div class="figure">
-<div id="licsb-popper-quote-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/licsb-popper-quote.png" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-<div id="licsb-popper-quote-magnify" class="magnify"
-onclick="magnifyFigure(&#39;licsb-popper-quote&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="licsb-popper-quote-caption" class="caption-frame">
-<p>Figure: Quote from <span class="citation"
-data-cites="Lawrence:licsbintro10">Lawrence (2010)</span> highlighting
-the importance of interaction between data and hypothesis.</p>
-</div>
-</div>
-<p>Popper nicely captures the interaction between hypothesis and data by
-relating it to the chicken and the egg. The important thing is that
-these two co-evolve.</p>
-<h2 id="number-theatre">Number Theatre</h2>
-<p>Unfortunately, we don’t always have time to wait for this process to
-converge to an answer we can all rely on before a decision is
-required.</p>
-<p>Not only can we be misled by data before a decision is made, but
-sometimes we can be misled by data to justify the making of a decision.
-David Spiegelhalter refers to the phenomenon of “Number Theatre” in a
-conversation with Andrew Marr from May 2020 on the presentation of
-data.</p>
-<div class="figure">
-<div id="david-andrew-marr-figure" class="figure-frame">
-<iframe width="600" height="450" src="https://www.youtube.com/embed/9388XmWIHXg?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
-</div>
-<div id="david-andrew-marr-magnify" class="magnify"
-onclick="magnifyFigure(&#39;david-andrew-marr&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="david-andrew-marr-caption" class="caption-frame">
-<p>Figure: Professor Sir David Spiegelhalter on Andrew Marr on 10th May
-2020 speaking about some of the challengers around data, data
-presentation, and decision making in a pandemic. David mentions number
-theatre at 9 minutes 10 seconds.</p>
-</div>
-</div>
-<!--includebbcvideo{p08csg28}-->
-<h2 id="data-theatre">Data Theatre</h2>
-<p>Data Theatre exploits data inattention bias to present a particular
-view on events that may misrepresents through selective presentation.
-Statisticians are one of the few groups that are trained with a
-sufficient degree of data skepticism. But it can also be combatted
-through ensuring there are domain experts present, and that they can
-speak freely.</p>
-<div class="figure">
-<div id="data-theatre-001-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//business/data-theatre001.svg" width="60%" style=" ">
-</object>
-</div>
-<div id="data-theatre-001-magnify" class="magnify"
-onclick="magnifyFigure(&#39;data-theatre-001&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="data-theatre-001-caption" class="caption-frame">
-<p>Figure: The phenomenon of number theatre or <em>data theatre</em> was
-described by David Spiegelhalter and is nicely summarized by Martin
-Robbins in this sub-stack article <a
-href="https://martinrobbins.substack.com/p/data-theatre-why-the-digital-dashboards"
-class="uri">https://martinrobbins.substack.com/p/data-theatre-why-the-digital-dashboards</a>.</p>
-</div>
-</div>
-<p>The best book I have found for teaching the skeptical sense of data
-that underlies the statisticians craft is David Spiegelhalter’s <em>Art
-of Statistics</em>.</p>
-<h1 id="the-art-of-statistics">The Art of Statistics</h1>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_books/includes/the-art-of-statistics.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_books/includes/the-art-of-statistics.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<center>
-<svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip0">
-<style>
-circle {
-  fill: black;
-}
-</style>
-<circle cx="100" cy="100" r="100"/> </clipPath> </defs>
-<title>
-David Spiegelhalter
-</title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/advds/./slides/diagrams//people/david-spiegelhalter.png" clip-path="url(#clip0)"/>
-</svg>
-</center>
-<div class="figure">
-<div id="art-of-statistics-figure" class="figure-frame">
-<div class="centered centered" style="">
-<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//books/the-art-of-statistics.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-<div id="art-of-statistics-magnify" class="magnify"
-onclick="magnifyFigure(&#39;art-of-statistics&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="art-of-statistics-caption" class="caption-frame">
-<p>Figure: <a
-href="https://www.amazon.co.uk/Art-Statistics-Learning-Pelican-Books-ebook/dp/B07HQDJD99">The
-Art of Statistics by David Spiegelhalter</a> is an excellent read on the
-pitfalls of data interpretation.</p>
-</div>
-</div>
-<p>David’s book <span class="citation"
-data-cites="Spiegelhalter-art19">(Spiegelhalter, 2019)</span> brings
-important examples from statistics to life in an intelligent and
-entertaining way. It is highly readable and gives an opportunity to
-fast-track towards the important skill of data-skepticism that is the
-mark of a professional statistician.</p>
-<h2 id="societal-effects">Societal Effects</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/societal-effects.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/societal-effects.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>We have already seen the effects of this changed dynamic in biology
-and computational biology. Improved sensorics have led to the new
-domains of transcriptomics, epigenomics, and ‘rich phenomics’ as well as
-considerably augmenting our capabilities in genomics.</p>
-<p>Biologists have had to become data-savvy, they require a rich
-understanding of the available data resources and need to assimilate
-existing data sets in their hypothesis generation as well as their
-experimental design. Modern biology has become a far more quantitative
-science, but the quantitativeness has required new methods developed in
-the domains of <em>computational biology</em> and
-<em>bioinformatics</em>.</p>
-<p>There is also great promise for personalized health, but in health
-the wide data-sharing that has underpinned success in the computational
-biology community is much harder to carry out.</p>
-<p>We can expect to see these phenomena reflected in wider society.
-Particularly as we make use of more automated decision making based only
-on data. This is leading to a requirement to better understand our own
-subjective biases to ensure that the human to computer interface allows
-domain experts to assimilate data driven conclusions in a well
-calibrated manner. This is particularly important where medical
-treatments are being prescribed. It also offers potential for different
-kinds of medical intervention. More subtle interventions are possible
-when the digital environment is able to respond to users in an bespoke
-manner. This has particular implications for treatment of mental health
-conditions.</p>
-<p>The main phenomenon we see across the board is the shift in dynamic
-from the direct pathway between human and data, as traditionally
-mediated by classical statistics, to a new flow of information via the
-computer. This change of dynamics gives us the modern and emerging
-domain of <em>data science</em>, where the interactions between human
-and data are mediated by the machine.</p>
+<p><strong>Recommendation</strong>: Anecdotally, resolving a machine learning challenge requires 80% of the resource to be focused on the data and perhaps 20% to be focused on the model. But many companies are too keen to employ machine learning engineers who focus on the models, not the data. We should change our hiring priorities and training. Universities cannot provide the understanding of how to data-wrangle. Companies must fill this gap.</p>
 <h2 id="conclusions">Conclusions</h2>
-<p>In today’s lecture we’ve drilled down further on a difficult aspect
-of data science. By focusing too much on the data and the technical
-challenges we face, we can forget the context. But to do data science
-well, we must not forget the context of the data. We need to pay
-attention to domain experts and introduce their understanding to our
-analysis. Above all we must not forget that data is almost always (in
-the end) about people.</p>
+<p>In today’s lecture we’ve drilled down further on a difficult aspect of data science. By focusing too much on the data and the technical challenges we face, we can forget the context. But to do data science well, we must not forget the context of the data. We need to pay attention to domain experts and introduce their understanding to our analysis. Above all we must not forget that data is almost always (in the end) about people.</p>
 <h1 id="references">References</h1>
 <h2 id="thanks">Thanks!</h2>
-<p>For more information on these subjects and more you might want to
-check the following resources.</p>
+<p>For more information on these subjects and more you might want to check the following resources.</p>
 <ul>
 <li>twitter: <a href="https://twitter.com/lawrennd">@lawrennd</a></li>
-<li>podcast: <a href="http://thetalkingmachines.com">The Talking
-Machines</a></li>
-<li>newspaper: <a
-href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile
-Page</a></li>
-<li>blog: <a
-href="http://inverseprobability.com/blog.html">http://inverseprobability.com</a></li>
+<li>podcast: <a href="http://thetalkingmachines.com">The Talking Machines</a></li>
+<li>newspaper: <a href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile Page</a></li>
+<li>blog: <a href="http://inverseprobability.com/blog.html">http://inverseprobability.com</a></li>
 </ul>
-<div id="refs" class="references csl-bib-body hanging-indent"
-role="doc-bibliography">
-<div id="ref-Felin-data20" class="csl-entry" role="doc-biblioentry">
-Felin, T., Koenderink, J., Krueger, J.I., Noble, D., Ellis, G.F.R.,
-2021. The data-hypothesis relationship. Genome Biology 22. <a
-href="https://doi.org/10.1186/s13059-021-02276-4">https://doi.org/10.1186/s13059-021-02276-4</a>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Krizhevsky:imagenet12" class="csl-entry" role="doc-biblioentry">
+Krizhevsky, A., Sutskever, I., Hinton, G.E., n.d. ImageNet classification with deep convolutional neural networks. pp. 1097–1105.
 </div>
-<div id="ref-Krizhevsky:imagenet12" class="csl-entry"
-role="doc-biblioentry">
-Krizhevsky, A., Sutskever, I., Hinton, G.E., n.d. ImageNet
-classification with deep convolutional neural networks. pp. 1097–1105.
-</div>
-<div id="ref-Lawrence:licsbintro10" class="csl-entry"
-role="doc-biblioentry">
-Lawrence, N.D., 2010. Introduction to learning and inference in
-computational systems biology.
-</div>
-<div id="ref-Simons-gorillas99" class="csl-entry"
-role="doc-biblioentry">
-Simons, D.J., Chabris, C.F., 1999. Gorillas in our midst: Sustained
-inattentional blindness for dynamic events. Perception 28, 1059–1074. <a
-href="https://doi.org/10.1068/p281059">https://doi.org/10.1068/p281059</a>
-</div>
-<div id="ref-Spiegelhalter-art19" class="csl-entry"
-role="doc-biblioentry">
-Spiegelhalter, D.J., 2019. The art of statistics. Pelican.
-</div>
-<div id="ref-Wiener:cybernetics48" class="csl-entry"
-role="doc-biblioentry">
-Wiener, N., 1948. Cybernetics: Control and communication in the animal
-and the machine. MIT Press, Cambridge, MA.
-</div>
-<div id="ref-Yanai-hypothesis20" class="csl-entry"
-role="doc-biblioentry">
-Yanai, I., Lercher, M., 2020. A hypothesis is a liability. Genome
-Biology 21.
+<div id="ref-Wiener:cybernetics48" class="csl-entry" role="doc-biblioentry">
+Wiener, N., 1948. Cybernetics: Control and communication in the animal and the machine. MIT Press, Cambridge, MA.
 </div>
 </div>
-<section id="footnotes" class="footnotes footnotes-end-of-document"
-role="doc-endnotes">
+<section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>The logarithm of a number less than one is negative, for
-a number greater than one the logarithm is positive. So if odds are
-greater than evens (odds-on) the log-odds are positive, if the odds are
-less than evens (odds-against) the log-odds will be negative.<a
-href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>The logarithm of a number less than one is negative, for a number greater than one the logarithm is positive. So if odds are greater than evens (odds-on) the log-odds are positive, if the odds are less than evens (odds-against) the log-odds will be negative.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

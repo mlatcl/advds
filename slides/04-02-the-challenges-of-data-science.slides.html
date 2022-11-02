@@ -44,11 +44,9 @@
 
 <section id="title-slide">
   <h1 class="title">The Challenges of Data Science</h1>
-  <p class="author" style="text-align:center"><a href="http://inverseprobability.com">Neil
-D. Lawrence</a></p>
+  <p class="author" style="text-align:center"><a href="http://inverseprobability.com">Neil D. Lawrence</a></p>
   <p class="date" style="text-align:center"><time>2022-10-31</time></p>
-  <p class="venue" style="text-align:center">LT2, William Gates
-Building</p>
+  <p class="venue" style="text-align:center">LT2, William Gates Building</p>
 </section>
 
 <section class="slide level2">
@@ -65,10 +63,8 @@ Building</p>
 <section id="background-big-data" class="slide level2">
 <h2>Background: Big Data</h2>
 <ul>
-<li><p>Data is Pervasive phenomenon that affects all aspects of our
-activities</p></li>
-<li><p>Data diffusiveness is both a challenge and an
-opportunity</p></li>
+<li><p>Data is Pervasive phenomenon that affects all aspects of our activities</p></li>
+<li><p>Data diffusiveness is both a challenge and an opportunity</p></li>
 </ul>
 </section>
 <section id="the-gartner-hype-cycle" class="slide level2">
@@ -80,10 +76,7 @@ opportunity</p></li>
 </div>
 </div>
 <aside class="notes">
-The Gartner Hype Cycle places technologies on a graph that relates to
-the expectations we have of a technology against its actual influence.
-Early hope for a new techology is often displaced by disillusionment due
-to the time it takes for a technology to be usefully deployed.
+The Gartner Hype Cycle places technologies on a graph that relates to the expectations we have of a technology against its actual influence. Early hope for a new techology is often displaced by disillusionment due to the time it takes for a technology to be usefully deployed.
 </aside>
 </section>
 <section id="cycle-for-ml-terms" class="slide level2">
@@ -94,32 +87,24 @@ to the time it takes for a technology to be usefully deployed.
 <script>
 showDivs(0, 'ai-bd-dm-dl-ml-google-trends');
 </script>
-<p><small></small>
-<input id="range-ai-bd-dm-dl-ml-google-trends" type="range" min="0" max="4" value="0" onchange="setDivs('ai-bd-dm-dl-ml-google-trends')" oninput="setDivs('ai-bd-dm-dl-ml-google-trends')">
-<button onclick="plusDivs(-1, 'ai-bd-dm-dl-ml-google-trends')">❮</button>
-<button onclick="plusDivs(1, 'ai-bd-dm-dl-ml-google-trends')">❯</button></p>
-<div class="ai-bd-dm-dl-ml-google-trends"
-style="text-align:center;max-width:100vw; max-height:100vh">
+<p><small></small> <input id="range-ai-bd-dm-dl-ml-google-trends" type="range" min="0" max="4" value="0" onchange="setDivs('ai-bd-dm-dl-ml-google-trends')" oninput="setDivs('ai-bd-dm-dl-ml-google-trends')"> <button onclick="plusDivs(-1, 'ai-bd-dm-dl-ml-google-trends')">❮</button> <button onclick="plusDivs(1, 'ai-bd-dm-dl-ml-google-trends')">❯</button></p>
+<div class="ai-bd-dm-dl-ml-google-trends" style="text-align:center;max-width:100vw; max-height:100vh">
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/ai-bd-dm-dl-ml-google-trends000.svg" width style=" ">
 </object>
 </div>
-<div class="ai-bd-dm-dl-ml-google-trends"
-style="text-align:center;max-width:100vw; max-height:100vh">
+<div class="ai-bd-dm-dl-ml-google-trends" style="text-align:center;max-width:100vw; max-height:100vh">
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/ai-bd-dm-dl-ml-google-trends001.svg" width style=" ">
 </object>
 </div>
-<div class="ai-bd-dm-dl-ml-google-trends"
-style="text-align:center;max-width:100vw; max-height:100vh">
+<div class="ai-bd-dm-dl-ml-google-trends" style="text-align:center;max-width:100vw; max-height:100vh">
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/ai-bd-dm-dl-ml-google-trends002.svg" width style=" ">
 </object>
 </div>
-<div class="ai-bd-dm-dl-ml-google-trends"
-style="text-align:center;max-width:100vw; max-height:100vh">
+<div class="ai-bd-dm-dl-ml-google-trends" style="text-align:center;max-width:100vw; max-height:100vh">
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/ai-bd-dm-dl-ml-google-trends003.svg" width style=" ">
 </object>
 </div>
-<div class="ai-bd-dm-dl-ml-google-trends"
-style="text-align:center;max-width:100vw; max-height:100vh">
+<div class="ai-bd-dm-dl-ml-google-trends" style="text-align:center;max-width:100vw; max-height:100vh">
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/ai-bd-dm-dl-ml-google-trends004.svg" width style=" ">
 </object>
 </div>
@@ -131,48 +116,36 @@ style="text-align:center;max-width:100vw; max-height:100vh">
 <section id="what-is-machine-learning-1" class="slide level2">
 <h2>What is Machine Learning?</h2>
 <div class="fragment">
-<p><span class="math display">\[ \text{data} + \text{model}
-\stackrel{\text{compute}}{\rightarrow} \text{prediction}\]</span></p>
+<p><span class="math display">\[ \text{data} + \text{model} \stackrel{\text{compute}}{\rightarrow} \text{prediction}\]</span></p>
 </div>
 <div class="fragment">
 <ul>
-<li><strong>data</strong> : observations, could be actively or passively
-acquired (meta-data).</li>
+<li><strong>data</strong> : observations, could be actively or passively acquired (meta-data).</li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li><strong>model</strong> : assumptions, based on previous experience
-(other data! transfer learning etc), or beliefs about the regularities
-of the universe. Inductive bias.</li>
+<li><strong>model</strong> : assumptions, based on previous experience (other data! transfer learning etc), or beliefs about the regularities of the universe. Inductive bias.</li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li><strong>prediction</strong> : an action to be taken or a
-categorization or a quality score.</li>
+<li><strong>prediction</strong> : an action to be taken or a categorization or a quality score.</li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li>Royal Society Report: <a
-href="https://royalsociety.org/~/media/policy/projects/machine-learning/publications/machine-learning-report.pdf">Machine
-Learning: Power and Promise of Computers that Learn by Example</a></li>
+<li>Royal Society Report: <a href="https://royalsociety.org/~/media/policy/projects/machine-learning/publications/machine-learning-report.pdf">Machine Learning: Power and Promise of Computers that Learn by Example</a></li>
 </ul>
 </div>
 </section>
 <section id="what-is-machine-learning-2" class="slide level2">
 <h2>What is Machine Learning?</h2>
-<p><span class="math display">\[\text{data} + \text{model}
-\stackrel{\text{compute}}{\rightarrow} \text{prediction}\]</span></p>
+<p><span class="math display">\[\text{data} + \text{model} \stackrel{\text{compute}}{\rightarrow} \text{prediction}\]</span></p>
 <ul>
 <li class="fragment">To combine data with a model need:</li>
-<li class="fragment"><strong>a prediction function</strong> <span
-class="math inline">\(f(\cdot)\)</span> includes our beliefs about the
-regularities of the universe</li>
-<li class="fragment"><strong>an objective function</strong> <span
-class="math inline">\(E(\cdot)\)</span> defines the cost of
-misprediction.</li>
+<li class="fragment"><strong>a prediction function</strong> <span class="math inline">\(f(\cdot)\)</span> includes our beliefs about the regularities of the universe</li>
+<li class="fragment"><strong>an objective function</strong> <span class="math inline">\(E(\cdot)\)</span> defines the cost of misprediction.</li>
 </ul>
 </section>
 <section id="classical-statistical-analysis" class="slide level2">
@@ -198,50 +171,40 @@ misprediction.</li>
 </ul></li>
 </ul>
 </section>
-<section id="codify-through-mathematical-functions"
-class="slide level2">
+<section id="codify-through-mathematical-functions" class="slide level2">
 <h2>Codify Through Mathematical Functions</h2>
 <ul>
 <li>How does machine learning work?</li>
 <li>Jumper (jersey/sweater) purchase with logistic regression</li>
 </ul>
-<p><span class="math display">\[ \text{odds} =
-\frac{p(\text{bought})}{p(\text{not bought})} \]</span></p>
-<p><span class="math display">\[ \log \text{odds}  = \beta_0 + \beta_1
-\text{age} + \beta_2 \text{latitude}.\]</span></p>
+<p><span class="math display">\[ \text{odds} = \frac{p(\text{bought})}{p(\text{not bought})} \]</span></p>
+<p><span class="math display">\[ \log \text{odds}  = \beta_0 + \beta_1 \text{age} + \beta_2 \text{latitude}.\]</span></p>
 </section>
-<section id="codify-through-mathematical-functions-1"
-class="slide level2">
+<section id="codify-through-mathematical-functions-1" class="slide level2">
 <h2>Codify Through Mathematical Functions</h2>
 <ul>
 <li>How does machine learning work?</li>
 <li>Jumper (jersey/sweater) purchase with logistic regression</li>
 </ul>
-<p><span class="math display">\[ p(\text{bought}) =  \sigma\left(\beta_0
-+ \beta_1 \text{age} + \beta_2 \text{latitude}\right).\]</span></p>
+<p><span class="math display">\[ p(\text{bought}) =  \sigma\left(\beta_0 + \beta_1 \text{age} + \beta_2 \text{latitude}\right).\]</span></p>
 </section>
-<section id="codify-through-mathematical-functions-2"
-class="slide level2">
+<section id="codify-through-mathematical-functions-2" class="slide level2">
 <h2>Codify Through Mathematical Functions</h2>
 <ul>
 <li>How does machine learning work?</li>
 <li>Jumper (jersey/sweater) purchase with logistic regression</li>
 </ul>
-<p><span class="math display">\[ p(\text{bought})
-=  \sigma\left(\boldsymbol{\beta}^\top \mathbf{ x}\right).\]</span></p>
+<p><span class="math display">\[ p(\text{bought}) =  \sigma\left(\boldsymbol{\beta}^\top \mathbf{ x}\right).\]</span></p>
 </section>
-<section id="codify-through-mathematical-functions-3"
-class="slide level2">
+<section id="codify-through-mathematical-functions-3" class="slide level2">
 <h2>Codify Through Mathematical Functions</h2>
 <ul>
 <li>How does machine learning work?</li>
 <li>Jumper (jersey/sweater) purchase with logistic regression</li>
 </ul>
-<p><span class="math display">\[ y=  f\left(\mathbf{ x},
-\boldsymbol{\beta}\right).\]</span></p>
+<p><span class="math display">\[ y=  f\left(\mathbf{ x}, \boldsymbol{\beta}\right).\]</span></p>
 <div class="fragment">
-<p>We call <span class="math inline">\(f(\cdot)\)</span> the
-<em>prediction function</em>.</p>
+<p>We call <span class="math inline">\(f(\cdot)\)</span> the <em>prediction function</em>.</p>
 </div>
 </section>
 <section id="fit-to-data" class="slide level2">
@@ -249,24 +212,18 @@ class="slide level2">
 <ul>
 <li>Use an objective function</li>
 </ul>
-<p><span class="math display">\[E(\boldsymbol{\beta}, \mathbf{Y},
-\mathbf{X})\]</span></p>
+<p><span class="math display">\[E(\boldsymbol{\beta}, \mathbf{Y}, \mathbf{X})\]</span></p>
 <div class="fragment">
 <ul>
-<li>E.g. least squares <span
-class="math display">\[E(\boldsymbol{\beta}, \mathbf{Y}, \mathbf{X}) =
-\sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i,
-\boldsymbol{\beta})\right)^2.\]</span></li>
+<li>E.g. least squares <span class="math display">\[E(\boldsymbol{\beta}, \mathbf{Y}, \mathbf{X}) = \sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i, \boldsymbol{\beta})\right)^2.\]</span></li>
 </ul>
 </div>
 </section>
 <section id="two-components" class="slide level2">
 <h2>Two Components</h2>
 <ul>
-<li>Prediction function, <span
-class="math inline">\(f(\cdot)\)</span></li>
-<li>Objective function, <span
-class="math inline">\(E(\cdot)\)</span></li>
+<li>Prediction function, <span class="math inline">\(f(\cdot)\)</span></li>
+<li>Objective function, <span class="math inline">\(E(\cdot)\)</span></li>
 </ul>
 </section>
 <section id="machine-learning" class="slide level2">
@@ -274,8 +231,7 @@ class="math inline">\(E(\cdot)\)</span></li>
 <ul>
 <li>Driver of two different domains:
 <ol type="1">
-<li><em>Data Science</em>: arises from the fact that we now capture data
-by happenstance.</li>
+<li><em>Data Science</em>: arises from the fact that we now capture data by happenstance.</li>
 <li><em>Artificial Intelligence</em>: emulation of human behaviour.</li>
 </ol></li>
 <li>Connection: Internet of Things</li>
@@ -286,8 +242,7 @@ by happenstance.</li>
 <ul>
 <li>Driver of two different domains:
 <ol type="1">
-<li><em>Data Science</em>: arises from the fact that we now capture data
-by happenstance.</li>
+<li><em>Data Science</em>: arises from the fact that we now capture data by happenstance.</li>
 <li><em>Artificial Intelligence</em>: emulation of human behaviour.</li>
 </ol></li>
 <li>Connection: Internet of <del>Things</del></li>
@@ -298,8 +253,7 @@ by happenstance.</li>
 <ul>
 <li>Driver of two different domains:
 <ol type="1">
-<li><em>Data Science</em>: arises from the fact that we now capture data
-by happenstance.</li>
+<li><em>Data Science</em>: arises from the fact that we now capture data by happenstance.</li>
 <li><em>Artificial Intelligence</em>: emulation of human behaviour.</li>
 </ol></li>
 <li>Connection: Internet of People</li>
@@ -308,8 +262,7 @@ by happenstance.</li>
 <section id="section" class="slide level2">
 <h2></h2>
 <center>
-Convention for the Protection of <em>Individuals</em> with regard to
-Automatic Processing of <em>Personal Data</em> (1981/1/28)
+Convention for the Protection of <em>Individuals</em> with regard to Automatic Processing of <em>Personal Data</em> (1981/1/28)
 </center>
 </section>
 <section id="what-does-machine-learning-do-1" class="slide level2">
@@ -318,27 +271,22 @@ Automatic Processing of <em>Personal Data</em> (1981/1/28)
 <li>ML Automates through Data
 <ul>
 <li><em>Strongly</em> related to statistics.</li>
-<li>Field underpins revolution in <em>data science</em> and
-<em>AI</em></li>
+<li>Field underpins revolution in <em>data science</em> and <em>AI</em></li>
 </ul></li>
 <li>With AI:
 <ul>
-<li><em>logic</em>, <em>robotics</em>, <em>computer vision</em>,
-<em>speech</em></li>
+<li><em>logic</em>, <em>robotics</em>, <em>computer vision</em>, <em>speech</em></li>
 </ul></li>
 <li>With Data Science:
 <ul>
-<li><em>databases</em>, <em>data mining</em>, <em>statistics</em>,
-<em>visualization</em></li>
+<li><em>databases</em>, <em>data mining</em>, <em>statistics</em>, <em>visualization</em></li>
 </ul></li>
 </ul>
 </section>
 <section id="data-science-as-debugging" class="slide level2">
 <h2>Data Science as Debugging</h2>
 <ul>
-<li>Analogies: For Software Engineers <a
-href="http://inverseprobability.com/2017/03/14/data-science-as-debugging">describe
-data science as <em>debugging</em></a>.</li>
+<li>Analogies: For Software Engineers <a href="http://inverseprobability.com/2017/03/14/data-science-as-debugging">describe data science as <em>debugging</em></a>.</li>
 </ul>
 </section>
 <section id="in-data-science" class="slide level2">
@@ -349,8 +297,7 @@ data science as <em>debugging</em></a>.</li>
 <li>80% of time is spent on data wrangling.</li>
 <li>20% of time spent on modelling.</li>
 </ul></li>
-<li>Many companies employ ML Engineers focussing on <em>models</em> not
-<em>data</em>.</li>
+<li>Many companies employ ML Engineers focussing on <em>models</em> not <em>data</em>.</li>
 </ul>
 </section>
 <section id="lessons" class="slide level2">
@@ -374,170 +321,12 @@ data science as <em>debugging</em></a>.</li>
 <li>When managing a data science process.</li>
 </ol>
 <ul>
-<li>Don’t deploy standard agile development. Explore modifications
-e.g. Kanban</li>
+<li>Don’t deploy standard agile development. Explore modifications e.g. Kanban</li>
 <li>Don’t leave data scientist alone to wade through mess.</li>
 <li>Integrate the data analysis with other team activities
 <ul>
-<li>Have software engineers and domain experts work closely with data
-scientists</li>
+<li>Have software engineers and domain experts work closely with data scientists</li>
 </ul></li>
-</ul>
-</section>
-<section id="complexity-in-action" class="slide level2">
-<h2>Complexity in Action</h2>
-<div class="figure">
-<div id="monkey-business-figure" class="figure-frame">
-<iframe width="600" height="450" src="https://www.youtube.com/embed/vJG698U2Mvo?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
-</div>
-</div>
-<aside class="notes">
-Daniel Simon’s famous illusion “monkey business”. Focus on the movement
-of the ball distracts the viewer from seeing other aspects of the image.
-</aside>
-</section>
-<section id="data-selective-attention-bias" class="slide level2">
-<h2>Data Selective Attention Bias</h2>
-</section>
-<section id="a-hypothesis-as-a-liability" class="slide level2">
-<h2>A Hypothesis as a Liability</h2>
-<blockquote>
-<p>“ ‘When someone seeks,’ said Siddhartha, ‘then it easily happens that
-his eyes see only the thing that he seeks, and he is able to find
-nothing, to take in nothing. […] Seeking means: having a goal. But
-finding means: being free, being open, having no goal.’ ”</p>
-<p>Hermann Hesse</p>
-</blockquote>
-</section>
-<section id="the-scientific-process" class="slide level2">
-<h2>The Scientific Process</h2>
-<div class="figure">
-<div id="licsb-popper-quote-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/licsb-popper-quote.png" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-</div>
-<aside class="notes">
-Quote from <span class="citation"
-data-cites="Lawrence:licsbintro10">Lawrence (2010)</span> highlighting
-the importance of interaction between data and hypothesis.
-</aside>
-</section>
-<section id="number-theatre" class="slide level2">
-<h2>Number Theatre</h2>
-<div class="figure">
-<div id="david-andrew-marr-figure" class="figure-frame">
-<iframe width="600" height="450" src="https://www.youtube.com/embed/9388XmWIHXg?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
-</div>
-</div>
-<aside class="notes">
-Professor Sir David Spiegelhalter on Andrew Marr on 10th May 2020
-speaking about some of the challengers around data, data presentation,
-and decision making in a pandemic. David mentions number theatre at 9
-minutes 10 seconds.
-</aside>
-<!--includebbcvideo{p08csg28}-->
-</section>
-<section id="data-theatre" class="slide level2">
-<h2>Data Theatre</h2>
-<div class="figure">
-<div id="data-theatre-000-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//business/data-theatre000.svg" width="60%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-The phenomenon of number theatre or <em>data theatre</em> was described
-by David Spiegelhalter and is nicely summarized by Martin Robbins in
-this sub-stack article <a
-href="https://martinrobbins.substack.com/p/data-theatre-why-the-digital-dashboards"
-class="uri">https://martinrobbins.substack.com/p/data-theatre-why-the-digital-dashboards</a>.
-</aside>
-</section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-<div class="figure">
-<div id="data-theatre-001-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//business/data-theatre001.svg" width="60%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-The phenomenon of number theatre or <em>data theatre</em> was described
-by David Spiegelhalter and is nicely summarized by Martin Robbins in
-this sub-stack article <a
-href="https://martinrobbins.substack.com/p/data-theatre-why-the-digital-dashboards"
-class="uri">https://martinrobbins.substack.com/p/data-theatre-why-the-digital-dashboards</a>.
-</aside>
-<!-- SECTION The Art of Statistics -->
-</section>
-<section id="the-art-of-statistics" class="slide level2">
-<h2>The Art of Statistics</h2>
-<center>
-<svg viewBox="0 0 200 200" style="width:15%">
-<defs> <clipPath id="clip0">
-<style>
-circle {
-  fill: black;
-}
-</style>
-<circle cx="100" cy="100" r="100"/> </clipPath> </defs>
-<title>
-David Spiegelhalter
-</title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/advds/./slides/diagrams//people/david-spiegelhalter.png" clip-path="url(#clip0)"/>
-</svg>
-</center>
-<div class="figure">
-<div id="art-of-statistics-figure" class="figure-frame">
-<div class="centered centered" style="">
-<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//books/the-art-of-statistics.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-</div>
-<aside class="notes">
-<a
-href="https://www.amazon.co.uk/Art-Statistics-Learning-Pelican-Books-ebook/dp/B07HQDJD99">The
-Art of Statistics by David Spiegelhalter</a> is an excellent read on the
-pitfalls of data interpretation.
-</aside>
-</section>
-<section id="societal-effects" class="slide level2">
-<h2>Societal Effects</h2>
-<ul>
-<li>This phenomenon has already revolutionised biology.
-<ul>
-<li>Large scale data acquisition and distribution.</li>
-<li>Transcriptomics, genomics, epigenomics, ‘rich phenomics’.</li>
-</ul></li>
-<li>Great <em>promise</em> for personalized health.</li>
-</ul>
-</section>
-<section id="societal-effects-1" class="slide level2">
-<h2>Societal Effects</h2>
-<ul>
-<li>Automated decision making within the computer based only on the
-data.</li>
-<li>Subjective biases need to be better understood.</li>
-<li>Particularly important where treatments are being prescribed.
-<ul>
-<li>Interventions could be far more subtle.</li>
-</ul></li>
-</ul>
-</section>
-<section id="societal-effects-2" class="slide level2">
-<h2>Societal Effects</h2>
-<ul>
-<li>Shift in dynamic:
-<ul>
-<li>from direct human-data to indirect human-computer-data</li>
-<li>modern data analysis is mediated by the machine</li>
-</ul></li>
-<li>This change of dynamics gives us the modern and emerging domain of
-data science</li>
 </ul>
 </section>
 <section id="conclusions" class="slide level2">
@@ -554,29 +343,13 @@ data science</li>
 <section id="thanks" class="slide level2 scrollable">
 <h2 class="scrollable">Thanks!</h2>
 <ul>
-<li><p>twitter: <a
-href="https://twitter.com/lawrennd">@lawrennd</a></p></li>
-<li><p>podcast: <a href="http://thetalkingmachines.com">The Talking
-Machines</a></p></li>
-<li><p>newspaper: <a
-href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile
-Page</a></p></li>
+<li><p>twitter: <a href="https://twitter.com/lawrennd">@lawrennd</a></p></li>
+<li><p>podcast: <a href="http://thetalkingmachines.com">The Talking Machines</a></p></li>
+<li><p>newspaper: <a href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile Page</a></p></li>
 <li><p>blog posts:</p>
-<p><a
-href="http://inverseprobability.com/2017/07/17/what-is-machine-learning">What
-is Machine Learning?</a></p>
-<p><a
-href="http://inverseprobability.com/2017/03/14/data-science-as-debugging">Data
-Science as Debugging</a></p></li>
+<p><a href="http://inverseprobability.com/2017/07/17/what-is-machine-learning">What is Machine Learning?</a></p>
+<p><a href="http://inverseprobability.com/2017/03/14/data-science-as-debugging">Data Science as Debugging</a></p></li>
 </ul>
-<div id="refs" class="references csl-bib-body hanging-indent"
-role="doc-bibliography">
-<div id="ref-Lawrence:licsbintro10" class="csl-entry"
-role="doc-biblioentry">
-Lawrence, N.D., 2010. Introduction to learning and inference in
-computational systems biology.
-</div>
-</div>
 </section>
     </div>
   </div>
@@ -589,39 +362,10 @@ computational systems biology.
       // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
-        // Display controls in the bottom right corner
-        controls: true,
-        // Display a presentation progress bar
-        progress: true,
         // Push each slide change to the browser history
         history: true,
-        // Enable keyboard shortcuts for navigation
-        keyboard: true,
-        // Enable the slide overview mode
-        overview: true,
-        // Vertical centering of slides
-        center: true,
-        // Enables touch navigation on devices with touch input
-        touch: true,
-        // Turns fragments on and off globally
-        fragments: true,
-        // Flags if we should show a help overlay when the questionmark
-        // key is pressed
-        help: true,
-        // Number of milliseconds between automatically proceeding to the
-        // next slide, disabled when set to 0, this value can be overwritten
-        // by using a data-autoslide attribute on your slides
-        autoSlide: 0,
-        // Stop auto-sliding after user input
-        autoSlideStoppable: true,
         // Transition style
         transition: 'None', // none/fade/slide/convex/concave/zoom
-        // Transition speed
-        transitionSpeed: 'default', // default/fast/slow
-        // Transition style for full page slide backgrounds
-        backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
-        // Number of slides away from the current that are visible
-        viewDistance: 3,
         math: {
           mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js',
           config: 'TeX-AMS_HTML-full',
