@@ -1283,22 +1283,6 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a h
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>FIELDS TERMINATED BY <span class="st">&#39;,&#39;</span></span>
 <span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>LINES STARTING BY <span class="st">&#39;&#39;</span> TERMINATED BY <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span><span class="op">;</span></span></code></pre></div>
 <h2 id="population-data">Population Data</h2>
-<p>Now we have information about COVID cases, and we have information
-about how many health centers and how many doctors and nurses there are
-in each health center. But unless we understand how many people there
-are in each state, then we cannot make decisions about where they may be
-problems with the disease.</p>
-<p>If we were running our ride hailing service, we would also need
-information about how many people there were in different areas, so we
-could understand what the <em>demand</em> for the boda boda rides might
-be.</p>
-<p>To access the number of people we can get population statistics from
-the <a href="https://data.humdata.org/">Humanitarian Data
-Exchange</a>.</p>
-<p>We also want to have population data for each state in Nigeria, so
-that we can see attributes like whether there are zones of high health
-facility density but low population density.</p>
-<h2 id="population-data-1">Population Data</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
 class="editsection"
@@ -1359,13 +1343,21 @@ problems.</p>
 <h2 id="save-to-database-file">Save to database file</h2>
 <p>The next step is to add this new CSV file as an additional table in
 our database.</p>
-<h2 id="computing-per-capita-hospitals-and-covid">Computing per capita
-hospitals and COVID</h2>
+<h2 id="loading-the-population-data-into-the-mariadb">Loading the
+Population Data into the MariaDB</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
 class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_systems/includes/nigeria-nmis-covid-join.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_systems/includes/nigeria-nmis-covid-join.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_systems/includes/nigerian-population-data-mariadb.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_systems/includes/nigerian-population-data-mariadb.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
+<p>We can load the data into MariaDB using the following sequence of
+SQL..</p>
+<div class="sourceCode" id="cb76"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>pop_data.to_csv(<span class="st">&#39;pop_data.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre
+class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+<h2 id="computing-per-capita-hospitals-and-covid">Computing per capita
+hospitals and COVID</h2>
 <p>The Minister of Health in Abuja may be interested in which states are
 most vulnerable to COVID19. We now have all the information in our SQL
 data bases to compute what our health center provision is per capita,
@@ -1391,9 +1383,9 @@ data wouldn’t appear in the joined table.</p>
 <p>In simple terms, a JOIN operation takes two tables (or dataframes)
 and combines them based on some key, in this case the index of the
 Pandas data frame which is the state name.</p>
-<div class="sourceCode" id="cb76"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>zones_gdf.set_index(<span class="st">&quot;admin1Name_en&quot;</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>pop_joined <span class="op">=</span> zones_gdf.join(pop_data[<span class="st">&#39;population&#39;</span>], how<span class="op">=</span><span class="st">&#39;inner&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>zones_gdf.set_index(<span class="st">&quot;admin1Name_en&quot;</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>pop_joined <span class="op">=</span> zones_gdf.join(pop_data[<span class="st">&#39;population&#39;</span>], how<span class="op">=</span><span class="st">&#39;inner&#39;</span>)</span></code></pre></div>
 <h2 id="groupby-in-pandas">GroupBy in Pandas</h2>
 <p>Our COVID19 data is in the form of individual cases. But we are
 interested in total case counts for each state. There is a special data
@@ -1408,27 +1400,27 @@ on further such as to count the rows in each group, or to sum or take
 the mean over the values in some column (imagine each case row had the
 age of the patient, and you were interested in the mean age of
 patients.)</p>
-<div class="sourceCode" id="cb77"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>covid_cases_by_state <span class="op">=</span> covid_data.groupby([<span class="st">&#39;province/state&#39;</span>]).count()[<span class="st">&#39;case_id&#39;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>covid_cases_by_state <span class="op">=</span> covid_data.groupby([<span class="st">&#39;province/state&#39;</span>]).count()[<span class="st">&#39;case_id&#39;</span>]</span></code></pre></div>
 <p>The <code>.groupby()</code> method on the dataframe has now given us
 a new data series that contains the total number of covid cases in each
 state. We can examine it to check we have something sensible.</p>
-<div class="sourceCode" id="cb78"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>covid_cases_by_state</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>covid_cases_by_state</span></code></pre></div>
 <p>Now we have this new data series, it can be added to the pandas
 dataframe as a new column.</p>
-<div class="sourceCode" id="cb79"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>pop_joined[<span class="st">&#39;covid_cases_by_state&#39;</span>] <span class="op">=</span> covid_cases_by_state</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>pop_joined[<span class="st">&#39;covid_cases_by_state&#39;</span>] <span class="op">=</span> covid_cases_by_state</span></code></pre></div>
 <p>The spatial join we did on the original data frame to obtain
 hosp_state_joined introduced a new column, <code>index_right</code> that
 contains the state of each of the hospitals. Let’s have a quick look at
 it below.</p>
-<div class="sourceCode" id="cb80"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>hosp_state_joined[<span class="st">&#39;index_right&#39;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>hosp_state_joined[<span class="st">&#39;index_right&#39;</span>]</span></code></pre></div>
 <p>To count the hospitals in each of the states, we first create a
 grouped series where we’ve grouped on these states.</p>
-<div class="sourceCode" id="cb81"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> hosp_state_joined.groupby(<span class="st">&#39;admin1Name_en&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> hosp_state_joined.groupby(<span class="st">&#39;admin1Name_en&#39;</span>)</span></code></pre></div>
 <p>This python operation now goes through each of the groups and counts
 how many hospitals there are in each state. It stores the result in a
 dictionary. If you’re new to python, then to understand this code you
@@ -1437,16 +1429,16 @@ the dictionary comprehension is being used to create a python dictionary
 of states and total hospital counts. That’s then being converted into a
 <code>pandas</code> Data Series and added to the <code>pop_joined</code>
 dataframe.</p>
-<div class="sourceCode" id="cb82"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
-<div class="sourceCode" id="cb83"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>counted_groups <span class="op">=</span> {k: <span class="bu">len</span>(v) <span class="cf">for</span> k, v <span class="kw">in</span> grouped.groups.items()}</span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>pop_joined[<span class="st">&#39;hosp_state&#39;</span>] <span class="op">=</span> pd.Series(counted_groups)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>counted_groups <span class="op">=</span> {k: <span class="bu">len</span>(v) <span class="cf">for</span> k, v <span class="kw">in</span> grouped.groups.items()}</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>pop_joined[<span class="st">&#39;hosp_state&#39;</span>] <span class="op">=</span> pd.Series(counted_groups)</span></code></pre></div>
 <p>For convenience, we can now add a new data series to the data frame
 that contains the per capita information about hospitals. that makes it
 easy to retrieve later.</p>
-<div class="sourceCode" id="cb84"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>pop_joined[<span class="st">&#39;hosp_per_capita_10k&#39;</span>] <span class="op">=</span> (pop_joined[<span class="st">&#39;hosp_state&#39;</span>] <span class="op">*</span> <span class="dv">10000</span> )<span class="op">/</span> pop_joined[<span class="st">&#39;population&#39;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>pop_joined[<span class="st">&#39;hosp_per_capita_10k&#39;</span>] <span class="op">=</span> (pop_joined[<span class="st">&#39;hosp_state&#39;</span>] <span class="op">*</span> <span class="dv">10000</span> )<span class="op">/</span> pop_joined[<span class="st">&#39;population&#39;</span>]</span></code></pre></div>
 <h2 id="sql-style">SQL-style</h2>
 <p>That’s the <code>pandas</code> approach to doing it. But
 <code>pandas</code> itself is inspired by database languages, in
@@ -1464,24 +1456,24 @@ using particular columns (<code>province/state</code> and
 <code>admin1Name_en</code>)</p>
 <p>Now we’ve created our python wrapper, we can connect to the data base
 and run our SQL command on the database using the wrapper.</p>
-<div class="sourceCode" id="cb85"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> create_connection(user<span class="op">=</span>credentials[<span class="st">&quot;username&quot;</span>], </span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>                         password<span class="op">=</span>credentials[<span class="st">&quot;password&quot;</span>],</span>
-<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>             host<span class="op">=</span>database_details[<span class="st">&quot;url&quot;</span>],</span>
-<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>             database<span class="op">=</span><span class="st">&quot;nigeria_nmis&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb86"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>state_cases_hosps <span class="op">=</span> join_counts(conn)</span></code></pre></div>
 <div class="sourceCode" id="cb87"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> state_cases_hosps:</span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;State </span><span class="sc">{}</span><span class="st"> </span><span class="ch">\t\t</span><span class="st"> Covid Cases </span><span class="sc">{}</span><span class="st"> </span><span class="ch">\t\t</span><span class="st"> Health Facilities </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(row[<span class="dv">0</span>], row[<span class="dv">1</span>], row[<span class="dv">2</span>]))</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> create_connection(user<span class="op">=</span>credentials[<span class="st">&quot;username&quot;</span>], </span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>                         password<span class="op">=</span>credentials[<span class="st">&quot;password&quot;</span>],</span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>             host<span class="op">=</span>database_details[<span class="st">&quot;url&quot;</span>],</span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a>             database<span class="op">=</span><span class="st">&quot;nigeria_nmis&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb88"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> nigeria_gdf.plot(color<span class="op">=</span><span class="st">&#39;white&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, alpha<span class="op">=</span><span class="dv">0</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">11</span>))</span>
-<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;population&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Population of Nigerian States&quot;</span>)</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>state_cases_hosps <span class="op">=</span> join_counts(conn)</span></code></pre></div>
 <div class="sourceCode" id="cb89"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> nigeria_gdf.plot(color<span class="op">=</span><span class="st">&#39;white&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, alpha<span class="op">=</span><span class="dv">0</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">11</span>))</span>
-<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;hosp_per_capita_10k&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Hospitals Per Capita (10k) of Nigerian States&quot;</span>)</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> state_cases_hosps:</span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;State </span><span class="sc">{}</span><span class="st"> </span><span class="ch">\t\t</span><span class="st"> Covid Cases </span><span class="sc">{}</span><span class="st"> </span><span class="ch">\t\t</span><span class="st"> Health Facilities </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(row[<span class="dv">0</span>], row[<span class="dv">1</span>], row[<span class="dv">2</span>]))</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> nigeria_gdf.plot(color<span class="op">=</span><span class="st">&#39;white&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, alpha<span class="op">=</span><span class="dv">0</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">11</span>))</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;population&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Population of Nigerian States&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> nigeria_gdf.plot(color<span class="op">=</span><span class="st">&#39;white&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, alpha<span class="op">=</span><span class="dv">0</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">11</span>))</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;hosp_per_capita_10k&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Hospitals Per Capita (10k) of Nigerian States&quot;</span>)</span></code></pre></div>
 <h3 id="exercise-4">Exercise 4</h3>
 <p>Add a new column the dataframe for covid cases per 10,000 population,
 in the same way we computed health facilities per 10k capita.</p>
@@ -1493,22 +1485,22 @@ they differ.</p>
 <h3 id="exercise-7">Exercise 7</h3>
 <p>Perform an inner join using SQL on your databases and convert the
 result into a <code>pandas</code> DataFrame.</p>
-<div class="sourceCode" id="cb90"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pop_joined[&#39;cases_per_capita_10k&#39;] = ???</span></span>
-<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="co"># pop_joined[&#39;cases_per_facility&#39;] = ???</span></span></code></pre></div>
-<div class="sourceCode" id="cb91"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> nigeria_gdf.plot(color<span class="op">=</span><span class="st">&#39;white&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, alpha<span class="op">=</span><span class="dv">0</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">11</span>))</span>
-<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;cases_per_capita_10k&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Covid Cases Per Capita (10k) of Nigerian States&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb92"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> nigeria_gdf.plot(color<span class="op">=</span><span class="st">&#39;white&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, alpha<span class="op">=</span><span class="dv">0</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">11</span>))</span>
-<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;covid_cases_by_state&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Covid Cases by State&quot;</span>)</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pop_joined[&#39;cases_per_capita_10k&#39;] = ???</span></span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="co"># pop_joined[&#39;cases_per_facility&#39;] = ???</span></span></code></pre></div>
 <div class="sourceCode" id="cb93"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> nigeria_gdf.plot(color<span class="op">=</span><span class="st">&#39;white&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, alpha<span class="op">=</span><span class="dv">0</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">11</span>))</span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;cases_per_facility&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Covid Cases per Health Facility&quot;</span>)</span></code></pre></div>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;cases_per_capita_10k&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Covid Cases Per Capita (10k) of Nigerian States&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> nigeria_gdf.plot(color<span class="op">=</span><span class="st">&#39;white&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, alpha<span class="op">=</span><span class="dv">0</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">11</span>))</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;covid_cases_by_state&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Covid Cases by State&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> nigeria_gdf.plot(color<span class="op">=</span><span class="st">&#39;white&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, alpha<span class="op">=</span><span class="dv">0</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">11</span>))</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>pop_joined.plot(ax<span class="op">=</span>base, column<span class="op">=</span><span class="st">&#39;cases_per_facility&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>base.set_title(<span class="st">&quot;Covid Cases per Health Facility&quot;</span>)</span></code></pre></div>
 <h3 id="exercise-8">Exercise 8</h3>
 <p>Interact with LLMs using the tools shown above to describe and
 visualise an aspect of the dataframe from question 4.</p>
