@@ -26,6 +26,7 @@ session: 2
 featured_image: assets/images/the-challenges-of-data-science.png
 reveal: 04-02-the-challenges-of-data-science.slides.html
 transition: None
+ipynb: 04-02-the-challenges-of-data-science.ipynb
 youtube: "BQKfIJHPiCQ"
 layout: lecture
 categories:
@@ -88,7 +89,7 @@ classical control response to a final set point.</p>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
 class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-ai-bd-dm-dl-ml.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-ai-bd-dm-dl-ml.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-ai-bd-dm-dl-ml-llm.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-ai-bd-dm-dl-ml-llm.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <h2 id="google-trends">Google Trends</h2>
 <div style="text-align:right">
@@ -99,40 +100,42 @@ style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install pytrends</span></code></pre></div>
 <div class="figure">
-<div id="ai-bd-dm-dl-ml-gartner-hype-cycle-google-trends-figure"
+<div id="ai-bd-dm-dl-ml-llm-gartner-hype-cycle-google-trends-figure"
 class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/ai-bd-dm-dl-ml-google-trends.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/ai-bd-dm-dl-ml-llm-google-trends.svg" width="80%" style=" ">
 </object>
 </div>
-<div id="ai-bd-dm-dl-ml-gartner-hype-cycle-google-trends-magnify"
+<div id="ai-bd-dm-dl-ml-llm-gartner-hype-cycle-google-trends-magnify"
 class="magnify"
-onclick="magnifyFigure(&#39;ai-bd-dm-dl-ml-gartner-hype-cycle-google-trends&#39;)">
+onclick="magnifyFigure(&#39;ai-bd-dm-dl-ml-llm-gartner-hype-cycle-google-trends&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="ai-bd-dm-dl-ml-gartner-hype-cycle-google-trends-caption"
+<div id="ai-bd-dm-dl-ml-llm-gartner-hype-cycle-google-trends-caption"
 class="caption-frame">
 <p>Figure: A Google trends search for ‘artificial intelligence’, ‘big
-data’, ‘data mining’, ‘deep learning’, ‘machine learning’ as different
-technological terms gives us insight into their popularity over
-time.</p>
+data’, ‘data mining’, ‘deep learning’, ‘machine learning’, ‘large
+language model’ as different technological terms gives us insight into
+their popularity over time.</p>
 </div>
 </div>
 <p>Google trends gives us insight into the interest for different terms
 over time.</p>
 <p>Examining Google trends search for ‘artificial intelligence’, ‘big
-data’, ‘data mining’, ‘deep learning’ and ‘machine learning’ we can see
-that ‘artificial intelligence’ <em>may</em> be entering a plateau of
-productivity, ‘big data’ is entering the trough of disillusionment, and
-‘data mining’ seems to be deeply within the trough. On the other hand,
-‘deep learning’ and ‘machine learning’ appear to be ascending to the
-peak of inflated expectations having experienced a technology
-trigger.</p>
+data’, ‘data mining’, ‘deep learning’, ‘machine learning’ and ‘large
+language model’ we can see that ‘artificial intelligence’ was entering a
+plateau of productivity, ‘big data’ is entering the trough of
+disillusionment, and ‘data mining’ seems to be deeply within the trough.
+On the other hand, ‘deep learning’ and ‘machine learning’ appear to be
+ascending to the peak of inflated expectations having experienced a
+technology trigger.</p>
 <p>For deep learning that technology trigger was the ImageNet result of
 2012 <span class="citation"
 data-cites="Krizhevsky:imagenet12">(Krizhevsky et al., n.d.)</span>.
 This step change in performance on object detection in images was
 achieved through convolutional neural networks, popularly known as ‘deep
 learning’.</p>
+<p>Now there is a second technology trigger associated with large
+language models.</p>
 <h2 id="data-science-as-debugging">Data Science as Debugging</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
