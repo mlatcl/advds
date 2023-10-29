@@ -133,194 +133,6 @@ data-cites="Krizhevsky:imagenet12">(Krizhevsky et al., n.d.)</span>.
 This step change in performance on object detection in images was
 achieved through convolutional neural networks, popularly known as ‘deep
 learning’.</p>
-<h1 id="what-is-machine-learning">What is Machine Learning?</h1>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-is-ml.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-is-ml.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>What is machine learning? At its most basic level machine learning is
-a combination of</p>
-<p><span class="math display">\[\text{data} + \text{model}
-\stackrel{\text{compute}}{\rightarrow} \text{prediction}\]</span></p>
-<p>where <em>data</em> is our observations. They can be actively or
-passively acquired (meta-data). The <em>model</em> contains our
-assumptions, based on previous experience. That experience can be other
-data, it can come from transfer learning, or it can merely be our
-beliefs about the regularities of the universe. In humans our models
-include our inductive biases. The <em>prediction</em> is an action to be
-taken or a categorization or a quality score. The reason that machine
-learning has become a mainstay of artificial intelligence is the
-importance of predictions in artificial intelligence. The data and the
-model are combined through computation.</p>
-<p>In practice we normally perform machine learning using two functions.
-To combine data with a model we typically make use of:</p>
-<p><strong>a prediction function</strong> it is used to make the
-predictions. It includes our beliefs about the regularities of the
-universe, our assumptions about how the world works, e.g., smoothness,
-spatial similarities, temporal similarities.</p>
-<p><strong>an objective function</strong> it defines the ‘cost’ of
-misprediction. Typically, it includes knowledge about the world’s
-generating processes (probabilistic objectives) or the costs we pay for
-mispredictions (empirical risk minimization).</p>
-<p>The combination of data and model through the prediction function and
-the objective function leads to a <em>learning algorithm</em>. The class
-of prediction functions and objective functions we can make use of is
-restricted by the algorithms they lead to. If the prediction function or
-the objective function are too complex, then it can be difficult to find
-an appropriate learning algorithm. Much of the academic field of machine
-learning is the quest for new learning algorithms that allow us to bring
-different types of models and data together.</p>
-<p>A useful reference for state of the art in machine learning is the UK
-Royal Society Report, <a
-href="https://royalsociety.org/~/media/policy/projects/machine-learning/publications/machine-learning-report.pdf">Machine
-Learning: Power and Promise of Computers that Learn by Example</a>.</p>
-<p>You can also check my post blog post on <a
-href="http://inverseprobability.com/2017/07/17/what-is-machine-learning">What
-is Machine Learning?</a>.</p>
-<h2 id="classical-statistical-analysis">Classical Statistical
-Analysis</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/the-challenges-of-data-science.gpp.markdown" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/the-challenges-of-data-science.gpp.markdown', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>Despite the shift of emphasis, traditional statistical techniques are
-more important than ever. One of the few ways we have to validate the
-analyses we create is to make use of visualizations, randomized testing
-and other forms of statistical analysis. You will have explored some of
-these ideas in earlier courses in machine learning. In this unit we
-provide some review material in a practical sheet to bring some of those
-ideas together in the context of data science.</p>
-<h2 id="what-does-machine-learning-do">What does Machine Learning
-do?</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-does-machine-learning-do.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-does-machine-learning-do.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>Any process of automation allows us to scale what we do by codifying
-a process in some way that makes it efficient and repeatable. Machine
-learning automates by emulating human (or other actions) found in data.
-Machine learning codifies in the form of a mathematical function that is
-learnt by a computer. If we can create these mathematical functions in
-ways in which they can interconnect, then we can also build systems.</p>
-<p>Machine learning works through codifying a prediction of interest
-into a mathematical function. For example, we can try and predict the
-probability that a customer wants to by a jersey given knowledge of
-their age, and the latitude where they live. The technique known as
-logistic regression estimates the odds that someone will by a jumper as
-a linear weighted sum of the features of interest.</p>
-<p><span class="math display">\[ \text{odds} =
-\frac{p(\text{bought})}{p(\text{not bought})} \]</span></p>
-<p><span class="math display">\[ \log \text{odds}  = \beta_0 + \beta_1
-\text{age} + \beta_2 \text{latitude}.\]</span> Here <span
-class="math inline">\(\beta_0\)</span>, <span
-class="math inline">\(\beta_1\)</span> and <span
-class="math inline">\(\beta_2\)</span> are the parameters of the model.
-If <span class="math inline">\(\beta_1\)</span> and <span
-class="math inline">\(\beta_2\)</span> are both positive, then the
-log-odds that someone will buy a jumper increase with increasing
-latitude and age, so the further north you are and the older you are the
-more likely you are to buy a jumper. The parameter <span
-class="math inline">\(\beta_0\)</span> is an offset parameter and gives
-the log-odds of buying a jumper at zero age and on the equator. It is
-likely to be negative<a href="#fn1" class="footnote-ref" id="fnref1"
-role="doc-noteref"><sup>1</sup></a> indicating that the purchase is
-odds-against. This is also a classical statistical model, and models
-like logistic regression are widely used to estimate probabilities from
-ad-click prediction to risk of disease.</p>
-<p>This is called a generalized linear model, we can also think of it as
-estimating the <em>probability</em> of a purchase as a nonlinear
-function of the features (age, latitude) and the parameters (the <span
-class="math inline">\(\beta\)</span> values). The function is known as
-the <em>sigmoid</em> or <a
-href="https://en.wikipedia.org/wiki/Logistic_regression">logistic
-function</a>, thus the name <em>logistic</em> regression.</p>
-<p><span class="math display">\[ p(\text{bought}) =  \sigma\left(\beta_0
-+ \beta_1 \text{age} + \beta_2 \text{latitude}\right).\]</span> In the
-case where we have <em>features</em> to help us predict, we sometimes
-denote such features as a vector, <span class="math inline">\(\mathbf{
-x}\)</span>, and we then use an inner product between the features and
-the parameters, <span class="math inline">\(\boldsymbol{\beta}^\top
-\mathbf{ x}= \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 ...\)</span>, to
-represent the argument of the sigmoid.</p>
-<p><span class="math display">\[ p(\text{bought})
-=  \sigma\left(\boldsymbol{\beta}^\top \mathbf{ x}\right).\]</span> More
-generally, we aim to predict some aspect of our data, <span
-class="math inline">\(y\)</span>, by relating it through a mathematical
-function, <span class="math inline">\(f(\cdot)\)</span>, to the
-parameters, <span class="math inline">\(\boldsymbol{\beta}\)</span> and
-the data, <span class="math inline">\(\mathbf{ x}\)</span>.</p>
-<p><span class="math display">\[ y=  f\left(\mathbf{ x},
-\boldsymbol{\beta}\right).\]</span> We call <span
-class="math inline">\(f(\cdot)\)</span> the <em>prediction
-function</em>.</p>
-<p>To obtain the fit to data, we use a separate function called the
-<em>objective function</em> that gives us a mathematical representation
-of the difference between our predictions and the real data.</p>
-<p><span class="math display">\[E(\boldsymbol{\beta}, \mathbf{Y},
-\mathbf{X})\]</span> A commonly used examples (for example in a
-regression problem) is least squares, <span
-class="math display">\[E(\boldsymbol{\beta}, \mathbf{Y}, \mathbf{X}) =
-\sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i,
-\boldsymbol{\beta})\right)^2.\]</span></p>
-<p>If a linear prediction function is combined with the least squares
-objective function, then that gives us a classical <em>linear
-regression</em>, another classical statistical model. Statistics often
-focusses on linear models because it makes interpretation of the model
-easier. Interpretation is key in statistics because the aim is normally
-to validate questions by analysis of data. Machine learning has
-typically focused more on the prediction function itself and worried
-less about the interpretation of parameters, which are normally denoted
-by <span class="math inline">\(\mathbf{w}\)</span> instead of <span
-class="math inline">\(\boldsymbol{\beta}\)</span>. As a result,
-<em>non-linear</em> functions are explored more often as they tend to
-improve quality of predictions but at the expense of
-interpretability.</p>
-<h2 id="artificial-intelligence-and-data-science">Artificial
-Intelligence and Data Science</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/data-science-vs-ai.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/data-science-vs-ai.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>Machine learning technologies have been the driver of two related,
-but distinct disciplines. The first is <em>data science</em>. Data
-science is an emerging field that arises from the fact that we now
-collect so much data by happenstance, rather than by <em>experimental
-design</em>. Classical statistics is the science of drawing conclusions
-from data, and to do so statistical experiments are carefully designed.
-In the modern era we collect so much data that there’s a desire to draw
-inferences directly from the data.</p>
-<p>As well as machine learning, the field of data science draws from
-statistics, cloud computing, data storage (e.g. streaming data),
-visualization and data mining.</p>
-<p>In contrast, artificial intelligence technologies typically focus on
-emulating some form of human behaviour, such as understanding an image,
-or some speech, or translating text from one form to another. The recent
-advances in artificial intelligence have come from machine learning
-providing the automation. But in contrast to data science, in artificial
-intelligence the data is normally collected with the specific task in
-mind. In this sense it has strong relations to classical statistics.</p>
-<p>Classically artificial intelligence worried more about <em>logic</em>
-and <em>planning</em> and focused less on data driven decision making.
-Modern machine learning owes more to the field of <em>Cybernetics</em>
-<span class="citation" data-cites="Wiener:cybernetics48">(Wiener,
-1948)</span> than artificial intelligence. Related fields include
-<em>robotics</em>, <em>speech recognition</em>, <em>language
-understanding</em> and <em>computer vision</em>.</p>
-<p>There are strong overlaps between the fields, the wide availability
-of data by happenstance makes it easier to collect data for designing AI
-systems. These relations are coming through wide availability of sensing
-technologies that are interconnected by cellular networks, WiFi and the
-internet. This phenomenon is sometimes known as the <em>Internet of
-Things</em>, but this feels like a dangerous misnomer. We must never
-forget that we are interconnecting people, not things.</p>
-<center>
-Convention for the Protection of <em>Individuals</em> with regard to
-Automatic Processing of <em>Personal Data</em> (1981/1/28)
-</center>
 <h2 id="data-science-as-debugging">Data Science as Debugging</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
@@ -427,6 +239,359 @@ too keen to employ machine learning engineers who focus on the models,
 not the data. We should change our hiring priorities and training.
 Universities cannot provide the understanding of how to data-wrangle.
 Companies must fill this gap.</p>
+<h1 id="what-is-machine-learning">What is Machine Learning?</h1>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-is-ml.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-is-ml.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>What is machine learning? At its most basic level machine learning is
+a combination of</p>
+<p><span class="math display">\[\text{data} + \text{model}
+\stackrel{\text{compute}}{\rightarrow} \text{prediction}\]</span></p>
+<p>where <em>data</em> is our observations. They can be actively or
+passively acquired (meta-data). The <em>model</em> contains our
+assumptions, based on previous experience. That experience can be other
+data, it can come from transfer learning, or it can merely be our
+beliefs about the regularities of the universe. In humans our models
+include our inductive biases. The <em>prediction</em> is an action to be
+taken or a categorization or a quality score. The reason that machine
+learning has become a mainstay of artificial intelligence is the
+importance of predictions in artificial intelligence. The data and the
+model are combined through computation.</p>
+<p>In practice we normally perform machine learning using two functions.
+To combine data with a model we typically make use of:</p>
+<p><strong>a prediction function</strong> it is used to make the
+predictions. It includes our beliefs about the regularities of the
+universe, our assumptions about how the world works, e.g., smoothness,
+spatial similarities, temporal similarities.</p>
+<p><strong>an objective function</strong> it defines the ‘cost’ of
+misprediction. Typically, it includes knowledge about the world’s
+generating processes (probabilistic objectives) or the costs we pay for
+mispredictions (empirical risk minimization).</p>
+<p>The combination of data and model through the prediction function and
+the objective function leads to a <em>learning algorithm</em>. The class
+of prediction functions and objective functions we can make use of is
+restricted by the algorithms they lead to. If the prediction function or
+the objective function are too complex, then it can be difficult to find
+an appropriate learning algorithm. Much of the academic field of machine
+learning is the quest for new learning algorithms that allow us to bring
+different types of models and data together.</p>
+<p>A useful reference for state of the art in machine learning is the UK
+Royal Society Report, <a
+href="https://royalsociety.org/~/media/policy/projects/machine-learning/publications/machine-learning-report.pdf">Machine
+Learning: Power and Promise of Computers that Learn by Example</a>.</p>
+<p>You can also check my post blog post on <a
+href="http://inverseprobability.com/2017/07/17/what-is-machine-learning">What
+is Machine Learning?</a>.</p>
+<h2 id="classical-statistical-analysis">Classical Statistical
+Analysis</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/the-challenges-of-data-science.gpp.markdown" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/the-challenges-of-data-science.gpp.markdown', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>Despite the shift of emphasis, traditional statistical techniques are
+more important than ever. One of the few ways we have to validate the
+analyses we create is to make use of visualizations, randomized testing
+and other forms of statistical analysis. You will have explored some of
+these ideas in earlier courses in machine learning. In this unit we
+provide some review material in a practical sheet to bring some of those
+ideas together in the context of data science.</p>
+<h2 id="artificial-intelligence-and-data-science">Artificial
+Intelligence and Data Science</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/data-science-vs-ai.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/data-science-vs-ai.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>Machine learning technologies have been the driver of two related,
+but distinct disciplines. The first is <em>data science</em>. Data
+science is an emerging field that arises from the fact that we now
+collect so much data by happenstance, rather than by <em>experimental
+design</em>. Classical statistics is the science of drawing conclusions
+from data, and to do so statistical experiments are carefully designed.
+In the modern era we collect so much data that there’s a desire to draw
+inferences directly from the data.</p>
+<p>As well as machine learning, the field of data science draws from
+statistics, cloud computing, data storage (e.g. streaming data),
+visualization and data mining.</p>
+<p>In contrast, artificial intelligence technologies typically focus on
+emulating some form of human behaviour, such as understanding an image,
+or some speech, or translating text from one form to another. The recent
+advances in artificial intelligence have come from machine learning
+providing the automation. But in contrast to data science, in artificial
+intelligence the data is normally collected with the specific task in
+mind. In this sense it has strong relations to classical statistics.</p>
+<p>Classically artificial intelligence worried more about <em>logic</em>
+and <em>planning</em> and focused less on data driven decision making.
+Modern machine learning owes more to the field of <em>Cybernetics</em>
+<span class="citation" data-cites="Wiener:cybernetics48">(Wiener,
+1948)</span> than artificial intelligence. Related fields include
+<em>robotics</em>, <em>speech recognition</em>, <em>language
+understanding</em> and <em>computer vision</em>.</p>
+<p>There are strong overlaps between the fields, the wide availability
+of data by happenstance makes it easier to collect data for designing AI
+systems. These relations are coming through wide availability of sensing
+technologies that are interconnected by cellular networks, WiFi and the
+internet. This phenomenon is sometimes known as the <em>Internet of
+Things</em>, but this feels like a dangerous misnomer. We must never
+forget that we are interconnecting people, not things.</p>
+<center>
+Convention for the Protection of <em>Individuals</em> with regard to
+Automatic Processing of <em>Personal Data</em> (1981/1/28)
+</center>
+<h2 id="what-does-machine-learning-do">What does Machine Learning
+do?</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-does-machine-learning-do.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-does-machine-learning-do.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>Any process of automation allows us to scale what we do by codifying
+a process in some way that makes it efficient and repeatable. Machine
+learning automates by emulating human (or other actions) found in data.
+Machine learning codifies in the form of a mathematical function that is
+learnt by a computer. If we can create these mathematical functions in
+ways in which they can interconnect, then we can also build systems.</p>
+<p>Machine learning works through codifying a prediction of interest
+into a mathematical function. For example, we can try and predict the
+probability that a customer wants to by a jersey given knowledge of
+their age, and the latitude where they live. The technique known as
+logistic regression estimates the odds that someone will by a jumper as
+a linear weighted sum of the features of interest.</p>
+<p><span class="math display">\[ \text{odds} =
+\frac{p(\text{bought})}{p(\text{not bought})} \]</span></p>
+<p><span class="math display">\[ \log \text{odds}  = \beta_0 + \beta_1
+\text{age} + \beta_2 \text{latitude}.\]</span> Here <span
+class="math inline">\(\beta_0\)</span>, <span
+class="math inline">\(\beta_1\)</span> and <span
+class="math inline">\(\beta_2\)</span> are the parameters of the model.
+If <span class="math inline">\(\beta_1\)</span> and <span
+class="math inline">\(\beta_2\)</span> are both positive, then the
+log-odds that someone will buy a jumper increase with increasing
+latitude and age, so the further north you are and the older you are the
+more likely you are to buy a jumper. The parameter <span
+class="math inline">\(\beta_0\)</span> is an offset parameter and gives
+the log-odds of buying a jumper at zero age and on the equator. It is
+likely to be negative<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> indicating that the purchase is
+odds-against. This is also a classical statistical model, and models
+like logistic regression are widely used to estimate probabilities from
+ad-click prediction to risk of disease.</p>
+<p>This is called a generalized linear model, we can also think of it as
+estimating the <em>probability</em> of a purchase as a nonlinear
+function of the features (age, latitude) and the parameters (the <span
+class="math inline">\(\beta\)</span> values). The function is known as
+the <em>sigmoid</em> or <a
+href="https://en.wikipedia.org/wiki/Logistic_regression">logistic
+function</a>, thus the name <em>logistic</em> regression.</p>
+<p><span class="math display">\[ p(\text{bought}) =  \sigma\left(\beta_0
++ \beta_1 \text{age} + \beta_2 \text{latitude}\right).\]</span> In the
+case where we have <em>features</em> to help us predict, we sometimes
+denote such features as a vector, <span class="math inline">\(\mathbf{
+x}\)</span>, and we then use an inner product between the features and
+the parameters, <span class="math inline">\(\boldsymbol{\beta}^\top
+\mathbf{ x}= \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 ...\)</span>, to
+represent the argument of the sigmoid.</p>
+<p><span class="math display">\[ p(\text{bought})
+=  \sigma\left(\boldsymbol{\beta}^\top \mathbf{ x}\right).\]</span> More
+generally, we aim to predict some aspect of our data, <span
+class="math inline">\(y\)</span>, by relating it through a mathematical
+function, <span class="math inline">\(f(\cdot)\)</span>, to the
+parameters, <span class="math inline">\(\boldsymbol{\beta}\)</span> and
+the data, <span class="math inline">\(\mathbf{ x}\)</span>.</p>
+<p><span class="math display">\[ y=  f\left(\mathbf{ x},
+\boldsymbol{\beta}\right).\]</span> We call <span
+class="math inline">\(f(\cdot)\)</span> the <em>prediction
+function</em>.</p>
+<p>To obtain the fit to data, we use a separate function called the
+<em>objective function</em> that gives us a mathematical representation
+of the difference between our predictions and the real data.</p>
+<p><span class="math display">\[E(\boldsymbol{\beta}, \mathbf{Y},
+\mathbf{X})\]</span> A commonly used examples (for example in a
+regression problem) is least squares, <span
+class="math display">\[E(\boldsymbol{\beta}, \mathbf{Y}, \mathbf{X}) =
+\sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i,
+\boldsymbol{\beta})\right)^2.\]</span></p>
+<p>If a linear prediction function is combined with the least squares
+objective function, then that gives us a classical <em>linear
+regression</em>, another classical statistical model. Statistics often
+focusses on linear models because it makes interpretation of the model
+easier. Interpretation is key in statistics because the aim is normally
+to validate questions by analysis of data. Machine learning has
+typically focused more on the prediction function itself and worried
+less about the interpretation of parameters, which are normally denoted
+by <span class="math inline">\(\mathbf{w}\)</span> instead of <span
+class="math inline">\(\boldsymbol{\beta}\)</span>. As a result,
+<em>non-linear</em> functions are explored more often as they tend to
+improve quality of predictions but at the expense of
+interpretability.</p>
+<ul>
+<li><p>These are interpretable models: vital for disease etc.</p></li>
+<li><p>Modern machine learning methods are less interpretable</p></li>
+<li><p>Example: face recognition</p></li>
+</ul>
+<h1 id="deep-learning">Deep Learning</h1>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/deep-learning-overview.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/deep-learning-overview.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>Classical statistical models and simple machine learning models have
+a great deal in common. The main difference between the fields is
+philosophical. Machine learning practitioners are typically more
+concerned with the quality of prediciton (e.g. measured by ROC curve)
+while statisticians tend to focus more on the interpretability of the
+model and the validity of any decisions drawn from that interpretation.
+For example, a statistical model may be used to validate whether a large
+scale intervention (such as the mass provision of mosquito nets) has had
+a long term effect on disease (such as malaria). In this case one of the
+covariates is likely to be the provision level of nets in a particular
+region. The response variable would be the rate of malaria disease in
+the region. The parmaeter, <span class="math inline">\(\beta_1\)</span>
+associated with that covariate will demonstrate a positive or negative
+effect which would be validated in answering the question. The focus in
+statistics would be less on the accuracy of the response variable and
+more on the validity of the interpretation of the effect variable, <span
+class="math inline">\(\beta_1\)</span>.</p>
+<p>A machine learning practitioner on the other hand would typically
+denote the parameter <span class="math inline">\(w_1\)</span>, instead
+of <span class="math inline">\(\beta_1\)</span> and would only be
+interested in the output of the prediction function, <span
+class="math inline">\(f(\cdot)\)</span> rather than the parameter
+itself. The general formalism of the prediction function allows for
+<em>non-linear</em> models. In machine learning, the emphasis on
+prediction over interpretability means that non-linear models are often
+used. The parameters, <span class="math inline">\(\mathbf{w}\)</span>,
+are a means to an end (good prediction) rather than an end in themselves
+(interpretable).</p>
+<!-- No slide titles in this context -->
+<h2 id="deepface">DeepFace</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/deep-face.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/deep-face.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<div class="figure">
+<div id="deep-face-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//deepface_neg.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="deep-face-magnify" class="magnify"
+onclick="magnifyFigure(&#39;deep-face&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="deep-face-caption" class="caption-frame">
+<p>Figure: The DeepFace architecture <span class="citation"
+data-cites="Taigman:deepface14">(Taigman et al., 2014)</span>,
+visualized through colors to represent the functional mappings at each
+layer. There are 120 million parameters in the model.</p>
+</div>
+</div>
+<p>The DeepFace architecture <span class="citation"
+data-cites="Taigman:deepface14">(Taigman et al., 2014)</span> consists
+of layers that deal with <em>translation</em> invariances, known as
+convolutional layers. These layers are followed by three
+locally-connected layers and two fully-connected layers. Color
+illustrates feature maps produced at each layer. The neural network
+includes more than 120 million parameters, where more than 95% come from
+the local and fully connected layers.</p>
+<h3 id="deep-learning-as-pinball">Deep Learning as Pinball</h3>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/deep-learning-as-pinball.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/deep-learning-as-pinball.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<div class="figure">
+<div id="early-pinball-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//576px-Early_Pinball.jpg" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="early-pinball-magnify" class="magnify"
+onclick="magnifyFigure(&#39;early-pinball&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="early-pinball-caption" class="caption-frame">
+<p>Figure: Deep learning models are composition of simple functions. We
+can think of a pinball machine as an analogy. Each layer of pins
+corresponds to one of the layers of functions in the model. Input data
+is represented by the location of the ball from left to right when it is
+dropped in from the top. Output class comes from the position of the
+ball as it leaves the pins at the bottom.</p>
+</div>
+</div>
+<p>Sometimes deep learning models are described as being like the brain,
+or too complex to understand, but one analogy I find useful to help the
+gist of these models is to think of them as being similar to early pin
+ball machines.</p>
+<p>In a deep neural network, we input a number (or numbers), whereas in
+pinball, we input a ball.</p>
+<p>Think of the location of the ball on the left-right axis as a single
+number. Our simple pinball machine can only take one number at a time.
+As the ball falls through the machine, each layer of pins can be thought
+of as a different layer of ‘neurons’. Each layer acts to move the ball
+from left to right.</p>
+<p>In a pinball machine, when the ball gets to the bottom it might fall
+into a hole defining a score, in a neural network, that is equivalent to
+the decision: a classification of the input object.</p>
+<p>An image has more than one number associated with it, so it is like
+playing pinball in a <em>hyper-space</em>.</p>
+<div class="figure">
+<div id="pinball-initialization-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//pinball001.svg" width="80%" style=" ">
+</object>
+</div>
+<div id="pinball-initialization-magnify" class="magnify"
+onclick="magnifyFigure(&#39;pinball-initialization&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="pinball-initialization-caption" class="caption-frame">
+<p>Figure: At initialization, the pins, which represent the parameters
+of the function, aren’t in the right place to bring the balls to the
+correct decisions.</p>
+</div>
+</div>
+<div class="figure">
+<div id="pinball-trained-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//pinball002.svg" width="80%" style=" ">
+</object>
+</div>
+<div id="pinball-trained-magnify" class="magnify"
+onclick="magnifyFigure(&#39;pinball-trained&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="pinball-trained-caption" class="caption-frame">
+<p>Figure: After learning the pins are now in the right place to bring
+the balls to the correct decisions.</p>
+</div>
+</div>
+<p>Learning involves moving all the pins to be in the correct position,
+so that the ball ends up in the right place when it’s fallen through the
+machine. But moving all these pins in hyperspace can be difficult.</p>
+<p>In a hyper-space you have to put a lot of data through the machine
+for to explore the positions of all the pins. Even when you feed many
+millions of data points through the machine, there are likely to be
+regions in the hyper-space where no ball has passed. When future test
+data passes through the machine in a new route unusual things can
+happen.</p>
+<p><em>Adversarial examples</em> exploit this high dimensional space. If
+you have access to the pinball machine, you can use gradient methods to
+find a position for the ball in the hyper space where the image looks
+like one thing, but will be classified as another.</p>
+<p>Probabilistic methods explore more of the space by considering a
+range of possible paths for the ball through the machine. This helps to
+make them more data efficient and gives some robustness to adversarial
+examples.</p>
+<h2 id="what-are-large-language-models">What are Large Language
+Models?</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-are-large-language-models.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-are-large-language-models.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <h2 id="probability-conversations">Probability Conversations</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
@@ -653,6 +818,13 @@ on Robot Learning, Proceedings of Machine Learning Research. PMLR, pp.
 <div id="ref-Krizhevsky:imagenet12" class="csl-entry" role="listitem">
 Krizhevsky, A., Sutskever, I., Hinton, G.E., n.d. ImageNet
 classification with deep convolutional neural networks. pp. 1097–1105.
+</div>
+<div id="ref-Taigman:deepface14" class="csl-entry" role="listitem">
+Taigman, Y., Yang, M., Ranzato, M., Wolf, L., 2014.
+<span>DeepFace</span>: Closing the gap to human-level performance in
+face verification, in: Proceedings of the <span>IEEE</span> Computer
+Society Conference on Computer Vision and Pattern Recognition. <a
+href="https://doi.org/10.1109/CVPR.2014.220">https://doi.org/10.1109/CVPR.2014.220</a>
 </div>
 <div id="ref-Thompson-juries89" class="csl-entry" role="listitem">
 Thompson, W.C., 1989. <a href="http://www.jstor.org/stable/1191906">Are
