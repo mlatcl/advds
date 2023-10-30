@@ -429,8 +429,8 @@ case where we have <em>features</em> to help us predict, we sometimes
 denote such features as a vector, <span class="math inline">\(\mathbf{
 x}\)</span>, and we then use an inner product between the features and
 the parameters, <span class="math inline">\(\mathbf{ w}^\top \mathbf{
-x}= w_1 x_1 + w_2 x_2 + paramScalar_3 x_3 ...\)</span>, to represent the
-argument of the sigmoid.</p>
+x}= w_1 x_1 + w_2 x_2 + w_3 x_3 ...\)</span>, to represent the argument
+of the sigmoid.</p>
 <p><span class="math display">\[ p(\text{bought})
 =  \sigma\left(\mathbf{ w}^\top \mathbf{ x}\right).\]</span> More
 generally, we aim to predict some aspect of our data, <span
@@ -458,12 +458,11 @@ focusses on linear models because it makes interpretation of the model
 easier. Interpretation is key in statistics because the aim is normally
 to validate questions by analysis of data. Machine learning has
 typically focused more on the prediction function itself and worried
-less about the interpretation of parameters, which are normally denoted
-by <span class="math inline">\(\mathbf{w}\)</span> instead of <span
-class="math inline">\(\mathbf{ w}\)</span>. As a result,
-<em>non-linear</em> functions are explored more often as they tend to
-improve quality of predictions but at the expense of
-interpretability.</p>
+less about the interpretation of parameters. In statistics, where
+interpretation is typically more important than prediction, parameters
+are normally denoted by <span
+class="math inline">\(\boldsymbol{\beta}\)</span> instead of <span
+class="math inline">\(\mathbf{ w}\)</span>.</p>
 <p>A key difference between statistics and machine learning, is that
 (traditionally) machine learning has focussed on predictive capability
 and statistics has focussed on interpretability. That means that in a
@@ -479,6 +478,10 @@ parameters to tell us something about the disease.</p>
 <p><span class="math display">\[ p(\text{bought}) =  \sigma\left(\beta_0
 + \beta_1 \text{age} + \beta_2 \text{latitude}\right).\]</span></p>
 <p>to denote the emphasis is on interpretation of the parameters.</p>
+<p>Another effect of the focus on prediction in machine learning is that
+<em>non-linear</em> approaches, which can be harder to interpret, are
+more widely deployedin machine learning – they tend to improve quality
+of predictions at the expense of interpretability.</p>
 <ul>
 <li><p>These are interpretable models: vital for disease etc.</p></li>
 <li><p>Modern machine learning methods are less interpretable</p></li>
