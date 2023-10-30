@@ -399,58 +399,58 @@ logistic regression estimates the odds that someone will by a jumper as
 a linear weighted sum of the features of interest.</p>
 <p><span class="math display">\[ \text{odds} =
 \frac{p(\text{bought})}{p(\text{not bought})} \]</span></p>
-<p><span class="math display">\[ \log \text{odds}  = \beta_0 + \beta_1
-\text{age} + \beta_2 \text{latitude}.\]</span> Here <span
-class="math inline">\(\beta_0\)</span>, <span
-class="math inline">\(\beta_1\)</span> and <span
-class="math inline">\(\beta_2\)</span> are the parameters of the model.
-If <span class="math inline">\(\beta_1\)</span> and <span
-class="math inline">\(\beta_2\)</span> are both positive, then the
-log-odds that someone will buy a jumper increase with increasing
-latitude and age, so the further north you are and the older you are the
-more likely you are to buy a jumper. The parameter <span
-class="math inline">\(\beta_0\)</span> is an offset parameter and gives
-the log-odds of buying a jumper at zero age and on the equator. It is
-likely to be negative<a href="#fn1" class="footnote-ref" id="fnref1"
+<p><span class="math display">\[ \log \text{odds}  = w_0 + w_1
+\text{age} + w_2 \text{latitude}.\]</span> Here <span
+class="math inline">\(w_0\)</span>, <span
+class="math inline">\(w_1\)</span> and <span
+class="math inline">\(w_2\)</span> are the parameters of the model. If
+<span class="math inline">\(w_1\)</span> and <span
+class="math inline">\(w_2\)</span> are both positive, then the log-odds
+that someone will buy a jumper increase with increasing latitude and
+age, so the further north you are and the older you are the more likely
+you are to buy a jumper. The parameter <span
+class="math inline">\(w_0\)</span> is an offset parameter and gives the
+log-odds of buying a jumper at zero age and on the equator. It is likely
+to be negative<a href="#fn1" class="footnote-ref" id="fnref1"
 role="doc-noteref"><sup>1</sup></a> indicating that the purchase is
 odds-against. This is also a classical statistical model, and models
 like logistic regression are widely used to estimate probabilities from
-ad-click prediction to risk of disease.</p>
+ad-click prediction to disease risk.</p>
 <p>This is called a generalized linear model, we can also think of it as
 estimating the <em>probability</em> of a purchase as a nonlinear
 function of the features (age, latitude) and the parameters (the <span
-class="math inline">\(\beta\)</span> values). The function is known as
-the <em>sigmoid</em> or <a
+class="math inline">\(w\)</span> values). The function is known as the
+<em>sigmoid</em> or <a
 href="https://en.wikipedia.org/wiki/Logistic_regression">logistic
 function</a>, thus the name <em>logistic</em> regression.</p>
-<p><span class="math display">\[ p(\text{bought}) =  \sigma\left(\beta_0
-+ \beta_1 \text{age} + \beta_2 \text{latitude}\right).\]</span> In the
+<p><span class="math display">\[ p(\text{bought}) =  \sigma\left(w_0 +
+w_1 \text{age} + paramScalar_2 \text{latitude}\right).\]</span> In the
 case where we have <em>features</em> to help us predict, we sometimes
 denote such features as a vector, <span class="math inline">\(\mathbf{
 x}\)</span>, and we then use an inner product between the features and
-the parameters, <span class="math inline">\(\boldsymbol{\beta}^\top
-\mathbf{ x}= \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 ...\)</span>, to
-represent the argument of the sigmoid.</p>
+the parameters, <span class="math inline">\(\mathbf{ w}^\top \mathbf{
+x}= w_1 x_1 + w_2 x_2 + paramScalar_3 x_3 ...\)</span>, to represent the
+argument of the sigmoid.</p>
 <p><span class="math display">\[ p(\text{bought})
-=  \sigma\left(\boldsymbol{\beta}^\top \mathbf{ x}\right).\]</span> More
+=  \sigma\left(\mathbf{ w}^\top \mathbf{ x}\right).\]</span> More
 generally, we aim to predict some aspect of our data, <span
 class="math inline">\(y\)</span>, by relating it through a mathematical
 function, <span class="math inline">\(f(\cdot)\)</span>, to the
-parameters, <span class="math inline">\(\boldsymbol{\beta}\)</span> and
-the data, <span class="math inline">\(\mathbf{ x}\)</span>.</p>
-<p><span class="math display">\[ y=  f\left(\mathbf{ x},
-\boldsymbol{\beta}\right).\]</span> We call <span
+parameters, <span class="math inline">\(\mathbf{ w}\)</span> and the
+data, <span class="math inline">\(\mathbf{ x}\)</span>.</p>
+<p><span class="math display">\[ y=  f\left(\mathbf{ x}, \mathbf{
+w}\right).\]</span> We call <span
 class="math inline">\(f(\cdot)\)</span> the <em>prediction
 function</em>.</p>
 <p>To obtain the fit to data, we use a separate function called the
 <em>objective function</em> that gives us a mathematical representation
 of the difference between our predictions and the real data.</p>
-<p><span class="math display">\[E(\boldsymbol{\beta}, \mathbf{Y},
+<p><span class="math display">\[E(\mathbf{ w}, \mathbf{Y},
 \mathbf{X})\]</span> A commonly used examples (for example in a
 regression problem) is least squares, <span
-class="math display">\[E(\boldsymbol{\beta}, \mathbf{Y}, \mathbf{X}) =
-\sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i,
-\boldsymbol{\beta})\right)^2.\]</span></p>
+class="math display">\[E(\mathbf{ w}, \mathbf{Y}, \mathbf{X}) =
+\sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i, \mathbf{
+w})\right)^2.\]</span></p>
 <p>If a linear prediction function is combined with the least squares
 objective function, then that gives us a classical <em>linear
 regression</em>, another classical statistical model. Statistics often
@@ -460,10 +460,25 @@ to validate questions by analysis of data. Machine learning has
 typically focused more on the prediction function itself and worried
 less about the interpretation of parameters, which are normally denoted
 by <span class="math inline">\(\mathbf{w}\)</span> instead of <span
-class="math inline">\(\boldsymbol{\beta}\)</span>. As a result,
+class="math inline">\(\mathbf{ w}\)</span>. As a result,
 <em>non-linear</em> functions are explored more often as they tend to
 improve quality of predictions but at the expense of
 interpretability.</p>
+<p>A key difference between statistics and machine learning, is that
+(traditionally) machine learning has focussed on predictive capability
+and statistics has focussed on interpretability. That means that in a
+statistics class far more emphasis will be placed on interpretation of
+the parameters. In machine learning, the parameters, $, are just a means
+to an end. But in statistics, when we denote the parameters by <span
+class="math inline">\(\boldsymbol{\beta}\)</span>, we often use the
+parameters to tell us something about the disease.</p>
+<p>So we move between <span class="math display">\[ p(\text{bought})
+=  \sigma\left(w_0 + w_1 \text{age} + w_2
+\text{latitude}\right).\]</span></p>
+<p>to denote the emphasis is on predictive power to</p>
+<p><span class="math display">\[ p(\text{bought}) =  \sigma\left(\beta_0
++ \beta_1 \text{age} + \beta_2 \text{latitude}\right).\]</span></p>
+<p>to denote the emphasis is on interpretation of the parameters.</p>
 <ul>
 <li><p>These are interpretable models: vital for disease etc.</p></li>
 <li><p>Modern machine learning methods are less interpretable</p></li>

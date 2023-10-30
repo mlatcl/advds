@@ -353,8 +353,8 @@ class="slide level2">
 </ul>
 <p><span class="math display">\[ \text{odds} =
 \frac{p(\text{bought})}{p(\text{not bought})} \]</span></p>
-<p><span class="math display">\[ \log \text{odds}  = \beta_0 + \beta_1
-\text{age} + \beta_2 \text{latitude}.\]</span></p>
+<p><span class="math display">\[ \log \text{odds}  = w_0 + w_1
+\text{age} + w_2 \text{latitude}.\]</span></p>
 </section>
 <section id="codify-through-mathematical-functions-1"
 class="slide level2">
@@ -363,8 +363,8 @@ class="slide level2">
 <li>How does machine learning work?</li>
 <li>Jumper (jersey/sweater) purchase with logistic regression</li>
 </ul>
-<p><span class="math display">\[ p(\text{bought}) =  \sigma\left(\beta_0
-+ \beta_1 \text{age} + \beta_2 \text{latitude}\right).\]</span></p>
+<p><span class="math display">\[ p(\text{bought}) =  \sigma\left(w_0 +
+w_1 \text{age} + paramScalar_2 \text{latitude}\right).\]</span></p>
 </section>
 <section id="codify-through-mathematical-functions-2"
 class="slide level2">
@@ -374,7 +374,7 @@ class="slide level2">
 <li>Jumper (jersey/sweater) purchase with logistic regression</li>
 </ul>
 <p><span class="math display">\[ p(\text{bought})
-=  \sigma\left(\boldsymbol{\beta}^\top \mathbf{ x}\right).\]</span></p>
+=  \sigma\left(\mathbf{ w}^\top \mathbf{ x}\right).\]</span></p>
 </section>
 <section id="codify-through-mathematical-functions-3"
 class="slide level2">
@@ -383,8 +383,8 @@ class="slide level2">
 <li>How does machine learning work?</li>
 <li>Jumper (jersey/sweater) purchase with logistic regression</li>
 </ul>
-<p><span class="math display">\[ y=  f\left(\mathbf{ x},
-\boldsymbol{\beta}\right).\]</span></p>
+<p><span class="math display">\[ y=  f\left(\mathbf{ x}, \mathbf{
+w}\right).\]</span></p>
 <div class="fragment">
 <p>We call <span class="math inline">\(f(\cdot)\)</span> the
 <em>prediction function</em>.</p>
@@ -395,14 +395,13 @@ class="slide level2">
 <ul>
 <li>Use an objective function</li>
 </ul>
-<p><span class="math display">\[E(\boldsymbol{\beta}, \mathbf{Y},
+<p><span class="math display">\[E(\mathbf{ w}, \mathbf{Y},
 \mathbf{X})\]</span></p>
 <div class="fragment">
 <ul>
-<li>E.g. least squares <span
-class="math display">\[E(\boldsymbol{\beta}, \mathbf{Y}, \mathbf{X}) =
-\sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i,
-\boldsymbol{\beta})\right)^2.\]</span></li>
+<li>E.g. least squares <span class="math display">\[E(\mathbf{ w},
+\mathbf{Y}, \mathbf{X}) = \sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i,
+\mathbf{ w})\right)^2.\]</span></li>
 </ul>
 </div>
 </section>
@@ -414,6 +413,13 @@ class="math inline">\(f(\cdot)\)</span></li>
 <li>Objective function, <span
 class="math inline">\(E(\cdot)\)</span></li>
 </ul>
+</section>
+<section id="prediction-vs-interpretation" class="slide level2">
+<h2>Prediction vs Interpretation</h2>
+<p><span class="math display">\[ p(\text{bought}) =  \sigma\left(w_0 +
+w_1 \text{age} + w_2 \text{latitude}\right).\]</span></p>
+<p><span class="math display">\[ p(\text{bought}) =  \sigma\left(\beta_0
++ \beta_1 \text{age} + \beta_2 \text{latitude}\right).\]</span></p>
 </section>
 <section id="deep-learning" class="slide level2">
 <h2>Deep Learning</h2>
