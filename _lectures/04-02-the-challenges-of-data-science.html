@@ -42,6 +42,7 @@ categories:
 <!--
 
 -->
+<!-- defines the technical variant-->
 <h1 id="introduction">Introduction</h1>
 <p>Data science is an emerging discipline. That makes it harder to make
 clean decisions about what any given individual will need to know to
@@ -423,14 +424,45 @@ class="math inline">\(w\)</span> values). The function is known as the
 <em>sigmoid</em> or <a
 href="https://en.wikipedia.org/wiki/Logistic_regression">logistic
 function</a>, thus the name <em>logistic</em> regression.</p>
+<h3 id="sigmoid-function">Sigmoid Function</h3>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/sigmoid-function.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/sigmoid-function.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<div class="figure">
+<div id="the-logistic-function-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/logistic.svg" width="80%" style=" ">
+</object>
+</div>
+<div id="the-logistic-function-magnify" class="magnify"
+onclick="magnifyFigure(&#39;the-logistic-function&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="the-logistic-function-caption" class="caption-frame">
+<p>Figure: The logistic function.</p>
+</div>
+</div>
+<p>The function has this characeristic ‘s’-shape (from where the term
+sigmoid, as in sigma, comes from). It also takes the input from the
+entire real line and ‘squashes’ it into an output that is between zero
+and one. For this reason it is sometimes also called a ‘squashing
+function’.</p>
+<p>The sigmoid comes from the inverting the odds ratio, <span
+class="math display">\[
+\frac{\pi}{(1-\pi)}
+\]</span> where <span class="math inline">\(\pi\)</span> is the
+probability of a positive outcome and <span
+class="math inline">\(1-\pi\)</span> is the probability of a negative
+outcome</p>
 <p><span class="math display">\[ p(\text{bought}) =  \sigma\left(w_0 +
-w_1 \text{age} + paramScalar_2 \text{latitude}\right).\]</span> In the
-case where we have <em>features</em> to help us predict, we sometimes
-denote such features as a vector, <span class="math inline">\(\mathbf{
-x}\)</span>, and we then use an inner product between the features and
-the parameters, <span class="math inline">\(\mathbf{ w}^\top \mathbf{
-x}= w_1 x_1 + w_2 x_2 + w_3 x_3 ...\)</span>, to represent the argument
-of the sigmoid.</p>
+w_1 \text{age} + w_2 \text{latitude}\right).\]</span></p>
+<p>In the case where we have <em>features</em> to help us predict, we
+sometimes denote such features as a vector, <span
+class="math inline">\(\mathbf{ x}\)</span>, and we then use an inner
+product between the features and the parameters, <span
+class="math inline">\(\mathbf{ w}^\top \mathbf{ x}= w_1 x_1 + w_2 x_2 +
+w_3 x_3 ...\)</span>, to represent the argument of the sigmoid.</p>
 <p><span class="math display">\[ p(\text{bought})
 =  \sigma\left(\mathbf{ w}^\top \mathbf{ x}\right).\]</span> More
 generally, we aim to predict some aspect of our data, <span
@@ -482,6 +514,237 @@ parameters to tell us something about the disease.</p>
 <em>non-linear</em> approaches, which can be harder to interpret, are
 more widely deployedin machine learning – they tend to improve quality
 of predictions at the expense of interpretability.</p>
+<h2 id="logistic-regression">Logistic Regression</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/logistic-regression.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/logistic-regression.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>A logistic regression is an approach to classification which extends
+the linear basis function models we’ve already explored. Rather than
+modeling the output of the function directly the assumption is that we
+model the <em>log-odds</em> with the basis functions.</p>
+<p>The <a href="http://en.wikipedia.org/wiki/Odds">odds</a> are defined
+as the ratio of the probability of a positive outcome, to the
+probability of a negative outcome. If the probability of a positive
+outcome is denoted by <span class="math inline">\(\pi\)</span>, then the
+odds are computed as <span
+class="math inline">\(\frac{\pi}{1-\pi}\)</span>. Odds are widely used
+by <a href="http://en.wikipedia.org/wiki/Bookmaker">bookmakers</a> in
+gambling, although a bookmakers odds won’t normalise: i.e. if you look
+at the equivalent probabilities, and sum over the probability of all
+outcomes the bookmakers are considering, then you won’t get one. This is
+how the bookmaker makes a profit. Because a probability is always
+between zero and one, the odds are always between <span
+class="math inline">\(0\)</span> and <span
+class="math inline">\(\infty\)</span>. If the positive outcome is
+unlikely the odds are close to zero, if it is very likely then the odds
+become close to infinite. Taking the logarithm of the odds maps the odds
+from the positive half space to being across the entire real line. Odds
+that were between 0 and 1 (where the negative outcome was more likely)
+are mapped to the range between <span
+class="math inline">\(-\infty\)</span> and <span
+class="math inline">\(0\)</span>. Odds that are greater than 1 are
+mapped to the range between <span class="math inline">\(0\)</span> and
+<span class="math inline">\(\infty\)</span>. Considering the log odds
+therefore takes a number between 0 and 1 (the probability of positive
+outcome) and maps it to the entire real line. The function that does
+this is known as the <a href="http://en.wikipedia.org/wiki/Logit">logit
+function</a>, <span class="math inline">\(g^{-1}(p_i) =
+\log\frac{p_i}{1-p_i}\)</span>. This function is known as a <em>link
+function</em>.</p>
+<p>For a standard regression we take, <span class="math display">\[
+f(\mathbf{ x}) = \mathbf{ w}^\top
+\boldsymbol{ \phi}(\mathbf{ x}),
+\]</span> if we want to perform classification we perform a logistic
+regression. <span class="math display">\[
+\log \frac{\pi}{(1-\pi)} = \mathbf{ w}^\top
+\boldsymbol{ \phi}(\mathbf{ x})
+\]</span> where the odds ratio between the positive class and the
+negative class is given by <span class="math display">\[
+\frac{\pi}{(1-\pi)}
+\]</span> The odds can never be negative, but can take any value from 0
+to <span class="math inline">\(\infty\)</span>. We have defined the link
+function as taking the form <span
+class="math inline">\(g^{-1}(\cdot)\)</span> implying that the inverse
+link function is given by <span class="math inline">\(g(\cdot)\)</span>.
+Since we have defined, <span class="math display">\[
+g^{-1}(\pi) =
+\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x})
+\]</span> we can write <span class="math inline">\(\pi\)</span> in terms
+of the <em>inverse link</em> function, <span
+class="math inline">\(g(\cdot)\)</span> as <span class="math display">\[
+\pi = g(\mathbf{ w}^\top
+\boldsymbol{ \phi}(\mathbf{ x})).
+\]</span></p>
+<h2 id="basis-function">Basis Function</h2>
+<p>We’ll define our prediction, objective and gradient functions below.
+But before we start, we need to define a basis function for our model.
+Let’s start with the linear basis.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> linear</span></code></pre></div>
+<h2 id="prediction-function">Prediction Function</h2>
+<p>Now we have the basis function let’s define the prediction
+function.</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict(w, x, basis<span class="op">=</span>linear, <span class="op">**</span>kwargs):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Generates the prediction function and the basis matrix.&quot;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    Phi <span class="op">=</span> basis(x, <span class="op">**</span>kwargs)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> np.dot(Phi, w)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1.</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>np.exp(<span class="op">-</span>f)), Phi</span></code></pre></div>
+<p>This inverse of the link function is known as the <a
+href="http://en.wikipedia.org/wiki/Logistic_function">logistic</a> (thus
+the name logistic regression) or sometimes it is called the sigmoid
+function. For a particular value of the input to the link function,
+<span class="math inline">\(f_i = \mathbf{ w}^\top \boldsymbol{
+\phi}(\mathbf{ x}_i)\)</span> we can plot the value of the inverse link
+function as below.</p>
+<p>By replacing the inverse link with the sigmoid we can write <span
+class="math inline">\(\pi\)</span> as a function of the input and the
+parameter vector as, <span class="math display">\[
+\pi(\mathbf{ x},\mathbf{ w}) = \frac{1}{1+\exp\left(-\mathbf{ w}^\top
+\boldsymbol{ \phi}(\mathbf{ x})\right)}.
+\]</span> The process for logistic regression is as follows. Compute the
+output of a standard linear basis function composition (<span
+class="math inline">\(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{
+x})\)</span>, as we did for linear regression) and then apply the
+inverse link function, <span class="math inline">\(g(\mathbf{ w}^\top
+\boldsymbol{ \phi}(\mathbf{ x}))\)</span>. In logistic regression this
+involves <em>squashing</em> it with the logistic (or sigmoid) function.
+Use this value, which now has an interpretation as a
+<em>probability</em> in a Bernoulli distribution to form the likelihood.
+Then we can assume conditional independence of each data point given the
+parameters and develop a likelihod for the entire data set.</p>
+<p>As we discussed last time, the Bernoulli likelihood is of the form,
+<span class="math display">\[
+P(y_i|\mathbf{ w}, \mathbf{ x}) =
+\pi_i^{y_i} (1-\pi_i)^{1-y_i}
+\]</span> which we can think of as clever trick for mathematically
+switching between two probabilities if we were to write it as code it
+would be better described as</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bernoulli(x, y, pi):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> y <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> pi(x)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span><span class="op">-</span>pi(x)</span></code></pre></div>
+<p>but writing it mathematically makes it easier to write our objective
+function within a single mathematical equation.</p>
+<h2 id="maximum-likelihood">Maximum Likelihood</h2>
+<p>To obtain the parameters of the model, we need to maximize the
+likelihood, or minimize the objective function, normally taken to be the
+negative log likelihood. With a data conditional independence assumption
+the likelihood has the form, <span class="math display">\[
+P(\mathbf{ y}|\mathbf{ w},
+\mathbf{X}) = \prod_{i=1}^nP(y_i|\mathbf{ w}, \mathbf{ x}_i).
+\]</span> which can be written as a log likelihood in the form <span
+class="math display">\[
+\log P(\mathbf{ y}|\mathbf{ w},
+\mathbf{X}) = \sum_{i=1}^n\log P(y_i|\mathbf{ w}, \mathbf{ x}_i) =
+\sum_{i=1}^n
+y_i \log \pi_i + \sum_{i=1}^n(1-y_i)\log (1-\pi_i)
+\]</span> and if we take the probability of positive outcome for the
+<span class="math inline">\(i\)</span>th data point to be given by <span
+class="math display">\[
+\pi_i = g\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{
+x}_i)\right),
+\]</span> where <span class="math inline">\(g(\cdot)\)</span> is the
+<em>inverse</em> link function, then this leads to an objective function
+of the form, <span class="math display">\[
+E(\mathbf{ w}) = -  \sum_{i=1}^ny_i \log
+g\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x}_i)\right) -
+\sum_{i=1}^n(1-y_i)\log \left(1-g\left(\mathbf{ w}^\top
+\boldsymbol{ \phi}(\mathbf{ x}_i)\right)\right).
+\]</span></p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> objective(g, y):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Computes the objective function.&quot;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    labs <span class="op">=</span> np.asarray(y, dtype<span class="op">=</span><span class="bu">float</span>).flatten()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    posind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">1</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    negind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">0</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.log(g[posind, :]).<span class="bu">sum</span>() <span class="op">-</span> np.log(<span class="dv">1</span><span class="op">-</span>g[negind, :]).<span class="bu">sum</span>()</span></code></pre></div>
+<p>As normal, we would like to minimize this objective. This can be done
+by differentiating with respect to the parameters of our prediction
+function, <span class="math inline">\(\pi(\mathbf{ x};\mathbf{
+w})\)</span>, for optimisation. The gradient of the likelihood with
+respect to <span class="math inline">\(\pi(\mathbf{ x};\mathbf{
+w})\)</span> is of the form, <span class="math display">\[
+\frac{\text{d}E(\mathbf{ w})}{\text{d}\mathbf{ w}} = -\sum_{i=1}^n
+\frac{y_i}{g\left(\mathbf{ w}^\top
+\boldsymbol{ \phi}(\mathbf{
+x})\right)}\frac{\text{d}g(f_i)}{\text{d}f_i}
+\boldsymbol{ \phi}(\mathbf{ x}_i) +  \sum_{i=1}^n
+\frac{1-y_i}{1-g\left(\mathbf{ w}^\top
+\boldsymbol{ \phi}(\mathbf{
+x})\right)}\frac{\text{d}g(f_i)}{\text{d}f_i}
+\boldsymbol{ \phi}(\mathbf{ x}_i)
+\]</span> where we used the chain rule to develop the derivative in
+terms of <span
+class="math inline">\(\frac{\text{d}g(f_i)}{\text{d}f_i}\)</span>, which
+is the gradient of the inverse link function (in our case the gradient
+of the sigmoid function).</p>
+<p>So the objective function now depends on the gradient of the inverse
+link function, as well as the likelihood depends on the gradient of the
+inverse link function, as well as the gradient of the log likelihood,
+and naturally the gradient of the argument of the inverse link function
+with respect to the parameters, which is simply <span
+class="math inline">\(\boldsymbol{ \phi}(\mathbf{ x}_i)\)</span>.</p>
+<p>The only missing term is the gradient of the inverse link function.
+For the sigmoid squashing function we have, <span
+class="math display">\[\begin{align*}
+g(f_i) &amp;= \frac{1}{1+\exp(-f_i)}\\
+&amp;=(1+\exp(-f_i))^{-1}
+\end{align*}\]</span> and the gradient can be computed as <span
+class="math display">\[\begin{align*}
+\frac{\text{d}g(f_i)}{\text{d} f_i} &amp; =
+\exp(-f_i)(1+\exp(-f_i))^{-2}\\
+&amp; = \frac{1}{1+\exp(-f_i)}
+\frac{\exp(-f_i)}{1+\exp(-f_i)} \\
+&amp; = g(f_i) (1-g(f_i))
+\end{align*}\]</span> so the full gradient can be written down as <span
+class="math display">\[
+\frac{\text{d}E(\mathbf{ w})}{\text{d}\mathbf{ w}} = -\sum_{i=1}^n
+y_i\left(1-g\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{
+x})\right)\right)
+\boldsymbol{ \phi}(\mathbf{ x}_i) +  \sum_{i=1}^n
+(1-y_i)\left(g\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{
+x})\right)\right)
+\boldsymbol{ \phi}(\mathbf{ x}_i).
+\]</span></p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient(g, Phi, y):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Generates the gradient of the parameter vector.&quot;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    labs <span class="op">=</span> np.asarray(y, dtype<span class="op">=</span><span class="bu">float</span>).flatten()</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    posind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">1</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    dw <span class="op">=</span> <span class="op">-</span>(Phi[posind]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>g[posind])).<span class="bu">sum</span>(<span class="dv">0</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    negind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">0</span> )</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    dw <span class="op">+=</span> (Phi[negind]<span class="op">*</span>g[negind]).<span class="bu">sum</span>(<span class="dv">0</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dw[:, <span class="va">None</span>]</span></code></pre></div>
+<h2 id="optimization-of-the-function">Optimization of the Function</h2>
+<p>Reorganizing the gradient to find a stationary point of the function
+with respect to the parameters <span class="math inline">\(\mathbf{
+w}\)</span> turns out to be impossible. Optimization has to proceed by
+<em>numerical methods</em>. Options include the multidimensional variant
+of <a href="http://en.wikipedia.org/wiki/Newton%27s_method">Newton’s
+method</a> or <a
+href="http://en.wikipedia.org/wiki/Gradient_method">gradient based
+optimization methods</a> like we used for optimizing matrix
+factorization for the movie recommender system. We recall from matrix
+factorization that, for large data, <em>stochastic gradient descent</em>
+or the Robbins Munro <span class="citation"
+data-cites="Robbins:stoch51">(Robbins and Monro, 1951)</span>
+optimization procedure worked best for function minimization.</p>
 <ul>
 <li><p>These are interpretable models: vital for disease etc.</p></li>
 <li><p>Modern machine learning methods are less interpretable</p></li>
@@ -1036,6 +1299,11 @@ fire control computer</a> which was a mechanical computer. MacKay worked
 on radar systems for gun laying, here the velocity and distance of the
 target could be assessed through radar and an mechanical electrical
 analogue computer.</p>
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li>Section 5.2.2 up to pg 182 of <span class="citation"
+data-cites="Rogers:book11">Rogers and Girolami (2011)</span></li>
+</ul>
 <h2 id="fire-control-systems">Fire Control Systems</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
@@ -1428,6 +1696,14 @@ Mubangizi, M., Andrade-Pacheco, R., Smith, M.T., Quinn, J., Lawrence,
 N.D., 2014. Malaria surveillance with multiple data sources using
 <span>Gaussian</span> process models, in: 1st International Conference
 on the Use of Mobile <span>ICT</span> in Africa.
+</div>
+<div id="ref-Robbins:stoch51" class="csl-entry" role="listitem">
+Robbins, H., Monro, S., 1951. A stochastic approximation method. Annals
+of Mathematical Statistics 22, 400–407.
+</div>
+<div id="ref-Rogers:book11" class="csl-entry" role="listitem">
+Rogers, S., Girolami, M., 2011. A first course in machine learning. CRC
+Press.
 </div>
 <div id="ref-Taigman:deepface14" class="csl-entry" role="listitem">
 Taigman, Y., Yang, M., Ranzato, M., Wolf, L., 2014.
