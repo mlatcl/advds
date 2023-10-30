@@ -62,68 +62,16 @@ Building</p>
 </section>
 <section id="introduction" class="slide level2">
 <h2>Introduction</h2>
-</section>
-<section id="background-big-data" class="slide level2">
-<h2>Background: Big Data</h2>
-<ul>
-<li><p>Data is Pervasive phenomenon that affects all aspects of our
-activities</p></li>
-<li><p>Data diffusiveness is both a challenge and an
-opportunity</p></li>
-</ul>
-</section>
-<section id="the-gartner-hype-cycle" class="slide level2">
-<h2>The Gartner Hype Cycle</h2>
-<div class="figure">
-<div id="gartner-hype-cycle-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//Gartner_Hype_Cycle.svg" width="80%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-The Gartner Hype Cycle places technologies on a graph that relates to
-the expectations we have of a technology against its actual influence.
-Early hope for a new techology is often displaced by disillusionment due
-to the time it takes for a technology to be usefully deployed.
-</aside>
-</section>
-<section id="cycle-for-ml-terms" class="slide level2">
-<h2>Cycle for ML Terms</h2>
-</section>
-<section id="google-trends" class="slide level2">
-<h2>Google Trends</h2>
-<script>
-showDivs(0, 'ai-bd-dm-dl-ml-google-trends');
-</script>
-<p><small></small>
-<input id="range-ai-bd-dm-dl-ml-google-trends" type="range" min="0" max="4" value="0" onchange="setDivs('ai-bd-dm-dl-ml-google-trends')" oninput="setDivs('ai-bd-dm-dl-ml-google-trends')">
-<button onclick="plusDivs(-1, 'ai-bd-dm-dl-ml-google-trends')">❮</button>
-<button onclick="plusDivs(1, 'ai-bd-dm-dl-ml-google-trends')">❯</button></p>
-<div class="ai-bd-dm-dl-ml-google-trends"
-style="text-align:center;max-width:100vw; max-height:100vh">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/ai-bd-dm-dl-ml-google-trends000.svg" width style=" ">
-</object>
-</div>
-<div class="ai-bd-dm-dl-ml-google-trends"
-style="text-align:center;max-width:100vw; max-height:100vh">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/ai-bd-dm-dl-ml-google-trends001.svg" width style=" ">
-</object>
-</div>
-<div class="ai-bd-dm-dl-ml-google-trends"
-style="text-align:center;max-width:100vw; max-height:100vh">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/ai-bd-dm-dl-ml-google-trends002.svg" width style=" ">
-</object>
-</div>
-<div class="ai-bd-dm-dl-ml-google-trends"
-style="text-align:center;max-width:100vw; max-height:100vh">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/ai-bd-dm-dl-ml-google-trends003.svg" width style=" ">
-</object>
-</div>
-<div class="ai-bd-dm-dl-ml-google-trends"
-style="text-align:center;max-width:100vw; max-height:100vh">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/ai-bd-dm-dl-ml-google-trends004.svg" width style=" ">
-</object>
-</div>
+<!--
+## Background: Big Data  {}
+
+
+
+* Data is Pervasive phenomenon that affects all aspects of our activities
+
+* Data diffusiveness is both a challenge and an opportunity
+-->
+<!--include{_data-science/includes/gartner-hype-cycle-ai-bd-dm-dl-ml.md}-->
 </section>
 <section id="data-science-as-debugging" class="slide level2">
 <h2>Data Science as Debugging</h2>
@@ -434,100 +382,6 @@ w_1 \text{age} + w_2 \text{latitude}\right).\]</span></p>
 <p><span class="math display">\[ p(\text{bought}) =  \sigma\left(\beta_0
 + \beta_1 \text{age} + \beta_2 \text{latitude}\right).\]</span></p>
 </section>
-<section id="deep-learning" class="slide level2">
-<h2>Deep Learning</h2>
-<ul>
-<li><p>These are interpretable models: vital for disease etc.</p></li>
-<li><p>Modern machine learning methods are less interpretable</p></li>
-<li><p>Example: face recognition</p></li>
-</ul>
-<!-- SECTION Deep Learning -->
-</section>
-<section id="deep-learning-1" class="slide level2">
-<h2>Deep Learning</h2>
-</section>
-<section id="deep-learning-2" class="slide level2">
-<h2>Deep Learning</h2>
-<ul>
-<li><p>These are interpretable models: vital for disease modeling
-etc.</p></li>
-<li><p>Modern machine learning methods are less interpretable</p></li>
-<li><p>Example: face recognition</p></li>
-</ul>
-<!-- No slide titles in this context -->
-</section>
-<section id="section-3" class="slide level2">
-<h2></h2>
-<p><span class="fragment fade-in"><small>Outline of the DeepFace
-architecture. A front-end of a single convolution-pooling-convolution
-filtering on the rectified input, followed by three locally-connected
-layers and two fully-connected layers. Color illustrates feature maps
-produced at each layer. The net includes more than 120 million
-parameters, where more than 95% come from the local and fully
-connected.</small></span></p>
-<div class="figure">
-<div id="deep-face-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//deepface_neg.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-</div>
-<aside class="notes">
-The DeepFace architecture <span class="citation"
-data-cites="Taigman:deepface14">(Taigman et al., 2014)</span>,
-visualized through colors to represent the functional mappings at each
-layer. There are 120 million parameters in the model.
-</aside>
-<div style="text-align:right">
-<small>Source: DeepFace <span class="citation"
-data-cites="Taigman:deepface14">(Taigman et al., 2014)</span></small>
-</div>
-</section>
-<section id="section-4" class="slide level2">
-<h2></h2>
-<div class="figure">
-<div id="early-pinball-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//576px-Early_Pinball.jpg" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-</div>
-<aside class="notes">
-Deep learning models are composition of simple functions. We can think
-of a pinball machine as an analogy. Each layer of pins corresponds to
-one of the layers of functions in the model. Input data is represented
-by the location of the ball from left to right when it is dropped in
-from the top. Output class comes from the position of the ball as it
-leaves the pins at the bottom.
-</aside>
-</section>
-<section id="section-5" class="slide level2">
-<h2></h2>
-<div class="figure">
-<div id="pinball-initialization-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//pinball001.svg" width="80%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-At initialization, the pins, which represent the parameters of the
-function, aren’t in the right place to bring the balls to the correct
-decisions.
-</aside>
-</section>
-<section id="section-6" class="slide level2">
-<h2></h2>
-<div class="figure">
-<div id="pinball-trained-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//pinball002.svg" width="80%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-After learning the pins are now in the right place to bring the balls to
-the correct decisions.
-</aside>
-</section>
 <section id="example-prediction-of-malaria-incidence-in-uganda"
 class="slide level2">
 <h2>Example: Prediction of Malaria Incidence in Uganda</h2>
@@ -706,6 +560,92 @@ covariance funciton.
 <aside class="notes">
 The map of Ugandan districts with an overview of the Malaria situation
 in each district.
+</aside>
+<!-- SECTION Deep Learning -->
+</section>
+<section id="deep-learning" class="slide level2">
+<h2>Deep Learning</h2>
+</section>
+<section id="deep-learning-1" class="slide level2">
+<h2>Deep Learning</h2>
+<ul>
+<li><p>These are interpretable models: vital for disease modeling
+etc.</p></li>
+<li><p>Modern machine learning methods are less interpretable</p></li>
+<li><p>Example: face recognition</p></li>
+</ul>
+<!-- No slide titles in this context -->
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<p><span class="fragment fade-in"><small>Outline of the DeepFace
+architecture. A front-end of a single convolution-pooling-convolution
+filtering on the rectified input, followed by three locally-connected
+layers and two fully-connected layers. Color illustrates feature maps
+produced at each layer. The net includes more than 120 million
+parameters, where more than 95% come from the local and fully
+connected.</small></span></p>
+<div class="figure">
+<div id="deep-face-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//deepface_neg.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+</div>
+<aside class="notes">
+The DeepFace architecture <span class="citation"
+data-cites="Taigman:deepface14">(Taigman et al., 2014)</span>,
+visualized through colors to represent the functional mappings at each
+layer. There are 120 million parameters in the model.
+</aside>
+<div style="text-align:right">
+<small>Source: DeepFace <span class="citation"
+data-cites="Taigman:deepface14">(Taigman et al., 2014)</span></small>
+</div>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<div class="figure">
+<div id="early-pinball-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//576px-Early_Pinball.jpg" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+</div>
+<aside class="notes">
+Deep learning models are composition of simple functions. We can think
+of a pinball machine as an analogy. Each layer of pins corresponds to
+one of the layers of functions in the model. Input data is represented
+by the location of the ball from left to right when it is dropped in
+from the top. Output class comes from the position of the ball as it
+leaves the pins at the bottom.
+</aside>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+<div class="figure">
+<div id="pinball-initialization-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//pinball001.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+At initialization, the pins, which represent the parameters of the
+function, aren’t in the right place to bring the balls to the correct
+decisions.
+</aside>
+</section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+<div class="figure">
+<div id="pinball-trained-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//pinball002.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+After learning the pins are now in the right place to bring the balls to
+the correct decisions.
 </aside>
 </section>
 <section id="what-are-large-language-models" class="slide level2">
@@ -890,13 +830,6 @@ either in the conventional sense.</p>
 </section>
 <section id="human-analogue-machine" class="slide level2">
 <h2>Human Analogue Machine</h2>
-<p>{I believe a better term for them is “human-analogue machines”,
-because what we have built is not a system that can make intelligent
-decisions from first principles (a rational approach) but one that
-observes how humans have made decisions through our data and
-reconstructs that process. Machine learning is more empiricist than
-rational, but now we n empirical approach that distils our evolved
-intelligence.</p>
 <div class="figure">
 <div id="human-analogue-machine-figure" class="figure-frame">
 <div class="centered" style="">
@@ -910,13 +843,22 @@ that we use to reason, one way of doing this is to have a machine
 attempt to compress all human generated text in an auto-regressive
 manner.
 </aside>
+<ul>
+<li><p>A human-analogue machine is a machine that has created a feature
+space that is analagous to the “feature space” our brain uses to
+reason.</p></li>
+<li><p>The latest generation of LLMs are exhibiting this charateristic,
+giving them ability to converse.</p></li>
+</ul>
 </section>
 <section id="counterfeit-people" class="slide level2">
 <h2>Counterfeit People</h2>
-<p>{* Perils of this include <em>counterfeit people</em>. * Daniel
-Dennett has described the challenges these bring in <a
+<ul>
+<li>Perils of this include <em>counterfeit people</em>.</li>
+<li>Daniel Dennett has described the challenges these bring in <a
 href="https://www.theatlantic.com/technology/archive/2023/05/problem-counterfeit-people/674075/">an
-article in The Atlantic</a>.</p>
+article in The Atlantic</a>.</li>
+</ul>
 </section>
 <section id="psychological-representation-of-the-machine"
 class="slide level2">

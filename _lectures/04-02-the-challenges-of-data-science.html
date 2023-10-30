@@ -54,86 +54,10 @@ refinement, your knowledge needs to be broad based.</p>
 limitations as humans mean that our analysis of data can be affected,
 and I will introduce an analogy that should help you understand
 <em>how</em> data science differs significantly from traditional
-software engineering. We’ll then contextualize some of the challenges
-the domain into three different groups.</p>
-<h2 id="the-gartner-hype-cycle">The Gartner Hype Cycle</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<div class="figure">
-<div id="gartner-hype-cycle-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//Gartner_Hype_Cycle.svg" width="80%" style=" ">
-</object>
-</div>
-<div id="gartner-hype-cycle-magnify" class="magnify"
-onclick="magnifyFigure(&#39;gartner-hype-cycle&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="gartner-hype-cycle-caption" class="caption-frame">
-<p>Figure: The Gartner Hype Cycle places technologies on a graph that
-relates to the expectations we have of a technology against its actual
-influence. Early hope for a new techology is often displaced by
-disillusionment due to the time it takes for a technology to be usefully
-deployed.</p>
-</div>
-</div>
-<p>The <a href="https://en.wikipedia.org/wiki/Hype_cycle">Gartner Hype
-Cycle</a> tries to assess where an idea is in terms of maturity and
-adoption. It splits the evolution of technology into a technological
-trigger, a peak of expectations followed by a trough of disillusionment
-and a final ascension into a useful technology. It looks rather like a
-classical control response to a final set point.</p>
-<h2 id="cycle-for-ml-terms">Cycle for ML Terms</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-ai-bd-dm-dl-ml.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-ai-bd-dm-dl-ml.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<h2 id="google-trends">Google Trends</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-base.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/gartner-hype-cycle-base.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install pytrends</span></code></pre></div>
-<div class="figure">
-<div id="ai-bd-dm-dl-ml-gartner-hype-cycle-google-trends-figure"
-class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/ai-bd-dm-dl-ml-google-trends.svg" width="80%" style=" ">
-</object>
-</div>
-<div id="ai-bd-dm-dl-ml-gartner-hype-cycle-google-trends-magnify"
-class="magnify"
-onclick="magnifyFigure(&#39;ai-bd-dm-dl-ml-gartner-hype-cycle-google-trends&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="ai-bd-dm-dl-ml-gartner-hype-cycle-google-trends-caption"
-class="caption-frame">
-<p>Figure: A Google trends search for ‘artificial intelligence’, ‘big
-data’, ‘data mining’, ‘deep learning’, ‘machine learning’ as different
-technological terms gives us insight into their popularity over
-time.</p>
-</div>
-</div>
-<p>Google trends gives us insight into the interest for different terms
-over time.</p>
-<p>Examining Google trends search for ‘artificial intelligence’, ‘big
-data’, ‘data mining’, ‘deep learning’ and ‘machine learning’ we can see
-that ‘artificial intelligence’ <em>may</em> be entering a plateau of
-productivity, ‘big data’ is entering the trough of disillusionment, and
-‘data mining’ seems to be deeply within the trough. On the other hand,
-‘deep learning’ and ‘machine learning’ appear to be ascending to the
-peak of inflated expectations having experienced a technology
-trigger.</p>
-<p>For deep learning that technology trigger was the ImageNet result of
-2012 <span class="citation"
-data-cites="Krizhevsky:imagenet12">(Krizhevsky et al., n.d.)</span>.
-This step change in performance on object detection in images was
-achieved through convolutional neural networks, popularly known as ‘deep
-learning’.</p>
+software engineering.</p>
+<!--
+-->
+<!--include{_data-science/includes/gartner-hype-cycle-ai-bd-dm-dl-ml.md}-->
 <h2 id="data-science-as-debugging">Data Science as Debugging</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
@@ -581,24 +505,24 @@ class="math inline">\(g(\cdot)\)</span> as <span class="math display">\[
 <p>We’ll define our prediction, objective and gradient functions below.
 But before we start, we need to define a basis function for our model.
 Let’s start with the linear basis.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> linear</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> linear</span></code></pre></div>
 <h2 id="prediction-function">Prediction Function</h2>
 <p>Now we have the basis function let’s define the prediction
 function.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict(w, x, basis<span class="op">=</span>linear, <span class="op">**</span>kwargs):</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Generates the prediction function and the basis matrix.&quot;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    Phi <span class="op">=</span> basis(x, <span class="op">**</span>kwargs)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> np.dot(Phi, w)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1.</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>np.exp(<span class="op">-</span>f)), Phi</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict(w, x, basis<span class="op">=</span>linear, <span class="op">**</span>kwargs):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Generates the prediction function and the basis matrix.&quot;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    Phi <span class="op">=</span> basis(x, <span class="op">**</span>kwargs)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> np.dot(Phi, w)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1.</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>np.exp(<span class="op">-</span>f)), Phi</span></code></pre></div>
 <p>This inverse of the link function is known as the <a
 href="http://en.wikipedia.org/wiki/Logistic_function">logistic</a> (thus
 the name logistic regression) or sometimes it is called the sigmoid
@@ -629,12 +553,12 @@ P(y_i|\mathbf{ w}, \mathbf{ x}) =
 \]</span> which we can think of as clever trick for mathematically
 switching between two probabilities if we were to write it as code it
 would be better described as</p>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bernoulli(x, y, pi):</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> y <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> pi(x)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span><span class="op">-</span>pi(x)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bernoulli(x, y, pi):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> y <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> pi(x)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span><span class="op">-</span>pi(x)</span></code></pre></div>
 <p>but writing it mathematically makes it easier to write our objective
 function within a single mathematical equation.</p>
 <h2 id="maximum-likelihood">Maximum Likelihood</h2>
@@ -663,15 +587,15 @@ g\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x}_i)\right) -
 \sum_{i=1}^n(1-y_i)\log \left(1-g\left(\mathbf{ w}^\top
 \boldsymbol{ \phi}(\mathbf{ x}_i)\right)\right).
 \]</span></p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> objective(g, y):</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Computes the objective function.&quot;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    labs <span class="op">=</span> np.asarray(y, dtype<span class="op">=</span><span class="bu">float</span>).flatten()</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    posind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">1</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    negind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">0</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.log(g[posind, :]).<span class="bu">sum</span>() <span class="op">-</span> np.log(<span class="dv">1</span><span class="op">-</span>g[negind, :]).<span class="bu">sum</span>()</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> objective(g, y):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Computes the objective function.&quot;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    labs <span class="op">=</span> np.asarray(y, dtype<span class="op">=</span><span class="bu">float</span>).flatten()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    posind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">1</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    negind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">0</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.log(g[posind, :]).<span class="bu">sum</span>() <span class="op">-</span> np.log(<span class="dv">1</span><span class="op">-</span>g[negind, :]).<span class="bu">sum</span>()</span></code></pre></div>
 <p>As normal, we would like to minimize this objective. This can be done
 by differentiating with respect to the parameters of our prediction
 function, <span class="math inline">\(\pi(\mathbf{ x};\mathbf{
@@ -720,17 +644,17 @@ x})\right)\right)
 x})\right)\right)
 \boldsymbol{ \phi}(\mathbf{ x}_i).
 \]</span></p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient(g, Phi, y):</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Generates the gradient of the parameter vector.&quot;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    labs <span class="op">=</span> np.asarray(y, dtype<span class="op">=</span><span class="bu">float</span>).flatten()</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    posind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">1</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    dw <span class="op">=</span> <span class="op">-</span>(Phi[posind]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>g[posind])).<span class="bu">sum</span>(<span class="dv">0</span>)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    negind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">0</span> )</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    dw <span class="op">+=</span> (Phi[negind]<span class="op">*</span>g[negind]).<span class="bu">sum</span>(<span class="dv">0</span>)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dw[:, <span class="va">None</span>]</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient(g, Phi, y):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Generates the gradient of the parameter vector.&quot;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    labs <span class="op">=</span> np.asarray(y, dtype<span class="op">=</span><span class="bu">float</span>).flatten()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    posind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">1</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    dw <span class="op">=</span> <span class="op">-</span>(Phi[posind]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>g[posind])).<span class="bu">sum</span>(<span class="dv">0</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    negind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">0</span> )</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    dw <span class="op">+=</span> (Phi[negind]<span class="op">*</span>g[negind]).<span class="bu">sum</span>(<span class="dv">0</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dw[:, <span class="va">None</span>]</span></code></pre></div>
 <h2 id="optimization-of-the-function">Optimization of the Function</h2>
 <p>Reorganizing the gradient to find a stationary point of the function
 with respect to the parameters <span class="math inline">\(\mathbf{
@@ -745,164 +669,6 @@ factorization that, for large data, <em>stochastic gradient descent</em>
 or the Robbins Munro <span class="citation"
 data-cites="Robbins:stoch51">(Robbins and Monro, 1951)</span>
 optimization procedure worked best for function minimization.</p>
-<ul>
-<li><p>These are interpretable models: vital for disease etc.</p></li>
-<li><p>Modern machine learning methods are less interpretable</p></li>
-<li><p>Example: face recognition</p></li>
-</ul>
-<h1 id="deep-learning">Deep Learning</h1>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/deep-learning-overview.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/deep-learning-overview.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>Classical statistical models and simple machine learning models have
-a great deal in common. The main difference between the fields is
-philosophical. Machine learning practitioners are typically more
-concerned with the quality of prediciton (e.g. measured by ROC curve)
-while statisticians tend to focus more on the interpretability of the
-model and the validity of any decisions drawn from that interpretation.
-For example, a statistical model may be used to validate whether a large
-scale intervention (such as the mass provision of mosquito nets) has had
-a long term effect on disease (such as malaria). In this case one of the
-covariates is likely to be the provision level of nets in a particular
-region. The response variable would be the rate of malaria disease in
-the region. The parmaeter, <span class="math inline">\(\beta_1\)</span>
-associated with that covariate will demonstrate a positive or negative
-effect which would be validated in answering the question. The focus in
-statistics would be less on the accuracy of the response variable and
-more on the validity of the interpretation of the effect variable, <span
-class="math inline">\(\beta_1\)</span>.</p>
-<p>A machine learning practitioner on the other hand would typically
-denote the parameter <span class="math inline">\(w_1\)</span>, instead
-of <span class="math inline">\(\beta_1\)</span> and would only be
-interested in the output of the prediction function, <span
-class="math inline">\(f(\cdot)\)</span> rather than the parameter
-itself. The general formalism of the prediction function allows for
-<em>non-linear</em> models. In machine learning, the emphasis on
-prediction over interpretability means that non-linear models are often
-used. The parameters, <span class="math inline">\(\mathbf{w}\)</span>,
-are a means to an end (good prediction) rather than an end in themselves
-(interpretable).</p>
-<!-- No slide titles in this context -->
-<h2 id="deepface">DeepFace</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/deep-face.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/deep-face.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<div class="figure">
-<div id="deep-face-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//deepface_neg.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-<div id="deep-face-magnify" class="magnify"
-onclick="magnifyFigure(&#39;deep-face&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="deep-face-caption" class="caption-frame">
-<p>Figure: The DeepFace architecture <span class="citation"
-data-cites="Taigman:deepface14">(Taigman et al., 2014)</span>,
-visualized through colors to represent the functional mappings at each
-layer. There are 120 million parameters in the model.</p>
-</div>
-</div>
-<p>The DeepFace architecture <span class="citation"
-data-cites="Taigman:deepface14">(Taigman et al., 2014)</span> consists
-of layers that deal with <em>translation</em> invariances, known as
-convolutional layers. These layers are followed by three
-locally-connected layers and two fully-connected layers. Color
-illustrates feature maps produced at each layer. The neural network
-includes more than 120 million parameters, where more than 95% come from
-the local and fully connected layers.</p>
-<h3 id="deep-learning-as-pinball">Deep Learning as Pinball</h3>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/deep-learning-as-pinball.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/deep-learning-as-pinball.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<div class="figure">
-<div id="early-pinball-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//576px-Early_Pinball.jpg" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-<div id="early-pinball-magnify" class="magnify"
-onclick="magnifyFigure(&#39;early-pinball&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="early-pinball-caption" class="caption-frame">
-<p>Figure: Deep learning models are composition of simple functions. We
-can think of a pinball machine as an analogy. Each layer of pins
-corresponds to one of the layers of functions in the model. Input data
-is represented by the location of the ball from left to right when it is
-dropped in from the top. Output class comes from the position of the
-ball as it leaves the pins at the bottom.</p>
-</div>
-</div>
-<p>Sometimes deep learning models are described as being like the brain,
-or too complex to understand, but one analogy I find useful to help the
-gist of these models is to think of them as being similar to early pin
-ball machines.</p>
-<p>In a deep neural network, we input a number (or numbers), whereas in
-pinball, we input a ball.</p>
-<p>Think of the location of the ball on the left-right axis as a single
-number. Our simple pinball machine can only take one number at a time.
-As the ball falls through the machine, each layer of pins can be thought
-of as a different layer of ‘neurons’. Each layer acts to move the ball
-from left to right.</p>
-<p>In a pinball machine, when the ball gets to the bottom it might fall
-into a hole defining a score, in a neural network, that is equivalent to
-the decision: a classification of the input object.</p>
-<p>An image has more than one number associated with it, so it is like
-playing pinball in a <em>hyper-space</em>.</p>
-<div class="figure">
-<div id="pinball-initialization-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//pinball001.svg" width="80%" style=" ">
-</object>
-</div>
-<div id="pinball-initialization-magnify" class="magnify"
-onclick="magnifyFigure(&#39;pinball-initialization&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="pinball-initialization-caption" class="caption-frame">
-<p>Figure: At initialization, the pins, which represent the parameters
-of the function, aren’t in the right place to bring the balls to the
-correct decisions.</p>
-</div>
-</div>
-<div class="figure">
-<div id="pinball-trained-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//pinball002.svg" width="80%" style=" ">
-</object>
-</div>
-<div id="pinball-trained-magnify" class="magnify"
-onclick="magnifyFigure(&#39;pinball-trained&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="pinball-trained-caption" class="caption-frame">
-<p>Figure: After learning the pins are now in the right place to bring
-the balls to the correct decisions.</p>
-</div>
-</div>
-<p>Learning involves moving all the pins to be in the correct position,
-so that the ball ends up in the right place when it’s fallen through the
-machine. But moving all these pins in hyperspace can be difficult.</p>
-<p>In a hyper-space you have to put a lot of data through the machine
-for to explore the positions of all the pins. Even when you feed many
-millions of data points through the machine, there are likely to be
-regions in the hyper-space where no ball has passed. When future test
-data passes through the machine in a new route unusual things can
-happen.</p>
-<p><em>Adversarial examples</em> exploit this high dimensional space. If
-you have access to the pinball machine, you can use gradient methods to
-find a position for the ball in the hyper space where the image looks
-like one thing, but will be classified as another.</p>
-<p>Probabilistic methods explore more of the space by considering a
-range of possible paths for the ball through the machine. This helps to
-make them more data efficient and gives some robustness to adversarial
-examples.</p>
 <h2 id="example-prediction-of-malaria-incidence-in-uganda">Example:
 Prediction of Malaria Incidence in Uganda</h2>
 <div style="text-align:right">
@@ -1157,6 +923,159 @@ situation in each district.</p>
 <p>These colors can now be observed directly on a spatial map of the
 districts to give an immediate impression of the current status of the
 disease across the country.</p>
+<h1 id="deep-learning">Deep Learning</h1>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/deep-learning-overview.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/deep-learning-overview.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>Classical statistical models and simple machine learning models have
+a great deal in common. The main difference between the fields is
+philosophical. Machine learning practitioners are typically more
+concerned with the quality of prediciton (e.g. measured by ROC curve)
+while statisticians tend to focus more on the interpretability of the
+model and the validity of any decisions drawn from that interpretation.
+For example, a statistical model may be used to validate whether a large
+scale intervention (such as the mass provision of mosquito nets) has had
+a long term effect on disease (such as malaria). In this case one of the
+covariates is likely to be the provision level of nets in a particular
+region. The response variable would be the rate of malaria disease in
+the region. The parmaeter, <span class="math inline">\(\beta_1\)</span>
+associated with that covariate will demonstrate a positive or negative
+effect which would be validated in answering the question. The focus in
+statistics would be less on the accuracy of the response variable and
+more on the validity of the interpretation of the effect variable, <span
+class="math inline">\(\beta_1\)</span>.</p>
+<p>A machine learning practitioner on the other hand would typically
+denote the parameter <span class="math inline">\(w_1\)</span>, instead
+of <span class="math inline">\(\beta_1\)</span> and would only be
+interested in the output of the prediction function, <span
+class="math inline">\(f(\cdot)\)</span> rather than the parameter
+itself. The general formalism of the prediction function allows for
+<em>non-linear</em> models. In machine learning, the emphasis on
+prediction over interpretability means that non-linear models are often
+used. The parameters, <span class="math inline">\(\mathbf{w}\)</span>,
+are a means to an end (good prediction) rather than an end in themselves
+(interpretable).</p>
+<!-- No slide titles in this context -->
+<h2 id="deepface">DeepFace</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/deep-face.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/deep-face.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<div class="figure">
+<div id="deep-face-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//deepface_neg.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="deep-face-magnify" class="magnify"
+onclick="magnifyFigure(&#39;deep-face&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="deep-face-caption" class="caption-frame">
+<p>Figure: The DeepFace architecture <span class="citation"
+data-cites="Taigman:deepface14">(Taigman et al., 2014)</span>,
+visualized through colors to represent the functional mappings at each
+layer. There are 120 million parameters in the model.</p>
+</div>
+</div>
+<p>The DeepFace architecture <span class="citation"
+data-cites="Taigman:deepface14">(Taigman et al., 2014)</span> consists
+of layers that deal with <em>translation</em> invariances, known as
+convolutional layers. These layers are followed by three
+locally-connected layers and two fully-connected layers. Color
+illustrates feature maps produced at each layer. The neural network
+includes more than 120 million parameters, where more than 95% come from
+the local and fully connected layers.</p>
+<h3 id="deep-learning-as-pinball">Deep Learning as Pinball</h3>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/deep-learning-as-pinball.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/deep-learning-as-pinball.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<div class="figure">
+<div id="early-pinball-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//576px-Early_Pinball.jpg" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="early-pinball-magnify" class="magnify"
+onclick="magnifyFigure(&#39;early-pinball&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="early-pinball-caption" class="caption-frame">
+<p>Figure: Deep learning models are composition of simple functions. We
+can think of a pinball machine as an analogy. Each layer of pins
+corresponds to one of the layers of functions in the model. Input data
+is represented by the location of the ball from left to right when it is
+dropped in from the top. Output class comes from the position of the
+ball as it leaves the pins at the bottom.</p>
+</div>
+</div>
+<p>Sometimes deep learning models are described as being like the brain,
+or too complex to understand, but one analogy I find useful to help the
+gist of these models is to think of them as being similar to early pin
+ball machines.</p>
+<p>In a deep neural network, we input a number (or numbers), whereas in
+pinball, we input a ball.</p>
+<p>Think of the location of the ball on the left-right axis as a single
+number. Our simple pinball machine can only take one number at a time.
+As the ball falls through the machine, each layer of pins can be thought
+of as a different layer of ‘neurons’. Each layer acts to move the ball
+from left to right.</p>
+<p>In a pinball machine, when the ball gets to the bottom it might fall
+into a hole defining a score, in a neural network, that is equivalent to
+the decision: a classification of the input object.</p>
+<p>An image has more than one number associated with it, so it is like
+playing pinball in a <em>hyper-space</em>.</p>
+<div class="figure">
+<div id="pinball-initialization-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//pinball001.svg" width="80%" style=" ">
+</object>
+</div>
+<div id="pinball-initialization-magnify" class="magnify"
+onclick="magnifyFigure(&#39;pinball-initialization&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="pinball-initialization-caption" class="caption-frame">
+<p>Figure: At initialization, the pins, which represent the parameters
+of the function, aren’t in the right place to bring the balls to the
+correct decisions.</p>
+</div>
+</div>
+<div class="figure">
+<div id="pinball-trained-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//pinball002.svg" width="80%" style=" ">
+</object>
+</div>
+<div id="pinball-trained-magnify" class="magnify"
+onclick="magnifyFigure(&#39;pinball-trained&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="pinball-trained-caption" class="caption-frame">
+<p>Figure: After learning the pins are now in the right place to bring
+the balls to the correct decisions.</p>
+</div>
+</div>
+<p>Learning involves moving all the pins to be in the correct position,
+so that the ball ends up in the right place when it’s fallen through the
+machine. But moving all these pins in hyperspace can be difficult.</p>
+<p>In a hyper-space you have to put a lot of data through the machine
+for to explore the positions of all the pins. Even when you feed many
+millions of data points through the machine, there are likely to be
+regions in the hyper-space where no ball has passed. When future test
+data passes through the machine in a new route unusual things can
+happen.</p>
+<p><em>Adversarial examples</em> exploit this high dimensional space. If
+you have access to the pinball machine, you can use gradient methods to
+find a position for the ball in the hyper space where the image looks
+like one thing, but will be classified as another.</p>
+<p>Probabilistic methods explore more of the space by considering a
+range of possible paths for the ball through the machine. This helps to
+make them more data efficient and gives some robustness to adversarial
+examples.</p>
 <h2 id="what-are-large-language-models">What are Large Language
 Models?</h2>
 <div style="text-align:right">
@@ -1480,7 +1399,7 @@ some aspects to them that are analagous to our understanding. As MacKay
 suggests the brain is neither a digital or an analogue computer, and the
 same can be said of the modern neural network systems that are being
 tagged as “artificial intelligence”.</p>
-<p>{I believe a better term for them is “human-analogue machines”,
+<p>I believe a better term for them is “human-analogue machines”,
 because what we have built is not a system that can make intelligent
 decisions from first principles (a rational approach) but one that
 observes how humans have made decisions through our data and
@@ -1504,23 +1423,12 @@ machine attempt to compress all human generated text in an
 auto-regressive manner.</p>
 </div>
 </div>
-<ul>
-<li><p>A human-analogue machine is a machine that has created a feature
-space that is analagous to the “feature space” our brain uses to
-reason.</p></li>
-<li><p>The latest generation of LLMs are exhibiting this charateristic,
-giving them ability to converse.</p></li>
-</ul>
 <p>The perils of developing this capability include counterfeit people,
 a notion that the philosopher <a
 href="https://www.theatlantic.com/technology/archive/2023/05/problem-counterfeit-people/674075/">Daniel
 Dennett has described in <em>The Atlantic</em></a>. This is where
 computers can represent themselves as human and fool people into doing
 things on that basis.</p>
-<p>{* Perils of this include <em>counterfeit people</em>. * Daniel
-Dennett has described the challenges these bring in <a
-href="https://www.theatlantic.com/technology/archive/2023/05/problem-counterfeit-people/674075/">an
-article in The Atlantic</a>.</p>
 <h2 id="intellectual-debt">Intellectual Debt</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
@@ -1683,10 +1591,6 @@ Embodied reasoning through planning with language models</a>, in: Liu,
 K., Kulic, D., Ichnowski, J. (Eds.), Proceedings of the 6th Conference
 on Robot Learning, Proceedings of Machine Learning Research. PMLR, pp.
 1769–1782.
-</div>
-<div id="ref-Krizhevsky:imagenet12" class="csl-entry" role="listitem">
-Krizhevsky, A., Sutskever, I., Hinton, G.E., n.d. ImageNet
-classification with deep convolutional neural networks. pp. 1097–1105.
 </div>
 <div id="ref-Mackay-behind91" class="csl-entry" role="listitem">
 MacKay, D.M., 1991. Behind the eye. Basil Blackwell.
