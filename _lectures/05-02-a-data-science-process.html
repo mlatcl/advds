@@ -101,7 +101,7 @@ approach to software engineering emerged.</p>
 are not always appropriate for operational science or continuous
 deployment. One is the CRISP-DM <span class="citation"
 data-cites="Chapman-step00">Chapman et al. (2000)</span> process, which
-does a nice job of capturing the cyclic nature of these processes, but
+does a nice job of capturing the cyclic nature of these processes but
 fails to capture the need to build resources that answer questions in
 real time that occurs in operational science and continuous
 deployment.</p>
@@ -126,8 +126,8 @@ onclick="magnifyFigure(&#39;dm-ds-gartner-hype-cycle-google-trends&#39;)">
 <div id="dm-ds-gartner-hype-cycle-google-trends-caption"
 class="caption-frame">
 <p>Figure: A Google trends search for ‘data mining’, ‘data science’ as
-different technological terms gives us insight into their popularity
-over time.</p>
+different technological terms give us insight into their popularity over
+time.</p>
 </div>
 </div>
 <p>Google trends gives us insight into the interest for different terms
@@ -135,13 +135,13 @@ over time.</p>
 <p>We note that the term <em>data mining</em> is falling somewhat out of
 favour, and the CRISP-DM data mining process also feels somewhat dated.
 In particular software engineering has moved on a great deal since it
-was defined, with modern software engineering more focused on service
-oriented architectures. Software design has a pervasive effect on our
-ability to do data science.</p>
+was defined, with modern software engineering more focused on
+service-oriented architectures. Software design has a pervasive effect
+on our ability to do data science.</p>
 <p>When thinking about the data science process it is important to
-consider the <em>software architectures</em> that are used in large
-scale decision making systems and understand what it is that they are
-bring to help solve these problems.</p>
+consider the <em>software architectures</em> that are used in
+large-scale decision-making systems and understand what it is that they
+are bring to help solve these problems.</p>
 <p>A more modern view from the O’Reilly book <em>Doing Data Science</em>
 frames the problem as shown in Figure <span
 class="math inline">\(\ref{data-science-process-oneil}\)</span>.</p>
@@ -151,7 +151,7 @@ meaning from and interpret data, which requires both tools and methods
 from statistics and machine learning, as well as being human. She spends
 a lot of time in the process of collecting, cleaning, and munging data,
 because data is never clean. This process requires persistence,
-statistics, and software engineering skills–—skills that are also
+statistics, and software engineering skills—skills that are also
 necessary for understanding biases in the data, and for debugging
 logging output from code.</p>
 <p>Cathy O’Neil and Rachel Strutt from <span class="citation"
@@ -333,8 +333,8 @@ onclick="magnifyFigure(&#39;ride-share-service-doa&#39;)">
 </div>
 <div id="ride-share-service-doa-caption" class="caption-frame">
 <p>Figure: Data oriented architecture. Now the joins and the updates are
-exposed within the streaming ecosystem. We can programatically determine
-the factor graph which gives the thread through the model.</p>
+exposed within the streaming ecosystem. We can programmatically
+determine the factor graph which gives the thread through the model.</p>
 </div>
 </div>
 <p>In data driven decision-making systems, the quality of
@@ -359,13 +359,12 @@ responsibility of ML systems.</p>
 One where tests are written before software, and software is not
 incorporated in the wider system until all tests pass. We must apply the
 same standards of care to our ML systems, although for ML we need
-statistical tests for quality, fairness and consistency within the
+statistical tests for quality, fairness, and consistency within the
 environment. Fortunately, the main burden of this testing need not fall
 to the engineers themselves: through leveraging <em>classical
 statistics</em> and <em>emulation</em> we will automate the creation and
 redeployment of these tests across the software ecosystem, we call this
-<em>ML hypervision</em> (WP5 <span
-class="math inline">\(\ref{sec:hypervision}\)</span>).</p>
+<em>ML hypervision</em>.</p>
 <p>Modern AI can be based on ML models with many millions of parameters,
 trained on very large data sets. In ML, strong emphasis is placed on
 <em>predictive accuracy</em> whereas sister-fields such as statistics
@@ -395,7 +394,7 @@ constraints on the computational latency.</p>
 </div>
 <p>For the ride sharing system, we start to see a common issue with a
 more complex algorithmic decision-making system. Several decisions are
-being made multilple times. Let’s look at the decisions we need along
+being made multiple times. Let’s look at the decisions we need along
 with some design criteria.</p>
 <ol type="1">
 <li>Driver Availability: Estimate time to arrival for Anne’s ride using
@@ -447,7 +446,7 @@ Cambridge is focussed on maintaining and explaining machine learning
 systems. The assumption is that such systems are generally made up of
 interacting components that make decisions in a composite manner. They
 have interfaces to the real world where that data is collected, but they
-also generate data within themselelves. The challenge of collecting data
+also generate data within themselves. The challenge of collecting data
 is sometimes less the challenge of pacing the streets and more the
 challenge of extracting it from existing systems.</p>
 <h2 id="the-fynesse-framework-1">The Fynesse Framework</h2>
@@ -465,7 +464,8 @@ labelled as such and pushed back into the data ecosystem. Secondly, our
 use of the term <em>aspects</em> instead of stages acknowledges the fact
 that although there is a natural ordering to the aspects, we find that
 in practice the data scientist is often moving quickly across the
-different aspects, so that the mind set of “stages” can be unhelpful</p>
+different aspects, so that the mind set of “stages” can be
+unhelpful.</p>
 <h2 id="access">Access</h2>
 <p>The first aspect we’ll consider is <em>accessing</em> the data.
 Depending on domain, the skills needed to address this challenge will
@@ -526,7 +526,7 @@ onclick="magnifyFigure(&#39;crash-map-kampala&#39;)">
 <p>Figure: Crash Map Kampala was an initiative by Michael T. Smith and
 Bagonza Jimmy Owa Kinyonyi to map the location, date and severity of
 vehicle accidents across the city of Kampala. Original storage location
-for the data was in police log books.</p>
+for the data was in police logbooks.</p>
 </div>
 </div>
 <p>The project is work from <a
@@ -539,7 +539,7 @@ University AI-LAB</a>.</p>
 accidents are a leading cause of death for the young in many contexts,
 but the scale of the cause is difficult to compare directly because the
 number of deaths and serious injuries are difficult to access.</p>
-<p>In Kampala this data is stored in log books at local police stations.
+<p>In Kampala this data is stored in logbooks at local police stations.
 Jimmy was in the Kampala police at the time, so the project focus was
 transcribing this information into a digital format where it could be
 mapped.</p>
@@ -569,7 +569,7 @@ class="caption-frame">
 <p>Figure:</p>
 </div>
 </div>
-<p>But there are additional challenges with this data. The log books are
+<p>But there are additional challenges with this data. The logbooks are
 typically accessed only by members of Kampala’s police force, in their
 recording of the accidents. So, permission from the police force was
 important. Additionally, personal information about those involved in
@@ -591,7 +591,7 @@ more information that can be used to map crashes over time.</p>
 </div>
 </div>
 <p>Much of the work here was therefore in the <em>access</em> of the
-data. Photographing the log books, obtaining legal permission from the
+data. Photographing the logbooks, obtaining legal permission from the
 Kampala police, ensuring that personal information was unlikely to be
 divulged.</p>
 <div class="figure">
@@ -612,7 +612,7 @@ people are being affected by road accidents.</p>
 <p>As well as software design and build, the work has legal and ethical
 issues. An important aspect in gaining progress was that Jimmy worked
 for the Kampala police. Indeed, the work eventually stalled when Jimmy
-was moved to a differen police location.</p>
+was moved to a different police location.</p>
 <div class="figure">
 <div id="crash-map-kampala-vehicles-figure" class="figure-frame">
 <div class="centered" style="">
@@ -628,12 +628,12 @@ onclick="magnifyFigure(&#39;crash-map-kampala-vehicles&#39;)">
 also help with interventions that may be necessary.</p>
 </div>
 </div>
-<p>The possiblity of leaking personal information was reduced, by
-presenting only a portion of each log book page to users for analysis.
-So we can see in Figure <span
+<p>The possibility of leaking personal information was reduced, by
+presenting only a portion of each logbook page to users for analysis. So
+we can see in Figure <span
 class="math inline">\(\ref{crash-map-kampala-location}\)</span> the
-interface for obtainin the location from the log book. But the the date
-and time (Figure <span
+interface for obtaining the location from the logbook. But the date and
+time (Figure <span
 class="math inline">\(\ref{crash-map-kampala-date-time}\)</span>) the
 severity of the accident (Figure <span
 class="math inline">\(\ref{crash-map-kampala-severity}\)</span>) and the
@@ -658,7 +658,7 @@ onclick="magnifyFigure(&#39;crash-map-kampala-vehicles-2&#39;)">
 the process of data access, but this challenge is underway already
 through the process of what is commonly called <em>digital
 transformation</em>. The process of digital transformation takes data
-away from physical log books and into digital devices. But that
+away from physical logbooks and into digital devices. But that
 transformation process itself comes with challenges. For example, the
 Kampala police force is not currently equipped to store this data in
 purely digital form. It would require not only devices (which many
@@ -669,17 +669,17 @@ the EU and the US database schema and indices are subject to copyright
 law. Companies making data available often require license fees. As many
 data sources are combined, the composite effect of the different license
 agreements often makes the legal challenges insurmountable. This was a
-common challenge in the pandemic, where academics who were capable of
-dealing with complex data predictions were excluded from data access due
-to challenges around licensing. A nice counter example was the work led
-by Nuria Oliver in Spain who after a call to arms in a national
-newspaper (<span class="citation" data-cites="Oliver-valor20">Oliver
+common challenge in the pandemic, where academics who could deal with
+complex data predictions were excluded from data access due to
+challenges around licensing. A nice counter example was the work led by
+Nuria Oliver in Spain who after a call to arms in a national newspaper
+(<span class="citation" data-cites="Oliver-valor20">Oliver
 (2020)</span>) was able to bring the ecosystem together around mobility
 data.</p>
 <p>However, even when organisation is fully digital, and license issues
 are overcome, there are issues around how the data is managed stored,
 accessed. The discoverability of the data and the recording of its
-provenance are too often neglected in the process of digtial
+provenance are too often neglected in the process of digital
 transformation. Further, once an organisation has gone through digital
 transformation, they begin making predictions around the data. These
 predictions are data themselves, and their presence in the data
@@ -693,7 +693,7 @@ aspect is that it only includes things you can do <em>without</em> the
 question in mind. This runs counter to many ideas about how we do data
 analytics. The history of statistics was that we think of the question
 <em>before</em> we collect data. But that was because data was
-expensive, and it needed to be excplicitly collected. The same mantra is
+expensive, and it needed to be explicitly collected. The same mantra is
 true today of <em>surveillance data</em>. But the new challenge is
 around <em>happenstance data</em>, data that is cheaply available but
 may be of poor quality. The nature of the data needs to be understood
@@ -818,9 +818,9 @@ understandperceptions of Ugandan Government’s COVID-19 transmission
 mitigation strategies.</p>
 </div>
 </div>
-<p>One particular challenge for this project is dealing with a data set
-with multiple languages. In Uganda, people don’t just communicate in
-English, but they will <a
+<p>One challenge for this project is dealing with a data set with
+multiple languages. In Uganda, people don’t just communicate in English,
+but they will <a
 href="https://en.wikipedia.org/wiki/Code-switching">code-switch</a> or
 communicate purely in, e.g. Luganda. Tools and resources for dealing
 with code-switching or the Lugandan language in NLP are much less common
@@ -928,8 +928,8 @@ followed.}</li>
 English and Luganda. The data was labeled with the <a
 href="https://github.com/doccano/doccano">Doccano</a> text annotation
 tool. Annotations included the data source, the language, the label, the
-sentiment and the misinformation status.</p>
-<p>{Quality assurance performed by reviewing data with an independent
+sentiment, and the misinformation status.</p>
+<p>Quality assurance performed by reviewing data with an independent
 team for ensuring annotation guidelines were followed.</p>
 <div class="table">
 <div id="annotated-portion-of-data-caption" class="caption-frame">
@@ -1077,7 +1077,7 @@ analysis.</p>
 framework, we’ve created a small GitHub template that’s available <a
 href="https://github.com/lawrennd/fynesse_template">here</a>. We suggest
 the following approach to using the template. Firstly: <em>fork the
-template</em> to your own github account. Then you can base your
+template</em> to your own GitHub account. Then you can base your
 analysis software on the template. If there are aspects to the template
 that you think need updating (including things you don’t like!), then
 you can update those and submit a pull request so that others can
@@ -1114,8 +1114,8 @@ problem, the difficulty of communicating between individuals
 solutions we used in the Delve initiative.</p>
 <p>Recommendations from the DELVE Data report suggest that more effort
 needs to be placed into working in this manner in normal circumstances,
-so that when an emergency occurs we are better prepared to deal with the
-questions we face.</p>
+so that when an emergency occurs, we are better prepared to deal with
+the questions we face.</p>
 <h2 id="thanks">Thanks!</h2>
 <p>For more information on these subjects and more you might want to
 check the following resources.</p>
@@ -1140,20 +1140,20 @@ style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ai/includes/m
 <p>The challenges of integrating different machine learning components
 into a whole that acts effectively as a system seem unresolved. In
 software engineering, separating parts of a system in this way is known
-as <a href="">component-based software engineering</a>. The core idea is
-that the different parts of the system can be independently designed
-according to a sub-specfication. This is sometimes known as
-<em>separation of concerns</em>. However, once the components are
-machine learning based, tighter coupling becomes a side effect of the
-learned nature of the system. For example if a driverless car’s
-detection of cyclist is dependent on its detection of the road surface,
-a change in the road surface detection algorithm will have downstream
-effects on the cyclist detection. Even if the road detection system has
-been improved by objective measures, the cyclist detection system may
-have become sensitive to the foibles of the previous version of road
-detection and will need to be retrained.</p>
+as component-based software engineering. The core idea is that the
+different parts of the system can be independently designed according to
+a sub-specification. This is sometimes known as <em>separation of
+concerns</em>. However, once the components are machine learning based,
+tighter coupling becomes a side effect of the learned nature of the
+system. For example, if a driverless car’s detection of cyclist is
+dependent on its detection of the road surface, a change in the road
+surface detection algorithm will have downstream effects on the cyclist
+detection. Even if the road detection system has been improved by
+objective measures, the cyclist detection system may have become
+sensitive to the foibles of the previous version of road detection and
+will need to be retrained.</p>
 <p>Most of our experience with deployment relies on some approximation
-to the component based model, this is also important for verification of
+to the component-based model, this is also important for verification of
 the system. If the components of the system can be verified then the
 composed system can also, potentially, be verified.</p>
 <h2 id="pigeonholing">Pigeonholing</h2>
@@ -1180,16 +1180,16 @@ pigeonholing the separate tasks that are required.</p>
 <p>To deal with the complexity of systems design, a common approach is
 to break complex systems down into a series of tasks. An approach we can
 think of as “pigeonholing”. Classically, a sub-task could be thought of
-as a particular stage in machining (by analogy to productionlines in
-factories) or a sub-routine call in computing. Machine learning allows
-any complex sub-task, that was difficult to decompose by classical
-methods, to be reconstituted by acquiring data. In particular, when we
-think of emulating a human, we can ask many humans to perform the
-sub-task many times and fit machine learning models to reconstruct the
-performance, or to <em>emulate</em> the human in the performance of the
-task. For example, the decomposition of a complex process such as
-driving a car into apparently obvious sub-tasks (following the road,
-identifying pedestrians, etc).</p>
+as a particular stage in machining (by analogy to division of labour and
+production lines in factories) or a sub-routine call in computing.
+Machine learning allows any complex sub-task, that was difficult to
+decompose by classical methods, to be reconstituted by acquiring data.
+In particular, when we think of emulating a human, we can ask many
+humans to perform the sub-task many times and fit machine learning
+models to reconstruct the performance, or to <em>emulate</em> the human
+in the performance of the task. For example, the decomposition of a
+complex process such as driving a car into apparently obvious sub-tasks
+(following the road, identifying pedestrians, etc).</p>
 <p>The practitioner’s approach to deploying artificial intelligence
 systems is to build up systems of machine learning components. To build
 a machine learning system, we decompose the task into parts, each of
@@ -1205,8 +1205,8 @@ pedestrian in the road”.</p>
 <p>This allows for verification of car performance, as long as we can
 verify the individual components. However, it also implies that the AI
 systems we deploy are <em>fragile</em>.</p>
-<p>Our intelligent systems are composed by “pigeonholing” each indvidual
-task, then substituting with a machine learning model.</p>
+<p>Our intelligent systems are composed by “pigeonholing” each
+individual task, then substituting with a machine learning model.</p>
 <p>But this is not a robust approach to systems design. The definition
 of sub-tasks can lead to a single point of failure, where if any
 sub-task fails, the entire system fails.</p>
@@ -1216,16 +1216,16 @@ automation we also ensure the <em>environment</em> in which the system
 operates becomes controlled. For example, trains run on railway lines,
 fast cars run on motorways, goods are manufactured in a controlled
 factory environment.</p>
-<p>The difference with modern automated decision making systems is our
+<p>The difference with modern automated decision-making systems is our
 intention is to deploy them in the <em>uncontrolled</em> environment
 that makes up our own world.</p>
-<p>This exposes us to either unforseen circumstances or adversarial
-action. And yet it is unclear our our intelligent systems are capable of
+<p>This exposes us to either unforeseen circumstances or adversarial
+action. And yet it is unclear our intelligent systems are capable of
 adapting to this.</p>
 <p>We become exposed to mischief and adversaries. Adversaries
-intentially may wish to take over the artificial intelligence system,
+intentionally may wish to take over the artificial intelligence system,
 and mischief is the constant practice of many in our society. Simply
-watching a 10 year old interact with a voice agent such as Alexa or Siri
+watching a 10-year-old interact with a voice agent such as Alexa or Siri
 shows that they are delighted when the can make the the “intelligent”
 agent seem foolish.</p>
 <h2 id="the-centrifugal-governor">The Centrifugal Governor</h2>
@@ -1290,18 +1290,18 @@ data-cites="Wiener:cybernetics48">(Wiener, 1948)</span>. Cybernetics is
 the Greek word for governor, which comes from the latin for
 helmsman.</p>
 <p>A governor is one of the simplest artificial intelligence systems. It
-senses the speed of an engine, and acts to change the position of the
+senses the speed of an engine and acts to change the position of the
 valve on the engine to slow it down.</p>
 <p>Although it’s a mechanical system a governor can be seen as
 automating a role that a human would have traditionally played. It is an
 early example of artificial intelligence.</p>
 <p>The centrifugal governor has several parameters, the weight of the
-balls used, the length of the linkages and the limits on the balls
+balls used, the length of the linkages and the limits on the balls’
 movement.</p>
-<p>Two principle differences exist between the centrifugal governor and
+<p>Two principal differences exist between the centrifugal governor and
 artificial intelligence systems of today.</p>
 <ol type="1">
-<li>The centrifugal governor is a physical system and it is an integral
+<li>The centrifugal governor is a physical system, and it is an integral
 part of a wider physical system that it regulates (the engine).</li>
 <li>The parameters of the governor were set by hand, our modern
 artificial intelligence systems have their parameters set by
@@ -1318,11 +1318,11 @@ onclick="magnifyFigure(&#39;centrifugal-governor&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="centrifugal-governor-caption" class="caption-frame">
-<p>Figure: The centrifugal governor, an early example of a decision
-making system. The parameters of the governor include the lengths of the
-linkages (which effect how far the throttle opens in response to
-movement in the balls), the weight of the balls (which effects inertia)
-and the limits of to which the balls can rise.</p>
+<p>Figure: The centrifugal governor, an early example of a
+decision-making system. The parameters of the governor include the
+lengths of the linkages (which effect how far the throttle opens in
+response to movement in the balls), the weight of the balls (which
+effects inertia) and the limits of to which the balls can rise.</p>
 </div>
 </div>
 <p>This has the basic components of sense and act that we expect in an
@@ -1330,7 +1330,7 @@ intelligent system, and this system saved the need for a human operator
 to manually adjust the system in the case of overspeed. Overspeed has
 the potential to destroy an engine, so the governor operates as a safety
 device.</p>
-<p>The first wave of automation did bring about sabotoage as a worker’s
+<p>The first wave of automation did bring about sabotage as a worker’s
 response. But if machinery was sabotaged, for example, if the linkage
 between sensor (the spinning balls) and action (the valve closure) was
 broken, this would be obvious to the engine operator at start up time.
@@ -1358,14 +1358,14 @@ implemented in control logic, in this case on a Siemens PLC
 controller.</p>
 <p>Stuxnet infected these controllers and took over the response signal
 in the centrifuge, fooling the system into thinking that no overspeed
-was occuring. As a result, the centrifuges destroyed themselves through
+was occurring. As a result, the centrifuges destroyed themselves through
 spinning too fast.</p>
 <p>This is equivalent to detaching the governor from the steam engine.
 Such sabotage would be easily recognized by a steam engine operator. The
 challenge for the operators of the Iranian Uranium centrifuges was that
 the sabotage was occurring inside the electronics.</p>
 <p>That is the effect of an adversary on an intelligent system, but even
-without adveraries, the mischief of a 10 year old can confuse our
+without advesaries, the mischief of a 10-year-old can confuse our
 AIs.</p>
 <h2 id="peppercorns">Peppercorns</h2>
 <div style="text-align:right">
@@ -1385,7 +1385,7 @@ onclick="magnifyFigure(&#39;peppercorn-siri&#39;)">
 <div id="peppercorn-siri-caption" class="caption-frame">
 <p>Figure: A peppercorn is a system design failure which is not a bug,
 but a conformance to design specification that causes problems when the
-system is deployed in the real world with mischevious and adversarial
+system is deployed in the real world with mischievous and adversarial
 actors.</p>
 </div>
 </div>
@@ -1401,7 +1401,7 @@ result from the system performing correctly.</p>
 design but has consequences in deployment becomes far larger when the
 environment is uncontrolled. Or in the extreme case, where actions of
 the intelligent system effect the wider environment and change it.</p>
-<p>These unforseen circumstances are likely to lead to need for much
+<p>These unforeseen circumstances are likely to lead to need for much
 more efficient turn-around and update for our intelligent systems.
 Whether we are correcting for security flaws (which <em>are</em> bugs)
 or unenvisaged circumstantial challenges: an issue I’m referring to as
@@ -1458,12 +1458,12 @@ mechanical and naval engineering. Each of these has its own professional
 institutions founded in 1818, 1847, and 1860 respectively.</p>
 <p><a href="https://en.wikipedia.org/wiki/Nikola_Tesla">Nikola Tesla</a>
 developed the modern approach to electrical distribution, he was born in
-1856 and the American Instiute for Electrical Engineers was founded in
+1856 and the American Institute for Electrical Engineers was founded in
 1884, the UK equivalent was founded in 1871.</p>
 <p><a href="https://en.wikipedia.org/wiki/William_Shockley">William
 Schockley Jr</a>, born 1910, led the group that developed the
 transistor, referred to as “the man who brought silicon to Silicon
-Valley”, in 1963 the American Institute for Electical Engineers merged
+Valley”, in 1963 the American Institute for Electrical Engineers merged
 with the Institute of Radio Engineers to form the Institute of
 Electrical and Electronic Engineers.</p>
 <p><a href="https://en.wikipedia.org/wiki/Watts_Humphrey">Watts S.
@@ -1481,7 +1481,7 @@ to the 1980s for Software Engineering. In terms of professional
 deployment we have a basic understanding of the equivalent of
 “programming” but much less understanding of <em>machine learning
 systems design</em> and <em>data infrastructure</em>. How the components
-we ahve developed interoperate together in a reliable and accountable
+we have developed interoperate together in a reliable and accountable
 manner. Best practice is still evolving, but perhaps isn’t being shared
 widely enough.</p>
 <p>One problem is that the art of data science is superficially similar
@@ -1536,8 +1536,8 @@ importance.</p>
 cognition, can be two complex to have conversations about and they can
 entrench beliefs, triggering <em>model induced blindness</em> (a
 variation on Kahneman’s <em>theory induced blindness</em> <span
-class="citation"
-data-cites="Kahneman:fastslow11">(<strong>Kahneman:fastslow11?</strong>)</span>).</p>
+class="citation" data-cites="Kahneman-fastslow11">(Kahneman,
+2011)</span>).</p>
 <div class="figure">
 <div id="anne-bob-model-figure" class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//policy/anne-bob-model.svg" width="70%" style=" ">
@@ -1561,7 +1561,7 @@ the more theoretical side, because mathematical models are complex, and
 require a lot of deep thought. However, when communicating with others,
 unless they have the same in depth experience of mathematical modelling
 as the theoreticians, the models do not bring about good information
-coherehnce. Indeed, many computational models themselves are so complex
+coherence. Indeed, many computational models themselves are so complex
 now that no individual can understand the model whole.</p>
 <div class="figure">
 <div id="anne-bob-data-figure" class="figure-frame">
@@ -1581,7 +1581,7 @@ highly effective for convening a multidisciplinary conversation.</p>
 <p>Fritz Heider referred to happenings that are “<em>psychologically
 represented</em> in each of the participants” <span class="citation"
 data-cites="Heider:interpersonal58">(Heider, 1958)</span> as a
-preqequisite for conversation. Data is a route to that psychological
+prerequisite for conversation. Data is a route to that psychological
 representation.</p>
 <p><em>Note</em>: my introduction to Fritz Heider was through a talk by
 Nick Chater in 2010, you can read Nick’s thoughts on these issues in his
@@ -1723,6 +1723,9 @@ Joshi, R., 2007. <a
 href="http://community.rti.com/sites/default/files/archive/Data-Oriented_Architecture.pdf">A
 loosely-coupled real-time SOA</a>. Real-Time Innovations Inc.
 </div>
+<div id="ref-Kahneman-fastslow11" class="csl-entry" role="listitem">
+Kahneman, D., 2011. Thinking fast and slow.
+</div>
 <div id="ref-Lawrence-dop19" class="csl-entry" role="listitem">
 Lawrence, N.D., 2019. <a
 href="http://inverseprobability.com/talks/notes/modern-data-oriented-programming.html">Modern
@@ -1853,7 +1856,7 @@ href="https://www.technologyreview.com/s/604087/the-dark-secret-at-the-heart-of-
 Dark Secret at the Heart of AI” in Technology Review</a>.<a
 href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>If you find another approach to data science that also
-takes into account these aspects please feel to use that apparoach.
+takes into account these aspects, please feel to use that apparoach.
 We’ve designed this framework to help you think through the data science
 process and ensure that your aretefacts are more reusable.}<a
 href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
