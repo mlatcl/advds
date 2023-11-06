@@ -417,7 +417,7 @@ and we rotate it left and right to create new data.</p>
 <div class="sourceCode" id="cb7"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.misc <span class="im">import</span> imrotate</span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>six_image <span class="op">=</span> mlai.load_pgm(<span class="st">&#39;br1561_6.3.pgm&#39;</span>, directory <span class="op">=</span><span class="st">&#39;https://mlatcl.github.io/advds/./slides/diagrams//dimred&#39;</span>)</span>
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>six_image <span class="op">=</span> mlai.load_pgm(<span class="st">&#39;br1561_6.3.pgm&#39;</span>, directory <span class="op">=</span><span class="st">&#39;./dimred&#39;</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>six_image <span class="op">=</span> np.hstack([np.zeros((rows, <span class="dv">3</span>)), six_image, np.zeros((rows, <span class="dv">4</span>))])</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>dim_one <span class="op">=</span> np.asarray(six_image.shape)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>angles <span class="op">=</span> <span class="bu">range</span>(<span class="dv">360</span>)</span>
