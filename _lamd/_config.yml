@@ -10,11 +10,11 @@ layout: lecture
 room: LT2
 venue: William Gates Building
 talkcss: https://inverseprobability.com/assets/css/talks.css
-postsdir: ../../../mlatcl/advds/_lectures/
-slidesdir: ../../../mlatcl/advds/slides/
-notesdir: ../../../mlatcl/advds/_notes/
-notebooksdir: ../../../mlatcl/advds/_notebooks/
-practicalsdir: ../../../mlatcl/advds/_practicals/
+postsdir: ../_lectures/
+slidesdir: ../slides/
+notesdir: ../_notes/
+notebooksdir: ../_notebooks/
+practicalsdir: ../_practicals/
 snippetsdir: $HOME/lawrennd/snippets/
 writediagramsdir: .
 scriptsdir: ./scripts/
