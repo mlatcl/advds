@@ -1825,18 +1825,14 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a h
 that appears to oscilate at approximately the right frequency. The 4th
 latent dimension (<code>index=3</code>) can be plotted across the time
 course as follows.</p>
-<div class="sourceCode" id="cb23"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
-<div class="sourceCode" id="cb24"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>plt.plot(mu_x[:, <span class="dv">3</span>])</span></code></pre></div>
 <p>To reveal an oscillating shape. We can see which genes correspond to
 this shape by examining the associated column of <span
 class="math inline">\(\mathbf{U}\)</span>. Let’s augment our data matrix
 with this score.</p>
-<div class="sourceCode" id="cb25"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>gene_list <span class="op">=</span> Y.T</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>gene_list[<span class="st">&#39;oscilation&#39;</span>] <span class="op">=</span> np.sqrt(U[:, <span class="dv">3</span>]<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>gene_list.sort(columns<span class="op">=</span><span class="st">&#39;oscilation&#39;</span>, ascending<span class="op">=</span><span class="va">False</span>).index[:<span class="dv">4</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>gene_list <span class="op">=</span> Y.T</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>gene_list[<span class="st">&#39;oscilation&#39;</span>] <span class="op">=</span> np.sqrt(U[:, <span class="dv">3</span>]<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>gene_list.sort(columns<span class="op">=</span><span class="st">&#39;oscilation&#39;</span>, ascending<span class="op">=</span><span class="va">False</span>).index[:<span class="dv">4</span>]</span></code></pre></div>
 <p>We can look up the first three genes in this list which now ranks the
 genes according to how strongly they respond to the fourth latent
 dimension. <a href="http://www.ncbi.nlm.nih.gov/gene/">The NCBI gene
