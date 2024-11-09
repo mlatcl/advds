@@ -56,12 +56,120 @@ class="uri">https://github.com/lawrennd/notutils</a></p>
 usual manner.</p>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> notutils</span></code></pre></div>
-<h2 id="thanks">Thanks!</h2>
+<h2 id="data-oriented-architectures">Data-Oriented Architectures</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
 class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/data-oriented-architectures.gpp.markdown" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/data-oriented-architectures.gpp.markdown', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_architectures/includes/doa-intro.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_architectures/includes/doa-intro.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
+<p>Modern AI systems are increasingly data-driven, which creates new
+challenges and requirements that traditional service-oriented
+architectures (SOAs) may not adequately address. This has led to the
+emergence of data-oriented architectures (DOAs) as an alternative
+architectural pattern that prioritizes data availability, ownership,
+traceability and monitoring.</p>
+<p>A fundamental challenge is what has been called the “Data Dichotomy”
+- while service-oriented architectures are designed to hide data,
+data-driven systems need to expose and share data effectively. This
+creates a need to rethink how we architect AI systems.</p>
+<h2 id="core-doa-principles">Core DOA Principles</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_architectures/includes/doa-principles.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_architectures/includes/doa-principles.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>Data-oriented architectures are built on three core principles that
+address the key requirements of modern AI systems. Each principle
+targets specific challenges in modern data-driven applications.</p>
+<h3 id="data-first-principle">Data-First Principle</h3>
+<p>The data-first principle puts data at the center of system design,
+ensuring that data flows are prioritized over service interfaces.</p>
+<p>Decentralization helps address latency and scalability challenges by
+distributing both data and processing across the system.</p>
+<p>The openness principle ensures that data can be effectively shared
+and reused while maintaining appropriate governance.</p>
+<p>While few systems fully implement all DOA principles today, various
+technologies enable partial implementation - databases and message
+queues for data-first approaches, distributed storage and computing for
+decentralization, and asynchronous communication for openness.</p>
+<h2 id="case-study-water-level-monitoring">Case Study: Water Level
+Monitoring</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_architectures/includes/doa-case-study.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_architectures/includes/doa-case-study.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>A practical example of DOA principles being applied can be seen in
+the water level monitoring project at Dedan Kimathi University of
+Technology (DeKUT) in Kenya, monitoring the Ewaso Nyiro River. This
+real-world implementation demonstrates both the benefits and challenges
+of applying DOA principles.</p>
+<div class="figure">
+<div id="water-monitoring-arch-figure" class="figure-frame">
+<object class="svgplot " data="water-monitoring-arch.svg" width="80%" style=" ">
+</object>
+</div>
+<div id="water-monitoring-arch-magnify" class="magnify"
+onclick="magnifyFigure(&#39;water-monitoring-arch&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="water-monitoring-arch-caption" class="caption-frame">
+<p>Figure: Architecture of the water level monitoring system showing key
+components and data flows</p>
+</div>
+</div>
+<p>The system demonstrates the three core DOA principles, though with
+some practical limitations. The data-first approach is evident in the
+centralized data collection, while openness is implemented through
+MQTT-based communication. However, the heavy reliance on cloud resources
+presents opportunities for more decentralization.</p>
+<h2 id="empirical-evaluation-of-doa">Empirical Evaluation of DOA</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_architectures/includes/doa-empirical-evaluation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_architectures/includes/doa-empirical-evaluation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>Research comparing DOA to traditional SOA approaches has revealed
+several advantages, particularly in machine learning deployment
+contexts. The evaluation focused on key metrics that impact system
+maintainability and evolution.</p>
+<p>Studies have shown that DOA implementations typically require fewer
+component changes during system evolution, exhibit lower cognitive
+complexity, and maintain better maintainability scores compared to
+equivalent SOA implementations.</p>
+<p>One particularly important advantage of DOA is its support for better
+causality analysis through explicit data flow representation.</p>
+<h2 id="the-ads-library">The ADS Library</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_architectures/includes/advds-library-intro.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_architectures/includes/advds-library-intro.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>The ADS (Assess, Access, Address) library provides a practical
+implementation of DOA principles for data science pipelines. It
+structures data science workflows in a way that naturally aligns with
+DOA principles while maintaining flexibility for different use
+cases.</p>
+<p>This structured approach enables better traceability of data
+throughout the pipeline, improves reproducibility of analyses, and makes
+systems easier to maintain over time.</p>
+<h2 id="summary">Summary</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_architectures/includes/doa-summary.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_architectures/includes/doa-summary.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>Data-Oriented Architectures provide a valuable paradigm for designing
+modern AI and data science systems. While each system’s specific
+implementation details will vary based on context, the core principles
+of DOA provide a robust framework for addressing common challenges in
+data-driven systems.</p>
+<p>The success of DOA implementations in real-world cases like the water
+monitoring system, combined with empirical evaluations showing benefits
+in maintainability and analysis, suggests that this architectural
+approach will become increasingly important as systems become more
+data-driven.</p>
+<h2 id="thanks">Thanks!</h2>
 <p>For more information on these subjects and more you might want to
 check the following resources.</p>
 <ul>

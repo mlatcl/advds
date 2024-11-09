@@ -23,6 +23,12 @@ ipynb: false
 ---
 
 \include{_software/includes/notutils-software.md}
+\include{_architectures/includes/doa-intro.md}
+\include{_architectures/includes/doa-principles.md}
+\include{_architectures/includes/doa-case-study.md}
+\include{_architectures/includes/doa-empirical-evaluation.md}
+\include{_architectures/includes/advds-library-intro.md}
+\include{_architectures/includes/doa-summary.md}
 
 \thanks
 
