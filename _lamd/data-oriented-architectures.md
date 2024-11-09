@@ -24,6 +24,8 @@ ipynb: false
 
 \include{_software/includes/notutils-software.md}
 \include{_architectures/includes/real-world-deployments.md}
+\include{_architectures/includes/systems-design.md}
+\include{_architectures/includes/ai-systems-design.md}
 \include{_architectures/includes/doa-intro.md}
 \include{_architectures/includes/doa-principles.md}
 \include{_architectures/includes/doa-case-study.md}
