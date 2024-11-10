@@ -1,13 +1,12 @@
 ---
-week: 6
-session: 1
-title: "Dimensionality Reduction: Latent Variable Modelling"
-title: "Visualisation"
+week: 5
+session: 2
+title: "Visualisation I: Latent Variable Modelling"
 featured_image: slides/diagrams/dimred/dem_manifold_print002.png
 layout: lecture
 venue: LT2, William Gates Building
 time: "10:00"
-date: 2024-11-15
+date: 2024-11-11
 author:
 - family: Lawrence
   given: Neil D.
@@ -16,26 +15,64 @@ author:
   twitter: lawrennd
   url: http://inverseprobability.com
 abstract: |
-  In this lecture we turn to *unsupervised learning*. Specifically, we introduce the idea of a latent variable model. Latent variable models are a probabilistic perspective on unsupervised learning which lead to dimensionality reduction algorithms. 
+  In this lecture we turn to visualisation through latent variable modelling. Specifically, we introduce the idea of a latent variable model. Latent variable models are a probabilistic perspective on unsupervised learning which lead to dimensionality reduction algorithms. We will start by a review of regression from a probabilistic perspective and build on this to describe latent variable models.
 youtube: 0mtK2_rc0IY
 transition: None
 ipynb: True
+reveal: True
 ---
 
 \include{_mlai/includes/mlai-notebook-setup.md}
 
 \subsection{Review}
 
-\slides{* Last time: Looked at Generalised Linear Models.
-* This time: visualisation with "unsupervised learning"}
+\include{_ml/includes/overdetermined-system.md}
+\include{_ml/includes/underdetermined-system.md}
+\include{_ml/includes/types-of-uncertainty.md}
 
-\notes{Last time with generalised linear models we focussed mainly on regression
-problems, which are examples of supervised learning. We have considered the
-relationship between the likelihood and the objective function and we have shown
-how we can find paramters by maximizing the likelihood (equivalent to minimizing
-the objective function) and in the last session we saw how we can *marginalize*
-the parameters in a process known as Bayesian inference.}
+\addreading{@Bishop:book06}{Section 1.2.3 (pg 21–24)}
+\addreading{@Rogers:book11}{Sections 3.1-3.4 (pg 95-117)}
+\addreading{@Bishop:book06}{Section 1.2.3 (pg 21–24)}
+\addreading{@Bishop:book06}{Section 1.2.6 (start from just past eq 1.64 pg 30-32)}
 
+\reading
+
+\include{_physics/includes/gauss-least-squares.md}
+\include{_ml/includes/the-bayesian-approach.md}
+\include{_ml/includes/bayesian-regression1d.md}
+\include{_ml/includes/bayesian-1d-maths.md}
+
+\subsection{The Joint Density}
+
+* Really want to know the *joint* posterior density over the parameters $c$ *and* $m$.
+* Could now integrate out over $m$, but it’s easier to consider the multivariate case.
+
+\include{_ml/includes/two-d-gaussian.md}
+
+\subsection{The Prior Density}
+
+Let's assume that the prior density is given by a zero mean Gaussian, which is independent across each of the parameters, 
+$$
+\mappingVector \sim \gaussianSamp{\zerosVector}{\alpha \eye}
+$$ 
+In other words, we are assuming, for the prior, that each element of the parameters vector, $\mappingScalar_i$, was drawn from a Gaussian density as follows
+$$
+\mappingScalar_i \sim \gaussianSamp{0}{\alpha}
+$$
+Let's start by assigning the parameter of the prior distribution, which is the variance of the prior distribution, $\alpha$.
+
+\code{# set prior variance on w
+alpha = 4.
+# set the order of the polynomial basis set
+order = 5
+# set the noise variance
+sigma2 = 0.01}
+
+
+\addreading{@Bishop:book06}{Multivariate Gaussians: Section 2.3 up to top of pg 85}
+\addreading{@Bishop:book06}{Section 3.3 up to 159 (pg 152–159)}
+
+\reading
 
 \include{_ml/includes/clustering.md}
 \include{_dimred/includes/high-dimensional-data.md}
