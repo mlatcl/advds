@@ -1147,6 +1147,260 @@ of these distortions than the dimension of the data. This means we
 expect data to live on a lower dimensonal manifold. This implies that we
 should deal with high dimensional data by looking for a lower
 dimensional (non-linear) embedding.</p>
+<h2 id="high-dimensional-data-effects">High Dimensional Data
+Effects</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/includes/high-dimensional-effects.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_dimred/includes/high-dimensional-effects.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>In high dimensional spaces, our intuitions from everyday three
+dimensional space can fail dramatically. There are two major effects
+that occur:</p>
+<ol type="1">
+<li>All data moves to a “shell” at one standard deviation from the mean
+(known as the “curse of dimensionality”)</li>
+<li>Distances between points become constant</li>
+</ol>
+<p>Let’s explore these effects with some experiments.</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai.plot <span class="im">as</span> plot</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate high-dimensional Gaussian data</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="dv">1000</span>  <span class="co"># dimensions</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span>   <span class="co"># number of points</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> np.random.normal(size<span class="op">=</span>(n, d))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>plot.big_wide_figsize)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>plot.distance_distribution(Y, title<span class="op">=</span><span class="ss">f&#39;Distance Distribution for </span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">-D Gaussian Data&#39;</span>, ax<span class="op">=</span>ax)</span></code></pre></div>
+<p>This plot shows the distribution of pairwise distances between points
+in our high-dimensional Gaussian data. The red line shows the
+theoretical prediction - a gamma distribution with shape parameter d/2
+and scale 2/d. The close match between theory and practice demonstrates
+how in high dimensions, distances between random points become highly
+concentrated around a particular value.</p>
+<h2 id="structured-high-dimensional-data">Structured High Dimensional
+Data</h2>
+<p>Now let’s look at what happens when we introduce structure into our
+high-dimensional data. We’ll create data that actually lies in a
+lower-dimensional space, but embedded in high dimensions.</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate data that lies on a 2D manifold embedded in 1000D</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> np.random.normal(size<span class="op">=</span>(d, <span class="dv">2</span>))  <span class="co"># 2D latent directions</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>latent <span class="op">=</span> np.random.normal(size<span class="op">=</span>(n, <span class="dv">2</span>))  <span class="co"># 2D latent points</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>Y_structured <span class="op">=</span> latent <span class="op">@</span> W.T  <span class="co"># Project to high dimensions</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>plot.big_wide_figsize)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>plot.distance_distribution(Y_structured, </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                         title<span class="op">=</span><span class="st">&#39;Distance Distribution for Structured High-D Data&#39;</span>, </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                         ax<span class="op">=</span>ax)</span></code></pre></div>
+<p>Notice how the distance distribution for the structured data deviates
+significantly from what we would expect for truly high-dimensional data.
+Instead of matching the theoretical curve for 1000-dimensional data, it
+more closely resembles what we would expect for 2-dimensional data. This
+is because despite living in a 1000-dimensional space, the data actually
+has an intrinsic dimensionality of 2.</p>
+<p>This effect is exactly what we observe in real datasets - they
+typically have much lower intrinsic dimensionality than their ambient
+dimension would suggest. This is why dimensionality reduction techniques
+like PCA can be so effective: they help us discover and work with this
+lower-dimensional structure.</p>
+<h3 id="exercise-1">Exercise 1</h3>
+<p>Generate your own high-dimensional dataset with known structure and
+visualize its distance distribution. Try varying the intrinsic
+dimensionality (e.g. use 3D or 4D latent space) and observe how the
+distance distribution changes. What happens if you add some noise to the
+structured data?</p>
+<h2 id="latent-variables-and-dimensionality-reduction">Latent Variables
+and Dimensionality Reduction</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/includes/latent-variable-motivation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_dimred/includes/latent-variable-motivation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>Why does dimensionality reduction work on real data? The key insight
+is that while our measurements may be very high-dimensional, the
+underlying phenomena we’re measuring often have much lower intrinsic
+dimensionality. For example:</p>
+<ol type="1">
+<li><p>A motion capture recording might have hundreds of coordinates,
+but these are all generated by a person’s movements that have far fewer
+degrees of freedom.</p></li>
+<li><p>Genetic data may record thousands of gene expression levels, but
+these are often controlled by a much smaller number of regulatory
+processes.</p></li>
+<li><p>Images contain millions of pixels, but the actual meaningful
+content often lies on a much lower-dimensional manifold.</p></li>
+</ol>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai.plot <span class="im">as</span> plot</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example showing how a 1D curve appears in 2D</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">100</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.column_stack([np.cos(t), np.sin(t)])</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>plot.big_wide_figsize)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(x[:, <span class="dv">0</span>], x[:, <span class="dv">1</span>], <span class="st">&#39;b.&#39;</span>) </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xlabel(<span class="st">&#39;$x_1$&#39;</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">&#39;$x_2$&#39;</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the latent variable representation </span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(t, np.zeros_like(t), <span class="st">&#39;r.&#39;</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">&#39;$z$&#39;</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_yticks([])</span></code></pre></div>
+<p>This example shows how data that appears to be 2-dimensional (left)
+can actually be described by a single latent variable <span
+class="math inline">\(z\)</span> (right) that traces out the curve. The
+key premise of dimensionality reduction is finding and working with
+these simpler underlying representations.</p>
+<h2 id="practical-considerations">Practical Considerations</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/includes/practical-dimensionality-reduction.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_dimred/includes/practical-dimensionality-reduction.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>When applying dimensionality reduction in practice, there are several
+important considerations:</p>
+<ol type="1">
+<li>How to choose the latent dimensionality</li>
+<li>How to validate the reduction is capturing important structure</li>
+<li>What preprocessing steps are needed</li>
+</ol>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai.plot <span class="im">as</span> plot</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_data_reconstruction(X, dim_reducer, num_components):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Visualize reconstruction error vs number of components&quot;&quot;&quot;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    errors <span class="op">=</span> []</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    dims <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, num_components<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> d <span class="kw">in</span> dims:</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        dim_reducer.set_params(n_components<span class="op">=</span>d)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>        X_reduced <span class="op">=</span> dim_reducer.fit_transform(X)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        X_reconstructed <span class="op">=</span> dim_reducer.inverse_transform(X_reduced)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        error <span class="op">=</span> np.mean((X <span class="op">-</span> X_reconstructed) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        errors.append(error)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>plot.big_wide_figsize)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    ax.plot(dims, errors, <span class="st">&#39;b-&#39;</span>)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">&#39;Number of Components&#39;</span>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">&#39;Reconstruction Error&#39;</span>)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    ax.set_yscale(<span class="st">&#39;log&#39;</span>)</span></code></pre></div>
+<p>One common approach for choosing the latent dimensionality is to look
+at the reconstruction error as a function of the number of components.
+An “elbow” in this curve often suggests a good tradeoff between
+complexity and accuracy.</p>
+<p>Before applying dimensionality reduction, it’s usually important to:
+1. Center the data by removing the mean 2. Scale features to have unit
+variance if they’re on different scales 3. Handle missing values
+appropriately</p>
+<h2 id="when-dimensionality-reduction-fails">When Dimensionality
+Reduction Fails</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/includes/dimensionality-reduction-failure-modes.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_dimred/includes/dimensionality-reduction-failure-modes.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>While dimensionality reduction is powerful, it’s important to
+understand when it can fail:</p>
+<ol type="1">
+<li>When the data really is high dimensional with no simpler
+structure</li>
+<li>When the relationship between dimensions is highly nonlinear</li>
+<li>When different parts of the data have different intrinsic
+dimensionality</li>
+</ol>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai.plot <span class="im">as</span> plot</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate data that lies on a Swiss roll manifold</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_swiss_roll(n_points<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> <span class="fl">1.5</span> <span class="op">*</span> np.pi <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> np.random.rand(n_points))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="dv">21</span> <span class="op">*</span> np.random.rand(n_points)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> t <span class="op">*</span> np.cos(t)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> t <span class="op">*</span> np.sin(t)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.column_stack((x, y, z))</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> generate_swiss_roll()</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>plot.big_wide_figsize)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">&#39;3d&#39;</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>ax.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], X[:, <span class="dv">2</span>], c<span class="op">=</span>t)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&#39;$x$&#39;</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">&#39;$y$&#39;</span>) </span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>ax.set_zlabel(<span class="st">&#39;$z$&#39;</span>)</span></code></pre></div>
+<p>This example shows data lying on a Swiss roll manifold. Linear
+dimensionality reduction methods like PCA will fail to capture the
+structure of this data, while nonlinear methods like t-SNE or UMAP may
+perform better.</p>
+<p>Common failure modes include: 1. Using linear methods on nonlinear
+manifolds 2. Assuming global structure when only local structure exists
+3. Not accounting for noise in the data</p>
+<h2 id="high-dimensional-effects-in-real-data">High Dimensional Effects
+in Real Data</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/includes/high-dimensional-data-real.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_dimred/includes/high-dimensional-data-real.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>We’ve seen how high-dimensional random data behaves in a very
+specific way, with highly concentrated distance distributions. Now let’s
+examine some real datasets to see how they differ.</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai.plot <span class="im">as</span> plot</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<p>First let’s look at a motion capture dataset, which despite having
+high dimension, is constrained by the physics of human movement.</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.osu_run1()</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>plot.big_wide_figsize)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>plot.distance_distribution(Y, title<span class="op">=</span><span class="st">&#39;Distance Distribution for Motion Capture Data&#39;</span>, ax<span class="op">=</span>ax)</span></code></pre></div>
+<p>Notice how the distance distribution is much more spread out than we
+would expect for random high-dimensional data. This suggests that the
+motion capture data has much lower intrinsic dimensionality than its
+ambient dimension, due to the physical constraints of human
+movement.</p>
+<h2 id="oil-flow-data">Oil Flow Data</h2>
+<p>Now let’s look at the oil flow dataset, which contains measurements
+from gamma densitometry sensors.</p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.oil()</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>]</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>plot.big_wide_figsize)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>plot.distance_distribution(Y, title<span class="op">=</span><span class="st">&#39;Distance Distribution for Oil Flow Data&#39;</span>, ax<span class="op">=</span>ax)</span></code></pre></div>
+<p>Again we see a deviation from what we would expect for random
+high-dimensional data. The oil flow data shows clear structure in its
+distance distribution, reflecting the physical constraints of fluid
+dynamics that govern the system.</p>
+<h2 id="implications-for-dimensionality-reduction">Implications for
+Dimensionality Reduction</h2>
+<p>These examples demonstrate why dimensionality reduction can be so
+effective on real datasets:</p>
+<ol type="1">
+<li>Real data typically has strong constraints (physical, biological,
+economic, etc.) that restrict it to a lower-dimensional manifold</li>
+<li>This manifold structure is revealed by the distribution of pairwise
+distances</li>
+<li>Dimensionality reduction techniques like PCA can discover and
+exploit this structure</li>
+</ol>
+<p>When we see a distance distribution that deviates from theoretical
+predictions for random high-dimensional data, it suggests that
+dimensionality reduction might be particularly effective.</p>
 <h1 id="latent-variables">Latent Variables</h1>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
@@ -1333,7 +1587,7 @@ class="math inline">\(q\)</span> inputs to the function we have <span
 class="math inline">\(\mathbf{F}\in \Re^{n\times p}\)</span>, <span
 class="math inline">\(\mathbf{W}\in \Re^{p \times q}\)</span> and <span
 class="math inline">\(\mathbf{Z}\in \Re^{n\times q}\)</span>.</p>
-<h3 id="exercise-1">Exercise 1</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <p>Show that, given all the definitions above, if, <span
 class="math display">\[
 \mathbf{F} = \mathbf{Z}\mathbf{W}^\top
@@ -1580,7 +1834,7 @@ constraint that <span class="math inline">\(\mathbf{A}\)</span> must be
 class="math inline">\(\mathbf{ w}\)</span>, other than the zero vector,
 which causes the vector <span class="math inline">\(\mathbf{b}\)</span>
 to be all zeros.</p>
-<h3 id="exercise-2">Exercise 2</h3>
+<h3 id="exercise-3">Exercise 3</h3>
 <p>If <span class="math inline">\(\mathbf{C}=\mathbf{A}^\top
 \mathbf{A}\)</span> then express <span
 class="math inline">\(c_{i,j}\)</span>, the value of the element at the
@@ -1749,26 +2003,40 @@ noise variance. Note that if <span
 class="math inline">\(\sigma^2\)</span> is larger than any particular
 eigenvalue, then that eigenvalue (along with its corresponding
 eigenvector) is <em>discarded</em> from the solution.</p>
+<h2 id="ppca-as-manifold-learning">PPCA as Manifold Learning</h2>
+<p>Probabilistic PCA can be viewed as a simple manifold learning
+algorithm. It assumes that:</p>
+<ol type="1">
+<li>The data lies near a linear manifold (subspace) of the
+high-dimensional space</li>
+<li>The deviation from this manifold is Gaussian noise</li>
+<li>The intrinsic dimensionality is specified by the number of retained
+components</li>
+</ol>
+<p>This view helps explain why PPCA works well when the manifold
+hypothesis holds and the manifold is approximately linear. When the
+manifold is nonlinear, we need more sophisticated methods like kernel
+PCA or neural network-based approaches.</p>
 <h2 id="python-implementation-of-probabilistic-pca">Python
 Implementation of Probabilistic PCA</h2>
 <p>We will now implement this algorithm in python.</p>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># probabilistic PCA algorithm</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ppca(Y, q):</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remove mean</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    Y_cent <span class="op">=</span> Y <span class="op">-</span> Y.mean(<span class="dv">0</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Comute covariance</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> np.dot(Y_cent.T, Y_cent)<span class="op">/</span>Y.shape[<span class="dv">0</span>]</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    lambd, U <span class="op">=</span> np.linalg.eig(S)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Choose number of eigenvectors</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    sigma2 <span class="op">=</span> np.<span class="bu">sum</span>(lambd[q:])<span class="op">/</span>(Y.shape[<span class="dv">1</span>]<span class="op">-</span>q)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    l <span class="op">=</span> np.sqrt(lambd[:q]<span class="op">-</span>sigma2)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    W <span class="op">=</span> U[:, :q]<span class="op">*</span>l[<span class="va">None</span>, :]</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> W, sigma2</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># probabilistic PCA algorithm</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ppca(Y, q):</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remove mean</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    Y_cent <span class="op">=</span> Y <span class="op">-</span> Y.mean(<span class="dv">0</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Comute covariance</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> np.dot(Y_cent.T, Y_cent)<span class="op">/</span>Y.shape[<span class="dv">0</span>]</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    lambd, U <span class="op">=</span> np.linalg.eig(S)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Choose number of eigenvectors</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    sigma2 <span class="op">=</span> np.<span class="bu">sum</span>(lambd[q:])<span class="op">/</span>(Y.shape[<span class="dv">1</span>]<span class="op">-</span>q)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    l <span class="op">=</span> np.sqrt(lambd[:q]<span class="op">-</span>sigma2)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    W <span class="op">=</span> U[:, :q]<span class="op">*</span>l[<span class="va">None</span>, :]</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> W, sigma2</span></code></pre></div>
 <p>In practice we may not wish to compute the eigenvectors of the
 covariance matrix directly. This is because it requires us to estimate
 the covariance, which involves a sum of squares term, before estimating
@@ -1816,7 +2084,7 @@ class="math display">\[
 \frac{1}{2}
 \mathbf{ z}_{i, :}^\top \mathbf{ z}_{i, :} + \text{const}
 \]</span></p>
-<h3 id="exercise-3">Exercise 3</h3>
+<h3 id="exercise-4">Exercise 4</h3>
 <p>Multiply out the terms in the brackets. Then collect the quadratic
 term and the linear terms together. Show that the posterior has the form
 <span class="math display">\[
@@ -1834,15 +2102,15 @@ what differs?</p>
 <h2 id="python-implementation-of-the-posterior">Python Implementation of
 the Posterior</h2>
 <p>Now let’s implement the system in code.</p>
-<h3 id="exercise-4">Exercise 4</h3>
+<h3 id="exercise-5">Exercise 5</h3>
 <p>Use the values for <span class="math inline">\(\mathbf{W}\)</span>
 and <span class="math inline">\(\sigma^2\)</span> you have computed,
 along with the data set <span class="math inline">\(\mathbf{Y}\)</span>
 to compute the posterior density over <span
 class="math inline">\(\mathbf{Z}\)</span>. Write a function of the
 form</p>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mu_x, C_x <span class="op">=</span> posterior(Y, W, sigma2)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>mu_x, C_x <span class="op">=</span> posterior(Y, W, sigma2)</span></code></pre></div>
 <p>where <code>mu_x</code> and <code>C_x</code> are the posterior mean
 and posterior covariance for the given <span
 class="math inline">\(\mathbf{Y}\)</span>.</p>
@@ -1914,37 +2182,37 @@ c_i = \frac{\sigma^2}{\sigma^2 + \ell^2_i}
 diagonal matrix with diagonal elements given by <span
 class="math inline">\(d_{i} = \frac{\ell_i}{\sigma^2 +
 \ell_i^2}\)</span>.</p>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sp</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># probabilistic PCA algorithm using SVD</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ppca(Y, q, center<span class="op">=</span><span class="va">True</span>):</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Probabilistic PCA through singular value decomposition&quot;&quot;&quot;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remove mean</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> center:</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        Y_cent <span class="op">=</span> Y <span class="op">-</span> Y.mean(<span class="dv">0</span>)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        Y_cent <span class="op">=</span> Y</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Comute singluar values, discard &#39;R&#39; as we will assume orthogonal</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    U, sqlambd, _ <span class="op">=</span> sp.linalg.svd(Y_cent.T,full_matrices<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    lambd <span class="op">=</span> (sqlambd<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>Y.shape[<span class="dv">0</span>]</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute residual and extract eigenvectors</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    sigma2 <span class="op">=</span> np.<span class="bu">sum</span>(lambd[q:])<span class="op">/</span>(Y.shape[<span class="dv">1</span>]<span class="op">-</span>q)</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    ell <span class="op">=</span> np.sqrt(lambd[:q]<span class="op">-</span>sigma2)</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> U[:, :q], ell, sigma2</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> posterior(Y, U, ell, sigma2, center<span class="op">=</span><span class="va">True</span>):</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Posterior computation for the latent variables given the eigendecomposition.&quot;&quot;&quot;</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> center:</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>        Y_cent <span class="op">=</span> Y <span class="op">-</span> Y.mean(<span class="dv">0</span>)</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>        Y_cent <span class="op">=</span> Y</span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    C_x <span class="op">=</span> np.diag(sigma2<span class="op">/</span>(sigma2<span class="op">+</span>ell<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> ell<span class="op">/</span>(sigma2<span class="op">+</span>ell<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    mu_x <span class="op">=</span> np.dot(Y_cent, U)<span class="op">*</span>d[<span class="va">None</span>, :]</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mu_x, C_x</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sp</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># probabilistic PCA algorithm using SVD</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ppca(Y, q, center<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Probabilistic PCA through singular value decomposition&quot;&quot;&quot;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remove mean</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> center:</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>        Y_cent <span class="op">=</span> Y <span class="op">-</span> Y.mean(<span class="dv">0</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>        Y_cent <span class="op">=</span> Y</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Comute singluar values, discard &#39;R&#39; as we will assume orthogonal</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    U, sqlambd, _ <span class="op">=</span> sp.linalg.svd(Y_cent.T,full_matrices<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    lambd <span class="op">=</span> (sqlambd<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>Y.shape[<span class="dv">0</span>]</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute residual and extract eigenvectors</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    sigma2 <span class="op">=</span> np.<span class="bu">sum</span>(lambd[q:])<span class="op">/</span>(Y.shape[<span class="dv">1</span>]<span class="op">-</span>q)</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>    ell <span class="op">=</span> np.sqrt(lambd[:q]<span class="op">-</span>sigma2)</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> U[:, :q], ell, sigma2</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> posterior(Y, U, ell, sigma2, center<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Posterior computation for the latent variables given the eigendecomposition.&quot;&quot;&quot;</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> center:</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>        Y_cent <span class="op">=</span> Y <span class="op">-</span> Y.mean(<span class="dv">0</span>)</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>        Y_cent <span class="op">=</span> Y</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>    C_x <span class="op">=</span> np.diag(sigma2<span class="op">/</span>(sigma2<span class="op">+</span>ell<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> ell<span class="op">/</span>(sigma2<span class="op">+</span>ell<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>    mu_x <span class="op">=</span> np.dot(Y_cent, U)<span class="op">*</span>d[<span class="va">None</span>, :]</span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mu_x, C_x</span></code></pre></div>
 <h2 id="examples-motion-capture-data">Examples: Motion Capture Data</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
@@ -1959,17 +2227,17 @@ often by an underlying skeleton. For this data set, from Ohio State
 University, we have 54 frame of motion capture, each frame containing
 102 values, which are the 3-d locations of 34 different points from the
 subject’s skeleton.</p>
-<div class="sourceCode" id="cb14"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.osu_run1()</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.osu_run1()</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span></code></pre></div>
 <p>Once the data is loaded in we can examine the first two principal
 components as follows,</p>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>U, ell, sigma2 <span class="op">=</span> ppca(Y, q)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>mu_x, C_x <span class="op">=</span> posterior(Y, U, ell, sigma2)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>U, ell, sigma2 <span class="op">=</span> ppca(Y, q)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>mu_x, C_x <span class="op">=</span> posterior(Y, U, ell, sigma2)</span></code></pre></div>
 <div class="figure">
 <div id="dem-osu-run1-figure" class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/dem_osu_run1.svg" width="70%" style=" ">
@@ -1989,8 +2257,8 @@ are neighbouring in time. This highlights the form of the run, which
 involves 3 paces. This projects in our low dimensional space to 3 loops.
 We can examin how much residual variance there is in the system by
 looking at <code>sigma2</code>.</p>
-<div class="sourceCode" id="cb17"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sigma2)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sigma2)</span></code></pre></div>
 <h2 id="robot-navigation-example">Robot Navigation Example</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
@@ -2003,12 +2271,12 @@ recorded by a robot performing a loop around the University of
 Washington’s Computer Science department in Seattle. The robot records
 all the wireless access points it can cache and stores their signal
 strength.</p>
-<div class="sourceCode" id="cb18"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.robot_wireless()</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>Y.shape</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.robot_wireless()</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>Y.shape</span></code></pre></div>
 <p>There are 215 observations of 30 different access points. In this
 case the model is suggesting that the access point signal strength
 should be linearly dependent on the location in the map. In other words
@@ -2017,8 +2285,8 @@ class="math inline">\(j\)</span>th access point at robot position <span
 class="math inline">\(x_{i, :}\)</span> to be represented by <span
 class="math inline">\(y_{i, j} = \mathbf{ w}_{j, :}^\top \mathbf{ z}_{i,
 :} + \epsilon_{i,j}\)</span>.</p>
-<div class="sourceCode" id="cb20"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>U, ell, sigma2 <span class="op">=</span> ppca(Y.T, q)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>U, ell, sigma2 <span class="op">=</span> ppca(Y.T, q)</span></code></pre></div>
 <h1 id="interpretations-of-principal-component-analysis">Interpretations
 of Principal Component Analysis</h1>
 <div style="text-align:right">
@@ -2307,7 +2575,7 @@ style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/include
 original data as a function of the input space.</p>
 <p>We will now try to reconstruct the motion capture figure form some
 different places in the latent plot.</p>
-<h3 id="exercise-5">Exercise 5</h3>
+<h3 id="exercise-6">Exercise 6</h3>
 <p>Project the motion capture data onto its principal components, and
 then use the <em>mean posterior estimate</em> to reconstruct the data
 from the latent variables at the data points. Use two latent dimensions.
@@ -2425,10 +2693,10 @@ the value of the latent variable and the weights from the matrix <span
 class="math inline">\(\mathbf{L}\)</span>. First let’s compute the value
 of the latent variables for the point we want to construct. Then we’ll
 use them to compute the weightings of each of the eigenvectors.</p>
-<div class="sourceCode" id="cb21"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mu_x, C_x <span class="op">=</span> posterior(Y, U, ell, sigma2)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>reconstruction_weights <span class="op">=</span> mu_x[display_index, :]<span class="op">*</span>ell</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(reconstruction_weights)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>mu_x, C_x <span class="op">=</span> posterior(Y, U, ell, sigma2)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>reconstruction_weights <span class="op">=</span> mu_x[display_index, :]<span class="op">*</span>ell</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(reconstruction_weights)</span></code></pre></div>
 <p>This vector of reconstruction weights is applied to the ‘template
 images’ given by the eigenvectors to give us our reconstruction. Below
 we weight these templates and combine to form the reconstructed image,
@@ -2477,15 +2745,15 @@ experiment was designed for understanding the cell cycle of the genes.
 The expectation is that there should be oscillating signals inside the
 cell.</p>
 <p>First we extract the principal components of the gene expression.</p>
-<div class="sourceCode" id="cb22"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
-<div class="sourceCode" id="cb23"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load in data and replace missing values with zero</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pods.datasets.spellman_yeast_cdc15()</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>].fillna(<span class="dv">0</span>)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>U, ell, sigma2 <span class="op">=</span> ppca(Y, q)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>mu_x, C_x <span class="op">=</span> posterior(Y, U, ell, sigma2)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load in data and replace missing values with zero</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pods.datasets.spellman_yeast_cdc15()</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>].fillna(<span class="dv">0</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>U, ell, sigma2 <span class="op">=</span> ppca(Y, q)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>mu_x, C_x <span class="op">=</span> posterior(Y, U, ell, sigma2)</span></code></pre></div>
 <p>Now, looking through, we find that there is indeed a latent variable
 that appears to oscilate at approximately the right frequency. The 4th
 latent dimension (<code>index=3</code>) can be plotted across the time
@@ -2494,10 +2762,10 @@ course as follows.</p>
 this shape by examining the associated column of <span
 class="math inline">\(\mathbf{U}\)</span>. Let’s augment our data matrix
 with this score.</p>
-<div class="sourceCode" id="cb24"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>gene_list <span class="op">=</span> Y.T</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>gene_list[<span class="st">&#39;oscilation&#39;</span>] <span class="op">=</span> np.sqrt(U[:, <span class="dv">3</span>]<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>gene_list.sort(columns<span class="op">=</span><span class="st">&#39;oscilation&#39;</span>, ascending<span class="op">=</span><span class="va">False</span>).index[:<span class="dv">4</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>gene_list <span class="op">=</span> Y.T</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>gene_list[<span class="st">&#39;oscilation&#39;</span>] <span class="op">=</span> np.sqrt(U[:, <span class="dv">3</span>]<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>gene_list.sort(columns<span class="op">=</span><span class="st">&#39;oscilation&#39;</span>, ascending<span class="op">=</span><span class="va">False</span>).index[:<span class="dv">4</span>]</span></code></pre></div>
 <p>We can look up the first three genes in this list which now ranks the
 genes according to how strongly they respond to the fourth latent
 dimension. <a href="http://www.ncbi.nlm.nih.gov/gene/">The NCBI gene
@@ -2515,6 +2783,241 @@ href="http://www.ncbi.nlm.nih.gov/gene/851810">YDR224C</a>, <a
 href="http://www.ncbi.nlm.nih.gov/gene/851811">YDR225W</a>, <a
 href="http://www.ncbi.nlm.nih.gov/gene/852283">YBL003C</a> and <a
 href="http://www.ncbi.nlm.nih.gov/gene/855701">YNL030W</a>.</p>
+<h1 id="multi-dimensional-scaling">Multi-Dimensional Scaling</h1>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/includes/mds-derivation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_dimred/includes/mds-derivation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>Multi-Dimensional Scaling (MDS) is a classical approach to
+dimensionality reduction that works directly with similarities or
+proximities between entities. The goal is to find a geometric
+configuration that preserves these relationships.</p>
+<h2 id="the-mds-objective">The MDS Objective</h2>
+<p>Given <span class="math inline">\(n\)</span> entities and a matrix of
+proximity relationships between them <span
+class="math inline">\(\Delta\)</span> where <span
+class="math inline">\(\Delta_{ij}\)</span> is the relationship between
+entity <span class="math inline">\(i\)</span> and <span
+class="math inline">\(j\)</span>, our task is to find an embedding <span
+class="math inline">\(\mathbf{Y}= [\mathbf{ y}_1, \ldots, \mathbf{
+y}_n]\)</span> such that <span class="math inline">\(\|\mathbf{ y}_i -
+\mathbf{ y}_j\|_{L2} \approx \delta_{ij}\)</span>.</p>
+<p>In MDS this is formulated as minimizing the Frobenius norm between
+the given proximity matrix <span class="math inline">\(\Delta\)</span>
+and the one calculated directly from the embedding <span
+class="math inline">\(\mathbf{ \MakeUppercase{d}}\)</span> where <span
+class="math inline">\(\mathbf{ \MakeUppercase{d}}_{ij} = \|\mathbf{ y}_i
+- \mathbf{ y}_j\|_{L2}\)</span>:</p>
+<p><span class="math display">\[\hat{\mathbf{Y}} = \argmin_{\mathbf{Y}}
+\|\mathbf{ \MakeUppercase{d}}- \Delta\|_F\]</span></p>
+<h2 id="properties-of-the-frobenius-norm">Properties of the Frobenius
+Norm</h2>
+<p>The Frobenius norm is the generalization of the Euclidean norm to
+matrices. The general element-wise norm for matrices <span
+class="math inline">\(L_{p,q}\)</span> takes the form:</p>
+<p><span class="math display">\[\|\mathbf{W}\|_{p,q} =
+\left(\sum_{j=1}^n \left(\sum_{i=1}^m
+|m_{ij}|^p\right)^{\frac{q}{p}}\right)^{\frac{1}{q}}\]</span></p>
+<p>where the Frobenius norm is the case where <span
+class="math inline">\(p = q = 2\)</span>. For a square diagonal matrix,
+the Frobenius norm is just the square root of the sum of the squares of
+the diagonal elements:</p>
+<p><span class="math display">\[\|\mathbf{W}\|_F =
+\sqrt{\text{trace}(\mathbf{W}^\top\mathbf{W})} =
+\sqrt{\text{trace}(\mathbf{W}^2)}\]</span></p>
+<h2 id="mds-solution">MDS Solution</h2>
+<p>Using the properties of similar matrices that we established earlier,
+if <span class="math inline">\(\mathbf{A}\sim \mathbf{B}\)</span> then
+<span class="math inline">\(\mathbf{A}^2 \sim \mathbf{B}^2\)</span> and
+the trace is invariant under similarity. This means that if we
+diagonalize a matrix through its eigendecomposition, the Frobenius norm
+is simply the square root of the sum of the eigenvalues.</p>
+<p>Using this, we can rewrite the MDS optimization problem:</p>
+<p><span class="math display">\[\argmin_{\mathbf{ \MakeUppercase{d}}}
+\|\mathbf{ \MakeUppercase{d}}- \Delta\|_F^2 = \argmin_{\mathbf{
+\MakeUppercase{d}}} \text{trace}(\mathbf{ \MakeUppercase{d}}-
+\Delta)^2\]</span></p>
+<p>Now we will write <span class="math inline">\(\Delta\)</span> using
+its eigendecomposition and also rewrite <span
+class="math inline">\(\mathbf{ \MakeUppercase{d}}\)</span> using a
+similar matrix:</p>
+<p><span class="math display">\[\argmin_{\mathbf{W}, \hat{\boldsymbol{
+\Lambda}}} \text{trace}(\mathbf{W}\hat{\boldsymbol{
+\Lambda}}\mathbf{W}^\top - \mathbf{U}\boldsymbol{
+\Lambda}\mathbf{U}^\top)^2\]</span></p>
+<p>Using the fact that the trace is invariant under similarity
+transform, we can pre and post multiply with the known eigenvectors of
+the proximity matrix:</p>
+<p><span class="math display">\[\argmin_{\mathbf{W}, \hat{\boldsymbol{
+\Lambda}}} \text{trace}(\mathbf{U}^\top(\mathbf{W}\hat{\boldsymbol{
+\Lambda}}\mathbf{W}^\top - \mathbf{U}\boldsymbol{
+\Lambda}\mathbf{U}^\top)\mathbf{U})^2\]</span> <span
+class="math display">\[= \argmin_{\mathbf{W}, \hat{\boldsymbol{
+\Lambda}}} \text{trace}(\mathbf{U}^\top\mathbf{W}\hat{\boldsymbol{
+\Lambda}}\mathbf{W}^\top\mathbf{U}- \boldsymbol{
+\Lambda})^2\]</span></p>
+<p>From the above we can see that we have a diagonal matrix <span
+class="math inline">\(\boldsymbol{ \Lambda}\)</span> that we want to
+match by choosing <span class="math inline">\(\mathbf{W}\)</span> and
+<span class="math inline">\(\hat{\boldsymbol{ \Lambda}}\)</span>. This
+means that as <span class="math inline">\(\hat{\boldsymbol{
+\Lambda}}\)</span> is diagonal, the minima will be achieved when <span
+class="math inline">\(\mathbf{U}^\top\mathbf{W}= \mathbf{I}\)</span>.
+This leads to:</p>
+<p><span class="math display">\[\argmin_{\mathbf{W}, \hat{\boldsymbol{
+\Lambda}}} \text{trace}(\mathbf{U}^\top\mathbf{W}\hat{\boldsymbol{
+\Lambda}}\mathbf{W}^\top\mathbf{U}- \boldsymbol{ \Lambda})^2 =
+\argmin_{\hat{\boldsymbol{ \Lambda}}} \text{trace}(\hat{\boldsymbol{
+\Lambda}} - \boldsymbol{ \Lambda})^2\]</span> <span
+class="math display">\[= \sum_{i=1}^N (\hat{\lambda}_i -
+\lambda_i)^2\]</span></p>
+<h2 id="rank-constrained-solution">Rank-Constrained Solution</h2>
+<p>To provide a rank <span class="math inline">\(d\)</span>
+approximation <span class="math inline">\(\mathbf{
+\MakeUppercase{d}}\)</span> to <span
+class="math inline">\(\Delta\)</span> we should therefore match the
+largest <span class="math inline">\(d\)</span> eigenvalues and
+choose:</p>
+<p><span class="math display">\[\mathbf{ \MakeUppercase{d}}=
+\sum_{i=1}^d \lambda_i u_i u_i^\top\]</span></p>
+<p>where the eigenvalues have been sorted such that <span
+class="math inline">\(\lambda_i \geq \lambda_j\)</span> when <span
+class="math inline">\(i &lt; j\)</span>. This leads to the following
+error of the embedding:</p>
+<p><span class="math display">\[\|\mathbf{ \MakeUppercase{d}}-
+\Delta\|_F = \sqrt{\sum_{i=d+1}^N \lambda_i^2}\]</span></p>
+<h1 id="equivalence-between-mds-and-pca">Equivalence between MDS and
+PCA</h1>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/includes/mds-pca-equivalence.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_dimred/includes/mds-pca-equivalence.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>We can derive a simple equivalence between MDS and PCA in the linear
+setting. While MDS diagonalizes the <span class="math inline">\(n\times
+n\)</span> Gram matrix <span
+class="math inline">\(\mathbf{Y}\mathbf{Y}^\top\)</span>, PCA
+diagonalizes the <span class="math inline">\(p\times p\)</span> sample
+covariance matrix <span
+class="math inline">\(\frac{1}{n-1}\mathbf{Y}^\top\mathbf{Y}\)</span>.
+We’ll show the connection between these diagonalizations and how their
+eigenvectors relate.</p>
+<h2 id="connecting-the-eigendecompositions">Connecting the
+Eigendecompositions</h2>
+<p>Starting from the Gram matrix eigendecomposition:</p>
+<p><span class="math display">\[\mathbf{K}= \mathbf{Y}\mathbf{Y}^\top =
+\mathbf{U}\boldsymbol{ \Lambda}\mathbf{U}^\top\]</span> <span
+class="math display">\[(\mathbf{Y}\mathbf{Y}^\top)u_i =
+\lambda_iu_i\]</span></p>
+<p>Multiplying both sides by <span
+class="math inline">\(\frac{1}{n-1}\mathbf{Y}^\top\)</span> on the
+left:</p>
+<p><span
+class="math display">\[\frac{1}{n-1}\mathbf{Y}^\top(\mathbf{Y}\mathbf{Y}^\top)u_i
+= \lambda_i\frac{1}{n-1}\mathbf{Y}^\top u_i\]</span></p>
+<p><span
+class="math display">\[\frac{1}{n-1}(\mathbf{Y}^\top\mathbf{Y})\mathbf{Y}^\top
+u_i = \lambda_i\frac{1}{n-1}\mathbf{Y}^\top u_i\]</span></p>
+<p><span class="math display">\[\mathbf{C}(\mathbf{Y}^\top u_i) =
+\frac{\lambda_i}{n-1}(\mathbf{Y}^\top u_i)\]</span></p>
+<p>Looking at this last equation, we can see this is exactly the
+behavior of an eigendecomposition of <span
+class="math inline">\(\mathbf{C}\)</span> where: * The eigenvalue is
+<span class="math inline">\(\frac{\lambda_i}{n-1}\)</span> * The
+corresponding eigenvector is <span class="math inline">\(\mathbf{Y}^\top
+u_i\)</span></p>
+<p>Importantly, as the scaling of the MDS eigenvalue only depends on
+<span class="math inline">\(n\)</span>, the order of the eigenvalues
+remains the same.</p>
+<h2 id="orthonormalization">Orthonormalization</h2>
+<p>One detail remains: the eigenvectors should form an orthonormal
+basis. While we know <span class="math inline">\(\mathbf{U}\)</span>
+does so, we need to verify this for <span
+class="math inline">\(\mathbf{Y}^\top u_i\)</span>. For
+orthogonality:</p>
+<p><span class="math display">\[(\mathbf{Y}^\top
+u_i)^\top(\mathbf{Y}^\top u_i) = u_i^\top\mathbf{Y}\mathbf{Y}^\top u_i =
+\lambda_i\]</span></p>
+<p>To achieve normalization, we can scale the vectors:</p>
+<p><span
+class="math display">\[\left(\frac{1}{\sqrt{\lambda_i}}\mathbf{Y}^\top
+u_i\right)^\top\left(\frac{1}{\sqrt{\lambda_i}}\mathbf{Y}^\top
+u_i\right) = 1\]</span></p>
+<h2 id="equivalence-in-embeddings">Equivalence in Embeddings</h2>
+<p>We can now directly compare the embeddings from both methods. If we
+take the eigenvector corresponding to the largest eigenvalue <span
+class="math inline">\(u_1\)</span>:</p>
+<p>MDS embedding: <span class="math display">\[\mathbf{ z}_{\text{MDS}}
+= u_1\sqrt{\lambda_1}\]</span></p>
+<p>PCA embedding (projecting the data onto the eigenvector): <span
+class="math display">\[\mathbf{ z}_{\text{PCA}} =
+\mathbf{Y}\left(\frac{\mathbf{Y}^\top u_1}{\sqrt{\lambda_1}}\right) =
+\frac{\mathbf{Y}\mathbf{Y}^\top u_1}{\sqrt{\lambda_1}} =
+\frac{\lambda_1u_1}{\sqrt{\lambda_1}} = \sqrt{\lambda_1}u_1\]</span></p>
+<p>Thus the embeddings of the two methods are identical.</p>
+<h2 id="rank-nullity-connection">Rank-Nullity Connection</h2>
+<p>This equivalence shouldn’t be surprising when we consider the
+rank-nullity theorem. For data <span class="math inline">\(\mathbf{Y}\in
+\Re^{n\times p}\)</span>, the sample covariance <span
+class="math inline">\(\mathbf{C}\in \Re^{p\times p}\)</span> has maximum
+rank <span class="math inline">\(p\)</span> while for MDS we work with
+the Gram matrix <span class="math inline">\(\mathbf{K}\in \Re^{n\times
+n}\)</span>.</p>
+<p>However, the maximum rank of the Gram matrix is not <span
+class="math inline">\(n\)</span> as it is generated from data that only
+has <span class="math inline">\(p\)</span> degrees of freedom. Therefore
+its rank is the same as the covariance matrix:</p>
+<p><span class="math display">\[\text{Rank}(\mathbf{Y}^\top\mathbf{Y}) =
+\text{Rank}(\mathbf{Y}\mathbf{Y}^\top)\]</span></p>
+<h2 id="implications">Implications</h2>
+<p>This equivalence is important because PCA was derived as a
+probabilistic model with clear interpretable assumptions. We can now
+translate these assumptions to MDS:</p>
+<ol type="1">
+<li>MDS is also implicitly assuming Gaussian-distributed data</li>
+<li>The Frobenius norm minimization in MDS corresponds to maximum
+likelihood estimation under this Gaussian assumption</li>
+<li>Both methods are finding the same linear subspace that maximizes
+variance</li>
+</ol>
+<p>The key difference emerges when we consider non-linear
+extensions:</p>
+<ul>
+<li>From PCA we have a clear model that can be extended to non-linear
+functions through GPs (leading to GP-LVM)</li>
+<li>From MDS we typically create non-linear versions by modifying the
+distance calculations between points</li>
+</ul>
+<p>The model-based approach of PCA makes its assumptions explicit and
+provides a clearer path to principled non-linear extensions.</p>
+<h2 id="summary-and-key-points">Summary and Key Points</h2>
+<p>We’ve covered several key ideas about dimensionality reduction:</p>
+<ol type="1">
+<li>High-dimensional spaces have counter-intuitive properties:
+<ul>
+<li>The curse of dimensionality</li>
+<li>Concentration of distances</li>
+</ul></li>
+<li>Real data doesn’t behave like random high-dimensional data because:
+<ul>
+<li>It lies near lower-dimensional manifolds</li>
+<li>It has structure imposed by physics, biology, or other
+constraints</li>
+</ul></li>
+<li>This structure makes dimensionality reduction possible:
+<ul>
+<li>PCA finds linear manifolds</li>
+<li>More sophisticated methods can find nonlinear manifolds</li>
+</ul></li>
+<li>The probabilistic perspective helps us:
+<ul>
+<li>Understand when methods will work</li>
+<li>Quantify uncertainty in our reduced representations</li>
+<li>Connect dimensionality reduction to other machine learning
+approaches</li>
+</ul></li>
+</ol>
 <h2 id="further-reading-2">Further Reading</h2>
 <ul>
 <li>Chapter 7 up to pg 249 of <span class="citation"

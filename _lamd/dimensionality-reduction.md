@@ -76,6 +76,11 @@ sigma2 = 0.01}
 
 \include{_ml/includes/clustering.md}
 \include{_dimred/includes/high-dimensional-data.md}
+\include{_dimred/includes/high-dimensional-effects.md}
+\include{_dimred/includes/latent-variable-motivation.md}
+\include{_dimred/includes/practical-dimensionality-reduction.md}
+\include{_dimred/includes/dimensionality-reduction-failure-modes.md}
+\include{_dimred/includes/high-dimensional-data-real.md}
 \include{_dimred/includes/latent-variables.md}
 \include{_dimred/includes/principal-component-analysis.md}
 
@@ -87,6 +92,29 @@ sigma2 = 0.01}
 \include{_dimred/includes/pca-in-practice.md}
 \include{_dimred/includes/ppca-marginal-likelihood.md}
 \include{_dimred/includes/ppca-reconstruction.md}
+\include{_dimred/includes/mds-derivation.md}
+\include{_dimred/includes/mds-pca-equivalence.md}
+
+\subsection{Summary and Key Points}
+
+\notes{We've covered several key ideas about dimensionality reduction:
+
+1. High-dimensional spaces have counter-intuitive properties:
+   - The curse of dimensionality
+   - Concentration of distances
+   
+2. Real data doesn't behave like random high-dimensional data because:
+   - It lies near lower-dimensional manifolds
+   - It has structure imposed by physics, biology, or other constraints
+   
+3. This structure makes dimensionality reduction possible:
+   - PCA finds linear manifolds
+   - More sophisticated methods can find nonlinear manifolds
+   
+4. The probabilistic perspective helps us:
+   - Understand when methods will work
+   - Quantify uncertainty in our reduced representations
+   - Connect dimensionality reduction to other machine learning approaches}
 
 \reading
 
