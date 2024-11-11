@@ -1,24 +1,39 @@
 ---
-week: 6
-session: 2
-featured_image: assets/images/visualisation-ii.png 
-title: "Visualisation II"
-abstract:  >
+week: 5
+session: 3
+title: "Visualisation II: Modern Dimensionality Reduction"
 layout: lecture
 venue: LT2, William Gates Building
-author:
-- family: Ek
-  given: Carl Henrik
-  gscholar: 9yQ1tQoAAAAJ
-  institute: University of Cambridge
-  url: http://carlhenrik.com/
 time: "10:00"
-date: 2024-11-18
-youtube: ifouo8ZDOjU
-oldyoutube: 
-- code: ifouo8ZDOjU
-  year: 2022
-pdfslides: advanced-data-science-visualisation-II.pdf
-reveal: false
-ipynb: false
+date: 2024-11-13
+abstract: |
+  Building on our understanding of discrete and continuous latent variables, this lecture explores modern approaches to dimensionality reduction. We examine the limitations of linear methods like PCA, introduce powerful nonlinear techniques like t-SNE and UMAP, and develop practical guidelines for choosing and implementing these methods. The lecture emphasizes the importance of understanding when methods preserve local versus global structure and how this affects their application.
+transition: None
+ipynb: True
+reveal: True
 ---
+
+\include{_mlai/includes/mlai-notebook-setup.md}
+
+# Part 1: Beyond Linear Methods
+\include{_dimred/includes/dimensionality-reduction-failure-modes.md}
+\include{_dimred/includes/local-vs-global-preservation.md}
+\include{_dimred/includes/iterative-dimensionality-reduction.md}
+
+# Part 2: Modern Approaches
+\include{_dimred/includes/t-sne-intro.md}
+\include{_dimred/includes/umap-intro.md}
+
+# Part 3: Practical Implementation
+\include{_dimred/includes/dimensionality-reduction-comparison.md}
+\include{_dimred/includes/dimensionality-reduction-practical-tips.md}
+
+\thanks
+
+\references
+
+<!--https://github.com/neelsoumya/visualization_lecture/blob/main/visualization_lecture.pptx
+
+More material is in the repo:
+
+https://github.com/neelsoumya/visualization_lecture/-->

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="dcterms.date" content="2024-11-11">
-  <title>Visualisation I: Latent Variable Modelling</title>
+  <title>Visualisation I: Discrete and Continuous Latent Variables</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -43,7 +43,8 @@
     <div class="slides">
 
 <section id="title-slide">
-  <h1 class="title">Visualisation I: Latent Variable Modelling</h1>
+  <h1 class="title">Visualisation I: Discrete and Continuous Latent
+Variables</h1>
   <p class="author" style="text-align:center"><a href="http://inverseprobability.com">Neil
 D. Lawrence</a></p>
   <p class="date" style="text-align:center"><time>2024-11-11</time></p>
@@ -62,204 +63,11 @@ sns.set_style('darkgrid')
 sns.set_context('paper')
 sns.set_palette('colorblind')}-->
 </section>
-<section id="review" class="slide level2">
-<h2>Review</h2>
-</section>
-<section id="overdetermined-system" class="slide level2">
-<h2>Overdetermined System</h2>
-</section>
-<section id="section" class="slide level2">
-<h2></h2>
-<script>
-showDivs(1, 'over_determined_system');
-</script>
-<p><small></small>
-<input id="range-over_determined_system" type="range" min="1" max="8" value="1" onchange="setDivs('over_determined_system')" oninput="setDivs('over_determined_system')">
-<button onclick="plusDivs(-1, 'over_determined_system')">❮</button>
-<button onclick="plusDivs(1, 'over_determined_system')">❯</button></p>
-<div class="over_determined_system" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/over_determined_system001.svg" width="40%" style=" ">
-</object>
-</div>
-<div class="over_determined_system" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/over_determined_system002.svg" width="40%" style=" ">
-</object>
-</div>
-<div class="over_determined_system" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/over_determined_system003.svg" width="40%" style=" ">
-</object>
-</div>
-<div class="over_determined_system" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/over_determined_system004.svg" width="40%" style=" ">
-</object>
-</div>
-<div class="over_determined_system" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/over_determined_system005.svg" width="40%" style=" ">
-</object>
-</div>
-<div class="over_determined_system" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/over_determined_system006.svg" width="40%" style=" ">
-</object>
-</div>
-<div class="over_determined_system" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/over_determined_system007.svg" width="40%" style=" ">
-</object>
-</div>
-</section>
-<section id="y-mx-c" class="slide level2">
-<h2><span class="math inline">\(y= mx+ c\)</span></h2>
-<div class="fragment">
-<p>point 1: <span class="math inline">\(x= 1\)</span>, <span
-class="math inline">\(y=3\)</span> <span class="math display">\[
-3 = m + c
-\]</span></p>
-</div>
-<div class="fragment">
-<p>point 2: <span class="math inline">\(x= 3\)</span>, <span
-class="math inline">\(y=1\)</span> <span class="math display">\[
-1 = 3m + c
-\]</span></p>
-</div>
-<div class="fragment">
-<p>point 3: <span class="math inline">\(x= 2\)</span>, <span
-class="math inline">\(y=2.5\)</span> <span class="math display">\[
-2.5 = 2m + c
-\]</span></p>
-<!-- SECTION Underdetermined System -->
-</div>
-</section>
-<section id="underdetermined-system" class="slide level2">
-<h2>Underdetermined System</h2>
-</section>
-<section id="underdetermined-system-1" class="slide level2">
-<h2>Underdetermined System</h2>
-<ul>
-<li>What about two unknowns and <em>one</em> observation? <span
-class="math display">\[y_1 =  mx_1 + c\]</span></li>
-</ul>
-<div class="fragment">
-<p>Can compute <span class="math inline">\(m\)</span> given <span
-class="math inline">\(c\)</span>. <span class="math display">\[m =
-\frac{y_1 - c}{x}\]</span></p>
-</div>
-</section>
-<section id="underdetermined-system-2" class="slide level2">
-<h2>Underdetermined System</h2>
-<script>
-showDivs(0, 'under_determined_system');
-</script>
-<p><small></small>
-<input id="range-under_determined_system" type="range" min="0" max="9" value="0" onchange="setDivs('under_determined_system')" oninput="setDivs('under_determined_system')">
-<button onclick="plusDivs(-1, 'under_determined_system')">❮</button>
-<button onclick="plusDivs(1, 'under_determined_system')">❯</button></p>
-<div class="under_determined_system" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/under_determined_system000.svg" width="40%" style=" ">
-</object>
-</div>
-<div class="under_determined_system" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/under_determined_system001.svg" width="40%" style=" ">
-</object>
-</div>
-<div class="under_determined_system" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/under_determined_system002.svg" width="40%" style=" ">
-</object>
-</div>
-<div class="under_determined_system" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/under_determined_system003.svg" width="40%" style=" ">
-</object>
-</div>
-<div class="under_determined_system" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/under_determined_system004.svg" width="40%" style=" ">
-</object>
-</div>
-<div class="under_determined_system" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/under_determined_system005.svg" width="40%" style=" ">
-</object>
-</div>
-<div class="under_determined_system" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/under_determined_system006.svg" width="40%" style=" ">
-</object>
-</div>
-<div class="under_determined_system" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/under_determined_system007.svg" width="40%" style=" ">
-</object>
-</div>
-<div class="under_determined_system" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/under_determined_system008.svg" width="40%" style=" ">
-</object>
-</div>
-<div class="under_determined_system" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/under_determined_system009.svg" width="40%" style=" ">
-</object>
-</div>
-</section>
-<section id="the-bayesian-controversy-philosophical-underpinnings"
-class="slide level2">
-<h2>The Bayesian Controversy: Philosophical Underpinnings</h2>
-<p>A segment from the lecture in 2012 on philsophical underpinnings.</p>
-<div class="figure">
-<div id="philosophical-underpinnings-uncertainty-figure"
-class="figure-frame">
-<iframe width="600" height="450" src="https://www.youtube.com/embed/AvlnFnvFw_0?start=1215" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
-</div>
-</div>
-<aside class="notes">
-The philosophical underpinnings of uncertainty, as discussed in 2012
-MLAI lecture.
-</aside>
-</section>
-<section id="noise-models" class="slide level2">
-<h2>Noise Models</h2>
-<ul>
-<li>We aren’t modeling entire system.</li>
-<li>Noise model gives mismatch between model and data.</li>
-<li>Gaussian model justified by appeal to central limit theorem.</li>
-<li>Other models also possible (Student-<span
-class="math inline">\(t\)</span> for heavy tails).</li>
-<li>Maximum likelihood with Gaussian noise leads to <em>least
-squares</em>.</li>
-</ul>
-</section>
-<section id="different-types-of-uncertainty" class="slide level2">
-<h2>Different Types of Uncertainty</h2>
-<ul>
-<li>The first type of uncertainty we are assuming is <em>aleatoric</em>
-uncertainty.</li>
-<li>The second type of uncertainty we are assuming is <em>epistemic</em>
-uncertainty.</li>
-</ul>
-</section>
-<section id="aleatoric-uncertainty" class="slide level2">
-<h2>Aleatoric Uncertainty</h2>
-<ul>
-<li>This is uncertainty we couldn’t know even if we wanted to. e.g. the
-result of a football match before it’s played.</li>
-<li>Where a sheet of paper might land on the floor.</li>
-</ul>
-</section>
-<section id="epistemic-uncertainty" class="slide level2">
-<h2>Epistemic Uncertainty</h2>
-<ul>
-<li>This is uncertainty we could in principal know the answer too. We
-just haven’t observed enough yet, e.g. the result of a football match
-<em>after</em> it’s played.</li>
-<li>What colour socks your lecturer is wearing.</li>
-</ul>
-</section>
-<section id="further-reading" class="slide level2 scrollable">
-<h2 class="scrollable">Further Reading</h2>
-<ul>
-<li><p>Section 1.2.3 (pg 21–24) of <span class="citation"
-data-cites="Bishop:book06">Bishop (2006)</span></p></li>
-<li><p>Sections 3.1-3.4 (pg 95-117) of <span class="citation"
-data-cites="Rogers:book11">Rogers and Girolami (2011)</span></p></li>
-<li><p>Section 1.2.3 (pg 21–24) of <span class="citation"
-data-cites="Bishop:book06">Bishop (2006)</span></p></li>
-<li><p>Section 1.2.6 (start from just past eq 1.64 pg 30-32) of <span
-class="citation" data-cites="Bishop:book06">Bishop
-(2006)</span></p></li>
-</ul>
+<section>
+<section id="part-1-discrete-latent-variables"
+class="title-slide slide level1">
+<h1>Part 1: Discrete Latent Variables</h1>
+
 </section>
 <section id="clustering" class="slide level2">
 <h2>Clustering</h2>
@@ -504,7 +312,7 @@ merge</li>
 </ul>
 <div class="figure">
 <div id="hierarchical-clustering-oil-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/hierarchical-clustering-oil.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//hierarchical-clustering-oil.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
@@ -563,6 +371,12 @@ both ‘sporting goods’ and ‘clothing’)</li>
 <li>Spectral clustering: Graph-based non-convex clustering</li>
 <li>Dirichlet process: Infinite, non-parametric clustering</li>
 </ul>
+</section></section>
+<section>
+<section id="part-2-continuous-latent-variables"
+class="title-slide slide level1">
+<h1>Part 2: Continuous Latent Variables</h1>
+
 </section>
 <section id="high-dimensional-data" class="slide level2">
 <h2>High Dimensional Data</h2>
@@ -649,7 +463,7 @@ showDivs(1, 'dem-six-rotate');
 </div>
 </div>
 </section>
-<section id="section-1" class="slide level2">
+<section id="section" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="dem-six-mainfold-print-figure" class="figure-frame">
@@ -761,6 +575,17 @@ class="slide level2">
 <li>This is why PCA and other dimension reduction works!</li>
 </ul>
 </section>
+<section id="high-dimensional-effects-in-real-data"
+class="slide level2">
+<h2>High Dimensional Effects in Real Data</h2>
+</section>
+<section id="oil-flow-data" class="slide level2">
+<h2>Oil Flow Data</h2>
+</section>
+<section id="implications-for-dimensionality-reduction"
+class="slide level2">
+<h2>Implications for Dimensionality Reduction</h2>
+</section>
 <section id="latent-variables-and-dimensionality-reduction"
 class="slide level2">
 <h2>Latent Variables and Dimensionality Reduction</h2>
@@ -798,63 +623,6 @@ traces out the curve.
 class="math inline">\(z\)</span></li>
 <li>Goal: Find these simpler underlying representations</li>
 </ul>
-</section>
-<section id="practical-considerations" class="slide level2">
-<h2>Practical Considerations</h2>
-</section>
-<section id="when-dimensionality-reduction-fails" class="slide level2">
-<h2>When Dimensionality Reduction Fails</h2>
-<ul>
-<li>Dimensionality reduction can fail in several key scenarios:
-<ul>
-<li>Truly high dimensional data with no simpler structure</li>
-<li>Highly nonlinear relationships between dimensions</li>
-<li>Varying intrinsic dimensionality across data</li>
-</ul></li>
-</ul>
-</section>
-<section id="the-swiss-roll-example" class="slide level2">
-<h2>The Swiss Roll Example</h2>
-<ul>
-<li>Classic example of nonlinear structure</li>
-<li>2D manifold embedded in 3D</li>
-<li>Linear methods like PCA fail</li>
-<li>Requires nonlinear methods (t-SNE, UMAP)</li>
-</ul>
-<div class="figure">
-<div id="swiss-roll-example-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/swiss-roll.svg" width="80%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-The Swiss roll dataset is a classic example of data with nonlinear
-structure. The color represents the position along the roll, showing how
-points that are far apart in the original space are actually close in
-the intrinsic manifold.
-</aside>
-</section>
-<section id="common-failure-modes" class="slide level2">
-<h2>Common Failure Modes</h2>
-<ul>
-<li>Key failure scenarios:
-<ul>
-<li>Linear methods on nonlinear manifolds</li>
-<li>Assuming global structure when only local exists</li>
-<li>Not accounting for noise</li>
-</ul></li>
-</ul>
-</section>
-<section id="high-dimensional-effects-in-real-data"
-class="slide level2">
-<h2>High Dimensional Effects in Real Data</h2>
-</section>
-<section id="oil-flow-data" class="slide level2">
-<h2>Oil Flow Data</h2>
-</section>
-<section id="implications-for-dimensionality-reduction"
-class="slide level2">
-<h2>Implications for Dimensionality Reduction</h2>
 <!-- SECTION Latent Variables -->
 </section>
 <section id="latent-variables" class="slide level2">
@@ -1153,366 +921,6 @@ First two principle components of motion capture data of an individual
 running.
 </aside>
 </section>
-<section id="robot-navigation-example" class="slide level2">
-<h2>Robot Navigation Example</h2>
-<ul>
-<li>Example involving 215 observations of 30 access points.</li>
-<li>Infer location of ‘robot’ and accesspoints.</li>
-<li>This is known as SLAM (simulataneous localization and mapping).</li>
-</ul>
-<!-- SECTION Interpretations of Principal Component Analysis -->
-</section>
-<section id="interpretations-of-principal-component-analysis"
-class="slide level2">
-<h2>Interpretations of Principal Component Analysis</h2>
-</section>
-<section id="relationship-to-matrix-factorization" class="slide level2">
-<h2>Relationship to Matrix Factorization</h2>
-<ul>
-<li><p>PCA is closely related to matrix factorisation.</p></li>
-<li><p>Instead of <span class="math inline">\(\mathbf{Z}\)</span>, <span
-class="math inline">\(\mathbf{W}\)</span></p></li>
-<li><p>Define Users <span class="math inline">\(\mathbf{U}\)</span> and
-items <span class="math inline">\(\mathbf{V}\)</span></p></li>
-<li><p>Matrix factorisation: <span class="math display">\[
-f_{i, j} =
-\mathbf{u}_{i, :}^\top \mathbf{v}_{j, :}
-\]</span> PCA: <span class="math display">\[
-f_{i, j} = \mathbf{ z}_{i, :}^\top \mathbf{ w}_{j, :}
-\]</span></p></li>
-</ul>
-</section>
-<section
-id="other-interpretations-of-pca-separating-model-and-algorithm"
-class="slide level2">
-<h2>Other Interpretations of PCA: Separating Model and Algorithm</h2>
-<ul>
-<li>PCA introduced as latent variable model (a model).</li>
-<li>Solution is through an eigenvalue problem (an algorithm).</li>
-<li>This causes some confusion about what PCA is.</li>
-</ul>
-<p><span class="math display">\[
-\mathbf{Y}= \mathbf{V} \boldsymbol{\Lambda} \mathbf{U}^\top
-\]</span></p>
-<p><span class="math display">\[
-\mathbf{Y}^\top\mathbf{Y}=
-\mathbf{U}\boldsymbol{\Lambda}\mathbf{V}^\top\mathbf{V}
-\boldsymbol{\Lambda}
-\mathbf{U}^\top = \mathbf{U}\boldsymbol{\Lambda}^2 \mathbf{U}^\top
-\]</span></p>
-</section>
-<section id="separating-model-and-algorithm" class="slide level2">
-<h2>Separating Model and Algorithm</h2>
-<ul>
-<li>Separation between <em>model</em> and <em>algorithm</em> is helpful
-conceptually.</li>
-<li>Even if in practice they conflate (e.g. deep neural networks).</li>
-<li>Sometimes difficult to pull apart.</li>
-<li>Helpful to revisit algorithms with modelling perspective in mind.
-<ul>
-<li>Probabilistic numerics</li>
-</ul></li>
-</ul>
-<!-- SECTION PPCA Marginal Likelihood -->
-</section>
-<section id="ppca-marginal-likelihood" class="slide level2">
-<h2>PPCA Marginal Likelihood</h2>
-<p>We have developed the posterior density over the latent variables
-given the data and the parameters, and due to symmetries in the
-underlying prediction function, it has a very similar form to its sister
-density, the posterior of the weights given the data from Bayesian
-regression. Two key differences are as follows. If we were to do a
-Bayesian multiple output regression we would find that the marginal
-likelihood of the data is independent across the features and correlated
-across the data, <span class="math display">\[
-p(\mathbf{Y}|\mathbf{Z})
-= \prod_{j=1}^p \mathcal{N}\left(\mathbf{ y}_{:, j}|\mathbf{0},
-\alpha\mathbf{Z}\mathbf{Z}^\top + \sigma^2 \mathbf{I}\right)
-\]</span> where <span class="math inline">\(\mathbf{ y}_{:, j}\)</span>
-is a column of the data matrix and the independence is across the
-<em>features</em>, in probabilistic PCA the marginal likelihood has the
-form, <span class="math display">\[
-p(\mathbf{Y}|\mathbf{W}) = \prod_{i=1}^n\mathcal{N}\left(\mathbf{ y}_{i,
-:}|\mathbf{0},\mathbf{W}\mathbf{W}^\top + \sigma^2 \mathbf{I}\right)
-\]</span> where <span class="math inline">\(\mathbf{ y}_{i, :}\)</span>
-is a row of the data matrix <span
-class="math inline">\(\mathbf{Y}\)</span> and the independence is across
-the data points.</p>
-<!-- SECTION Computation of the Log Likelihood -->
-</section>
-<section id="computation-of-the-log-likelihood" class="slide level2">
-<h2>Computation of the Log Likelihood</h2>
-<p>The quality of the model can be assessed using the log likelihood of
-this Gaussian form. <span class="math display">\[
-\log p(\mathbf{Y}|\mathbf{W}) = -\frac{n}{2} \log \left|
-\mathbf{W}\mathbf{W}^\top + \sigma^2 \mathbf{I}\right| -\frac{1}{2}
-\sum_{i=1}^n\mathbf{ y}_{i, :}^\top \left(\mathbf{W}\mathbf{W}^\top +
-\sigma^2
-\mathbf{I}\right)^{-1} \mathbf{ y}_{i, :} +\text{const}
-\]</span> but this can be computed more rapidly by exploiting the low
-rank form of the covariance covariance, <span
-class="math inline">\(\mathbf{C}= \mathbf{W}\mathbf{W}^\top + \sigma^2
-\mathbf{I}\)</span> and the fact that <span
-class="math inline">\(\mathbf{W}=
-\mathbf{U}\mathbf{L}\mathbf{R}^\top\)</span>. Specifically, we first use
-the decomposition of <span class="math inline">\(\mathbf{W}\)</span> to
-write: <span class="math display">\[
--\frac{n}{2} \log \left| \mathbf{W}\mathbf{W}^\top + \sigma^2
-\mathbf{I}\right|
-= -\frac{n}{2} \sum_{i=1}^q \log (\ell_i^2 + \sigma^2) -
-\frac{n(p-q)}{2}\log
-\sigma^2,
-\]</span> where <span class="math inline">\(\ell_i\)</span> is the <span
-class="math inline">\(i\)</span>th diagonal element of <span
-class="math inline">\(\mathbf{L}\)</span>. Next, we use the <a
-href="http://en.wikipedia.org/wiki/Woodbury_matrix_identity">Woodbury
-matrix identity</a> which allows us to write the inverse as a quantity
-which contains another inverse in a smaller matrix: <span
-class="math display">\[
-(\sigma^2 \mathbf{I}+ \mathbf{W}\mathbf{W}^\top)^{-1} =
-\sigma^{-2}\mathbf{I}-\sigma^{-4}\mathbf{W}{\underbrace{(\mathbf{I}+\sigma^{-2}\mathbf{W}^\top\mathbf{W})}_{\mathbf{C}_x}}^{-1}\mathbf{W}^\top
-\]</span> So, it turns out that the original inversion of the <span
-class="math inline">\(p \times p\)</span> matrix can be done by forming
-a quantity which contains the inversion of a <span
-class="math inline">\(q \times q\)</span> matrix which, moreover, turns
-out to be the quantity <span class="math inline">\(\mathbf{C}_x\)</span>
-of the posterior.</p>
-<p>Now, we put everything together to obtain: <span
-class="math display">\[
-\log p(\mathbf{Y}|\mathbf{W}) = -\frac{n}{2} \sum_{i=1}^q
-\log (\ell_i^2 + \sigma^2)
-- \frac{n(p-q)}{2}\log \sigma^2 - \frac{1}{2}
-\text{tr}\left(\mathbf{Y}^\top \left(
-\sigma^{-2}\mathbf{I}-\sigma^{-4}\mathbf{W}\mathbf{C}_x
-\mathbf{W}^\top \right) \mathbf{Y}\right) + \text{const},
-\]</span> where we used the fact that a scalar sum can be written as
-<span class="math inline">\(\sum_{i=1}^n\mathbf{ y}_{i,:}^\top
-\mathbf{K}\mathbf{ y}_{i,:} = \text{tr}\left(\mathbf{Y}^\top
-\mathbf{K}\mathbf{Y}\right)\)</span>, for any matrix <span
-class="math inline">\(\mathbf{K}\)</span> of appropriate dimensions. We
-now use the properties of the trace <span
-class="math inline">\(\text{tr}\left(\mathbf{A}+\mathbf{B}\right)=\text{tr}\left(\mathbf{A}\right)+\text{tr}\left(\mathbf{B}\right)\)</span>
-and <span class="math inline">\(\text{tr}\left(c \mathbf{A}\right) = c
-\text{tr}\left(\mathbf{A}\right)\)</span>, where <span
-class="math inline">\(c\)</span> is a scalar and <span
-class="math inline">\(\mathbf{A},\mathbf{B}\)</span> matrices of
-compatible sizes. Therefore, the final log likelihood takes the form:
-<span class="math display">\[
-\log p(\mathbf{Y}|\mathbf{W}) = -\frac{n}{2}
-\sum_{i=1}^q \log (\ell_i^2 + \sigma^2) - \frac{n(p-q)}{2}\log \sigma^2
--
-\frac{\sigma^{-2}}{2} \text{tr}\left(\mathbf{Y}^\top \mathbf{Y}\right)
-+\frac{\sigma^{-4}}{2}
-\text{tr}\left(\mathbf{B}\mathbf{C}_x\mathbf{B}^\top\right) +
-\text{const}
-\]</span> where we also defined <span
-class="math inline">\(\mathbf{B}=\mathbf{Y}^\top\mathbf{W}\)</span>.
-Finally, notice that <span
-class="math inline">\(\text{tr}\left(\mathbf{Y}\mathbf{Y}^\top\right)=\text{tr}\left(\mathbf{Y}^\top\mathbf{Y}\right)\)</span>
-can be computed faster as the sum of all the elements of <span
-class="math inline">\(\mathbf{Y}\circ\mathbf{Y}\)</span>, where <span
-class="math inline">\(\circ\)</span> denotes the element-wise (or <a
-href="http://en.wikipedia.org/wiki/Hadamard_product_(matrices)">Hadamard</a>)
-product.</p>
-</section>
-<section id="reconstruction-of-the-data" class="slide level2">
-<h2>Reconstruction of the Data</h2>
-<p>Given any posterior projection of a data point, we can replot the
-original data as a function of the input space.</p>
-<p>We will now try to reconstruct the motion capture figure form some
-different places in the latent plot.</p>
-</section>
-<section id="other-data-sets-to-explore" class="slide level2">
-<h2>Other Data Sets to Explore</h2>
-<p>Below there are a few other data sets from <code>pods</code> you
-might want to explore with PCA. Both of them have <span
-class="math inline">\(p\)</span>&gt;<span
-class="math inline">\(n\)</span> so you need to consider how to do the
-larger eigenvalue probleme efficiently without large demands on computer
-memory.</p>
-<p>The data is actually quite high dimensional, and solving the
-eigenvalue problem in the high dimensional space can take some time. At
-this point we turn to a neat trick, you don’t have to solve the full
-eigenvalue problem in the <span class="math inline">\(p\times p\)</span>
-covariance, you can choose instead to solve the related eigenvalue
-problem in the <span class="math inline">\(n\times n\)</span> space, and
-in this case <span class="math inline">\(n=200\)</span> which is much
-smaller than <span class="math inline">\(p\)</span>.</p>
-<p>The original eigenvalue problem has the form <span
-class="math display">\[
-\mathbf{Y}^\top\mathbf{Y}\mathbf{U} = \mathbf{U}\boldsymbol{\Lambda}
-\]</span> But if we premultiply by <span
-class="math inline">\(\mathbf{Y}\)</span> then we can solve, <span
-class="math display">\[
-\mathbf{Y}\mathbf{Y}^\top\mathbf{Y}\mathbf{U} =
-\mathbf{Y}\mathbf{U}\boldsymbol{\Lambda}
-\]</span> but it turns out that we can write <span
-class="math display">\[
-\mathbf{U}^\prime = \mathbf{Y}\mathbf{U} \Lambda^{\frac{1}{2}}
-\]</span> where <span class="math inline">\(\mathbf{U}^\prime\)</span>
-is an orthorormal matrix because <span class="math display">\[
-\left.\mathbf{U}^\prime\right.^\top\mathbf{U}^\prime =
-\Lambda^{-\frac{1}{2}}\mathbf{U}\mathbf{Y}^\top\mathbf{Y}\mathbf{U}
-\Lambda^{-\frac{1}{2}}
-\]</span> and since <span class="math inline">\(\mathbf{U}\)</span>
-diagonalises <span
-class="math inline">\(\mathbf{Y}^\top\mathbf{Y}\)</span>, <span
-class="math display">\[
-\mathbf{U}\mathbf{Y}^\top\mathbf{Y}\mathbf{U} = \Lambda
-\]</span> then <span class="math display">\[
-\left.\mathbf{U}^\prime\right.^\top\mathbf{U}^\prime = \mathbf{I}
-\]</span></p>
-</section>
-<section id="olivetti-faces" class="slide level2">
-<h2>Olivetti Faces</h2>
-<div class="figure">
-<div id="olivetti-faces-data-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//dimred/olivetti_faces_data.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-</div>
-<aside class="notes">
-Data set from Olivetti Research Laboratory of faces.
-</aside>
-<p><code>im = np.reshape(Y[1, :].flatten(), (64, 64)).T}</code></p>
-</section>
-<section id="visualizing-the-eigenvectors" class="slide level2">
-<h2>Visualizing the Eigenvectors</h2>
-<div class="figure">
-<div id="dem-olivetti-faces-eigenvectors-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//dimred/dem_olivetti_faces_eigenvectors.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-</div>
-<aside class="notes">
-First 9 eigenvectors of the Olivetti faces data.
-</aside>
-</section>
-<section id="reconstruction" class="slide level2">
-<h2>Reconstruction</h2>
-<div class="figure">
-<div id="dem-olivetti-faces-reconstruction-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//dimred/dem_olivetti_faces_reconstruction.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-</div>
-<aside class="notes">
-Reconstruction from the latent space of the faces data.
-</aside>
-</section>
-<section id="gene-expression" class="slide level2">
-<h2>Gene Expression</h2>
-<!-- SECTION Multi-Dimensional Scaling -->
-</section>
-<section id="multi-dimensional-scaling" class="slide level2">
-<h2>Multi-Dimensional Scaling</h2>
-</section>
-<section id="the-mds-objective" class="slide level2">
-<h2>The MDS Objective</h2>
-</section>
-<section id="properties-of-the-frobenius-norm" class="slide level2">
-<h2>Properties of the Frobenius Norm</h2>
-</section>
-<section id="mds-solution" class="slide level2">
-<h2>MDS Solution</h2>
-</section>
-<section id="rank-constrained-solution" class="slide level2">
-<h2>Rank-Constrained Solution</h2>
-<!-- SECTION Equivalence between MDS and PCA -->
-</section>
-<section id="equivalence-between-mds-and-pca" class="slide level2">
-<h2>Equivalence between MDS and PCA</h2>
-</section>
-<section id="connecting-the-eigendecompositions" class="slide level2">
-<h2>Connecting the Eigendecompositions</h2>
-</section>
-<section id="orthonormalization" class="slide level2">
-<h2>Orthonormalization</h2>
-</section>
-<section id="equivalence-in-embeddings" class="slide level2">
-<h2>Equivalence in Embeddings</h2>
-</section>
-<section id="rank-nullity-connection" class="slide level2">
-<h2>Rank-Nullity Connection</h2>
-</section>
-<section id="implications" class="slide level2">
-<h2>Implications</h2>
-</section>
-<section id="iterative-dimensionality-reduction" class="slide level2">
-<h2>Iterative Dimensionality Reduction</h2>
-<ul>
-<li>Spectral methods (PCA, MDS) give analytical solutions</li>
-<li>Iterative methods optimize objective functions
-<ul>
-<li>Can capture more complex relationships</li>
-<li>May find local optima</li>
-<li>More computationally intensive</li>
-</ul></li>
-</ul>
-</section>
-<section id="stress-functions" class="slide level2">
-<h2>Stress Functions</h2>
-</section>
-<section id="local-vs-global-structure-preservation"
-class="slide level2">
-<h2>Local vs Global Structure Preservation</h2>
-<div class="figure">
-<div id="short-circuit-problem-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/short-circuit-problem.svg" width style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-The short-circuiting problem occurs when points that are close in the
-ambient space are actually far apart on the manifold.
-</aside>
-</section>
-<section id="t-sne" class="slide level2">
-<h2>t-SNE</h2>
-<ul>
-<li>Converts distances to probabilities</li>
-<li>Uses t-distribution in low-dimensional space</li>
-<li>Excellent for visualization</li>
-<li>Computationally intensive</li>
-<li>Results depend on perplexity parameter</li>
-</ul>
-</section>
-<section id="umap" class="slide level2">
-<h2>UMAP</h2>
-<ul>
-<li>Based on Riemannian geometry and algebraic topology</li>
-<li>Preserves both local and global structure</li>
-<li>Faster than t-SNE</li>
-<li>Can be used for general dimension reduction</li>
-<li>Supports supervised and semi-supervised learning</li>
-</ul>
-</section>
-<section id="umap-parameters" class="slide level2">
-<h2>UMAP Parameters</h2>
-</section>
-<section id="comparing-dimensionality-reduction-methods"
-class="slide level2">
-<h2>Comparing Dimensionality Reduction Methods</h2>
-<ul>
-<li>PCA: Linear, fast, interpretable</li>
-<li>MDS: Distance-based, can be non-linear</li>
-<li>t-SNE: Excellent visualization, local structure</li>
-<li>UMAP: Fast, preserves global structure, versatile</li>
-</ul>
-</section>
-<section id="summary-and-key-points" class="slide level2">
-<h2>Summary and Key Points</h2>
-</section>
-<section id="further-reading-1" class="slide level2 scrollable">
-<h2 class="scrollable">Further Reading</h2>
-<ul>
-<li>Chapter 7 up to pg 249 of <span class="citation"
-data-cites="Rogers:book11">Rogers and Girolami (2011)</span></li>
-</ul>
-</section>
 <section id="thanks" class="slide level2 scrollable">
 <h2 class="scrollable">Thanks!</h2>
 <ul>
@@ -1539,16 +947,9 @@ Data Science</a></p></li>
 <h2 class="unnumbered scrollable">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent"
 role="list">
-<div id="ref-Bishop:book06" class="csl-entry" role="listitem">
-Bishop, C.M., 2006. Pattern recognition and machine learning. springer.
-</div>
 <div id="ref-Hotelling:analysis33" class="csl-entry" role="listitem">
 Hotelling, H., 1933. Analysis of a complex of statistical variables into
 principal components. Journal of Educational Psychology 24, 417–441.
-</div>
-<div id="ref-Rogers:book11" class="csl-entry" role="listitem">
-Rogers, S., Girolami, M., 2011. A first course in machine learning. CRC
-Press.
 </div>
 <div id="ref-Tipping:probpca99" class="csl-entry" role="listitem">
 Tipping, M.E., Bishop, C.M., 1999. Probabilistic principal component
@@ -1556,7 +957,7 @@ analysis. Journal of the Royal Statistical Society, B 6, 611–622. <a
 href="https://doi.org/doi:10.1111/1467-9868.00196">https://doi.org/doi:10.1111/1467-9868.00196</a>
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
