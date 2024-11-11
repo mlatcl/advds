@@ -63,6 +63,66 @@ sns.set_style('darkgrid')
 sns.set_context('paper')
 sns.set_palette('colorblind')}-->
 </section>
+<section id="visualization-and-human-perception" class="slide level2">
+<h2>Visualization and Human Perception</h2>
+<ul>
+<li>Human visual system is our highest bandwidth connection to the world
+<ul>
+<li>Optic tract: ~8.75 million bits/second</li>
+<li>Verbal communication: only ~2,000 bits/minute</li>
+</ul></li>
+<li>Active sensing through rapid eye movements (saccades)
+<ul>
+<li>Not passive reception</li>
+<li>Actively construct understanding</li>
+<li>Hundreds of samples per second</li>
+</ul></li>
+</ul>
+</section>
+<section id="behind-the-eye" class="slide level2">
+<h2>Behind the Eye</h2>
+<div class="figure">
+<div id="behind-the-eye-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//books/behind-the-eye.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+</div>
+<aside class="notes">
+<a
+href="https://www.amazon.co.uk/Behind-Eye-Gifford-Lectures-MACKAY/dp/0631173323">Behind
+the Eye</a> <span class="citation" data-cites="Mackay-behind91">(MacKay,
+1991)</span> summarises MacKay’s Gifford Lectures, where MacKay uses the
+operation of the eye as a window on the operation of the brain.
+</aside>
+</section>
+<section id="visualization-and-human-perception-1" class="slide level2">
+<h2>Visualization and Human Perception</h2>
+<ul>
+<li>Visualization is powerful for communication</li>
+<li>But can be vulnerable to manipulation
+<ul>
+<li>Similar to social media algorithms</li>
+<li>Misleading visualizations can deceive</li>
+<li>Can hijack natural visual processing</li>
+</ul></li>
+</ul>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<div class="figure">
+<div id="why-red-bell-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//cognitive-science/why-red-doesnt-sound-like-a-bell.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+</div>
+<aside class="notes">
+Kevin O’Regan’s book, “Why Red Doesn’t Sound Like a Bell” is about the
+sensiorimotor perspective on feel and ranges from our senses to our
+consciousness.
+</aside>
+</section>
 <section>
 <section id="part-1-discrete-latent-variables"
 class="title-slide slide level1">
@@ -279,6 +339,10 @@ showDivs(1, 'kmeans-clustering');
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/kmeans_clustering_020.svg" width="40%" style=" ">
 </object>
 </div>
+<div class="kmeans-clustering" style="text-align:center;">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/kmeans_clustering_021.svg" width="40%" style=" ">
+</object>
+</div>
 <p><em>Clustering with the <span class="math inline">\(k\)</span>-means
 clustering algorithm.</em></p>
 </section>
@@ -310,9 +374,24 @@ merge</li>
 <li>Divisive (top-down): Start with one cluster and split</li>
 </ul></li>
 </ul>
+</section>
+<section id="oil-flow-data" class="slide level2">
+<h2>Oil Flow Data</h2>
+<p>}</p>
+<div class="figure">
+<div id="oil-flow-data-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//datasets/oil-flow-data.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+Visualization of the first two dimensions of the oil flow data from
+<span class="citation" data-cites="Bishop-oil93">Bishop and James
+(1993)</span>
+</aside>
 <div class="figure">
 <div id="hierarchical-clustering-oil-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//hierarchical-clustering-oil.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/hierarchical-clustering-oil.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
@@ -463,7 +542,7 @@ showDivs(1, 'dem-six-rotate');
 </div>
 </div>
 </section>
-<section id="section" class="slide level2">
+<section id="section-1" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="dem-six-mainfold-print-figure" class="figure-frame">
@@ -579,7 +658,7 @@ class="slide level2">
 class="slide level2">
 <h2>High Dimensional Effects in Real Data</h2>
 </section>
-<section id="oil-flow-data" class="slide level2">
+<section id="oil-flow-data-1" class="slide level2">
 <h2>Oil Flow Data</h2>
 </section>
 <section id="implications-for-dimensionality-reduction"
@@ -931,7 +1010,12 @@ Atomic Human</a></p></li>
 href="https://twitter.com/lawrennd">@lawrennd</a></p></li>
 <li><p><a
 href="https://www.penguin.co.uk/books/455130/the-atomic-human-bylawrence-neil-d/9780241625248">The
-Atomic Human</a></p></li>
+Atomic Human</a> pages bandwidth, communication
+10-12,16,21,29,31,34,38,41,44,65-67,76,81,90-91,104,115,149,196,214,216,235,237-238,302,334
+, MacKay, Donald 227-228,230-237,267-270, optic nerve/tract 205,235,
+O’Regan, Kevin 236-240,250,259,262-263,297,299, saccade
+236,238,259-260,297,301, visual system/visual cortex
+204-206,209,235-239,249-250,255,259,260,268-270,281,294,297,301,324,330.</p></li>
 <li><p>podcast: <a href="http://thetalkingmachines.com">The Talking
 Machines</a></p></li>
 <li><p>newspaper: <a
@@ -947,9 +1031,18 @@ Data Science</a></p></li>
 <h2 class="unnumbered scrollable">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent"
 role="list">
+<div id="ref-Bishop-oil93" class="csl-entry" role="listitem">
+Bishop, C.M., James, G.D., 1993. Analysis of multiphase flows using
+dual-energy gamma densitometry and neural networks. Nuclear Instruments
+and Methods in Physics Research A327, 580–593. <a
+href="https://doi.org/10.1016/0168-9002(93)90728-Z">https://doi.org/10.1016/0168-9002(93)90728-Z</a>
+</div>
 <div id="ref-Hotelling:analysis33" class="csl-entry" role="listitem">
 Hotelling, H., 1933. Analysis of a complex of statistical variables into
 principal components. Journal of Educational Psychology 24, 417–441.
+</div>
+<div id="ref-Mackay-behind91" class="csl-entry" role="listitem">
+MacKay, D.M., 1991. Behind the eye. Basil Blackwell.
 </div>
 <div id="ref-Tipping:probpca99" class="csl-entry" role="listitem">
 Tipping, M.E., Bishop, C.M., 1999. Probabilistic principal component
