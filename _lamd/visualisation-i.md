@@ -16,7 +16,12 @@ author:
   institute: University of Cambridge
   twitter: lawrennd
   url: http://inverseprobability.com
-youtube: 0mtK2_rc0IY
+youtube: WelCunS9OaM
+oldyoutube: 
+- code: WelCunS9OaM
+  year: 2024
+- code: 0mtK2_rc0IY
+  year: 2015
 transition: None
 ipynb: True
 reveal: True
@@ -24,18 +29,17 @@ reveal: True
 
 \include{_mlai/includes/mlai-notebook-setup.md}
 
-# Part 1: Discrete Latent Variables
+\section{Part 1: Discrete Latent Variables}
+
 \include{_ml/includes/clustering.md}
 
-# Part 2: Continuous Latent Variables
+\section{Part 2: Continuous Latent Variables}
+
 \include{_dimred/includes/high-dimensional-data.md}
 \include{_dimred/includes/high-dimensional-effects.md}
 \include{_dimred/includes/high-dimensional-data-real.md}
 \include{_dimred/includes/latent-variable-motivation.md}
 \include{_dimred/includes/latent-variables.md}
-\include{_dimred/includes/principal-component-analysis.md}
-\include{_dimred/includes/probabilistic-pca.md}
-\include{_dimred/includes/mocap-ppca.md}
 
 \thanks
 

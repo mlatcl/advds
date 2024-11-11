@@ -13,18 +13,25 @@ ipynb: True
 reveal: True
 ---
 
+
 \include{_mlai/includes/mlai-notebook-setup.md}
 
-# Part 1: Beyond Linear Methods
+\section{Part 1: Linear PCA}
+
+\include{_dimred/includes/principal-component-analysis.md}
+\include{_dimred/includes/probabilistic-pca.md}
+\include{_dimred/includes/mocap-ppca.md}
+
+\section{Part 2: Beyond Linear Methods}
 \include{_dimred/includes/dimensionality-reduction-failure-modes.md}
 \include{_dimred/includes/local-vs-global-preservation.md}
 \include{_dimred/includes/iterative-dimensionality-reduction.md}
 
-# Part 2: Modern Approaches
+\section{Part 3: UMAP and t-SNE}
 \include{_dimred/includes/t-sne-intro.md}
 \include{_dimred/includes/umap-intro.md}
 
-# Part 3: Practical Implementation
+\section{Part 4: Practical Implementation
 \include{_dimred/includes/dimensionality-reduction-comparison.md}
 \include{_dimred/includes/dimensionality-reduction-practical-tips.md}
 
