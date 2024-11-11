@@ -267,140 +267,84 @@ class="citation" data-cites="Bishop:book06">Bishop
 <section id="clustering-1" class="slide level2">
 <h2>Clustering</h2>
 <ul>
-<li>One common approach, not deeply covered in this course.</li>
-<li>Associate each data point, <span class="math inline">\(\mathbf{
-y}_{i, :}\)</span> with one of <span class="math inline">\(k\)</span>
-different discrete groups.</li>
-<li>For example:
+<li>Common approach for grouping data points</li>
+<li>Assigns data points to discrete groups</li>
+<li>Examples include:
 <ul>
-<li>Clustering animals into discrete groups. Are animals discrete or
-continuous?</li>
-<li>Clustering into different different <em>political</em>
-affiliations.</li>
+<li>Animal classification</li>
+<li>Political affiliation grouping</li>
 </ul></li>
-<li>Humans do seem to like clusters:
-<ul>
-<li>Very useful when interacting with biologists.</li>
-</ul></li>
-<li>Subtle difference between clustering and <em>vector
-quantisation</em></li>
 </ul>
 </section>
-<section id="trying-to-teach-about-infinity" class="slide level2">
-<h2>Trying to Teach About Infinity</h2>
+<section id="clustering-vs-vector-quantisation" class="slide level2">
+<h2>Clustering vs Vector Quantisation</h2>
 <ul>
-<li>Little anecdote.</li>
-</ul>
-</section>
-<section id="clustering-and-vector-quantisation" class="slide level2">
-<h2>Clustering and Vector Quantisation</h2>
+<li>Clustering expects gaps between groups in data density</li>
+<li>Vector quantization may not require density gaps</li>
+<li>For practical purposes, both involve:
 <ul>
-<li>To my mind difference is in clustering there should be a reduction
-in data density between samples.</li>
-<li>This definition is not universally applied.</li>
-<li>For today’s purposes we merge them:
-<ul>
-<li>Determine how to allocate each point to a group and <em>harder</em>
-total number of groups.</li>
+<li>Allocating points to groups</li>
+<li>Determining optimal number of groups</li>
 </ul></li>
 </ul>
 </section>
 <section id="k-means-clustering" class="slide level2">
 <h2><span class="math inline">\(k\)</span>-means Clustering</h2>
 <ul>
-<li>Simple algorithm for allocating points to groups.</li>
-<li><em>Require</em>: Set of <span class="math inline">\(k\)</span>
-cluster centres &amp; assignment of each points to a cluster.</li>
-</ul>
+<li>Simple iterative clustering algorithm</li>
+<li>Key steps:
 <ol type="1">
-<li>Initialize cluster centres as randomly selected data points.
-<ol start="2" type="1">
-<li>Assign each data point to <em>nearest</em> cluster centre.</li>
-<li>Update each cluster centre by setting it to the mean of assigned
-data points.</li>
-<li>Repeat 2 and 3 until cluster allocations do not change.</li>
+<li>Initialize with random centers</li>
+<li>Assign points to nearest center</li>
+<li>Update centers as cluster means</li>
+<li>Repeat until stable</li>
 </ol></li>
-</ol>
+</ul>
 </section>
 <section id="objective-function" class="slide level2">
 <h2>Objective Function</h2>
 <ul>
-<li><p>This minimizes the objective <span class="math display">\[
+<li><p>Minimizes sum of squared distances: <span class="math display">\[
 E=\sum_{j=1}^K \sum_{i\ \text{allocated to}\ j}  \left(\mathbf{ y}_{i,
 :} - \boldsymbol{ \mu}_{j, :}\right)^\top\left(\mathbf{ y}_{i, :} -
 \boldsymbol{ \mu}_{j, :}\right)
-\]</span> <em>i.e.</em> it minimizes thesum of Euclidean squared
-distances betwen points and their associated centres.</p></li>
-<li><p>The minimum is <em>not</em> guaranteed to be <em>global</em> or
-<em>unique</em>.</p></li>
-<li><p>This objective is a non-convex optimization problem.</p></li>
-<li><p><em>Task</em>: associate each data point with a different
-label.</p></li>
-<li><p>Label is <em>not</em> provided.</p></li>
-<li><p>Quite intuitive for humans, we do it naturally.</p></li>
+\]</span></p></li>
+<li><p>Solution not guaranteed to be global or unique</p></li>
+<li><p>Represents a non-convex optimization problem</p></li>
+<li><p><em>Task</em>: associate data points with different
+labels.</p></li>
+<li><p>Labels are <em>not</em> provided by humans.</p></li>
+<li><p>Process is intuitive for humans - we do it naturally.</p></li>
 </ul>
 </section>
 <section id="platonic-ideals" class="slide level2">
 <h2>Platonic Ideals</h2>
 <ul>
-<li>Names for animals originally invented by humans through
-‘clustering’</li>
-<li>Can we have the computer to recreate that process of inventing the
-label?</li>
-<li>Greek philosopher, Plato, thought about ideas, he considered the
-concept of the Platonic ideal.</li>
-<li>Platonic ideal bird is the bird that is most bird-like or the chair
-that is most chair-like.</li>
+<li>Greek philosopher Plato considered the concept of ideals</li>
+<li>The Platonic ideal bird is the most bird-like bird</li>
+<li>In clustering, we find these ideals as cluster centers</li>
+<li>Data points are allocated to their nearest center</li>
 </ul>
 </section>
-<section id="cluster-center" class="slide level2">
-<h2>Cluster Center</h2>
+<section id="mathematical-formulation" class="slide level2">
+<h2>Mathematical Formulation</h2>
 <ul>
-<li>Can define different clusters, by finding their Platonic ideal
-(known as the cluster center)</li>
-<li>Allocate each data point to the relevant nearest cluster
-center.</li>
-<li>Allocate each animal to the class defined by its nearest cluster
-center.</li>
-</ul>
-</section>
-<section id="similarity-and-distance-measures" class="slide level2">
-<h2>Similarity and Distance Measures</h2>
-<ul>
-<li>Define a notion of either similarity or distance between the objects
-and their Platonic ideal.</li>
-<li>If objects are vectors of data, <span class="math inline">\(\mathbf{
-x}_i\)</span>.</li>
-<li>Represent cluster center for category <span
-class="math inline">\(j\)</span> by a vector <span
-class="math inline">\(\boldsymbol{ \mu}_j\)</span>.</li>
-<li>This vector contains the ideal features of a bird, a chair, or
-whatever category <span class="math inline">\(j\)</span> is.</li>
-</ul>
-</section>
-<section id="similarity-or-distance" class="slide level2">
-<h2>Similarity or Distance</h2>
-<ul>
-<li>Can either think in terms of similarity of the objects, or
-distances.</li>
-<li>We want objects that are similar to each other to cluster together.
-We want objects that are distant from each other to cluster apart.</li>
-<li>Use mathematical function to formalize this notion, e.g. for
-distance <span class="math display">\[
-d_{ij} = f(\mathbf{ x}_i, \boldsymbol{ \mu}_j).
-\]</span></li>
+<li>Represent objects as data vectors <span
+class="math inline">\(\mathbf{ x}_i\)</span></li>
+<li>Represent cluster centers as vectors <span
+class="math inline">\(\boldsymbol{ \mu}_j\)</span></li>
+<li>Define similarity/distance between objects and centers</li>
+<li>Distance function: <span class="math inline">\(d_{ij} = f(\mathbf{
+x}_i, \boldsymbol{ \mu}_j)\)</span></li>
 </ul>
 </section>
 <section id="squared-distance" class="slide level2">
 <h2>Squared Distance</h2>
 <ul>
-<li>Find cluster centers that are close to as many data points as
-possible.</li>
-<li>A commonly used distance is the squared distance, <span
-class="math display">\[
-d_{ij} = (\mathbf{ x}_i - \boldsymbol{ \mu}_j)^2.
+<li>Common choice: squared distance <span class="math display">\[
+d_{ij} = (\mathbf{ x}_i - \boldsymbol{ \mu}_j)^2
 \]</span></li>
-<li>Already seen for regression.</li>
+<li>Goal: find centers close to many data points</li>
 </ul>
 </section>
 <section id="objective-function-1" class="slide level2">
@@ -499,6 +443,34 @@ showDivs(1, 'kmeans-clustering');
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/kmeans_clustering_013.svg" width="40%" style=" ">
 </object>
 </div>
+<div class="kmeans-clustering" style="text-align:center;">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/kmeans_clustering_014.svg" width="40%" style=" ">
+</object>
+</div>
+<div class="kmeans-clustering" style="text-align:center;">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/kmeans_clustering_015.svg" width="40%" style=" ">
+</object>
+</div>
+<div class="kmeans-clustering" style="text-align:center;">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/kmeans_clustering_016.svg" width="40%" style=" ">
+</object>
+</div>
+<div class="kmeans-clustering" style="text-align:center;">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/kmeans_clustering_017.svg" width="40%" style=" ">
+</object>
+</div>
+<div class="kmeans-clustering" style="text-align:center;">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/kmeans_clustering_018.svg" width="40%" style=" ">
+</object>
+</div>
+<div class="kmeans-clustering" style="text-align:center;">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/kmeans_clustering_019.svg" width="40%" style=" ">
+</object>
+</div>
+<div class="kmeans-clustering" style="text-align:center;">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/kmeans_clustering_020.svg" width="40%" style=" ">
+</object>
+</div>
 <p><em>Clustering with the <span class="math inline">\(k\)</span>-means
 clustering algorithm.</em></p>
 </section>
@@ -521,7 +493,27 @@ Ihler</em></p>
 <ul>
 <li>Form taxonomies of the cluster centers</li>
 <li>Like humans apply to animals, to form <em>phylogenies</em></li>
+<li>Builds a tree structure showing relationships between data
+points</li>
+<li>Two main approaches:
+<ul>
+<li>Agglomerative (bottom-up): Start with individual points and
+merge</li>
+<li>Divisive (top-down): Start with one cluster and split</li>
+</ul></li>
 </ul>
+<div class="figure">
+<div id="hierarchical-clustering-oil-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//hierarchical-clustering-oil.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+Hierarchical clustering applied to oil flow data. The dendrogram shows
+how different flow regimes are grouped based on their measurement
+similarities. The three main flow regimes (homogeneous, annular, and
+laminar) should form distinct clusters.
+</aside>
 <div class="figure">
 <div id="alex-ihler-hierarchical-clustering-figure"
 class="figure-frame">
@@ -536,58 +528,40 @@ Hierarchical Clustering by Alex Ihler.
 <section id="phylogenetic-trees" class="slide level2">
 <h2>Phylogenetic Trees</h2>
 <ul>
-<li>Perform a hierarchical clustering based on genetic data, i.e. the
-actual contents of the genome.</li>
-<li>Perform across a number of species and produce a <em>phylogenetic
-tree</em>.</li>
-<li>Represents a guess at actual evolution of the species.</li>
-<li>Used to estimate the origin of viruses like AIDS or Bird flu</li>
+<li>Hierarchical clustering of genetic sequence data</li>
+<li>Creates evolutionary trees showing species relationships</li>
+<li>Estimates common ancestors and mutation timelines</li>
+<li>Critical for tracking viral evolution and outbreaks</li>
 </ul>
 </section>
 <section id="product-clustering" class="slide level2">
 <h2>Product Clustering</h2>
 <ul>
-<li>Could apply hierarchical clustering to an e-commerce company’s
-products.</li>
-<li>Would give us a phylogeny of products.</li>
-<li>Each cluster of products would be split into sub-clusters of
-products until we got down to individual products.
-<ul>
-<li>E.g. at high level Electronics/Clothing</li>
-</ul></li>
+<li>Hierarchical clustering for e-commerce products</li>
+<li>Creates product taxonomy trees</li>
+<li>Splits into nested categories (e.g. Electronics → Phones →
+Smartphones)</li>
 </ul>
 </section>
 <section id="hierarchical-clustering-challenge" class="slide level2">
 <h2>Hierarchical Clustering Challenge</h2>
 <ul>
-<li>Many products belong in more than one cluster: e.g. running shoes
-are ‘sporting goods’ and they are ‘clothing’.</li>
-<li>Tree structure doesn’t allow this allocation.</li>
-<li>Our own psychological grouping capabilities are in cognitive
-science.
+<li>Many products belong in multiple clusters (e.g. running shoes are
+both ‘sporting goods’ and ‘clothing’)</li>
+<li>Tree structures are too rigid for natural categorization</li>
+<li>Human concept learning is more flexible:
 <ul>
-<li>E.g. Josh Tenenbaum and collaborators cluster data in more complex
-ways.</li>
+<li>Forms overlapping categories</li>
+<li>Learns abstract rules</li>
+<li>Builds causal theories</li>
 </ul></li>
 </ul>
 </section>
 <section id="other-clustering-approaches" class="slide level2">
 <h2>Other Clustering Approaches</h2>
 <ul>
-<li>Spectral clustering (<span class="citation"
-data-cites="Shi:normalized00">Shi and Malik (2000)</span>,<span
-class="citation" data-cites="Ng:spectral02">Ng et al. (n.d.)</span>)
-<ul>
-<li>Allows clusters which aren’t convex hulls.</li>
-</ul></li>
-<li>Dirichlet process
-<ul>
-<li>A probabilistic formulation for a clustering algorithm that is
-<em>non-parametric</em>.</li>
-<li>Loosely speaking it allows infinite clusters</li>
-<li>In practice useful for dealing with previously unknown species
-(e.g. a “Black Swan Event”).</li>
-</ul></li>
+<li>Spectral clustering: Graph-based non-convex clustering</li>
+<li>Dirichlet process: Infinite, non-parametric clustering</li>
 </ul>
 </section>
 <section id="high-dimensional-data" class="slide level2">
@@ -720,19 +694,156 @@ dimensional non-linear embedding.</li>
 </section>
 <section id="high-dimensional-data-effects" class="slide level2">
 <h2>High Dimensional Data Effects</h2>
+<ul>
+<li>High dimensional spaces behave very differently from our 3D
+intuitions</li>
+<li>Two key effects:
+<ul>
+<li>Data moves to a “shell” at one standard deviation from mean</li>
+<li>Distances between points become constant</li>
+</ul></li>
+<li>Let’s see this experimentally</li>
+</ul>
+</section>
+<section id="pairwise-distances-in-high-d-gaussian-data"
+class="slide level2">
+<h2>Pairwise Distances in High-D Gaussian Data</h2>
+<div class="figure">
+<div id="high-d-distances-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/high-d-distances.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+Distribution of pairwise distances between points in high-dimensional
+Gaussian data. The red line shows the theoretical gamma distribution.
+</aside>
+</section>
+<section id="pairwise-distances-in-high-d-gaussian-data-1"
+class="slide level2">
+<h2>Pairwise Distances in High-D Gaussian Data</h2>
+<ul>
+<li>Plot shows pairwise distances in high-D Gaussian data</li>
+<li>Red line: theoretical gamma distribution</li>
+<li>Notice tight concentration of distances</li>
+</ul>
 </section>
 <section id="structured-high-dimensional-data" class="slide level2">
 <h2>Structured High Dimensional Data</h2>
+<ul>
+<li>What about data with underlying structure?</li>
+<li>Let’s create data that lies on a 2D manifold</li>
+<li>Embed it in 1000D space</li>
+</ul>
+</section>
+<section id="pairwise-distances-in-structured-high-d-data"
+class="slide level2">
+<h2>Pairwise Distances in Structured High-D Data</h2>
+<div class="figure">
+<div id="structured-high-d-distances-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/structured-high-d-distances.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+Distribution of pairwise distances for structured high-dimensional data.
+The distribution differs significantly from pure high-dimensional data,
+reflecting the underlying 2D structure.
+</aside>
+</section>
+<section id="pairwise-distances-in-structured-high-d-data-1"
+class="slide level2">
+<h2>Pairwise Distances in Structured High-D Data</h2>
+<ul>
+<li>Distance distribution differs from pure high-D case</li>
+<li>Matches 2D theoretical curve better than 1000D</li>
+<li>Real data often has low intrinsic dimensionality</li>
+<li>This is why PCA and other dimension reduction works!</li>
+</ul>
 </section>
 <section id="latent-variables-and-dimensionality-reduction"
 class="slide level2">
 <h2>Latent Variables and Dimensionality Reduction</h2>
+<ul>
+<li>Real data often has lower intrinsic dimensionality than
+measurements</li>
+<li>Examples:
+<ul>
+<li>Motion capture: Many coordinates but few degrees of freedom</li>
+<li>Genetic data: Thousands of genes controlled by few regulators</li>
+<li>Images: Millions of pixels but simpler underlying structure</li>
+</ul></li>
+</ul>
+</section>
+<section id="latent-variable-example" class="slide level2">
+<h2>Latent Variable Example</h2>
+<div class="figure">
+<div id="latent-variable-example-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/latent-variable-example.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+Data that appears 2-dimensional (left) can be described by a single
+latent variable <span class="math inline">\(z\)</span> (right) that
+traces out the curve.
+</aside>
+</section>
+<section id="latent-variable-example-1" class="slide level2">
+<h2>Latent Variable Example</h2>
+<ul>
+<li>Example shows 2D data described by 1D latent variable</li>
+<li>Left: Data in original 2D space</li>
+<li>Right: Same data represented by single latent variable <span
+class="math inline">\(z\)</span></li>
+<li>Goal: Find these simpler underlying representations</li>
+</ul>
 </section>
 <section id="practical-considerations" class="slide level2">
 <h2>Practical Considerations</h2>
 </section>
 <section id="when-dimensionality-reduction-fails" class="slide level2">
 <h2>When Dimensionality Reduction Fails</h2>
+<ul>
+<li>Dimensionality reduction can fail in several key scenarios:
+<ul>
+<li>Truly high dimensional data with no simpler structure</li>
+<li>Highly nonlinear relationships between dimensions</li>
+<li>Varying intrinsic dimensionality across data</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-swiss-roll-example" class="slide level2">
+<h2>The Swiss Roll Example</h2>
+<ul>
+<li>Classic example of nonlinear structure</li>
+<li>2D manifold embedded in 3D</li>
+<li>Linear methods like PCA fail</li>
+<li>Requires nonlinear methods (t-SNE, UMAP)</li>
+</ul>
+<div class="figure">
+<div id="swiss-roll-example-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/swiss-roll.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+The Swiss roll dataset is a classic example of data with nonlinear
+structure. The color represents the position along the roll, showing how
+points that are far apart in the original space are actually close in
+the intrinsic manifold.
+</aside>
+</section>
+<section id="common-failure-modes" class="slide level2">
+<h2>Common Failure Modes</h2>
+<ul>
+<li>Key failure scenarios:
+<ul>
+<li>Linear methods on nonlinear manifolds</li>
+<li>Assuming global structure when only local exists</li>
+<li>Not accounting for noise</li>
+</ul></li>
+</ul>
 </section>
 <section id="high-dimensional-effects-in-real-data"
 class="slide level2">
@@ -1435,17 +1546,9 @@ Bishop, C.M., 2006. Pattern recognition and machine learning. springer.
 Hotelling, H., 1933. Analysis of a complex of statistical variables into
 principal components. Journal of Educational Psychology 24, 417–441.
 </div>
-<div id="ref-Ng:spectral02" class="csl-entry" role="listitem">
-Ng, A.Y., Jordan, M.I., Weiss, Y., n.d. On spectral clustering: Analysis
-and an algorithm.
-</div>
 <div id="ref-Rogers:book11" class="csl-entry" role="listitem">
 Rogers, S., Girolami, M., 2011. A first course in machine learning. CRC
 Press.
-</div>
-<div id="ref-Shi:normalized00" class="csl-entry" role="listitem">
-Shi, J., Malik, J., 2000. Normalized cuts and image segmentation. IEEE
-Transactions on Pattern Analysis and Machine Intelligence 22, 888–905.
 </div>
 <div id="ref-Tipping:probpca99" class="csl-entry" role="listitem">
 Tipping, M.E., Bishop, C.M., 1999. Probabilistic principal component
