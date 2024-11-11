@@ -430,13 +430,19 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a hr
 oil flow in a pipeline. Each observation is labelled according to the
 multi-phase flow configuration (homogeneous, annular or laminar).</p>
 <div class="sourceCode" id="cb10"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&#39;Y&#39;</span>].describe()</span></code></pre></div>
-<p>The data is returned as a dictionary containing training and test
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert data[&quot;Y&quot;] from [1, -1, -1] in each row to rows of 0 or 1 or 2</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&quot;Y&quot;</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in first column (class 0)</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>class0 <span class="op">=</span> (Y[:, <span class="dv">0</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">0</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in second column (class 1) </span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>class1 <span class="op">=</span> (Y[:, <span class="dv">1</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">1</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in third column (class 2)</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>class2 <span class="op">=</span> (Y[:, <span class="dv">2</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine into single array of class labels 0,1,2</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Y&quot;</span>] <span class="op">=</span> class0 <span class="op">+</span> class1 <span class="op">+</span> class2</span></code></pre></div>
+<p>} The data is returned as a dictionary containing training and test
 inputs (‘X’, ‘Xtst’), training and test labels (‘Y’, ‘Ytst’), and the
 names of the features.</p>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Feature names:&quot;</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;feature_names&#39;</span>])</span></code></pre></div>
 <div class="figure">
 <div id="oil-flow-data-figure" class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//datasets/oil-flow-data.svg" width="80%" style=" ">
@@ -448,19 +454,20 @@ onclick="magnifyFigure(&#39;oil-flow-data&#39;)">
 </div>
 <div id="oil-flow-data-caption" class="caption-frame">
 <p>Figure: Visualization of the first two dimensions of the oil flow
-data from <span class="citation"
-data-cites="Bishop-oil93">(<strong>Bishop-oil93?</strong>)</span></p>
+data from <span class="citation" data-cites="Bishop-oil93">Bishop and
+James (1993)</span></p>
 </div>
 </div>
 <p>As normal we include the citation information for the data.</p>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;citation&#39;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;citation&#39;</span>])</span></code></pre></div>
 <p>And extra information about the data is included, as standard, under
 the keys <code>info</code> and <code>details</code>.</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;details&#39;</span>])</span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;info&#39;</span>])</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;details&#39;</span>])</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.cluster.hierarchy <span class="im">import</span> dendrogram, linkage</span>
@@ -1793,6 +1800,12 @@ href="http://inverseprobability.com/blog.html">http://inverseprobability.com</a>
 <h1 class="unnumbered" id="references">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent"
 role="list">
+<div id="ref-Bishop-oil93" class="csl-entry" role="listitem">
+Bishop, C.M., James, G.D., 1993. Analysis of multiphase flows using
+dual-energy gamma densitometry and neural networks. Nuclear Instruments
+and Methods in Physics Research A327, 580–593. <a
+href="https://doi.org/10.1016/0168-9002(93)90728-Z">https://doi.org/10.1016/0168-9002(93)90728-Z</a>
+</div>
 <div id="ref-Hotelling:analysis33" class="csl-entry" role="listitem">
 Hotelling, H., 1933. Analysis of a complex of statistical variables into
 principal components. Journal of Educational Psychology 24, 417–441.
