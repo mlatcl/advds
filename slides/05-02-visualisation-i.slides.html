@@ -122,12 +122,10 @@ Kevin O’Regan’s book, “Why Red Doesn’t Sound Like a Bell” is about the
 sensiorimotor perspective on feel and ranges from our senses to our
 consciousness.
 </aside>
+<!-- SECTION Part 1: Discrete Latent Variables -->
 </section>
-<section>
-<section id="part-1-discrete-latent-variables"
-class="title-slide slide level1">
-<h1>Part 1: Discrete Latent Variables</h1>
-
+<section id="part-1-discrete-latent-variables" class="slide level2">
+<h2>Part 1: Discrete Latent Variables</h2>
 </section>
 <section id="clustering" class="slide level2">
 <h2>Clustering</h2>
@@ -386,8 +384,8 @@ merge</li>
 </div>
 <aside class="notes">
 Visualization of the first two dimensions of the oil flow data from
-<span class="citation" data-cites="Bishop-oil93">Bishop and James
-(1993)</span>
+<span class="citation"
+data-cites="Bishop-oil93">(<strong>Bishop-oil93?</strong>)</span>
 </aside>
 <div class="figure">
 <div id="hierarchical-clustering-oil-figure" class="figure-frame">
@@ -450,12 +448,10 @@ both ‘sporting goods’ and ‘clothing’)</li>
 <li>Spectral clustering: Graph-based non-convex clustering</li>
 <li>Dirichlet process: Infinite, non-parametric clustering</li>
 </ul>
-</section></section>
-<section>
-<section id="part-2-continuous-latent-variables"
-class="title-slide slide level1">
-<h1>Part 2: Continuous Latent Variables</h1>
-
+<!-- SECTION Part 2: Continuous Latent Variables -->
+</section>
+<section id="part-2-continuous-latent-variables" class="slide level2">
+<h2>Part 2: Continuous Latent Variables</h2>
 </section>
 <section id="high-dimensional-data" class="slide level2">
 <h2>High Dimensional Data</h2>
@@ -878,128 +874,6 @@ class="math display">\[
   \]</span> where <span class="math inline">\(\mathbf{R}\)</span> is an
 arbitrary rotation matrix.</p>
 </section>
-<section id="principal-component-analysis-1" class="slide level2">
-<h2>Principal Component Analysis</h2>
-<ul>
-<li>PCA (<span class="citation"
-data-cites="Hotelling:analysis33">Hotelling (1933)</span>) is a linear
-embedding.</li>
-<li>Today its presented as:
-<ul>
-<li>Rotate to find ‘directions’ in data with maximal variance.</li>
-<li>How do we find these directions?</li>
-</ul></li>
-<li>Algorithmically we do this by diagonalizing the sample covariance
-matrix <span class="math display">\[
-\mathbf{S}=\frac{1}{n}\sum_{i=1}^n\left(\mathbf{ y}_{i, :}-\boldsymbol{
-\mu}\right)\left(\mathbf{ y}_{i, :} - \boldsymbol{ \mu}\right)^\top
-\]</span></li>
-</ul>
-</section>
-<section id="principal-component-analysis-2" class="slide level2">
-<h2>Principal Component Analysis</h2>
-<ul>
-<li>Find directions in the data, <span class="math inline">\(\mathbf{
-z}= \mathbf{U}\mathbf{ y}\)</span>, for which variance is
-maximized.</li>
-</ul>
-</section>
-<section id="lagrangian" class="slide level2">
-<h2>Lagrangian</h2>
-<ul>
-<li><p>Solution is found via constrained optimisation (which uses <a
-href="https://en.wikipedia.org/wiki/Lagrange_multiplier">Lagrange
-multipliers</a>): <span class="math display">\[
-L\left(\mathbf{u}_{1},\lambda_{1}\right)=\mathbf{u}_{1}^{\top}\mathbf{S}\mathbf{u}_{1}+\lambda_{1}\left(1-\mathbf{u}_{1}^{\top}\mathbf{u}_{1}\right)
-\]</span></p></li>
-<li><p>Gradient with respect to <span
-class="math inline">\(\mathbf{u}_{1}\)</span> <span
-class="math display">\[\frac{\text{d}L\left(\mathbf{u}_{1},\lambda_{1}\right)}{\text{d}\mathbf{u}_{1}}=2\mathbf{S}\mathbf{u}_{1}-2\lambda_{1}\mathbf{u}_{1}\]</span>
-rearrange to form <span
-class="math display">\[\mathbf{S}\mathbf{u}_{1}=\lambda_{1}\mathbf{u}_{1}.\]</span>
-Which is known as an <a
-href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors"><em>eigenvalue
-problem</em></a>.</p></li>
-<li><p>Further directions that are <em>orthogonal</em> to the first can
-also be shown to be eigenvectors of the covariance.</p></li>
-</ul>
-</section>
-<section id="linear-dimensionality-reduction" class="slide level2">
-<h2>Linear Dimensionality Reduction</h2>
-<ul>
-<li>Represent data, <span class="math inline">\(\mathbf{Y}\)</span>,
-with a lower dimensional set of latent variables <span
-class="math inline">\(\mathbf{Z}\)</span>.</li>
-<li>Assume a linear relationship of the form <span
-class="math display">\[
-\mathbf{ y}_{i,:}=\mathbf{W}\mathbf{ z}_{i,:}+\boldsymbol{
-\epsilon}_{i,:},
-\]</span> where <span class="math display">\[
-\boldsymbol{ \epsilon}_{i,:} \sim
-\mathcal{N}\left(\mathbf{0},\sigma^2\mathbf{I}\right)
-\]</span></li>
-</ul>
-</section>
-<section id="linear-latent-variable-model" class="slide level2">
-<h2>Linear Latent Variable Model</h2>
-<p><strong>Probabilistic PCA</strong></p>
-<table>
-<tr>
-<td width>
-<ul>
-<li>Define <em>linear-Gaussian relationship</em> between latent
-variables and data.</li>
-<li><strong>Standard</strong> Latent variable approach:
-<ul>
-<li>Define Gaussian prior over <em>latent space</em>, <span
-class="math inline">\(\mathbf{Z}\)</span>.</li>
-</ul></li>
-<li>Integrate out <em>latent variables</em>.
-</td>
-<td width="">
-<div class="figure">
-<div id="ppca-graph-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//dimred/ppca_graph.png" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-</div>
-<aside class="notes">
-Graphical model representing probabilistic PCA.
-</aside>
-<small> <span class="math display">\[
-p\left(\mathbf{Y}|\mathbf{Z},\mathbf{W}\right)=\prod_{i=1}^{n}\mathcal{N}\left(\mathbf{
-y}_{i,:}|\mathbf{W}\mathbf{ z}_{i,:},\sigma^2\mathbf{I}\right)
-\]</span></li>
-</ul>
-<p><span class="math display">\[
-p\left(\mathbf{Z}\right)=\prod_{i=1}^{n}\mathcal{N}\left(\mathbf{
-z}_{i,:}|\mathbf{0},\mathbf{I}\right)
-\]</span></p>
-<span class="math display">\[
-p\left(\mathbf{Y}|\mathbf{W}\right)=\prod_{i=1}^{n}\mathcal{N}\left(\mathbf{
-y}_{i,:}|\mathbf{0},\mathbf{W}\mathbf{W}^{\top}+\sigma^{2}\mathbf{I}\right)
-\]</span></small>
-</td>
-</tr>
-</table>
-</section>
-<section id="ppca-as-manifold-learning" class="slide level2">
-<h2>PPCA as Manifold Learning</h2>
-</section>
-<section id="examples-motion-capture-data" class="slide level2">
-<h2>Examples: Motion Capture Data</h2>
-<div class="figure">
-<div id="dem-osu-run1-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/dem_osu_run1.svg" width="70%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-First two principle components of motion capture data of an individual
-running.
-</aside>
-</section>
 <section id="thanks" class="slide level2 scrollable">
 <h2 class="scrollable">Thanks!</h2>
 <ul>
@@ -1031,12 +905,6 @@ Data Science</a></p></li>
 <h2 class="unnumbered scrollable">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent"
 role="list">
-<div id="ref-Bishop-oil93" class="csl-entry" role="listitem">
-Bishop, C.M., James, G.D., 1993. Analysis of multiphase flows using
-dual-energy gamma densitometry and neural networks. Nuclear Instruments
-and Methods in Physics Research A327, 580–593. <a
-href="https://doi.org/10.1016/0168-9002(93)90728-Z">https://doi.org/10.1016/0168-9002(93)90728-Z</a>
-</div>
 <div id="ref-Hotelling:analysis33" class="csl-entry" role="listitem">
 Hotelling, H., 1933. Analysis of a complex of statistical variables into
 principal components. Journal of Educational Psychology 24, 417–441.
@@ -1050,7 +918,7 @@ analysis. Journal of the Royal Statistical Society, B 6, 611–622. <a
 href="https://doi.org/doi:10.1111/1467-9868.00196">https://doi.org/doi:10.1111/1467-9868.00196</a>
 </div>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
