@@ -120,6 +120,103 @@ manner.</p>
 <div class="sourceCode" id="cb6"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> plot</span></code></pre></div>
+<h2 id="visualization-and-human-perception">Visualization and Human
+Perception</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/includes/visualisation-motivation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_dimred/includes/visualisation-motivation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>The human visual system is remarkable - it represents our highest
+bandwidth connection to the world around us, with the optic tract
+carrying around 8.75 million bits per second of information to our brain
+<span class="citation" data-cites="Koch-eyebrain06">(Koch et al.,
+2006)</span>. The “nerve” is misnamed, it is actually an extension of
+brain tissue, highlighting how central vision is to our cognitive
+architecture. Our (bidrectional) verbal communication is limited to
+around 2,000 bits per minute, but our eyes actively grab at information
+from our environment at vastly higher rates. This “active sensing”
+approach, see e.g. <span class="citation"
+data-cites="Mackay-behind91">MacKay (1991)</span> and <span
+class="citation" data-cites="ORegan-whyred19">O’Regan (2011)</span>,
+means we don’t passively receive visual information but actively
+construct our understanding through rapid eye movements called saccades
+that sample our environment hundreds of times per second.</p>
+<h2 id="behind-the-eye">Behind the Eye</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_books/includes/behind-the-eye.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_books/includes/behind-the-eye.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<div class="figure">
+<div id="behind-the-eye-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//books/behind-the-eye.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="behind-the-eye-magnify" class="magnify"
+onclick="magnifyFigure(&#39;behind-the-eye&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="behind-the-eye-caption" class="caption-frame">
+<p>Figure: <a
+href="https://www.amazon.co.uk/Behind-Eye-Gifford-Lectures-MACKAY/dp/0631173323">Behind
+the Eye</a> <span class="citation" data-cites="Mackay-behind91">(MacKay,
+1991)</span> summarises MacKay’s Gifford Lectures, where MacKay uses the
+operation of the eye as a window on the operation of the brain.</p>
+</div>
+</div>
+<p>The high-bandwidth visual channel makes visualization a powerful tool
+for communication and understanding. But it also makes us vulnerable to
+manipulation through misleading. Just as social media algorithms can
+manipulate our behavior through careful curation of information, indeed
+they sometimes manipulate us through our visual system, poorly designed
+or deliberately deceptive visualizations can lead us to incorrect
+conclusions by hijacking our natural visual processing capabilities.</p>
+<div class="figure">
+<div id="why-red-bell-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//cognitive-science/why-red-doesnt-sound-like-a-bell.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="why-red-bell-magnify" class="magnify"
+onclick="magnifyFigure(&#39;why-red-bell&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="why-red-bell-caption" class="caption-frame">
+<p>Figure: Kevin O’Regan’s book, “Why Red Doesn’t Sound Like a Bell” is
+about the sensiorimotor perspective on feel and ranges from our senses
+to our consciousness.</p>
+</div>
+</div>
+<p>The book, “Why Red Doesn’t Sound Like a Bell” by J. Kevin O’Regan
+<span class="citation" data-cites="ORegan-whyred19">(O’Regan,
+2011)</span> suggests a sensorimotor approach to understanding our
+consciousness. One that depends on how our senses interact with the
+world around us. The implication is that our consciousness is as much a
+function of our environment as of our mind. This is particularly
+interesting for social interaction, where our external environment is
+populated by other intelligent entities. If we accept this
+interpretation it would imply that we should pay a lot of attention to
+modes of human to human interaction when developing environments in
+which we can feel comfortable and able to perform.</p>
+<p>In this lecture we’ll introduce the basics of visualisation through
+the lens of dimensionality reduction - techniques that help us represent
+high-dimensional data.</p>
+<p>See <span class="citation" data-cites="Lawrence-atomic24">Lawrence
+(2024)</span> bandwidth, communication
+p. 10-12,16,21,29,31,34,38,41,44,65-67,76,81,90-91,104,115,149,196,214,216,235,237-238,302,334.
+See <span class="citation" data-cites="Lawrence-atomic24">Lawrence
+(2024)</span> MacKay, Donald p. 227-228,230-237,267-270. See <span
+class="citation" data-cites="Lawrence-atomic24">Lawrence (2024)</span>
+optic nerve/tract p. 205,235. See <span class="citation"
+data-cites="Lawrence-atomic24">Lawrence (2024)</span> O’Regan, Kevin
+p. 236-240,250,259,262-263,297,299. See <span class="citation"
+data-cites="Lawrence-atomic24">Lawrence (2024)</span> saccade
+p. 236,238,259-260,297,301. See <span class="citation"
+data-cites="Lawrence-atomic24">Lawrence (2024)</span> visual
+system/visual cortex
+p. 204-206,209,235-239,249-250,255,259,260,268-270,281,294,297,301,324,330.</p>
 <h1 id="part-1-discrete-latent-variables">Part 1: Discrete Latent
 Variables</h1>
 <h2 id="clustering">Clustering</h2>
@@ -317,7 +414,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a hr
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the oil flow data</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.oil_flow()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.oil()</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>]</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
@@ -325,21 +422,20 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a hr
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>linked <span class="op">=</span> linkage(X, <span class="st">&#39;ward&#39;</span>)  <span class="co"># Ward&#39;s method for minimum variance</span></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dendrogram plot</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>))</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>plot.big_figsize)</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>dendrogram(linked,</span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>           orientation<span class="op">=</span><span class="st">&#39;top&#39;</span>,</span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>           distance_sort<span class="op">=</span><span class="st">&#39;descending&#39;</span>,</span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>           show_leaf_counts<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>           labels<span class="op">=</span>Y.reshape(<span class="op">-</span><span class="dv">1</span>),</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>           leaf_rotation<span class="op">=</span><span class="dv">90</span>)</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Hierarchical Clustering of Oil Flow Data&#39;</span>)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Flow Type&#39;</span>)</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Distance&#39;</span>)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">&#39;./hierarchical-clustering-oil.svg&#39;</span>)</span></code></pre></div>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>           ax<span class="op">=</span>ax)  <span class="co"># Removed labels since Y has wrong dimensions</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">&#39;Hierarchical Clustering of Oil Flow Data&#39;</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&#39;Sample Index&#39;</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">&#39;Distance&#39;</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>mlai.write_figure(<span class="st">&#39;hierarchical-clustering-oil.svg&#39;</span>, directory<span class="op">=</span><span class="st">&#39;./dimred&#39;</span>)</span></code></pre></div>
 <div class="figure">
 <div id="hierarchical-clustering-oil-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//hierarchical-clustering-oil.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/hierarchical-clustering-oil.svg" width="80%" style=" ">
 </object>
 </div>
 <div id="hierarchical-clustering-oil-magnify" class="magnify"
@@ -1666,15 +1762,33 @@ role="list">
 Hotelling, H., 1933. Analysis of a complex of statistical variables into
 principal components. Journal of Educational Psychology 24, 417–441.
 </div>
+<div id="ref-Koch-eyebrain06" class="csl-entry" role="listitem">
+Koch, K., McLean, J., Segev, R., Freed, M.A., Berry II, M.J.,
+Balasubramanian, V., Sterling, P., 2006. How much the eye tells the
+brain. Current Biology 16, 1428–1434. <a
+href="https://doi.org/10.1016/j.cub.2006.05.056">https://doi.org/10.1016/j.cub.2006.05.056</a>
+</div>
+<div id="ref-Lawrence-atomic24" class="csl-entry" role="listitem">
+Lawrence, N.D., 2024. <a
+href="https://www.penguin.co.uk/books/455130/the-atomic-human-by-lawrence-neil-d/9780241625248">The
+atomic human: Understanding ourselves in the age of AI</a>. Allen Lane.
+</div>
 <div id="ref-LeCun:zip89" class="csl-entry" role="listitem">
 Le Cun, Y., Boser, B.E., Denker, J.S., Henderson, D., Howard, R.E.,
 Hubbard, W., Jackel, L.D., 1989. Backpropagation applied to handwritten
 zip code recognition. Neural Computation 1, 541–551. <a
 href="https://doi.org/10.1162/neco.1989.1.4.541">https://doi.org/10.1162/neco.1989.1.4.541</a>
 </div>
+<div id="ref-Mackay-behind91" class="csl-entry" role="listitem">
+MacKay, D.M., 1991. Behind the eye. Basil Blackwell.
+</div>
 <div id="ref-Ng:spectral02" class="csl-entry" role="listitem">
 Ng, A.Y., Jordan, M.I., Weiss, Y., n.d. On spectral clustering: Analysis
 and an algorithm.
+</div>
+<div id="ref-ORegan-whyred19" class="csl-entry" role="listitem">
+O’Regan, J.K., 2011. Why red doesn’t sound like a bell: Understanding
+the feel of consciousness. Oxford University Press, Oxford.
 </div>
 <div id="ref-Roweis:SPCA97" class="csl-entry" role="listitem">
 Roweis, S.T., n.d. <span>EM</span> algorithms for <span>PCA</span> and

@@ -24,6 +24,7 @@ reveal: True
 
 \include{_mlai/includes/mlai-notebook-setup.md}
 
+\include{_dimred/includes/visualisation-motivation.md}
 # Part 1: Discrete Latent Variables
 \include{_ml/includes/clustering.md}
 
