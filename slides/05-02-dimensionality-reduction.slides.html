@@ -261,427 +261,6 @@ class="citation" data-cites="Bishop:book06">Bishop
 (2006)</span></p></li>
 </ul>
 </section>
-<section id="sum-of-squares-and-probability" class="slide level2">
-<h2>Sum of Squares and Probability</h2>
-<div class="figure">
-<div id="gauss-theoria-ls-figure" class="figure-frame">
-<div class="centered" style="">
-<a
-href="https://play.google.com/books/reader?id=ORUOAAAAQAAJ&amp;pg=PA213"><img
-data-src="https://mlatcl.github.io/advds/./slides/diagrams//books/ORUOAAAAQAAJ-PA213.png" /></a>
-</div>
-</div>
-</div>
-<aside class="notes">
-Gauss’s book <em>Theoria Motus Corprum Coelestium</em> <span
-class="citation" data-cites="Gauss:theoria09">(Gauss, 1809)</span>
-motivates the use of least squares through a probabilistic forumation.
-</aside>
-<blockquote>
-<p>… It is clear, that for the product <span
-class="math inline">\(\Omega = h^\mu \pi^{-\frac{1}{2}\mu} e^{-hh(vv +
-v^\prime v^\prime + v^{\prime\prime} v^{\prime\prime} + \dots)}\)</span>
-to be maximised the sum <span class="math inline">\(vv + v ^\prime
-v^\prime + v^{\prime\prime} v^{\prime\prime} + \text{etc}.\)</span>
-ought to be minimized. <em>Therefore, the most probable values of the
-unknown quantities <span class="math inline">\(p , q, r , s
-\text{etc}.\)</span>, should be that in which the sum of the squares of
-the differences between the functions <span class="math inline">\(V,
-V^\prime, V^{\prime\prime} \text{etc}\)</span>, and the observed values
-is minimized</em>, for all observations of the same degree of precision
-is presumed.</p>
-</blockquote>
-</section>
-<section id="prior-distribution" class="slide level2">
-<h2>Prior Distribution</h2>
-<ul>
-<li><p>Bayesian inference requires a prior on the parameters.</p></li>
-<li><p>The prior represents your belief <em>before</em> you see the data
-of the likely value of the parameters.</p></li>
-<li><p>For linear regression, consider a Gaussian prior on the
-intercept:</p>
-<p><span class="math display">\[c \sim
-\mathcal{N}\left(0,\alpha_1\right)\]</span></p></li>
-</ul>
-</section>
-<section id="posterior-distribution" class="slide level2">
-<h2>Posterior Distribution</h2>
-<ul>
-<li><p>Posterior distribution is found by combining the prior with the
-likelihood.</p></li>
-<li><p>Posterior distribution is your belief <em>after</em> you see the
-data of the likely value of the parameters.</p></li>
-<li><p>The posterior is found through <strong>Bayes’ Rule</strong> <span
-class="math display">\[
-p(c|y) = \frac{p(y|c)p(c)}{p(y)}
-\]</span></p>
-<p><span class="math display">\[
-\text{posterior} = \frac{\text{likelihood}\times
-\text{prior}}{\text{marginal likelihood}}.
-\]</span></p></li>
-</ul>
-</section>
-<section id="bayes-update" class="slide level2">
-<h2>Bayes Update</h2>
-<script>
-showDivs(1, 'dem_gaussian');
-</script>
-<p><small></small>
-<input id="range-dem_gaussian" type="range" min="1" max="3" value="1" onchange="setDivs('dem_gaussian')" oninput="setDivs('dem_gaussian')">
-<button onclick="plusDivs(-1, 'dem_gaussian')">❮</button>
-<button onclick="plusDivs(1, 'dem_gaussian')">❯</button></p>
-<div class="dem_gaussian" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/dem_gaussian001.svg" width="70%" style=" ">
-</object>
-</div>
-<div class="dem_gaussian" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/dem_gaussian002.svg" width="70%" style=" ">
-</object>
-</div>
-<div class="dem_gaussian" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/dem_gaussian003.svg" width="70%" style=" ">
-</object>
-</div>
-</section>
-<section id="stages-to-derivation-of-the-posterior"
-class="slide level2">
-<h2>Stages to Derivation of the Posterior</h2>
-<ul>
-<li>Multiply likelihood by prior
-<ul>
-<li>they are “exponentiated quadratics”, the answer is always also an
-exponentiated quadratic because <span
-class="math inline">\(\exp(a^2)\exp(b^2) = \exp(a^2 +
-b^2)\)</span>.</li>
-</ul></li>
-<li>Complete the square to get the resulting density in the form of a
-Gaussian.</li>
-<li>Recognise the mean and (co)variance of the Gaussian. This is the
-estimate of the posterior.</li>
-</ul>
-</section>
-<section id="main-trick" class="slide level2">
-<h2>Main Trick</h2>
-<p><span class="math display">\[p(c) = \frac{1}{\sqrt{2\pi\alpha_1}}
-\exp\left(-\frac{1}{2\alpha_1}c^2\right)\]</span> <span
-class="math display">\[p(\mathbf{ y}|\mathbf{ x}, c, m, \sigma^2) =
-\frac{1}{\left(2\pi\sigma^2\right)^{\frac{n}{2}}}
-\exp\left(-\frac{1}{2\sigma^2}\sum_{i=1}^n(y_i - mx_i -
-c)^2\right)\]</span></p>
-</section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-<p><span class="math display">\[p(c| \mathbf{ y}, \mathbf{ x}, m,
-\sigma^2) = \frac{p(\mathbf{ y}|\mathbf{ x}, c, m,
-\sigma^2)p(c)}{p(\mathbf{ y}|\mathbf{ x}, m, \sigma^2)}\]</span></p>
-<p><span class="math display">\[p(c| \mathbf{ y}, \mathbf{ x}, m,
-\sigma^2) =  \frac{p(\mathbf{ y}|\mathbf{ x}, c, m, \sigma^2)p(c)}{\int
-p(\mathbf{ y}|\mathbf{ x}, c, m, \sigma^2)p(c) \text{d} c}\]</span></p>
-</section>
-<section id="section-2" class="slide level2">
-<h2></h2>
-<p><span class="math display">\[p(c| \mathbf{ y}, \mathbf{ x}, m,
-\sigma^2) \propto  p(\mathbf{ y}|\mathbf{ x}, c, m,
-\sigma^2)p(c)\]</span></p>
-<p><span class="math display">\[\begin{aligned}
-    \log p(c | \mathbf{ y}, \mathbf{ x}, m, \sigma^2)
-=&amp;-\frac{1}{2\sigma^2} \sum_{i=1}^n(y_i-c -
-mx_i)^2-\frac{1}{2\alpha_1} c^2 + \text{const}\\
-     = &amp;-\frac{1}{2\sigma^2}\sum_{i=1}^n(y_i-mx_i)^2
--\left(\frac{n}{2\sigma^2} + \frac{1}{2\alpha_1}\right)c^2\\
-    &amp; + c\frac{\sum_{i=1}^n(y_i-mx_i)}{\sigma^2},
-  \end{aligned}\]</span></p>
-</section>
-<section id="section-3" class="slide level2">
-<h2></h2>
-<p>complete the square of the quadratic form to obtain <span
-class="math display">\[\log p(c | \mathbf{ y}, \mathbf{ x}, m, \sigma^2)
-= -\frac{1}{2\tau^2}(c - \mu)^2 +\text{const},\]</span> where <span
-class="math inline">\(\tau^2 = \left(n\sigma^{-2}
-+\alpha_1^{-1}\right)^{-1}\)</span> and <span class="math inline">\(\mu
-= \frac{\tau^2}{\sigma^2} \sum_{i=1}^n(y_i-mx_i)\)</span>.</p>
-</section>
-<section id="main-trick-1" class="slide level2">
-<h2>Main Trick</h2>
-<p><span class="math display">\[
-p(c) = \frac{1}{\sqrt{2\pi\alpha_1}}
-\exp\left(-\frac{1}{2\alpha_1}c^2\right)
-\]</span> <span class="math display">\[
-p(\mathbf{ y}|\mathbf{ x}, c, m, \sigma^2) =
-\frac{1}{\left(2\pi\sigma^2\right)^{\frac{n}{2}}}
-\exp\left(-\frac{1}{2\sigma^2}\sum_{i=1}^n(y_i - mx_i - c)^2\right)
-\]</span> <span class="math display">\[
-p(c| \mathbf{ y}, \mathbf{ x}, m, \sigma^2) = \frac{p(\mathbf{
-y}|\mathbf{ x}, c, m, \sigma^2)p(c)}{p(\mathbf{ y}|\mathbf{ x}, m,
-\sigma^2)}
-\]</span> <span class="math display">\[
-p(c| \mathbf{ y}, \mathbf{ x}, m, \sigma^2) =  \frac{p(\mathbf{
-y}|\mathbf{ x}, c, m, \sigma^2)p(c)}{\int p(\mathbf{ y}|\mathbf{ x}, c,
-m, \sigma^2)p(c) \text{d} c}
-\]</span> <span class="math display">\[
-p(c| \mathbf{ y}, \mathbf{ x}, m, \sigma^2) \propto  p(\mathbf{
-y}|\mathbf{ x}, c, m, \sigma^2)p(c)
-\]</span> <span class="math display">\[
-\begin{aligned}
-\log p(c | \mathbf{ y}, \mathbf{ x}, m, \sigma^2)
-=&amp;-\frac{1}{2\sigma^2} \sum_{i=1}^n(y_i-c -
-mx_i)^2-\frac{1}{2\alpha_1} c^2 + \text{const}\\
-     = &amp;-\frac{1}{2\sigma^2}\sum_{i=1}^n(y_i-mx_i)^2
--\left(\frac{n}{2\sigma^2} + \frac{1}{2\alpha_1}\right)c^2\\
-     &amp; + c\frac{\sum_{i=1}^n(y_i-mx_i)}{\sigma^2},
-\end{aligned}
-\]</span> complete the square of the quadratic form to obtain <span
-class="math display">\[
-\log p(c | \mathbf{ y}, \mathbf{ x}, m, \sigma^2) = -\frac{1}{2\tau^2}(c
-- \mu)^2 +\text{const},
-\]</span> where <span class="math inline">\(\tau^2 = \left(n\sigma^{-2}
-+\alpha_1^{-1}\right)^{-1}\)</span> and <span class="math inline">\(\mu
-= \frac{\tau^2}{\sigma^2} \sum_{i=1}^n(y_i-mx_i)\)</span>.</p>
-</section>
-<section id="the-joint-density" class="slide level2">
-<h2>The Joint Density</h2>
-<ul>
-<li>Really want to know the <em>joint</em> posterior density over the
-parameters <span class="math inline">\(c\)</span> <em>and</em> <span
-class="math inline">\(m\)</span>.</li>
-<li>Could now integrate out over <span class="math inline">\(m\)</span>,
-but it’s easier to consider the multivariate case.</li>
-</ul>
-</section>
-<section id="two-dimensional-gaussian" class="slide level2">
-<h2>Two Dimensional Gaussian</h2>
-<ul>
-<li>Consider height, <span class="math inline">\(h/m\)</span> and
-weight, <span class="math inline">\(w/kg\)</span>.</li>
-<li>Could sample height from a distribution: <span
-class="math display">\[
-p(h) \sim \mathcal{N}\left(1.7,0.0225\right).
-\]</span></li>
-<li>And similarly weight: <span class="math display">\[
-p(w) \sim \mathcal{N}\left(75,36\right).
-\]</span></li>
-</ul>
-</section>
-<section id="height-and-weight-models" class="slide level2">
-<h2>Height and Weight Models</h2>
-<div class="figure">
-<div id="height-weight-gaussian-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/height_weight_gaussian.svg" width="70%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-Gaussian distributions for height and weight.
-</aside>
-</section>
-<section id="independence-assumption" class="slide level2">
-<h2>Independence Assumption</h2>
-<ul>
-<li><p>We assume height and weight are independent.</p>
-<p><span class="math display">\[
-p(w, h) = p(w)p(h).
-\]</span></p></li>
-</ul>
-</section>
-<section id="sampling-two-dimensional-variables" class="slide level2">
-<h2>Sampling Two Dimensional Variables</h2>
-<script>
-showDivs(0, 'independent_height_weight');
-</script>
-<p><small></small>
-<input id="range-independent_height_weight" type="range" min="0" max="7" value="0" onchange="setDivs('independent_height_weight')" oninput="setDivs('independent_height_weight')">
-<button onclick="plusDivs(-1, 'independent_height_weight')">❮</button>
-<button onclick="plusDivs(1, 'independent_height_weight')">❯</button></p>
-<div class="independent_height_weight" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/independent_height_weight000.svg" width="70%" style=" ">
-</object>
-</div>
-<div class="independent_height_weight" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/independent_height_weight001.svg" width="70%" style=" ">
-</object>
-</div>
-<div class="independent_height_weight" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/independent_height_weight002.svg" width="70%" style=" ">
-</object>
-</div>
-<div class="independent_height_weight" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/independent_height_weight003.svg" width="70%" style=" ">
-</object>
-</div>
-<div class="independent_height_weight" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/independent_height_weight004.svg" width="70%" style=" ">
-</object>
-</div>
-<div class="independent_height_weight" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/independent_height_weight005.svg" width="70%" style=" ">
-</object>
-</div>
-<div class="independent_height_weight" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/independent_height_weight006.svg" width="70%" style=" ">
-</object>
-</div>
-<div class="independent_height_weight" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/independent_height_weight007.svg" width="70%" style=" ">
-</object>
-</div>
-</section>
-<section id="body-mass-index" class="slide level2">
-<h2>Body Mass Index</h2>
-<ul>
-<li>In reality they are dependent (body mass index) <span
-class="math inline">\(= \frac{w}{h^2}\)</span>.</li>
-<li>To deal with this dependence we introduce <em>correlated</em>
-multivariate Gaussians.</li>
-</ul>
-</section>
-<section id="sampling-two-dimensional-variables-1" class="slide level2">
-<h2>Sampling Two Dimensional Variables</h2>
-<script>
-showDivs(0, 'correlated_height_weight');
-</script>
-<p><small></small>
-<input id="range-correlated_height_weight" type="range" min="0" max="7" value="0" onchange="setDivs('correlated_height_weight')" oninput="setDivs('correlated_height_weight')">
-<button onclick="plusDivs(-1, 'correlated_height_weight')">❮</button>
-<button onclick="plusDivs(1, 'correlated_height_weight')">❯</button></p>
-<div class="correlated_height_weight" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/correlated_height_weight000.svg" width="70%" style=" ">
-</object>
-</div>
-<div class="correlated_height_weight" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/correlated_height_weight001.svg" width="70%" style=" ">
-</object>
-</div>
-<div class="correlated_height_weight" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/correlated_height_weight002.svg" width="70%" style=" ">
-</object>
-</div>
-<div class="correlated_height_weight" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/correlated_height_weight003.svg" width="70%" style=" ">
-</object>
-</div>
-<div class="correlated_height_weight" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/correlated_height_weight004.svg" width="70%" style=" ">
-</object>
-</div>
-<div class="correlated_height_weight" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/correlated_height_weight005.svg" width="70%" style=" ">
-</object>
-</div>
-<div class="correlated_height_weight" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/correlated_height_weight006.svg" width="70%" style=" ">
-</object>
-</div>
-<div class="correlated_height_weight" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/correlated_height_weight007.svg" width="70%" style=" ">
-</object>
-</div>
-</section>
-<section id="independent-gaussians" class="slide level2">
-<h2>Independent Gaussians</h2>
-<p><span class="math display">\[
-p(w, h) = p(w)p(h)
-\]</span></p>
-</section>
-<section id="independent-gaussians-1" class="slide level2">
-<h2>Independent Gaussians</h2>
-<p><span class="math display">\[
-p(w, h) = \frac{1}{\sqrt{2\pi \sigma_1^2}\sqrt{2\pi\sigma_2^2}}
-\exp\left(-\frac{1}{2}\left(\frac{(w-\mu_1)^2}{\sigma_1^2} +
-\frac{(h-\mu_2)^2}{\sigma_2^2}\right)\right)
-\]</span></p>
-</section>
-<section id="independent-gaussians-2" class="slide level2">
-<h2>Independent Gaussians</h2>
-<p><small> <span class="math display">\[
-p(w, h) = \frac{1}{\sqrt{2\pi\sigma_1^22\pi\sigma_2^2}}
-\exp\left(-\frac{1}{2}\left(\begin{bmatrix}w \\ h\end{bmatrix} -
-\begin{bmatrix}\mu_1 \\
-\mu_2\end{bmatrix}\right)^\top\begin{bmatrix}\sigma_1^2&amp;
-0\\0&amp;\sigma_2^2\end{bmatrix}^{-1}\left(\begin{bmatrix}w \\
-h\end{bmatrix} - \begin{bmatrix}\mu_1 \\
-\mu_2\end{bmatrix}\right)\right)
-\]</span> </small></p>
-</section>
-<section id="independent-gaussians-3" class="slide level2">
-<h2>Independent Gaussians</h2>
-<p><span class="math display">\[
-p(\mathbf{ y}) = \frac{1}{\det{2\pi \mathbf{D}}^{\frac{1}{2}}}
-\exp\left(-\frac{1}{2}(\mathbf{ y}- \boldsymbol{
-\mu})^\top\mathbf{D}^{-1}(\mathbf{ y}- \boldsymbol{ \mu})\right)
-\]</span></p>
-</section>
-<section id="correlated-gaussian" class="slide level2">
-<h2>Correlated Gaussian</h2>
-<p>Form correlated from original by rotating the data space using matrix
-<span class="math inline">\(\mathbf{R}\)</span>.</p>
-<p><span class="math display">\[
-p(\mathbf{ y}) = \frac{1}{\det{2\pi\mathbf{D}}^{\frac{1}{2}}}
-\exp\left(-\frac{1}{2}(\mathbf{ y}- \boldsymbol{
-\mu})^\top\mathbf{D}^{-1}(\mathbf{ y}- \boldsymbol{ \mu})\right)
-\]</span></p>
-</section>
-<section id="correlated-gaussian-1" class="slide level2">
-<h2>Correlated Gaussian</h2>
-<p>Form correlated from original by rotating the data space using matrix
-<span class="math inline">\(\mathbf{R}\)</span>.</p>
-<p><span class="math display">\[
-p(\mathbf{ y}) = \frac{1}{\det{2\pi\mathbf{D}}^{\frac{1}{2}}}
-\exp\left(-\frac{1}{2}(\mathbf{R}^\top\mathbf{ y}-
-\mathbf{R}^\top\boldsymbol{
-\mu})^\top\mathbf{D}^{-1}(\mathbf{R}^\top\mathbf{ y}-
-\mathbf{R}^\top\boldsymbol{ \mu})\right)
-\]</span></p>
-</section>
-<section id="correlated-gaussian-2" class="slide level2">
-<h2>Correlated Gaussian</h2>
-<p>Form correlated from original by rotating the data space using matrix
-<span class="math inline">\(\mathbf{R}\)</span>.</p>
-<p><span class="math display">\[
-p(\mathbf{ y}) = \frac{1}{\det{2\pi\mathbf{D}}^{\frac{1}{2}}}
-\exp\left(-\frac{1}{2}(\mathbf{ y}- \boldsymbol{
-\mu})^\top\mathbf{R}\mathbf{D}^{-1}\mathbf{R}^\top(\mathbf{ y}-
-\boldsymbol{ \mu})\right)
-\]</span> this gives a covariance matrix: <span class="math display">\[
-\mathbf{C}^{-1} = \mathbf{R}\mathbf{D}^{-1} \mathbf{R}^\top
-\]</span></p>
-</section>
-<section id="correlated-gaussian-3" class="slide level2">
-<h2>Correlated Gaussian</h2>
-<p>Form correlated from original by rotating the data space using matrix
-<span class="math inline">\(\mathbf{R}\)</span>.</p>
-<p><span class="math display">\[
-p(\mathbf{ y}) = \frac{1}{\det{2\pi\mathbf{C}}^{\frac{1}{2}}}
-\exp\left(-\frac{1}{2}(\mathbf{ y}- \boldsymbol{
-\mu})^\top\mathbf{C}^{-1} (\mathbf{ y}- \boldsymbol{ \mu})\right)
-\]</span> this gives a covariance matrix: <span class="math display">\[
-\mathbf{C}= \mathbf{R}\mathbf{D} \mathbf{R}^\top
-\]</span></p>
-</section>
-<section id="the-prior-density" class="slide level2">
-<h2>The Prior Density</h2>
-<p>Let’s assume that the prior density is given by a zero mean Gaussian,
-which is independent across each of the parameters, <span
-class="math display">\[
-\mathbf{ w}\sim \mathcal{N}\left(\mathbf{0},\alpha \mathbf{I}\right)
-\]</span> In other words, we are assuming, for the prior, that each
-element of the parameters vector, <span
-class="math inline">\(w_i\)</span>, was drawn from a Gaussian density as
-follows <span class="math display">\[
-w_i \sim \mathcal{N}\left(0,\alpha\right)
-\]</span> Let’s start by assigning the parameter of the prior
-distribution, which is the variance of the prior distribution, <span
-class="math inline">\(\alpha\)</span>.</p>
-</section>
-<section id="further-reading-1" class="slide level2 scrollable">
-<h2 class="scrollable">Further Reading</h2>
-<ul>
-<li><p>Multivariate Gaussians: Section 2.3 up to top of pg 85 of <span
-class="citation" data-cites="Bishop:book06">Bishop
-(2006)</span></p></li>
-<li><p>Section 3.3 up to 159 (pg 152–159) of <span class="citation"
-data-cites="Bishop:book06">Bishop (2006)</span></p></li>
-</ul>
-</section>
 <section id="clustering" class="slide level2">
 <h2>Clustering</h2>
 </section>
@@ -1096,7 +675,7 @@ showDivs(1, 'dem-six-rotate');
 </div>
 </div>
 </section>
-<section id="section-4" class="slide level2">
+<section id="section-1" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="dem-six-mainfold-print-figure" class="figure-frame">
@@ -1751,10 +1330,72 @@ Reconstruction from the latent space of the faces data.
 <section id="implications" class="slide level2">
 <h2>Implications</h2>
 </section>
+<section id="iterative-dimensionality-reduction" class="slide level2">
+<h2>Iterative Dimensionality Reduction</h2>
+<ul>
+<li>Spectral methods (PCA, MDS) give analytical solutions</li>
+<li>Iterative methods optimize objective functions
+<ul>
+<li>Can capture more complex relationships</li>
+<li>May find local optima</li>
+<li>More computationally intensive</li>
+</ul></li>
+</ul>
+</section>
+<section id="stress-functions" class="slide level2">
+<h2>Stress Functions</h2>
+</section>
+<section id="local-vs-global-structure-preservation"
+class="slide level2">
+<h2>Local vs Global Structure Preservation</h2>
+<div class="figure">
+<div id="short-circuit-problem-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/short-circuit-problem.svg" width style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+The short-circuiting problem occurs when points that are close in the
+ambient space are actually far apart on the manifold.
+</aside>
+</section>
+<section id="t-sne" class="slide level2">
+<h2>t-SNE</h2>
+<ul>
+<li>Converts distances to probabilities</li>
+<li>Uses t-distribution in low-dimensional space</li>
+<li>Excellent for visualization</li>
+<li>Computationally intensive</li>
+<li>Results depend on perplexity parameter</li>
+</ul>
+</section>
+<section id="umap" class="slide level2">
+<h2>UMAP</h2>
+<ul>
+<li>Based on Riemannian geometry and algebraic topology</li>
+<li>Preserves both local and global structure</li>
+<li>Faster than t-SNE</li>
+<li>Can be used for general dimension reduction</li>
+<li>Supports supervised and semi-supervised learning</li>
+</ul>
+</section>
+<section id="umap-parameters" class="slide level2">
+<h2>UMAP Parameters</h2>
+</section>
+<section id="comparing-dimensionality-reduction-methods"
+class="slide level2">
+<h2>Comparing Dimensionality Reduction Methods</h2>
+<ul>
+<li>PCA: Linear, fast, interpretable</li>
+<li>MDS: Distance-based, can be non-linear</li>
+<li>t-SNE: Excellent visualization, local structure</li>
+<li>UMAP: Fast, preserves global structure, versatile</li>
+</ul>
+</section>
 <section id="summary-and-key-points" class="slide level2">
 <h2>Summary and Key Points</h2>
 </section>
-<section id="further-reading-2" class="slide level2 scrollable">
+<section id="further-reading-1" class="slide level2 scrollable">
 <h2 class="scrollable">Further Reading</h2>
 <ul>
 <li>Chapter 7 up to pg 249 of <span class="citation"
@@ -1789,10 +1430,6 @@ Data Science</a></p></li>
 role="list">
 <div id="ref-Bishop:book06" class="csl-entry" role="listitem">
 Bishop, C.M., 2006. Pattern recognition and machine learning. springer.
-</div>
-<div id="ref-Gauss:theoria09" class="csl-entry" role="listitem">
-Gauss, C.F., 1809. Theoria motus corporum coelestium in sectionibus
-conicis solem ambientium. F. Perthes und I. H. Besser, Hamburg.
 </div>
 <div id="ref-Hotelling:analysis33" class="csl-entry" role="listitem">
 Hotelling, H., 1933. Analysis of a complex of statistical variables into

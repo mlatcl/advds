@@ -37,43 +37,6 @@ reveal: True
 
 \reading
 
-\include{_physics/includes/gauss-least-squares.md}
-\include{_ml/includes/the-bayesian-approach.md}
-\include{_ml/includes/bayesian-regression1d.md}
-\include{_ml/includes/bayesian-1d-maths.md}
-
-\subsection{The Joint Density}
-
-* Really want to know the *joint* posterior density over the parameters $c$ *and* $m$.
-* Could now integrate out over $m$, but it’s easier to consider the multivariate case.
-
-\include{_ml/includes/two-d-gaussian.md}
-
-\subsection{The Prior Density}
-
-Let's assume that the prior density is given by a zero mean Gaussian, which is independent across each of the parameters, 
-$$
-\mappingVector \sim \gaussianSamp{\zerosVector}{\alpha \eye}
-$$ 
-In other words, we are assuming, for the prior, that each element of the parameters vector, $\mappingScalar_i$, was drawn from a Gaussian density as follows
-$$
-\mappingScalar_i \sim \gaussianSamp{0}{\alpha}
-$$
-Let's start by assigning the parameter of the prior distribution, which is the variance of the prior distribution, $\alpha$.
-
-\code{# set prior variance on w
-alpha = 4.
-# set the order of the polynomial basis set
-order = 5
-# set the noise variance
-sigma2 = 0.01}
-
-
-\addreading{@Bishop:book06}{Multivariate Gaussians: Section 2.3 up to top of pg 85}
-\addreading{@Bishop:book06}{Section 3.3 up to 159 (pg 152–159)}
-
-\reading
-
 \include{_ml/includes/clustering.md}
 \include{_dimred/includes/high-dimensional-data.md}
 \include{_dimred/includes/high-dimensional-effects.md}
@@ -94,6 +57,14 @@ sigma2 = 0.01}
 \include{_dimred/includes/ppca-reconstruction.md}
 \include{_dimred/includes/mds-derivation.md}
 \include{_dimred/includes/mds-pca-equivalence.md}
+
+\include{_dimred/includes/iterative-dimensionality-reduction.md}
+\include{_dimred/includes/local-vs-global-preservation.md}
+
+\include{_dimred/includes/t-sne-intro.md}
+\include{_dimred/includes/umap-intro.md}
+
+\include{_dimred/includes/dimensionality-reduction-comparison.md}
 
 \subsection{Summary and Key Points}
 
