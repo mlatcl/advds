@@ -30,9 +30,9 @@ ipynb: true
 ---
 
 
-\notes{The check Session for this Practical is 21st November 2024
+\notes{The check Session for this Practical is 21st November 2024}
 
-Prerequisite: Practical 1, Practical 2}
+\notes{Prerequisite: Practical 1, Practical 2}
 
 \notes{In this worksheet we will look at linear models. We will show a general framework for formulating models where we have a set of response variables that we want to explain through a linear relationship from a set of explanatory variables. While many relationships are non-linear in nature it is often challenging to interpret and explain the results from non-linear models. Therefore, linear models remains very important as they provide a nice trade-off between explanation of the data while at the same time providing interpretable semantics.}
 
@@ -52,4 +52,6 @@ Prerequisite: Practical 1, Practical 2}
 
 \include{_address/includes/Conclusions.md}
 
-\endif
+\thanks
+
+\references
