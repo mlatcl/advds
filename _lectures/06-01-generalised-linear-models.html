@@ -144,6 +144,7 @@ we’ll see how directly modeling the conditional density <span
 class="math inline">\(p(\mathbf{ y}|\mathbf{X})\)</span> can provide
 more flexibility in our modeling assumptions, while still allowing us to
 make the specific predictions we need.</p>
+<h2 id="linear-regression-reminder">Linear Regression Reminder</h2>
 <p>In linear regression, we model the relationship between a continuous
 response variable <span class="math inline">\(y_i\)</span> and input
 variables <span class="math inline">\(\mathbf{ x}_i\)</span> through a
@@ -362,7 +363,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a h
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>x_aug <span class="op">=</span> np.hstack([x_aug, (x[:, <span class="dv">0</span>] <span class="op">&gt;</span> <span class="dv">1945</span>).astype(np.float64)[:, np.newaxis]])</span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Add product terms that multiply the scaled year and the indicator variables.</span></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>x_aug <span class="op">=</span> np.hstack([x_aug, x_scaled[:, <span class="dv">0</span>:<span class="dv">1</span>] <span class="op">*</span> x_aug[:, <span class="dv">1</span>:<span class="dv">2</span>], x_scaled[:, <span class="dv">0</span>:<span class="dv">1</span>] <span class="op">*</span> x_aug[:, <span class="dv">2</span>:<span class="dv">3</span>]])[:, <span class="dv">0</span>] <span class="op">*</span> x_aug[:, <span class="dv">2</span>]])</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>x_aug <span class="op">=</span> np.hstack([x_aug, x_scaled[:, <span class="dv">0</span>:<span class="dv">1</span>] <span class="op">*</span> x_aug[:, <span class="dv">1</span>:<span class="dv">2</span>], x_scaled[:, <span class="dv">0</span>:<span class="dv">1</span>] <span class="op">*</span> x_aug[:, <span class="dv">2</span>:<span class="dv">3</span>]])</span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Add constant term to design matrix</span></span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>x_aug <span class="op">=</span> sm.add_constant(x_aug)</span>
@@ -480,7 +481,6 @@ class="math inline">\(g(\cdot)\)</span> as <span class="math display">\[
 \pi = g(\mathbf{ w}^\top
 \boldsymbol{ \phi}(\mathbf{ x})).
 \]</span></p>
-<h2 id="basis-function">Basis Function</h2>
 <p>We’ll define our prediction, objective and gradient functions below.
 But before we start, we need to define a basis function for our model.
 Let’s start with the linear basis.</p>

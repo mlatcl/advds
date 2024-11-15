@@ -32,7 +32,6 @@ ipynb: true
 
 \subsection{Review}
 
-\slides{}
 
 \notes{We introduced machine learning as a way to extract knowledge from data to make predictions through a prediction function and an objective function. We looked at a simple example of predicting whether someone would buy a jumper based on their age and latitude, *using logistic regression* to model the log-odds of purchase. This highlighted how machine learning can codify predictions through mathematical functions. This is an example of a broader approach known as *generalized linear models*.
 
@@ -40,7 +39,7 @@ When taking a probabilistic approach to supervised learning we're interested in 
 
 As we move to generalized linear models like logistic regression, we'll see how directly modeling the conditional density $p(\dataVector|\inputMatrix)$ can provide more flexibility in our modeling assumptions, while still allowing us to make the specific predictions we need.}
 
-\newslide{Linear Regression Reminder}
+\subsection{Linear Regression Reminder}
 
 \notes{In linear regression, we model the relationship between a continuous response variable $\dataScalar_i$ and input variables $\inputVector_i$ through a linear function with Gaussian noise:
 
@@ -70,14 +69,19 @@ $$\mathbb{E}[\dataScalar_i|\inputVector_i] = \mappingVector^\top\inputVector_i$$
 
 This linear model forms the foundation for generalized linear models like logistic regression, where we'll adapt the model for classification by transforming the output through a non-linear function.}
 
+\newslide{Linear Regression Model}
+
 \slides{* Linear regression models continuous response $\dataScalar_i$ vs inputs $\inputVector_i$:
   $$\dataScalar_i = \mappingFunction(\inputVector_i) + \noiseScalar_i$$
   where $\mappingFunction(\inputVector_i) = \mappingVector^\top\inputVector_i$ 
   
 * Probabilistic model:
   $$p(\dataScalar_i|\inputVector_i) = \gaussianDist{\mappingVector^\top\inputVector_i}{\dataStd^2}$$
+}
 
-* Matrix form:
+\newslide{Linear Regression in Matrix Form}
+
+\slides{* Matrix form:
   $$\dataVector = \inputMatrix\mappingVector + \noiseVector$$
   
 * Expected prediction:
@@ -98,21 +102,31 @@ results = model.fit()
 results.summary()
 }
 
+\newslide{Model Fit Statistics}
 \slides{
 * Model fit statistics help assess overall performance:
-  * R-squared shows variance explained
+  * R-squared shows variance explained  
   * F-statistic tests if model is useful
   * AIC/BIC help compare models
+}
 
+\newslide{Parameter Estimates}
+\slides{
 * Parameter estimates tell us about relationships:
   * Coefficients show effect direction/size
-  * Standard errors show uncertainty
+  * Standard errors show uncertainty 
   * P-values test significance
+}
 
+\newslide{Residual Diagnostics}
+\slides{
 * Residual diagnostics check assumptions:
   * Tests for normality and autocorrelation
   * Look for patterns that violate assumptions
+}
 
+\newslide{Visual Inspection}
+\slides{
 * Visual inspection is crucial:
   * With 1D data we can plot everything
   * Helps spot patterns statistics might miss
@@ -199,12 +213,22 @@ To incorporate multiple features into our model, we need a systematic way to org
 
 \slides{
 * 1904 St. Louis Olympics: Major outlier
-  * Explains non-normal residuals
+  * Explains non-normal residuals 
   * Contributes to right skew
+}
+
+\newslide{Data Regimes}
+
+\slides{
 * Three distinct regimes visible:
   * Pre-WWI: Rapid improvement
   * War years: Disrupted progress
   * Post-WWII: Steady improvement
+}
+
+\newslide{Model Improvements}
+
+\slides{
 * Model improvements possible with extra features:
   * Polynomial terms
   * Period indicators
@@ -273,7 +297,7 @@ x_aug = np.hstack([x_aug, ((x[:, 0] >= 1914) & (x[:, 0] <= 1945)).astype(np.floa
 x_aug = np.hstack([x_aug, (x[:, 0] > 1945).astype(np.float64)[:, np.newaxis]])
 
 # Add product terms that multiply the scaled year and the indicator variables.
-x_aug = np.hstack([x_aug, x_scaled[:, 0:1] * x_aug[:, 1:2], x_scaled[:, 0:1] * x_aug[:, 2:3]])[:, 0] * x_aug[:, 2]])
+x_aug = np.hstack([x_aug, x_scaled[:, 0:1] * x_aug[:, 1:2], x_scaled[:, 0:1] * x_aug[:, 2:3]])
 
 # Add constant term to design matrix
 x_aug = sm.add_constant(x_aug)

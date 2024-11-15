@@ -132,6 +132,9 @@ sns.set_palette('colorblind')}-->
 </section>
 <section id="linear-regression-reminder" class="slide level2">
 <h2>Linear Regression Reminder</h2>
+</section>
+<section id="linear-regression-model" class="slide level2">
+<h2>Linear Regression Model</h2>
 <ul>
 <li><p>Linear regression models continuous response <span
 class="math inline">\(y_i\)</span> vs inputs <span
@@ -142,29 +145,55 @@ w}^\top\mathbf{ x}_i\)</span></p></li>
 <li><p>Probabilistic model: <span class="math display">\[p(y_i|\mathbf{
 x}_i) = \gaussianDist{\mathbf{ w}^\top\mathbf{
 x}_i}{\sigma^2}\]</span></p></li>
+</ul>
+</section>
+<section id="linear-regression-in-matrix-form" class="slide level2">
+<h2>Linear Regression in Matrix Form</h2>
+<ul>
 <li><p>Matrix form: <span class="math display">\[\mathbf{ y}=
 \mathbf{X}\mathbf{ w}+ \boldsymbol{ \epsilon}\]</span></p></li>
 <li><p>Expected prediction: <span
 class="math display">\[\mathbb{E}[y_i|\mathbf{ x}_i] = \mathbf{
 w}^\top\mathbf{ x}_i\]</span></p></li>
-<li><p>Model fit statistics help assess overall performance:</p>
+</ul>
+</section>
+<section id="model-fit-statistics" class="slide level2">
+<h2>Model Fit Statistics</h2>
 <ul>
-<li>R-squared shows variance explained</li>
+<li>Model fit statistics help assess overall performance:
+<ul>
+<li>R-squared shows variance explained<br />
+</li>
 <li>F-statistic tests if model is useful</li>
 <li>AIC/BIC help compare models</li>
 </ul></li>
-<li><p>Parameter estimates tell us about relationships:</p>
+</ul>
+</section>
+<section id="parameter-estimates" class="slide level2">
+<h2>Parameter Estimates</h2>
+<ul>
+<li>Parameter estimates tell us about relationships:
 <ul>
 <li>Coefficients show effect direction/size</li>
 <li>Standard errors show uncertainty</li>
 <li>P-values test significance</li>
 </ul></li>
-<li><p>Residual diagnostics check assumptions:</p>
+</ul>
+</section>
+<section id="residual-diagnostics" class="slide level2">
+<h2>Residual Diagnostics</h2>
+<ul>
+<li>Residual diagnostics check assumptions:
 <ul>
 <li>Tests for normality and autocorrelation</li>
 <li>Look for patterns that violate assumptions</li>
 </ul></li>
-<li><p>Visual inspection is crucial:</p>
+</ul>
+</section>
+<section id="visual-inspection" class="slide level2">
+<h2>Visual Inspection</h2>
+<ul>
+<li>Visual inspection is crucial:
 <ul>
 <li>With 1D data we can plot everything</li>
 <li>Helps spot patterns statistics might miss</li>
@@ -191,12 +220,22 @@ Linear regression fit to Olympic marathon men’s times using
 <li>Explains non-normal residuals</li>
 <li>Contributes to right skew</li>
 </ul></li>
+</ul>
+</section>
+<section id="data-regimes" class="slide level2">
+<h2>Data Regimes</h2>
+<ul>
 <li>Three distinct regimes visible:
 <ul>
 <li>Pre-WWI: Rapid improvement</li>
 <li>War years: Disrupted progress</li>
 <li>Post-WWII: Steady improvement</li>
 </ul></li>
+</ul>
+</section>
+<section id="model-improvements" class="slide level2">
+<h2>Model Improvements</h2>
+<ul>
 <li>Model improvements possible with extra features:
 <ul>
 <li>Polynomial terms</li>
@@ -262,70 +301,70 @@ skewness (2.314) and kurtosis (10.325) in the residuals</p>
 in marathon times across different historical periods better than a
 simple linear regression would.</p>
 </section>
-<section id="logistic-regression-and-glms" class="slide level2">
-<h2>Logistic Regression and GLMs</h2>
+<section id="logistic-regression-and-glms---1" class="slide level2">
+<h2>Logistic Regression and GLMs - 1</h2>
 <ul>
-<li>Modelling entire density allows any question to be answered (also
-missing data).</li>
-<li>Comes at the possible expense of <em>strong</em> assumptions about
-data generation distribution.</li>
-<li>In regression we model probability of <span
-class="math inline">\(y_i |\mathbf{ x}_i\)</span> directly.
-<ul>
-<li><strong>Allows less flexibility in the question, but more
-flexibility in the model assumptions.</strong></li>
-</ul></li>
-<li>Can do this not just for regression, but classification.</li>
-<li>Framework is known as <em>generalized linear models</em>.</li>
+<li>Modelling entire density allows any question to be answered</li>
+<li>Also handles missing data</li>
+<li>Comes at possible expense of <em>strong</em> assumptions about data
+generation distribution</li>
 </ul>
 </section>
-<section id="log-odds" class="slide level2">
-<h2>Log Odds</h2>
+<section id="logistic-regression-and-glms---2" class="slide level2">
+<h2>Logistic Regression and GLMs - 2</h2>
 <ul>
-<li>model the <em>log-odds</em> with the basis functions.</li>
-<li><a href="http://en.wikipedia.org/wiki/Odds">odds</a> are defined as
-the ratio of the probability of a positive outcome, to the probability
-of a negative outcome.</li>
-<li>Probability is between zero and one, odds are: <span
-class="math display">\[ \frac{\pi}{1-\pi} \]</span></li>
+<li>In regression we model probability of <span
+class="math inline">\(y_i |\mathbf{ x}_i\)</span> directly</li>
+<li>Allows less flexibility in questions, but more flexibility in model
+assumptions</li>
+<li>Framework known as <em>generalized linear models</em></li>
+</ul>
+</section>
+<section id="log-odds---1" class="slide level2">
+<h2>Log Odds - 1</h2>
+<ul>
+<li>Model the <em>log-odds</em> with basis functions</li>
+<li><a href="http://en.wikipedia.org/wiki/Odds">Odds</a> are ratio of
+probability of positive vs negative outcome</li>
+</ul>
+</section>
+<section id="log-odds---2" class="slide level2">
+<h2>Log Odds - 2</h2>
+<ul>
+<li>Probability is between zero and one</li>
+<li>Odds are: <span class="math display">\[ \frac{\pi}{1-\pi}
+\]</span></li>
+</ul>
+</section>
+<section id="log-odds---3" class="slide level2">
+<h2>Log Odds - 3</h2>
+<ul>
 <li>Odds are between <span class="math inline">\(0\)</span> and <span
-class="math inline">\(\infty\)</span>.</li>
+class="math inline">\(\infty\)</span></li>
 <li>Logarithm of odds maps them to <span
 class="math inline">\(-\infty\)</span> to <span
-class="math inline">\(\infty\)</span>.</li>
+class="math inline">\(\infty\)</span></li>
 </ul>
 </section>
-<section id="logit-link-function" class="slide level2">
-<h2>Logit Link Function</h2>
+<section id="logit-link-function---1" class="slide level2">
+<h2>Logit Link Function - 1</h2>
 <ul>
-<li>The <a href="http://en.wikipedia.org/wiki/Logit">Logit function</a>,
-<span class="math display">\[g^{-1}(\pi_i) =
-\log\frac{\pi_i}{1-\pi_i}.\]</span> This function is known as a <em>link
-function</em>.</li>
-<li>For a standard regression we take, <span
-class="math display">\[f(\mathbf{ x}_i) = \mathbf{ w}^\top \boldsymbol{
-\phi}(\mathbf{ x}_i),\]</span></li>
-<li>For classification we perform a logistic regression. <span
-class="math display">\[\log \frac{\pi_i}{1-\pi_i} = \mathbf{ w}^\top
+<li>The <a href="http://en.wikipedia.org/wiki/Logit">Logit function</a>
+is our link function</li>
+<li><span class="math display">\[g^{-1}(\pi_i) =
+\log\frac{\pi_i}{1-\pi_i}\]</span></li>
+</ul>
+</section>
+<section id="logit-link-function---2" class="slide level2">
+<h2>Logit Link Function - 2</h2>
+<ul>
+<li>For standard regression:</li>
+<li><span class="math display">\[f(\mathbf{ x}_i) = \mathbf{ w}^\top
 \boldsymbol{ \phi}(\mathbf{ x}_i)\]</span></li>
 </ul>
 </section>
-<section id="inverse-link-function" class="slide level2">
-<h2>Inverse Link Function</h2>
-<p>We have defined the link function as taking the form <span
-class="math inline">\(g^{-1}(\cdot)\)</span> implying that the inverse
-link function is given by <span class="math inline">\(g(\cdot)\)</span>.
-Since we have defined, <span class="math display">\[
-g^{-1}(\pi(\mathbf{ x})) = \mathbf{ w}^\top\boldsymbol{ \phi}(\mathbf{
-x})
-\]</span> we can write <span class="math inline">\(\pi\)</span> in terms
-of the <em>inverse link</em> function, <span
-class="math inline">\(g(\cdot)\)</span> as <span class="math display">\[
-\pi(\mathbf{ x}) = g(\mathbf{ w}^\top\boldsymbol{ \phi}(\mathbf{ x})).
-\]</span></p>
-</section>
-<section id="logistic-function" class="slide level2">
-<h2>Logistic function</h2>
+<section id="logistic-function---3" class="slide level2">
+<h2>Logistic function - 3</h2>
 <ul>
 <li><a
 href="http://en.wikipedia.org/wiki/Logistic_function">Logistic</a> (or
@@ -334,8 +373,13 @@ a ‘squashing function’.
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/logistic.svg" width="" style=" "></object></li>
 </ul>
 </section>
-<section id="basis-function" class="slide level2">
-<h2>Basis Function</h2>
+<section id="logistic-funciton---4" class="slide level2">
+<h2>Logistic funciton - 4</h2>
+<ul>
+<li>For classification (logistic regression):</li>
+<li><span class="math display">\[\log \frac{\pi_i}{1-\pi_i} = \mathbf{
+w}^\top \boldsymbol{ \phi}(\mathbf{ x}_i)\]</span></li>
+</ul>
 </section>
 <section id="prediction-function" class="slide level2">
 <h2>Prediction Function</h2>
