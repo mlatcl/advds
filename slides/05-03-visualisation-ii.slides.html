@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="dcterms.date" content="2024-11-13">
-  <title>Visualisation II: Modern Dimensionality Reduction</title>
+  <title>Visualisation II: Further Dimensionality Reduction</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -14,6 +14,71 @@
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="https://unpkg.com/reveal.js@3.9.2/css/theme/black.css" id="theme">
   <link rel="stylesheet" href="https://inverseprobability.com/assets/css/talks.css"/>
@@ -43,7 +108,7 @@
     <div class="slides">
 
 <section id="title-slide">
-  <h1 class="title">Visualisation II: Modern Dimensionality
+  <h1 class="title">Visualisation II: Further Dimensionality
 Reduction</h1>
   <p class="author" style="text-align:center"><a href="http://inverseprobability.com">Neil
 D. Lawrence</a></p>
@@ -198,7 +263,7 @@ p(\mathbf{Y}|\mathbf{W}, \sigma^2)
 \]</span></p>
 <p><span class="math display">\[
 \ell_i = \sqrt{\lambda_i - \sigma^2}
-\]</span> }</p>
+\]</span></p>
 </section>
 <section id="ppca-as-manifold-learning" class="slide level2">
 <h2>PPCA as Manifold Learning</h2>
@@ -225,7 +290,7 @@ p(\mathbf{ z}_{i, :} | \mathbf{ y}_{i, :}) \propto p(\mathbf{ y}_{i,
 :})^\top(\mathbf{ y}_{i, :} - \mathbf{W}\mathbf{ z}_{i, :}) -
 \frac{1}{2}
 \mathbf{ z}_{i, :}^\top \mathbf{ z}_{i, :} + \text{const}
-\]</span> }</p>
+\]</span></p>
 </section>
 <section id="scikit-learn-implementation-pca" class="slide level2">
 <h2>Scikit-learn implementation PCA</h2>
@@ -244,7 +309,6 @@ Visualization of the first two dimensions of the oil flow data from
 <span class="citation" data-cites="Bishop-oil93">Bishop and James
 (1993)</span>
 </aside>
-<p>pca.fit(X) X_pca = pca.transform(X)}</p>
 <div class="figure">
 <div id="oil-flow-pca-sklearn-figure" class="figure-frame">
 <p></p>
@@ -253,251 +317,21 @@ Visualization of the first two dimensions of the oil flow data from
 <aside class="notes">
 PCA of the oil flow data.
 </aside>
-</section>
-<section id="examples-motion-capture-data" class="slide level2">
-<h2>Examples: Motion Capture Data</h2>
-<div class="figure">
-<div id="dem-osu-run1-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/dem_osu_run1.svg" width="70%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-First two principle components of motion capture data of an individual
-running.
-</aside>
-<!-- SECTION Part 2: Beyond Linear Methods -->
-</section>
-<section id="part-2-beyond-linear-methods" class="slide level2">
-<h2>Part 2: Beyond Linear Methods</h2>
-</section>
-<section id="when-dimensionality-reduction-fails" class="slide level2">
-<h2>When Dimensionality Reduction Fails</h2>
-<ul>
-<li>Dimensionality reduction can fail in several key scenarios:
-<ul>
-<li>Truly high dimensional data with no simpler structure</li>
-<li>Highly nonlinear relationships between dimensions</li>
-<li>Varying intrinsic dimensionality across data</li>
-</ul></li>
-</ul>
-</section>
-<section id="the-swiss-roll-example" class="slide level2">
-<h2>The Swiss Roll Example</h2>
-<ul>
-<li>Classic example of nonlinear structure</li>
-<li>2D manifold embedded in 3D</li>
-<li>Linear methods like PCA fail</li>
-<li>Requires nonlinear methods (t-SNE, UMAP)</li>
-</ul>
-<div class="figure">
-<div id="swiss-roll-example-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/swiss-roll.svg" width="80%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-The Swiss roll dataset is a classic example of data with nonlinear
-structure. The color represents the position along the roll, showing how
-points that are far apart in the original space are actually close in
-the intrinsic manifold.
-</aside>
-</section>
-<section id="common-failure-modes" class="slide level2">
-<h2>Common Failure Modes</h2>
-<ul>
-<li>Key failure scenarios:
-<ul>
-<li>Linear methods on nonlinear manifolds</li>
-<li>Assuming global structure when only local exists</li>
-<li>Not accounting for noise</li>
-</ul></li>
-</ul>
-<!--include{_dimred/includes/local-vs-global-preservation.md}-->
-<!--include{_dimred/includes/iterative-dimensionality-reduction.md}-->
-<!-- SECTION Part 3: UMAP and t-SNE -->
-</section>
-<section id="part-3-umap-and-t-sne" class="slide level2">
-<h2>Part 3: UMAP and t-SNE</h2>
-</section>
-<section id="t-sne" class="slide level2">
-<h2>t-SNE</h2>
-<ul>
-<li>Converts distances to probabilities</li>
-<li>Uses t-distribution in low-dimensional space</li>
-<li>Excellent for visualization</li>
-<li>Computationally intensive</li>
-<li>Results depend on perplexity parameter</li>
-</ul>
-</section>
-<section id="oil-flow-data-1" class="slide level2">
-<h2>Oil Flow Data</h2>
-<p>}</p>
-<div class="figure">
-<div id="oil-flow-data-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//datasets/oil-flow-data.svg" width="80%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-Visualization of the first two dimensions of the oil flow data from
-<span class="citation" data-cites="Bishop-oil93">Bishop and James
-(1993)</span>
-</aside>
-</section>
-<section id="t-sne-embedding-of-oil-flow-data" class="slide level2">
-<h2>t-SNE Embedding of Oil Flow Data</h2>
-<div class="figure">
-<div id="t-sne-oil-flow-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/t-sne-oil-flow.svg" width="80%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-t-SNE embedding of the oil flow data.
-</aside>
-<!--include{_dimred/includes/umap-intro.md}-->
-<!-- SECTION Part 4: Practical Implementation -->
-</section>
-<section id="part-4-practical-implementation" class="slide level2">
-<h2>Part 4: Practical Implementation</h2>
-<!--include{_dimred/includes/dimensionality-reduction-comparison.md}-->
-</section>
-<section id="practical-tips-for-dimensionality-reduction"
-class="slide level2">
-<h2>Practical Tips for Dimensionality Reduction</h2>
-</section>
-<section id="always-start-with-pca" class="slide level2">
-<h2>Always Start with PCA</h2>
-<ul>
-<li>“Do PCA, always”</li>
-<li>Quick sanity check</li>
-<li>Provides baseline</li>
-<li>Helps understand data</li>
-</ul>
-</section>
-<section id="understanding-matrix-structure" class="slide level2">
-<h2>Understanding Matrix Structure</h2>
-<ul>
-<li>Learn to read Gram matrices</li>
-<li>Check distance matrices</li>
-<li>Look for block structure</li>
-<li>Identify outliers</li>
-</ul>
-</section>
-<section id="understanding-matrix-structure-1" class="slide level2">
-<h2>Understanding Matrix Structure</h2>
-</section>
-<section id="oil-flow-data-2" class="slide level2">
-<h2>Oil Flow Data</h2>
-<p>}</p>
-<div class="figure">
-<div id="oil-flow-data-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//datasets/oil-flow-data.svg" width="80%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-Visualization of the first two dimensions of the oil flow data from
-<span class="citation" data-cites="Bishop-oil93">Bishop and James
-(1993)</span>
-</aside>
-<div class="figure">
-<div id="matrix-structure-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/matrix-structure.svg" width="80%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-The Gram matrix (left) reveals the underlying structure in our data,
-while the scatter plot (right) shows the first two dimensions. Notice
-how patterns in the Gram matrix correspond to clusters in the data.
-</aside>
-<ul>
-<li>Learn to read Gram matrices</li>
-<li>Check distance matrices</li>
-<li>Look for block structure</li>
-<li>Identify outliers</li>
-</ul>
-</section>
-<section id="examining-projections" class="slide level2">
-<h2>Examining Projections</h2>
-<ul>
-<li>Look at multiple 2D views</li>
-<li>Check consecutive dimensions</li>
-<li>Examine suspicious patterns</li>
-<li>Plot residuals</li>
-</ul>
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/projection-examples.svg" width style=" ">
-</object>
-</section>
-<section id="evaluating-neighborhoods" class="slide level2">
-<h2>Evaluating Neighborhoods</h2>
-<ul>
-<li>Check <span class="math inline">\(k\)</span>-nearest neighbors</li>
-<li>Verify local distances</li>
-<li>Look for disconnected regions</li>
-<li>Examine boundary points</li>
-</ul>
-</section>
-<section id="common-pitfalls" class="slide level2">
-<h2>Common Pitfalls</h2>
-<ul>
-<li>Not scaling features appropriately</li>
-<li>Ignoring outliers</li>
-<li>Using wrong distance metric</li>
-<li>Trusting single visualization</li>
-<li>Assuming linearity</li>
-</ul>
-</section>
-<section id="validation-strategies" class="slide level2">
-<h2>Validation Strategies</h2>
-<ul>
-<li>Check reconstruction error</li>
-<li>Verify known relationships</li>
-<li>Test with held-out data</li>
-<li>Compare multiple methods</li>
-</ul>
-</section>
-<section id="implementation-guidelines" class="slide level2">
-<h2>Implementation Guidelines</h2>
-<ul>
-<li>Start simple</li>
-<li>Scale appropriately</li>
-<li>Check intermediate results</li>
-<li>Validate assumptions</li>
-<li>Document choices</li>
-</ul>
-</section>
-<section id="thanks" class="slide level2 scrollable">
-<h2 class="scrollable">Thanks!</h2>
-<ul>
-<li><p>book: <a
-href="https://www.penguin.co.uk/books/455130/the-atomic-human-by-lawrence-neil-d/9780241625248">The
-Atomic Human</a></p></li>
-<li><p>twitter: <a
-href="https://twitter.com/lawrennd">@lawrennd</a></p></li>
-<li><p><a
-href="https://www.penguin.co.uk/books/455130/the-atomic-human-bylawrence-neil-d/9780241625248">The
-Atomic Human</a></p></li>
-<li><p>podcast: <a href="http://thetalkingmachines.com">The Talking
-Machines</a></p></li>
-<li><p>newspaper: <a
-href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile
-Page</a></p></li>
-<li><p>blog posts:</p>
-<p><a
-href="http://inverseprobability.com/2014/07/01/open-data-science">Open
-Data Science</a></p></li>
-</ul>
-</section>
-<section id="references" class="slide level2 scrollable">
-<h2 class="scrollable">References</h2>
-<!--https://github.com/neelsoumya/visualization_lecture/blob/main/visualization_lecture.pptx
-
-More material is in the repo:
-
-https://github.com/neelsoumya/visualization_lecture/-->
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mu_x, C_x <span class="op">=</span> posterior(Y, W, sigma2)</span></code></pre></div>
+<p>where <code>mu_x</code> and <code>C_x</code> are the posterior mean
+and posterior covariance for the given <span
+class="math inline">\(\mathbf{Y}\)</span>.</p>
+<p>Don’t forget to subtract the mean of the data <code>Y</code> inside
+your function before computing the posterior: remember we assumed at the
+beginning of our analysis that the data had been centred (i.e. the mean
+was removed).}{# Answer Code # Write code for you answer to this
+exercise in this box # Do not delete these comments, otherwise you will
+get zero for this answer. # Make sure your code has run and the answer
+is correct <em>before</em> submitting your notebook for marking. import
+numpy as np import scipy as sp def posterior(Y, W, sigma2): Y_cent = Y -
+Y.mean(0) # Compute posterior over X C_x = mu_x = return mu_x,
+C_x}{20}}</p>
 <div id="refs" class="references csl-bib-body hanging-indent"
 role="list">
 <div id="ref-Bishop-oil93" class="csl-entry" role="listitem">
