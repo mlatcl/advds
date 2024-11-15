@@ -27,7 +27,7 @@ reveal: True
 
 \include{_dimred/includes/principal-component-analysis.md}
 \include{_dimred/includes/probabilistic-pca.md}
-\include{_dimred/includes/mocap-ppca.md}
+\include{_dimred/includes/osu-run1-ppca.md}
 
 \section{Part 2: Beyond Linear Methods}
 

@@ -539,8 +539,8 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a h
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in third column (class 2)</span></span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>class2 <span class="op">=</span> (Y[:, <span class="dv">2</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">2</span></span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine into single array of class labels 0,1,2</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;Y&quot;</span>] <span class="op">=</span> class0 <span class="op">+</span> class1 <span class="op">+</span> class2</span></code></pre></div>
-<p>} The data is returned as a dictionary containing training and test
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> class0 <span class="op">+</span> class1 <span class="op">+</span> class2</span></code></pre></div>
+<p>The data is returned as a dictionary containing training and test
 inputs (‘X’, ‘Xtst’), training and test labels (‘Y’, ‘Ytst’), and the
 names of the features.</p>
 <div class="figure">
