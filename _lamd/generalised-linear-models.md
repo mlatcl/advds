@@ -327,7 +327,8 @@ mlai.write_figure("linear-regression-olympic-marathon-men-augmented-statsmodels.
 \newslide{Augmented Features with Interactions Regression Fit}
 
 \figure{\includediagram{\diagramsDir/data-science/linear-regression-olympic-marathon-men-augmented-statsmodels.svg}{80%}}{Polynomial regression fit to Olympic marathon men's times using `statsmodels`.}{linear-regression-olympic-marathon-men-augmented-statsmodels}
-The augmented model with interactions shows a significant improvement in fit compared to the simpler linear model, with an R-squared value of 0.870 (adjusted R-squared of 0.839). This indicates that about 87% of the variance in marathon times is explained by our model.
+
+\notes{The augmented model with interactions shows a significant improvement in fit compared to the simpler linear model, with an R-squared value of 0.870 (adjusted R-squared of 0.839). This indicates that about 87% of the variance in marathon times is explained by our model.
 
 The model includes several key components:
 - A base time trend (x1 coefficient: -0.6737)
@@ -345,7 +346,7 @@ However, there are some concerns:
 2. The Jarque-Bera test (p<0.001) indicates non-normal residuals
 3. There's significant skewness (2.314) and kurtosis (10.325) in the residuals
 
-Despite these statistical issues, the model captures the major trends in marathon times across different historical periods better than a simple linear regression would.
+Despite these statistical issues, the model captures the major trends in marathon times across different historical periods better than a simple linear regression would.}
 
 \include{_ml/includes/logistic-regression.md}
 

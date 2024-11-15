@@ -17,7 +17,7 @@
   </style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -278,93 +278,71 @@ class="figure-frame">
 Polynomial regression fit to Olympic marathon men’s times using
 <code>statsmodels</code>.
 </aside>
-<p>The augmented model with interactions shows a significant improvement
-in fit compared to the simpler linear model, with an R-squared value of
-0.870 (adjusted R-squared of 0.839). This indicates that about 87% of
-the variance in marathon times is explained by our model.</p>
-<p>The model includes several key components: - A base time trend (x1
-coefficient: -0.6737) - Indicator variables for different historical
-periods (pre-1914, 1914-1945, post-1945) - Interaction terms between the
-time trend and these periods</p>
-<p>The coefficients reveal interesting patterns: - The pre-1914 period
-shows a significant positive effect (x2: 1.5506, p&lt;0.001) - The
-wartime period 1914-1945 also shows a positive effect (x3: 0.7982,
-p&lt;0.05) - The post-1945 period has a positive effect (x4: 0.6883,
-p&lt;0.01) - The interaction terms (x5, x6) suggest different rates of
-improvement in different periods, though these are less statistically
-significant</p>
-<p>However, there are some concerns: 1. The very high condition number
-(2.79e+16) suggests serious multicollinearity issues 2. The Jarque-Bera
-test (p&lt;0.001) indicates non-normal residuals 3. There’s significant
-skewness (2.314) and kurtosis (10.325) in the residuals</p>
-<p>Despite these statistical issues, the model captures the major trends
-in marathon times across different historical periods better than a
-simple linear regression would.</p>
 </section>
-<section id="logistic-regression-and-glms---1" class="slide level2">
-<h2>Logistic Regression and GLMs - 1</h2>
+<section id="logistic-regression-and-glms" class="slide level2">
+<h2>Logistic Regression and GLMs</h2>
 <ul>
-<li>Modelling entire density allows any question to be answered</li>
-<li>Also handles missing data</li>
-<li>Comes at possible expense of <em>strong</em> assumptions about data
-generation distribution</li>
-</ul>
-</section>
-<section id="logistic-regression-and-glms---2" class="slide level2">
-<h2>Logistic Regression and GLMs - 2</h2>
-<ul>
+<li>Modelling entire density allows any question to be answered (also
+missing data).</li>
+<li>Comes at the possible expense of <em>strong</em> assumptions about
+data generation distribution.</li>
 <li>In regression we model probability of <span
-class="math inline">\(y_i |\mathbf{ x}_i\)</span> directly</li>
-<li>Allows less flexibility in questions, but more flexibility in model
-assumptions</li>
-<li>Framework known as <em>generalized linear models</em></li>
+class="math inline">\(y_i |\mathbf{ x}_i\)</span> directly.
+<ul>
+<li><strong>Allows less flexibility in the question, but more
+flexibility in the model assumptions.</strong></li>
+</ul></li>
+<li>Can do this not just for regression, but classification.</li>
+<li>Framework is known as <em>generalized linear models</em>.</li>
 </ul>
 </section>
-<section id="log-odds---1" class="slide level2">
-<h2>Log Odds - 1</h2>
+<section id="log-odds" class="slide level2">
+<h2>Log Odds</h2>
 <ul>
-<li>Model the <em>log-odds</em> with basis functions</li>
-<li><a href="http://en.wikipedia.org/wiki/Odds">Odds</a> are ratio of
-probability of positive vs negative outcome</li>
-</ul>
-</section>
-<section id="log-odds---2" class="slide level2">
-<h2>Log Odds - 2</h2>
-<ul>
-<li>Probability is between zero and one</li>
-<li>Odds are: <span class="math display">\[ \frac{\pi}{1-\pi}
-\]</span></li>
-</ul>
-</section>
-<section id="log-odds---3" class="slide level2">
-<h2>Log Odds - 3</h2>
-<ul>
+<li>model the <em>log-odds</em> with the basis functions.</li>
+<li><a href="http://en.wikipedia.org/wiki/Odds">odds</a> are defined as
+the ratio of the probability of a positive outcome, to the probability
+of a negative outcome.</li>
+<li>Probability is between zero and one, odds are: <span
+class="math display">\[ \frac{\pi}{1-\pi} \]</span></li>
 <li>Odds are between <span class="math inline">\(0\)</span> and <span
-class="math inline">\(\infty\)</span></li>
+class="math inline">\(\infty\)</span>.</li>
 <li>Logarithm of odds maps them to <span
 class="math inline">\(-\infty\)</span> to <span
-class="math inline">\(\infty\)</span></li>
+class="math inline">\(\infty\)</span>.</li>
 </ul>
 </section>
-<section id="logit-link-function---1" class="slide level2">
-<h2>Logit Link Function - 1</h2>
+<section id="logit-link-function" class="slide level2">
+<h2>Logit Link Function</h2>
 <ul>
-<li>The <a href="http://en.wikipedia.org/wiki/Logit">Logit function</a>
-is our link function</li>
-<li><span class="math display">\[g^{-1}(\pi_i) =
-\log\frac{\pi_i}{1-\pi_i}\]</span></li>
-</ul>
-</section>
-<section id="logit-link-function---2" class="slide level2">
-<h2>Logit Link Function - 2</h2>
-<ul>
-<li>For standard regression:</li>
-<li><span class="math display">\[f(\mathbf{ x}_i) = \mathbf{ w}^\top
+<li>The <a href="http://en.wikipedia.org/wiki/Logit">Logit function</a>,
+<span class="math display">\[g^{-1}(\pi_i) =
+\log\frac{\pi_i}{1-\pi_i}.\]</span> This function is known as a <em>link
+function</em>.</li>
+<li>For a standard regression we take, <span
+class="math display">\[f(\mathbf{ x}_i) = \mathbf{ w}^\top \boldsymbol{
+\phi}(\mathbf{ x}_i),\]</span></li>
+<li>For classification we perform a logistic regression. <span
+class="math display">\[\log \frac{\pi_i}{1-\pi_i} = \mathbf{ w}^\top
 \boldsymbol{ \phi}(\mathbf{ x}_i)\]</span></li>
 </ul>
 </section>
-<section id="logistic-function---3" class="slide level2">
-<h2>Logistic function - 3</h2>
+<section id="inverse-link-function" class="slide level2">
+<h2>Inverse Link Function</h2>
+<p>We have defined the link function as taking the form <span
+class="math inline">\(g^{-1}(\cdot)\)</span> implying that the inverse
+link function is given by <span class="math inline">\(g(\cdot)\)</span>.
+Since we have defined, <span class="math display">\[
+g^{-1}(\pi(\mathbf{ x})) = \mathbf{ w}^\top\boldsymbol{ \phi}(\mathbf{
+x})
+\]</span> we can write <span class="math inline">\(\pi\)</span> in terms
+of the <em>inverse link</em> function, <span
+class="math inline">\(g(\cdot)\)</span> as <span class="math display">\[
+\pi(\mathbf{ x}) = g(\mathbf{ w}^\top\boldsymbol{ \phi}(\mathbf{ x})).
+\]</span></p>
+</section>
+<section id="logistic-function" class="slide level2">
+<h2>Logistic function</h2>
 <ul>
 <li><a
 href="http://en.wikipedia.org/wiki/Logistic_function">Logistic</a> (or
@@ -373,13 +351,8 @@ a ‘squashing function’.
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/logistic.svg" width="" style=" "></object></li>
 </ul>
 </section>
-<section id="logistic-funciton---4" class="slide level2">
-<h2>Logistic funciton - 4</h2>
-<ul>
-<li>For classification (logistic regression):</li>
-<li><span class="math display">\[\log \frac{\pi_i}{1-\pi_i} = \mathbf{
-w}^\top \boldsymbol{ \phi}(\mathbf{ x}_i)\]</span></li>
-</ul>
+<section id="basis-function" class="slide level2">
+<h2>Basis Function</h2>
 </section>
 <section id="prediction-function" class="slide level2">
 <h2>Prediction Function</h2>
@@ -604,6 +577,31 @@ x}) + f_t(t)\]</span></li>
 x}, t) = \exp(f_x(\mathbf{ x}))\exp(f_t(t))\]</span></li>
 <li>Link functions can be deceptive in this way.</li>
 </ul>
+</section>
+<section id="google-trends-search-queries" class="slide level2">
+<h2>Google Trends Search Queries</h2>
+<div class="figure">
+<div id="google-trends-poisson-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/google-trends-poisson.svg.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+Google Trends Search Queries for Xbox One, Wii U, and PS4.
+</aside>
+</section>
+<section id="google-trends-search-queries-predictions"
+class="slide level2">
+<h2>Google Trends Search Queries Predictions</h2>
+<div class="figure">
+<div id="google-trends-poisson-predictions-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/google-trends-poisson-predictions.svg.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+Google Trends Search Queries for Xbox One, Wii U, and PS4.
+</aside>
 </section>
 <section id="synthetic-example" class="slide level2">
 <h2>Synthetic Example</h2>
