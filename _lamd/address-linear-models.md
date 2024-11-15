@@ -40,7 +40,7 @@ ipynb: true
 
 \include{_address/includes/Learning_Generalised_Linear_Models.md}
 
-\include{_address/includes/Basis-function_Models.md}
+\include{_address/includes/Basis_Function_Models.md}
 
 \include{_address/includes/Regularisation.md}
 
