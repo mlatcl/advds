@@ -17,7 +17,7 @@
   </style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -129,6 +129,138 @@ sns.set_palette('colorblind')}-->
 </section>
 <section id="review" class="slide level2">
 <h2>Review</h2>
+</section>
+<section id="linear-regression-reminder" class="slide level2">
+<h2>Linear Regression Reminder</h2>
+<ul>
+<li><p>Linear regression models continuous response <span
+class="math inline">\(y_i\)</span> vs inputs <span
+class="math inline">\(\mathbf{ x}_i\)</span>: <span
+class="math display">\[y_i = f(\mathbf{ x}_i) + \epsilon_i\]</span>
+where <span class="math inline">\(f(\mathbf{ x}_i) = \mathbf{
+w}^\top\mathbf{ x}_i\)</span></p></li>
+<li><p>Probabilistic model: <span class="math display">\[p(y_i|\mathbf{
+x}_i) = \gaussianDist{\mathbf{ w}^\top\mathbf{
+x}_i}{\sigma^2}\]</span></p></li>
+<li><p>Matrix form: <span class="math display">\[\mathbf{ y}=
+\mathbf{X}\mathbf{ w}+ \boldsymbol{ \epsilon}\]</span></p></li>
+<li><p>Expected prediction: <span
+class="math display">\[\mathbb{E}[y_i|\mathbf{ x}_i] = \mathbf{
+w}^\top\mathbf{ x}_i\]</span></p></li>
+<li><p>Model fit statistics help assess overall performance:</p>
+<ul>
+<li>R-squared shows variance explained</li>
+<li>F-statistic tests if model is useful</li>
+<li>AIC/BIC help compare models</li>
+</ul></li>
+<li><p>Parameter estimates tell us about relationships:</p>
+<ul>
+<li>Coefficients show effect direction/size</li>
+<li>Standard errors show uncertainty</li>
+<li>P-values test significance</li>
+</ul></li>
+<li><p>Residual diagnostics check assumptions:</p>
+<ul>
+<li>Tests for normality and autocorrelation</li>
+<li>Look for patterns that violate assumptions</li>
+</ul></li>
+<li><p>Visual inspection is crucial:</p>
+<ul>
+<li>With 1D data we can plot everything</li>
+<li>Helps spot patterns statistics might miss</li>
+<li>Shows if relationship makes practical sense</li>
+</ul></li>
+</ul>
+</section>
+<section id="linear-regression-fit" class="slide level2">
+<h2>Linear Regression Fit</h2>
+<div class="figure">
+<div id="linear-regression-olympic-marathon-men-statsmodels-figure"
+class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/linear-regression-olympic-marathon-men-statsmodels.svg.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+Linear regression fit to Olympic marathon men’s times using
+<code>statsmodels</code>.
+</aside>
+<ul>
+<li>1904 St. Louis Olympics: Major outlier
+<ul>
+<li>Explains non-normal residuals</li>
+<li>Contributes to right skew</li>
+</ul></li>
+<li>Three distinct regimes visible:
+<ul>
+<li>Pre-WWI: Rapid improvement</li>
+<li>War years: Disrupted progress</li>
+<li>Post-WWII: Steady improvement</li>
+</ul></li>
+<li>Model improvements possible with extra features:
+<ul>
+<li>Polynomial terms</li>
+<li>Period indicators</li>
+<li>Interaction terms</li>
+<li>External factors</li>
+</ul></li>
+</ul>
+</section>
+<section id="design-matrix" class="slide level2">
+<h2>Design Matrix</h2>
+<ul>
+<li>The design matrix <span class="math inline">\(\designMatrix\)</span>
+stores our features</li>
+<li>Each row represents one data point</li>
+<li>Each column represents one feature</li>
+<li>For <span class="math inline">\(n\)</span> data points and <span
+class="math inline">\(p\)</span> features: <span
+class="math display">\[\designMatrix = \begin{bmatrix}
+x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1p} \\
+x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2p} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{np}
+\end{bmatrix}\]</span></li>
+<li>Also called the feature matrix or model matrix</li>
+</ul>
+</section>
+<section id="augmented-features-with-interactions-regression-fit"
+class="slide level2">
+<h2>Augmented Features with Interactions Regression Fit</h2>
+<div class="figure">
+<div
+id="linear-regression-olympic-marathon-men-augmented-statsmodels-figure"
+class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/linear-regression-olympic-marathon-men-augmented-statsmodels.svg.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+Polynomial regression fit to Olympic marathon men’s times using
+<code>statsmodels</code>.
+</aside>
+<p>The augmented model with interactions shows a significant improvement
+in fit compared to the simpler linear model, with an R-squared value of
+0.870 (adjusted R-squared of 0.839). This indicates that about 87% of
+the variance in marathon times is explained by our model.</p>
+<p>The model includes several key components: - A base time trend (x1
+coefficient: -0.6737) - Indicator variables for different historical
+periods (pre-1914, 1914-1945, post-1945) - Interaction terms between the
+time trend and these periods</p>
+<p>The coefficients reveal interesting patterns: - The pre-1914 period
+shows a significant positive effect (x2: 1.5506, p&lt;0.001) - The
+wartime period 1914-1945 also shows a positive effect (x3: 0.7982,
+p&lt;0.05) - The post-1945 period has a positive effect (x4: 0.6883,
+p&lt;0.01) - The interaction terms (x5, x6) suggest different rates of
+improvement in different periods, though these are less statistically
+significant</p>
+<p>However, there are some concerns: 1. The very high condition number
+(2.79e+16) suggests serious multicollinearity issues 2. The Jarque-Bera
+test (p&lt;0.001) indicates non-normal residuals 3. There’s significant
+skewness (2.314) and kurtosis (10.325) in the residuals</p>
+<p>Despite these statistical issues, the model captures the major trends
+in marathon times across different historical periods better than a
+simple linear regression would.</p>
 </section>
 <section id="logistic-regression-and-glms" class="slide level2">
 <h2>Logistic Regression and GLMs</h2>
@@ -429,8 +561,57 @@ x}, t) = \exp(f_x(\mathbf{ x}))\exp(f_t(t))\]</span></li>
 <li>Link functions can be deceptive in this way.</li>
 </ul>
 </section>
-<section id="bayesian-approaches" class="slide level2">
-<h2>Bayesian Approaches</h2>
+<section id="synthetic-example" class="slide level2">
+<h2>Synthetic Example</h2>
+</section>
+<section id="poisson-regression-diagnostics" class="slide level2">
+<h2>Poisson Regression Diagnostics</h2>
+<div class="figure">
+<div id="poisson-regression-diagnostics-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/poisson-regression-diagnostics.svg.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+Diagnostic plots for the Poisson regression model showing actual vs
+predicted counts and residual analysis.
+</aside>
+</section>
+<section id="practical-tips" class="slide level2">
+<h2>Practical Tips</h2>
+<ul>
+<li>Feature engineering is critical</li>
+<li>Build modular pipelines to test features</li>
+<li>Consider interactions between variables</li>
+<li>Document your process carefully</li>
+</ul>
+</section>
+<section id="model-validation" class="slide level2">
+<h2>Model Validation</h2>
+<ul>
+<li>Use cross-validation wisely</li>
+<li>Bootstrap for uncertainty</li>
+<li>Keep hold-out test sets</li>
+<li>Beware of temporal leakage</li>
+</ul>
+</section>
+<section id="diagnostic-checks" class="slide level2">
+<h2>Diagnostic Checks</h2>
+<ul>
+<li>Plot residuals systematically</li>
+<li>Check for non-linear patterns</li>
+<li>Identify influential points</li>
+<li>Test feature relationships</li>
+</ul>
+</section>
+<section id="visualization" class="slide level2">
+<h2>Visualization</h2>
+<ul>
+<li>Always plot raw data first</li>
+<li>Create diagnostic visualizations</li>
+<li>Check model assumptions</li>
+<li>Communicate results clearly</li>
+</ul>
 </section>
 <section id="further-reading" class="slide level2 scrollable">
 <h2 class="scrollable">Further Reading</h2>

@@ -64,7 +64,7 @@ reveal: true
 * Practical 1 (more `pandas`, setting up SQL on AWS, uploading data and performing joins with SQL).
 * Read through assignment to contextualise material.}
 
-\notes{As a refresher, we've provided a notebook to remind yourselves about probability and correlation, <https://mlatcl.github.io/advds/practicals/review-and-refresher.html>. We recommend that you go through exercises of this notebook as soon as possible.}
+\notes{As a refresher, we've provided a notebook to remind yourselves about probability and correlation, <https://mlatcl.github.io/advds/practicals/01-review-and-refresher.html>. We recommend that you go through exercises of this notebook as soon as possible.}
 
 \notes{You can also make a start on the first practical, <https://mlatcl.github.io/ads/practicals/> which covers AWS and SQL.}
 
