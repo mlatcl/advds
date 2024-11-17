@@ -15,11 +15,14 @@ author:
   url: http://inverseprobability.com
 time: "10:00"
 date: 2024-11-15
-youtube: DgaZQcNp9fU
+youtube: 1IM_t8miX6s
 oldyoutube: 
+- code: 1IM_t8miX6s
+  year: 2024
+- code: DgaZQcNp9fU
+  year: 2022
 - code: VQvYg3jin-k
   year: 2021
-pdfslides: advanced-datascience-glm.pdf
 transition: None
 reveal: true
 ipynb: true

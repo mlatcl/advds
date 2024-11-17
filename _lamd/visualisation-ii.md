@@ -15,6 +15,10 @@ author:
   institute: University of Cambridge
   twitter: lawrennd
   url: http://inverseprobability.com
+youtube: U_IgLhGQpkA
+oldyoutube: 
+- code: U_IgLhGQpkA
+  year: 2024
 transition: None
 ipynb: True
 reveal: True
