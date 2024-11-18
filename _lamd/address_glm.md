@@ -1,6 +1,7 @@
 ---
 title: "Practical 3"
 practical: 3
+featured_image: assets/images/practical-three.png
 abstract: >
   In this worksheet we will look at a general framework for formulating linear models.
 layout: practical
