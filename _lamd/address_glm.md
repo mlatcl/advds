@@ -37,19 +37,19 @@ ipynb: true
 
 \notes{In this worksheet we will look at linear models. We will show a general framework for formulating models where we have a set of response variables that we want to explain through a linear relationship from a set of explanatory variables. While many relationships are non-linear in nature it is often challenging to interpret and explain the results from non-linear models. Therefore, linear models remains very important as they provide a nice trade-off between explanation of the data while at the same time providing interpretable semantics.}
 
-\include{_address/includes/Generalised_Linear_Models.md}
+\include{_address/includes/generalised-linear-models.md}
 
-\include{_address/includes/Learning_Generalised_Linear_Models.md}
+\include{_address/includes/Learning_generalised-linear-models.md}
 
-\include{_address/includes/Basis_Function_Models.md}
+\include{_address/includes/basis-function-models.md}
 
-\include{_address/includes/Regularisation.md}
+\include{_address/includes/regularisation.md}
 
-\include{_address/includes/Localised_Basis_Functions.md}
+\include{_address/includes/localised-basis-functions.md}
 
-\include{_address/includes/Applying_Model_Framework.md}
+\include{_address/includes/applying-model-framework.md}
 
-\include{_address/includes/Practical_Modelling.md}
+\include{_address/includes/practical-modelling.md}
 
 \thanks
 

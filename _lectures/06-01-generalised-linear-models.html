@@ -11,7 +11,6 @@ author:
   orcid: 
 edit_url: https://github.com/mlatcl/advds/edit/gh-pages/_lamd/generalised-linear-models.md
 date: 2024-11-15
-published: 2024-11-15
 time: "10:00"
 week: 6
 session: 1
@@ -37,9 +36,7 @@ categories:
 -->
 <h2 id="setup">Setup</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_notebooks/includes/notebook-setup.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_notebooks/includes/notebook-setup.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_notebooks/includes/notebook-setup.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_notebooks/includes/notebook-setup.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <!--setupplotcode{import seaborn as sns
 sns.set_style('darkgrid')
@@ -47,715 +44,408 @@ sns.set_context('paper')
 sns.set_palette('colorblind')}-->
 <h2 id="notutils">notutils</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_software/includes/notutils-software.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_software/includes/notutils-software.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_software/includes/notutils-software.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_software/includes/notutils-software.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>This small package is a helper package for various notebook utilities
-used below.</p>
+<p>This small package is a helper package for various notebook utilities used below.</p>
 <p>The software can be installed using</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install notutils</span></code></pre></div>
-<p>from the command prompt where you can access your python
-installation.</p>
-<p>The code is also available on GitHub: <a
-href="https://github.com/lawrennd/notutils"
-class="uri">https://github.com/lawrennd/notutils</a></p>
-<p>Once <code>notutils</code> is installed, it can be imported in the
-usual manner.</p>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> notutils</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib.util</span></code></pre></div>
+<p>from the command prompt where you can access your python installation.</p>
+<p>The code is also available on GitHub: <a href="https://github.com/lawrennd/notutils" class="uri">https://github.com/lawrennd/notutils</a></p>
+<p>Once <code>notutils</code> is installed, it can be imported in the usual manner.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> notutils</span></code></pre></div>
 <h2 id="pods">pods</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_software/includes/pods-software.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_software/includes/pods-software.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_software/includes/pods-software.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_software/includes/pods-software.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>In Sheffield we created a suite of software tools for ‘Open Data
-Science’. Open data science is an approach to sharing code, models and
-data that should make it easier for companies, health professionals and
-scientists to gain access to data science techniques.</p>
-<p>You can also check this blog post on <a
-href="http://inverseprobability.com/2014/07/01/open-data-science">Open
-Data Science</a>.</p>
+<p>In Sheffield we created a suite of software tools for ‘Open Data Science.’ Open data science is an approach to sharing code, models and data that should make it easier for companies, health professionals and scientists to gain access to data science techniques.</p>
+<p>You can also check this blog post on <a href="http://inverseprobability.com/2014/07/01/open-data-science">Open Data Science</a>.</p>
 <p>The software can be installed using</p>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install pods</span></code></pre></div>
-<p>from the command prompt where you can access your python
-installation.</p>
-<p>The code is also available on GitHub: <a
-href="https://github.com/lawrennd/ods"
-class="uri">https://github.com/lawrennd/ods</a></p>
-<p>Once <code>pods</code> is installed, it can be imported in the usual
-manner.</p>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cmd <span class="op">=</span> install_command(<span class="st">&#39;pods&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>system {cmd}</span></code></pre></div>
+<p>from the command prompt where you can access your python installation.</p>
+<p>The code is also available on GitHub: <a href="https://github.com/lawrennd/ods" class="uri">https://github.com/lawrennd/ods</a></p>
+<p>Once <code>pods</code> is installed, it can be imported in the usual manner.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
 <h2 id="mlai">mlai</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_software/includes/mlai-software.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_software/includes/mlai-software.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_software/includes/mlai-software.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_software/includes/mlai-software.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>The <code>mlai</code> software is a suite of helper functions for
-teaching and demonstrating machine learning algorithms. It was first
-used in the Machine Learning and Adaptive Intelligence course in
-Sheffield in 2013.</p>
+<p>The <code>mlai</code> software is a suite of helper functions for teaching and demonstrating machine learning algorithms. It was first used in the Machine Learning and Adaptive Intelligence course in Sheffield in 2013.</p>
 <p>The software can be installed using</p>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install mlai</span></code></pre></div>
-<p>from the command prompt where you can access your python
-installation.</p>
-<p>The code is also available on GitHub: <a
-href="https://github.com/lawrennd/mlai"
-class="uri">https://github.com/lawrennd/mlai</a></p>
-<p>Once <code>mlai</code> is installed, it can be imported in the usual
-manner.</p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> plot</span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install statsmodels</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cmd <span class="op">=</span> install_command(<span class="st">&#39;mlai&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>system {cmd}</span></code></pre></div>
+<p>from the command prompt where you can access your python installation.</p>
+<p>The code is also available on GitHub: <a href="https://github.com/lawrennd/mlai" class="uri">https://github.com/lawrennd/mlai</a></p>
+<p>Once <code>mlai</code> is installed, it can be imported in the usual manner.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> plot</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cmd <span class="op">=</span> install_command(<span class="st">&#39;statsmodels&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>system {cmd}</span></code></pre></div>
 <h2 id="review">Review</h2>
-<p>We introduced machine learning as a way to extract knowledge from
-data to make predictions through a prediction function and an objective
-function. We looked at a simple example of predicting whether someone
-would buy a jumper based on their age and latitude, <em>using logistic
-regression</em> to model the log-odds of purchase. This highlighted how
-machine learning can codify predictions through mathematical functions.
-This is an example of a broader approach known as <em>generalized linear
-models</em>.</p>
-<p>When taking a probabilistic approach to supervised learning we’re
-interested in predicting a class label, <span
-class="math inline">\(y_i\)</span>, given an input, <span
-class="math inline">\(\mathbf{ x}_i\)</span>. That’s represented
-probabilisticially as <span class="math inline">\(p(y_i|\mathbf{
-x}_i)\)</span>. We can derive this conditional distribution through
-either (1) modelling the joint distribution, <span
-class="math inline">\(p(\mathbf{ y}, \mathbf{X})\)</span> and then
-dividing by the marginal distribution of the inputs, <span
-class="math inline">\(p(\mathbf{X})\)</span> , or (2) focusing
-specifically on modeling the conditional density, <span
-class="math inline">\(p(\mathbf{ y}|\mathbf{X})\)</span>, that directly
-answers our prediction question. In the <em>generalised linear
-model</em> we choose the second approach.</p>
-<p>As we move to generalized linear models like logistic regression,
-we’ll see how directly modeling the conditional density <span
-class="math inline">\(p(\mathbf{ y}|\mathbf{X})\)</span> can provide
-more flexibility in our modeling assumptions, while still allowing us to
-make the specific predictions we need.</p>
-<h2 id="linear-regression-reminder">Linear Regression Reminder</h2>
-<p>In linear regression, we model the relationship between a continuous
-response variable <span class="math inline">\(y_i\)</span> and input
-variables <span class="math inline">\(\mathbf{ x}_i\)</span> through a
-linear function with Gaussian noise:</p>
-<p><span class="math display">\[y_i = f(\mathbf{ x}_i) +
-\epsilon_i\]</span></p>
-<p>where <span class="math inline">\(f(\mathbf{ x}_i) = \mathbf{
-w}^\top\mathbf{ x}_i = \sum_{j=1}^D w_jx_{i,j}\)</span> and <span
-class="math inline">\(\epsilon_i \sim
-\mathcal{N}\left(0,\sigma^2\right)\)</span></p>
+<p>We introduced machine learning as a way to extract knowledge from data to make predictions through a prediction function and an objective function. We looked at a simple example of predicting whether someone would buy a jumper based on their age and latitude, <em>using logistic regression</em> to model the log-odds of purchase. This highlighted how machine learning can codify predictions through mathematical functions. This is an example of a broader approach known as <em>generalized linear models</em>.</p>
+<p>When taking a probabilistic approach to supervised learning we’re interested in predicting a class label, <span class="math inline">\(y_i\)</span>, given an input, <span class="math inline">\(\mathbf{ x}_i\)</span>. That’s represented probabilisticially as <span class="math inline">\(p(y_i|\mathbf{ x}_i)\)</span>. We can derive this conditional distribution through either (1) modelling the joint distribution, <span class="math inline">\(p(\mathbf{ y}, \mathbf{X})\)</span> and then dividing by the marginal distribution of the inputs, <span class="math inline">\(p(\mathbf{X})\)</span> , or (2) focusing specifically on modeling the conditional density, <span class="math inline">\(p(\mathbf{ y}|\mathbf{X})\)</span>, that directly answers our prediction question. In the <em>generalised linear model</em> we choose the second approach.</p>
+<p>As we move to generalized linear models like logistic regression, we’ll see how directly modeling the conditional density <span class="math inline">\(p(\mathbf{ y}|\mathbf{X})\)</span> can provide more flexibility in our modeling assumptions, while still allowing us to make the specific predictions we need.</p>
+<h2 id="model-diagnostics-and-linear-regression">Model Diagnostics and Linear Regression</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_statistics/includes/linear-regression-statsmodels.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_statistics/includes/linear-regression-statsmodels.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>In linear regression, we model the relationship between a continuous response variable <span class="math inline">\(y_i\)</span> and input variables <span class="math inline">\(\mathbf{ x}_i\)</span> through a linear function with Gaussian noise:</p>
+<p><span class="math display">\[y_i = f(\mathbf{ x}_i) + \epsilon_i\]</span></p>
+<p>where <span class="math inline">\(f(\mathbf{ x}_i) = \mathbf{ w}^\top\mathbf{ x}_i = \sum_{j=1}^D w_jx_{i,j}\)</span> and <span class="math inline">\(\epsilon_i \sim \mathscr{N}\left(0,\sigma^2\right)\)</span></p>
 <p>This gives us a probabilistic model:</p>
-<p><span class="math display">\[p(y_i|\mathbf{ x}_i) =
-\gaussianDist{\mathbf{ w}^\top\mathbf{ x}_i}{\sigma^2}\]</span></p>
-<p>The key components are: - <span class="math inline">\(y_i\)</span> is
-the target/response variable we want to predict - <span
-class="math inline">\(\mathbf{ x}_i\)</span> contains the input
-features/explanatory variables<br />
-- <span class="math inline">\(\mathbf{ w}\)</span> contains the
-parameters/coefficients we learn - <span
-class="math inline">\(\epsilon_i\)</span> represents random Gaussian
-noise with variance <span class="math inline">\(\sigma^2\)</span></p>
+<p><span class="math display">\[p(y_i|\mathbf{ x}_i) = \mathscr{N}\left(y_i|\mathbf{ w}^\top\mathbf{ x}_i,\sigma^2\right)\]</span></p>
+<p>The key components are:</p>
+<ul>
+<li><span class="math inline">\(y_i\)</span> is the target/response variable we want to predict</li>
+<li><span class="math inline">\(\mathbf{ x}_i\)</span> contains the input features/explanatory variables<br />
+</li>
+<li><span class="math inline">\(\mathbf{ w}\)</span> contains the parameters/coefficients we learn</li>
+<li><span class="math inline">\(\epsilon_i\)</span> represents random Gaussian noise with variance <span class="math inline">\(\sigma^2\)</span></li>
+</ul>
 <p>For the full dataset, we can write this in matrix form:</p>
-<p><span class="math display">\[\mathbf{ y}= \mathbf{X}\mathbf{ w}+
-\boldsymbol{ \epsilon}\]</span></p>
-<p>where <span class="math inline">\(\mathbf{ y}=
-[y_1,\ldots,y_N]^\top\)</span>, <span
-class="math inline">\(\mathbf{X}\)</span> contains the input vectors as
-rows, and <span class="math inline">\(\boldsymbol{ \epsilon}\sim
-\mathcal{N}\left(\mathbf{0},\sigma^2\mathbf{I}\right)\)</span>.</p>
+<p><span class="math display">\[\mathbf{ y}= \mathbf{X}\mathbf{ w}+ \boldsymbol{ \epsilon}\]</span></p>
+<p>where <span class="math inline">\(\mathbf{ y}= [y_1,\ldots,y_N]^\top\)</span>, <span class="math inline">\(\mathbf{X}\)</span> contains the input vectors as rows, and <span class="math inline">\(\boldsymbol{ \epsilon}\sim \mathscr{N}\left(\mathbf{0},\sigma^2\mathbf{I}\right)\)</span>.</p>
 <p>The expected value of our prediction is:</p>
-<p><span class="math display">\[\mathbb{E}[y_i|\mathbf{ x}_i] = \mathbf{
-w}^\top\mathbf{ x}_i\]</span></p>
-<p>This linear model forms the foundation for generalized linear models
-like logistic regression, where we’ll adapt the model for classification
-by transforming the output through a non-linear function.</p>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demo of linear regression using python statsmodels.</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.olympic_marathon_men()</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>]</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Add constant term to design matrix</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> sm.add_constant(x)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(y, x)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> model.fit()</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>results.summary()</span></code></pre></div>
-<p>The statsmodels summary provides several key diagnostic measures that
-help us evaluate our model fit and identify potential areas for
-improvement. Since we’re working with one-dimensional data (year vs
-time), we can visualize everything easily to complement these
-statistical measures.</p>
-<p>The model fit statistics show a moderately strong fit, with an
-R-squared of 0.744 indicating that our model explains 74.4% of the
-variance in the data. The adjusted R-squared of 0.733 confirms this
-isn’t just due to overfitting. The very low F-statistic p-value
-(7.40e-09) confirms the model’s overall significance. The AIC (10.08)
-and BIC (12.67) values will be useful when we compare this model against
-alternative specifications we might try.</p>
-<p>Looking at the model parameters, we see a coefficient of -0.013 for
-our predictor, with a small standard error (0.002). The t-statistic of
--8.515 and p-value of 0.000 indicate this effect is highly significant.
-The 95% confidence interval [-0.016, -0.010] gives us good confidence in
-our estimate. The negative coefficient confirms the expected downward
-trend in marathon times over the years.</p>
-<p>However, the residual diagnostics suggest several potential issues we
-should investigate:</p>
+<p><span class="math display">\[\mathbb{E}[y_i|\mathbf{ x}_i] = \mathbf{ w}^\top\mathbf{ x}_i\]</span></p>
+<p>This linear model forms the foundation for generalized linear models like logistic regression, where we’ll adapt the model for classification by transforming the output through a non-linear function.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demo of linear regression using python statsmodels.</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.olympic_marathon_men()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>xlim <span class="op">=</span> (<span class="dv">1876</span>,<span class="dv">2044</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>]</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span></code></pre></div>
+<p>The <code>statsmodels</code> package makes it easy to add the constant term to the matrix.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add constant term to design matrix</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x.shape)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> sm.add_constant(x)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x.shape)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(y, x)</span></code></pre></div>
+<p>Using <code>statsmodels</code> we don’t need to implement the QR decomposition directly we can simply fit the model.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> model.fit()</span></code></pre></div>
+<p>The model results also contain a lot more than just the regression weights. Various diagnostic statistics are also computed including checks on the residuals (i.e. <span class="math inline">\(y_i - f_i\)</span>) which <em>should</em> be Gaussian (or normal) distributed.</p>
+<p>We can show obtain our predictions, <span class="math inline">\(f\)</span> from the model as follows.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> results.predict(x)</span></code></pre></div>
+<p>And plot them against the actual data.</p>
+<div class="figure">
+<div id="linear-regression-olympic-marathon-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/statistics/linear-regression-olympic-marathon-statsmodels.svg" width="50%" style=" ">
+</object>
+</div>
+<div id="linear-regression-olympic-marathon-magnify" class="magnify" onclick="magnifyFigure(&#39;linear-regression-olympic-marathon&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="linear-regression-olympic-marathon-caption" class="caption-frame">
+<p>Figure: Plot of the <code>statsmodels</code> fit to the olympic marathon data.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>results.summary()</span></code></pre></div>
+<p>The summary helps us evaluate our model fit and identify potential areas for improvement. Since we’re working with one-dimensional data (year vs time), we can visualise everything easily to complement these statistical measures.</p>
+<p>The model fit statistics show a moderately strong fit, with an R-squared of 0.730 indicating that our model explains 73.0% of the variance in the data. The adjusted R-squared of 0.721 confirms this isn’t just due to overfitting (which is unsurprising given we are only fitting a linear model). The very low F-statistic p-value (1.85e-09) confirms the model’s overall significance.</p>
+<p>The AIC (11.33) and BIC (14.13) information criteria values are used to compare the model against alternatives we might try.</p>
+<p>Looking at the model parameters, we see a coefficient of -0.0116 for our predictor, with a small standard error (0.001). The <span class="math inline">\(t\)</span>-statistic of -8.710 and p-value of less than 0.001 indicate this effect is highly significant. The 95% confidence interval [-0.014, -0.009] gives us good confidence in our estimate. The negative coefficient confirms the expected downward trend in marathon times over the years.</p>
+<div class="figure">
+<div id="residuals-histogram-olympic-marathon-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/statistics/residuals-histogram-olympic-marathon.svg" width="50%" style=" ">
+</object>
+</div>
+<div id="residuals-histogram-olympic-marathon-magnify" class="magnify" onclick="magnifyFigure(&#39;residuals-histogram-olympic-marathon&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="residuals-histogram-olympic-marathon-caption" class="caption-frame">
+<p>Figure: The histogram of the residuals of the fit to the Olympic Marathon data.</p>
+</div>
+</div>
+<p>We can see in the histogram that the residuals are not Gaussian (normal) distributed. Looking at the diagnostics we see the same challenges. The histogram doesn’t show us the autocorrelation, that comes from the Durbin-Watson statistic.</p>
 <ol type="1">
-<li>The Durbin-Watson statistic (1.110) indicates positive
-autocorrelation in the residuals, though not as severe as we might
-expect. This suggests we might want to:
+<li><p>The Durbin-Watson statistic (0.981) indicates positive autocorrelation in the residuals. This suggests we might want to</p>
 <ul>
 <li>Consider time series modeling approaches</li>
 <li>Add polynomial terms to capture non-linear trends</li>
 <li>Investigate if there are distinct “eras” in marathon times</li>
 </ul></li>
-<li>The highly significant Jarque-Bera test (p-value 7.67e-12) tells us
-our residuals aren’t normally distributed. The skew (1.929) and kurtosis
-(8.534) values show the distribution is strongly right-skewed with very
-heavy tails. We might want to:
-<ul>
-<li>Look for outliers or influential points</li>
-<li>Consider robust regression techniques</li>
-<li>Try transforming our response variable</li>
-</ul></li>
-<li>The large condition number (1.08e+05) suggests potential numerical
-instability or multicollinearity issues. While less concerning with
-single-predictor models, we should:
-<ul>
-<li>Consider centering and scaling our predictor</li>
-<li>Watch for numerical precision issues</li>
-<li>Be cautious when extending to multiple predictors</li>
-</ul></li>
+<li><p>The Jarque-Bera test (<span class="math inline">\(p\)</span>-value 8.32e-14) tells us our residuals aren’t normally distributed. The skew (1.947) and kurtosis (8.746) values show the distribution is strongly right-skewed with very heavy tails. This is due to the outlier in 1904. We could deal with this through transformation of the response variable, robust regression or by dropping the outlier.</p></li>
+<li><p>The large condition number (9.94e+04) suggests potential numerical instability or multicollinearity issues. This is because we haven’t centred and scaled the model.</p></li>
 </ol>
-<p>The beauty of having one-dimensional data is that we can plot
-everything to visually confirm these statistical findings. A scatter
-plot with our fitted line will help us: - Visually assess the linearity
-assumption - Identify potential outliers - Spot any systematic patterns
-in the residuals - See if the relationship makes practical sense in
-terms of marathon performance over time</p>
-<p>This visual inspection, combined with our statistical diagnostics,
-will guide our next steps in improving the model.</p>
-<p>Looking at our plot and model diagnostics, we can now better
-understand the large condition number (1.08e+05) in our results. This
-high value likely stems from using raw year values (e.g., 1896, 1900,
-etc.) as our predictor variable. Such large numbers can lead to
-numerical instability in the computations.</p>
-<p>To address this, we could consider: - Centering the years around
-their mean - Scaling the years to a smaller range (e.g., 0-1) - Using
-years since the first Olympics (e.g., 0, 4, 8, etc.)</p>
-<p>Any of these transformations would help reduce the condition number
-while preserving the underlying relationship in our data. The
-coefficients would change, but the fitted values and overall model
-quality would remain the same.</p>
+<p>The beauty of having one-dimensional data is that we can plot everything to visually confirm these statistical findings. It allows us to visually assess the linearity assumption, identify potential outliers (such as the 1904 point) and spot any systematic patterns in the residuals.</p>
+<p>This visual inspection, combined with our statistical diagnostics, will guide our next steps in improving the model.</p>
 <div class="figure">
-<div id="linear-regression-olympic-marathon-men-statsmodels-figure"
-class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/linear-regression-olympic-marathon-men-statsmodels.svg.svg" width="80%" style=" ">
+<div id="linear-regression-olympic-marathon-men-statsmodels-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/data-science/linear-regression-olympic-marathon-men-statsmodels.svg" width="80%" style=" ">
 </object>
 </div>
-<div id="linear-regression-olympic-marathon-men-statsmodels-magnify"
-class="magnify"
-onclick="magnifyFigure(&#39;linear-regression-olympic-marathon-men-statsmodels&#39;)">
+<div id="linear-regression-olympic-marathon-men-statsmodels-magnify" class="magnify" onclick="magnifyFigure(&#39;linear-regression-olympic-marathon-men-statsmodels&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="linear-regression-olympic-marathon-men-statsmodels-caption"
-class="caption-frame">
-<p>Figure: Linear regression fit to Olympic marathon men’s times using
-<code>statsmodels</code>.</p>
+<div id="linear-regression-olympic-marathon-men-statsmodels-caption" class="caption-frame">
+<p>Figure: Linear regression fit to Olympic marathon men’s times using <code>statsmodels</code>.</p>
 </div>
 </div>
-<p>The plot reveals several key features that help explain our
-diagnostic statistics:</p>
-<ul>
-<li>The 1904 St. Louis Olympics appears as a clear outlier, contributing
-to the non-normal residuals (Jarque-Bera p=0.00432) and right-skewed
-distribution (skew=1.385)</li>
-<li>We can observe distinct regimes in the data:
-<ul>
-<li>Rapid improvement in times pre-WWI</li>
-<li>Disruption and variation during the war years</li>
-<li>More steady, consistent progress post-WWII</li>
-</ul></li>
-<li>These regime changes help explain the strong positive
-autocorrelation (Durbin-Watson=0.242) in our residuals</li>
-<li>While our high R-squared (0.972) captures the overall downward
-trend, these features suggest we could improve the model by adding
-additional features:
-<ul>
-<li>Polynomial terms to capture non-linear trends</li>
-<li>Indicator variables for different time periods</li>
-<li>Interaction terms between features</li>
-<li>Variables accounting for external factors like temperature or course
-conditions</li>
-</ul></li>
-</ul>
-<p>To incorporate multiple features into our model, we need a systematic
-way to organize this additional information. This brings us to the
-concept of the design matrix.</p>
-<h2 id="design-matrix">Design Matrix</h2>
-<p>The design matrix, often denoted as <span
-class="math inline">\(\designMatrix\)</span>, is a key component of a
-statistical model. It organizes our feature data in a structured way
-that facilitates model fitting and analysis. Each row of the design
-matrix represents a single observation or data point, while each column
-represents a different feature or predictor variable.</p>
-<p>For <span class="math inline">\(n\)</span> observations and <span
-class="math inline">\(p\)</span> features, the design matrix takes the
-form:</p>
-<p><span class="math display">\[\designMatrix = \begin{bmatrix}
-x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1p} \\
-x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2p} \\
+<p>Looking at our plot and model diagnostics, we can now better understand the large condition number (1.08e+05) in our results. This high value likely stems from using raw year values (e.g., 1896, 1900, etc.) as our predictor variable. Such large numbers can lead to numerical instability in the computations.</p>
+<p>To address this, we will look at centering the years around their mean and scaling the years to a smaller range.</p>
+<p>Looking at the plot we can see more about our our data. The 1904 St. Louis Olympics appears as a clear outlier, contributing to the non-normal residuals (Jarque-Bera p=0.00432) and right-skewed distribution (skew=1.385).</p>
+<p>There are also regimes in the data, such as the rapid improvement in times pre-WWI, the disruption and variation during the war years, the more steady, consistent progress post-WWII. These regime changes help explain the strong positive autocorrelation (Durbin-Watson=0.242) in our residuals.</p>
+<p>This suggests we could improve the model by adding additional features such as polynomial terms to capture non-linear trends, indicator variables for different time periods and interaction terms between features. We could also consider variables accounting for external factors like temperature or course conditions.</p>
+<p>To incorporate multiple features into our model, we need a systematic way to organize this additional information. This brings us back to the concept of the design matrix.</p>
+<h3 id="design-matrix">Design Matrix</h3>
+<p>The design matrix, often denoted as <span class="math inline">\(\boldsymbol{ \Phi}\)</span>, is a key component of a statistical model. It organizes our feature data in a structured way that facilitates model fitting and analysis. Each row of the design matrix represents a single observation or data point, while each column represents a different feature or predictor variable.</p>
+<p>For <span class="math inline">\(n\)</span> observations and <span class="math inline">\(p\)</span> features, the design matrix takes the form:</p>
+<p><span class="math display">\[\boldsymbol{ \Phi}= \begin{bmatrix} 
+\phi_{11} &amp; \phi_{12} &amp; \cdots &amp; \phi_{1p} \\
+\phi_{21} &amp; \phi_{22} &amp; \cdots &amp; \phi_{2p} \\
 \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{np}
+\phi_{n1} &amp; \phi_{n2} &amp; \cdots &amp; \phi_{np}
 \end{bmatrix}\]</span></p>
-<p>For example, if we’re predicting house prices, each row might
-represent a different house, with columns for features like:</p>
-<ul>
-<li>Square footage</li>
-<li>Number of bedrooms<br />
-</li>
-<li>Year built</li>
-<li>Lot size</li>
-</ul>
-<p>The design matrix provides a compact way to represent all our feature
-data and is used directly in model fitting. When we write our linear
-model as <span class="math inline">\(\mathbf{ y}= \designMatrix\mathbf{
-w}+ \boldsymbol{ \epsilon}\)</span>, the design matrix <span
-class="math inline">\(\designMatrix\)</span> is multiplied by our
-parameter vector <span class="math inline">\(\mathbf{ w}\)</span> to
-generate predictions.</p>
-<p>The design matrix often includes a column of 1s to account for the
-intercept term in our model. This allows us to write the model in matrix
-form without explicitly separating out the intercept term.</p>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demo of additional features with interactions regression usying python statsmodels.</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.olympic_marathon_men()</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>]</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Scale the year to avoid numerical issues</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>x_scaled <span class="op">=</span> (x <span class="op">-</span> <span class="dv">1900</span>) <span class="op">/</span> <span class="dv">100</span>  <span class="co"># Center around 1900 and scale to century units</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add to design matrix indicator variable for pre-1914</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>x_aug <span class="op">=</span> np.hstack([x_scaled, (x[:, <span class="dv">0</span>] <span class="op">&lt;</span> <span class="dv">1914</span>).astype(np.float64)[:, np.newaxis]])</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Add to design matrix indicator variable for 1914-1945</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>x_aug <span class="op">=</span> np.hstack([x_aug, ((x[:, <span class="dv">0</span>] <span class="op">&gt;=</span> <span class="dv">1914</span>) <span class="op">&amp;</span> (x[:, <span class="dv">0</span>] <span class="op">&lt;=</span> <span class="dv">1945</span>)).astype(np.float64)[:, np.newaxis]])</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Add to design matrix indicator variable for post-1945</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>x_aug <span class="op">=</span> np.hstack([x_aug, (x[:, <span class="dv">0</span>] <span class="op">&gt;</span> <span class="dv">1945</span>).astype(np.float64)[:, np.newaxis]])</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Add product terms that multiply the scaled year and the indicator variables.</span></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>x_aug <span class="op">=</span> np.hstack([x_aug, x_scaled[:, <span class="dv">0</span>:<span class="dv">1</span>] <span class="op">*</span> x_aug[:, <span class="dv">1</span>:<span class="dv">2</span>], x_scaled[:, <span class="dv">0</span>:<span class="dv">1</span>] <span class="op">*</span> x_aug[:, <span class="dv">2</span>:<span class="dv">3</span>]])</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Add constant term to design matrix</span></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>x_aug <span class="op">=</span> sm.add_constant(x_aug)</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Do the linear fit</span></span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(y, x_aug)</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> model.fit()</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>results.summary()</span></code></pre></div>
+<p>For example, if we’re predicting house prices, each row might represent a different house, with columns for features like: square footage, number of bedrooms, yyear built, plot size.</p>
+<p>The design matrix provides a compact way to represent all our feature data and is used directly in model fitting. When we write our linear model as <span class="math inline">\(\mathbf{ y}= \boldsymbol{ \Phi}\mathbf{ w}+ \boldsymbol{ \epsilon}\)</span>, the design matrix <span class="math inline">\(\boldsymbol{ \Phi}\)</span> is multiplied by our parameter vector <span class="math inline">\(\mathbf{ w}\)</span> to generate predictions.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demo of additional features with interactions regression usying python statsmodels.</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.olympic_marathon_men()</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>]</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>xlim <span class="op">=</span> (<span class="dv">1876</span>,<span class="dv">2044</span>)</span></code></pre></div>
+<p>Now we process our input data to create the design matrix.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> marathon_design_matrix(x, product_terms<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;This function augments the input matrix with indicator variables that state the year.&quot;&quot;&quot;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scale the year to avoid numerical issues</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    x_scaled <span class="op">=</span> (x <span class="op">-</span> <span class="dv">1900</span>) <span class="op">/</span> <span class="dv">100</span>  <span class="co"># Center around 1900 and scale to century units</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    Phi <span class="op">=</span> x_scaled</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add to design matrix indicator variable for 1914-1945</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    Phi <span class="op">=</span> np.hstack([Phi, ((x[:, <span class="dv">0</span>] <span class="op">&gt;=</span> <span class="dv">1914</span>) <span class="op">&amp;</span> (x[:, <span class="dv">0</span>] <span class="op">&lt;=</span> <span class="dv">1945</span>)).astype(np.float64)[:, np.newaxis]])</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add to design matrix indicator variable for post-1945</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    Phi <span class="op">=</span> np.hstack([Phi, (x[:, <span class="dv">0</span>] <span class="op">&gt;</span> <span class="dv">1945</span>).astype(np.float64)[:, np.newaxis]])</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> product_terms:</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Add product terms that multiply the scaled year and the indicator variables.</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>        Phi <span class="op">=</span> np.hstack([Phi, x_scaled[:, <span class="dv">0</span>:<span class="dv">1</span>] <span class="op">*</span> Phi[:, <span class="dv">1</span>:<span class="dv">2</span>], x_scaled[:, <span class="dv">0</span>:<span class="dv">1</span>] <span class="op">*</span> Phi[:, <span class="dv">2</span>:<span class="dv">3</span>]])</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    Phi <span class="op">=</span> sm.add_constant(Phi)</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Phi</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the model</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> marathon_design_matrix(x)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(y, Phi)</span></code></pre></div>
+<p>Now we can fit the model.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Do the linear fit</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> model.fit()</span></code></pre></div>
 <div class="figure">
-<div
-id="linear-regression-olympic-marathon-men-augmented-statsmodels-figure"
-class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/linear-regression-olympic-marathon-men-augmented-statsmodels.svg.svg" width="80%" style=" ">
+<div id="linear-regression-olypmic-marathon-men-augmented-statsmodels-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/data-science/linear-regression-olypmic-marathon-men-augmented-statsmodels.svg" width="80%" style=" ">
 </object>
 </div>
-<div
-id="linear-regression-olympic-marathon-men-augmented-statsmodels-magnify"
-class="magnify"
-onclick="magnifyFigure(&#39;linear-regression-olympic-marathon-men-augmented-statsmodels&#39;)">
+<div id="linear-regression-olypmic-marathon-men-augmented-statsmodels-magnify" class="magnify" onclick="magnifyFigure(&#39;linear-regression-olypmic-marathon-men-augmented-statsmodels&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div
-id="linear-regression-olympic-marathon-men-augmented-statsmodels-caption"
-class="caption-frame">
-<p>Figure: Polynomial regression fit to Olympic marathon men’s times
-using <code>statsmodels</code>.</p>
+<div id="linear-regression-olypmic-marathon-men-augmented-statsmodels-caption" class="caption-frame">
+<p>Figure: Plot of the fit obtained when we include indicator variables that identify the pre-1914, across war, and post-war eras.</p>
 </div>
 </div>
-<p>The augmented model with interactions shows a significant improvement
-in fit compared to the simpler linear model, with an R-squared value of
-0.870 (adjusted R-squared of 0.839). This indicates that about 87% of
-the variance in marathon times is explained by our model.</p>
-<p>The model includes several key components: - A base time trend (x1
-coefficient: -0.6737) - Indicator variables for different historical
-periods (pre-1914, 1914-1945, post-1945) - Interaction terms between the
-time trend and these periods</p>
-<p>The coefficients reveal interesting patterns: - The pre-1914 period
-shows a significant positive effect (x2: 1.5506, p&lt;0.001) - The
-wartime period 1914-1945 also shows a positive effect (x3: 0.7982,
-p&lt;0.05) - The post-1945 period has a positive effect (x4: 0.6883,
-p&lt;0.01) - The interaction terms (x5, x6) suggest different rates of
-improvement in different periods, though these are less statistically
-significant</p>
-<p>However, there are some concerns: 1. The very high condition number
-(2.79e+16) suggests serious multicollinearity issues 2. The Jarque-Bera
-test (p&lt;0.001) indicates non-normal residuals 3. There’s significant
-skewness (2.314) and kurtosis (10.325) in the residuals</p>
-<p>Despite these statistical issues, the model captures the major trends
-in marathon times across different historical periods better than a
-simple linear regression would.</p>
+<p>Let’s check the summary of the results.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>results.summary()</span></code></pre></div>
+<p>Using indicator variables for historical periods (and without relying on quadratic terms), the model shows a strong improvement over the simpler linear model, with an R-squared of 0.877 and an adjusted R-squared of 0.851. This indicates that about 87% of the variance in marathon times is explained by our model. The overall model significance is high (F-statistic <span class="math inline">\(p=3.70\times 10^{-10}\)</span>), and the information criteria are AIC <span class="math inline">\(=-4.164\)</span>, BIC <span class="math inline">\(=4.244\)</span>.</p>
+<p>Key parameter estimates (with 95% confidence intervals) are:</p>
+<ul>
+<li>Intercept (const): <span class="math inline">\(4.5876\)</span> (SE <span class="math inline">\(0.113\)</span>), <span class="math inline">\(t=40.533\)</span>, <span class="math inline">\(p=0.000\)</span>, CI <span class="math inline">\([4.354, 4.821]\)</span></li>
+<li><span class="math inline">\(x_1\)</span> (base time trend): <span class="math inline">\(-3.6127\)</span> (SE <span class="math inline">\(1.634\)</span>), <span class="math inline">\(t=-2.211\)</span>, <span class="math inline">\(p=0.037\)</span>, CI <span class="math inline">\([-6.984, -0.241]\)</span></li>
+<li><span class="math inline">\(x_2\)</span> (war period indicator): <span class="math inline">\(-0.7523\)</span> (SE <span class="math inline">\(0.480\)</span>), <span class="math inline">\(t=-1.567\)</span>, <span class="math inline">\(p=0.130\)</span>, CI <span class="math inline">\([-1.743, 0.239]\)</span></li>
+<li><span class="math inline">\(x_3\)</span> (post war indicator): <span class="math inline">\(-0.9399\)</span> (SE <span class="math inline">\(0.211\)</span>), <span class="math inline">\(t=-4.449\)</span>, <span class="math inline">\(p=0.000\)</span>, CI <span class="math inline">\([-1.376, -0.504]\)</span></li>
+<li><span class="math inline">\(x_4\)</span> (wartime time trend): <span class="math inline">\(2.8799\)</span> (SE <span class="math inline">\(2.310\)</span>), <span class="math inline">\(t=1.247\)</span>, <span class="math inline">\(p=0.225\)</span>, CI <span class="math inline">\([-1.888, 7.648]\)</span></li>
+<li><span class="math inline">\(x_5\)</span> (post war time trend): <span class="math inline">\(3.0493\)</span> (SE <span class="math inline">\(1.646\)</span>), <span class="math inline">\(t=1.853\)</span>, <span class="math inline">\(p=0.076\)</span>, CI <span class="math inline">\([-0.348, 6.446]\)</span></li>
+</ul>
+<p>These results suggest a strong negative time trend and statistically significant effects for some period indicators, with others being suggestive but not conclusive.</p>
+<p>However, there are some concerns:</p>
+<ol type="1">
+<li>The Jarque–Bera test (<span class="math inline">\(p=1.34\times 10^{-24}\)</span>) indicates non-normal residuals. Skewness is <span class="math inline">\(2.393\)</span> and kurtosis is <span class="math inline">\(11.065\)</span>.</li>
+<li>The Durbin–Watson statistic is <span class="math inline">\(2.101\)</span>, suggesting little residual autocorrelation.</li>
+<li>The condition number is <span class="math inline">\(127\)</span>, indicating the design is reasonably well conditioned relative to polynomial/interaction-augmented alternatives.</li>
+</ol>
+<p>The indicator-variable model captures key regime differences and substantially improves fit over the baseline linear model. One side-effect of using abrupt indicator boundaries is that the fitted curve is discontinuous at regime change years. This can create edge effects where adjacent observations on either side of a boundary receive different offsets even if they are close in time.</p>
+<p>If continuity is needed we could consider</p>
+<ul>
+<li>Replacing hard indicators with smooth transition functions (e.g., logistic ramps centered on boundary years)</li>
+<li>Adding interaction terms with polynomial or spline bases to allow the trend to bend smoothly through transitions</li>
+<li>Using piecewise-linear or spline regression with continuity (and optionally slope) constraints at knots</li>
+<li>Hierarchical/regularized models that shrink jump sizes toward zero unless strongly supported by data</li>
+</ul>
+<p>These approaches preserve the idea of regime structure while avoiding artificial jumps at the boundaries.</p>
 <h2 id="logistic-regression">Logistic Regression</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression-intro.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression-intro.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>A logistic regression is an approach to classification which extends
-the linear basis function models we’ve already explored. Rather than
-modeling the output of the function directly the assumption is that we
-model the <em>log-odds</em> with the basis functions.</p>
-<p>The <a href="http://en.wikipedia.org/wiki/Odds">odds</a> are defined
-as the ratio of the probability of a positive outcome, to the
-probability of a negative outcome. Just as we saw in our jumper
-(sweater) example where:</p>
-<p><span class="math display">\[ \log
-\frac{p(\text{bought})}{p(\text{not bought})} = w_0 + w_1 \text{age} +
-w_2 \text{latitude} \]</span></p>
-<p>If the probability of a positive outcome is denoted by <span
-class="math inline">\(\pi\)</span>, then the odds are computed as <span
-class="math inline">\(\frac{\pi}{1-\pi}\)</span>. Odds are widely used
-by <a href="http://en.wikipedia.org/wiki/Bookmaker">bookmakers</a> in
-gambling, although a bookmakers odds won’t normalise: i.e. if you look
-at the equivalent probabilities, and sum over the probability of all
-outcomes the bookmakers are considering, then you won’t get one. This is
-how the bookmaker makes a profit. Because a probability is always
-between zero and one, the odds are always between <span
-class="math inline">\(0\)</span> and <span
-class="math inline">\(\infty\)</span>. If the positive outcome is
-unlikely the odds are close to zero, if it is very likely then the odds
-become close to infinite. Taking the logarithm of the odds maps the odds
-from the positive half space to being across the entire real line. Odds
-that were between 0 and 1 (where the negative outcome was more likely)
-are mapped to the range between <span
-class="math inline">\(-\infty\)</span> and <span
-class="math inline">\(0\)</span>. Odds that are greater than 1 are
-mapped to the range between <span class="math inline">\(0\)</span> and
-<span class="math inline">\(\infty\)</span>. Considering the log odds
-therefore takes a number between 0 and 1 (the probability of positive
-outcome) and maps it to the entire real line. The function that does
-this is known as the <a href="http://en.wikipedia.org/wiki/Logit">logit
-function</a>, <span class="math inline">\(g^{-1}(p_i) =
-\log\frac{p_i}{1-p_i}\)</span>. This function is known as a <em>link
-function</em>.</p>
+<p>A logistic regression is an approach to classification which extends the linear regression models we’ve already explored. Rather than modeling the output of the function directly the assumption is that we model the <em>log-odds</em> with the basis functions.</p>
+<p>The <a href="http://en.wikipedia.org/wiki/Odds">odds</a> are defined as the ratio of the probability of a positive outcome, to the probability of a negative outcome. Just as we saw in our jumper (sweater) example where <span class="math display">\[ 
+\log \frac{p(\text{bought})}{p(\text{not bought})} = w_0 + w_1 \text{age} + w_2 \text{latitude} 
+\]</span> If the probability of a positive outcome is denoted by <span class="math inline">\(\pi\)</span>, then the odds are computed as <span class="math inline">\(\frac{\pi}{1-\pi}\)</span>.</p>
+<p>Odds are widely used by <a href="http://en.wikipedia.org/wiki/Bookmaker">bookmakers</a> in gambling, although a bookmakers odds won’t normalise: i.e. if you look at the equivalent probabilities, and sum over the probability of all outcomes the bookmakers are considering, then you won’t get one. This is how the bookmaker makes a profit. Because a probability is always between zero and one, the odds are always between <span class="math inline">\(0\)</span> and <span class="math inline">\(\infty\)</span>. If the positive outcome is unlikely the odds are close to zero, if it is very likely then the odds become close to infinite. Taking the logarithm of the odds maps the odds from the positive half space to being across the entire real line. Odds that were between 0 and 1 (where the negative outcome was more likely) are mapped to the range between <span class="math inline">\(-\infty\)</span> and <span class="math inline">\(0\)</span>. Odds that are greater than 1 are mapped to the range between <span class="math inline">\(0\)</span> and <span class="math inline">\(\infty\)</span>. Considering the log odds therefore takes a number between 0 and 1 (the probability of positive outcome) and maps it to the entire real line. The function that does this is known as the <a href="http://en.wikipedia.org/wiki/Logit">logit function</a>, <span class="math inline">\(g(p_i) = \log\frac{p_i}{1-p_i}\)</span>. This function is known as a <em>link function</em>.</p>
 <p>For a standard regression we take, <span class="math display">\[
 f(\mathbf{ x}) = \mathbf{ w}^\top
 \boldsymbol{ \phi}(\mathbf{ x}),
-\]</span> if we want to perform classification we perform a logistic
-regression. <span class="math display">\[
+\]</span> if we want to perform classification we perform a logistic regression. <span class="math display">\[
 \log \frac{\pi}{(1-\pi)} = \mathbf{ w}^\top
 \boldsymbol{ \phi}(\mathbf{ x})
-\]</span> where the odds ratio between the positive class and the
-negative class is given by <span class="math display">\[
+\]</span> where the odds ratio between the positive class and the negative class is given by <span class="math display">\[
 \frac{\pi}{(1-\pi)}
-\]</span> The odds can never be negative, but can take any value from 0
-to <span class="math inline">\(\infty\)</span>. We have defined the link
-function as taking the form <span
-class="math inline">\(g^{-1}(\cdot)\)</span> implying that the inverse
-link function is given by <span class="math inline">\(g(\cdot)\)</span>.
-Since we have defined, <span class="math display">\[
-g^{-1}(\pi) =
+\]</span> The odds can never be negative, but can take any value from 0 to <span class="math inline">\(\infty\)</span>. We have defined the link function as taking the form <span class="math inline">\(g^{-1}(\cdot)\)</span> implying that the inverse link function is given by <span class="math inline">\(g(\cdot)\)</span>. Since we have defined, <span class="math display">\[
+g(\pi) =
 \mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x})
-\]</span> we can write <span class="math inline">\(\pi\)</span> in terms
-of the <em>inverse link</em> function, <span
-class="math inline">\(g(\cdot)\)</span> as <span class="math display">\[
-\pi = g(\mathbf{ w}^\top
+\]</span> we can write <span class="math inline">\(\pi\)</span> in terms of the <em>inverse link</em> function, <span class="math inline">\(h(\cdot)\)</span> as <span class="math display">\[
+\pi = h(\mathbf{ w}^\top
 \boldsymbol{ \phi}(\mathbf{ x})).
 \]</span></p>
-<h2 id="basis-function">Basis Function</h2>
-<p>We’ll define our prediction, objective and gradient functions below.
-But before we start, we need to define a basis function for our model.
-Let’s start with the linear basis.</p>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> linear</span></code></pre></div>
-<h2 id="prediction-function">Prediction Function</h2>
-<p>Now we have the basis function let’s define the prediction
-function.</p>
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict(w, x, basis<span class="op">=</span>linear, <span class="op">**</span>kwargs):</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Generates the prediction function and the basis matrix.&quot;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    Phi <span class="op">=</span> basis(x, <span class="op">**</span>kwargs)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> np.dot(Phi, w)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1.</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>np.exp(<span class="op">-</span>f)), Phi</span></code></pre></div>
-<p>This inverse of the link function is known as the <a
-href="http://en.wikipedia.org/wiki/Logistic_function">logistic</a> (thus
-the name logistic regression) or sometimes it is called the sigmoid
-function. For a particular value of the input to the link function,
-<span class="math inline">\(f_i = \mathbf{ w}^\top \boldsymbol{
-\phi}(\mathbf{ x}_i)\)</span> we can plot the value of the inverse link
-function as below.</p>
-<h3 id="sigmoid-function">Sigmoid Function</h3>
+<p>We’ll define our prediction, objective and gradient functions below. But before we start, we need to define a basis function for our model. Let’s start with the linear basis.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> linear</span></code></pre></div>
+<h2 id="soft-arg-max-softmax-function">Soft Arg Max (Softmax) Function</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/sigmoid-function.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/sigmoid-function.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/soft-arg-max-function.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/soft-arg-max-function.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<div class="figure">
-<div id="the-logistic-function-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/logistic.svg" width="80%" style=" ">
-</object>
+<p>Given class scores <span class="math inline">\(f_k(\mathbf{ x})=\mathbf{ w}_k^\top\boldsymbol{ \phi}(\mathbf{ x})\)</span>, the softmax maps scores to probabilities: <span class="math inline">\(\pi_k = \frac{\exp(f_k)}{\sum_{j=1}^K \exp(f_j)}\)</span>.</p>
+<h2 id="prediction-function">Prediction Function</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression-prediction-function.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression-prediction-function.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<div id="the-logistic-function-magnify" class="magnify"
-onclick="magnifyFigure(&#39;the-logistic-function&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="the-logistic-function-caption" class="caption-frame">
-<p>Figure: The logistic function.</p>
-</div>
-</div>
-<p>The function has this characeristic ‘s’-shape (from where the term
-sigmoid, as in sigma, comes from). It also takes the input from the
-entire real line and ‘squashes’ it into an output that is between zero
-and one. For this reason it is sometimes also called a ‘squashing
-function’.</p>
-<p>By replacing the inverse link with the sigmoid we can write <span
-class="math inline">\(\pi\)</span> as a function of the input and the
-parameter vector as, <span class="math display">\[
-\pi(\mathbf{ x},\mathbf{ w}) = \frac{1}{1+\exp\left(-\mathbf{ w}^\top
-\boldsymbol{ \phi}(\mathbf{ x})\right)}.
-\]</span> The process for logistic regression is as follows. Compute the
-output of a standard linear basis function composition (<span
-class="math inline">\(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{
-x})\)</span>, as we did for linear regression) and then apply the
-inverse link function, <span class="math inline">\(g(\mathbf{ w}^\top
-\boldsymbol{ \phi}(\mathbf{ x}))\)</span>. In logistic regression this
-involves <em>squashing</em> it with the logistic (or sigmoid) function.
-Use this value, which now has an interpretation as a
-<em>probability</em> in a Bernoulli distribution to form the likelihood.
-Then we can assume conditional independence of each data point given the
-parameters and develop a likelihod for the entire data set.</p>
-<p>As we discussed last time, the Bernoulli likelihood is of the form,
-<span class="math display">\[
+<p>Now we have the basis function let’s define the prediction function.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict(w, x, basis<span class="op">=</span>mlai.linear, <span class="op">**</span>kwargs):</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Generates the prediction function and the basis matrix.&quot;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    Phi <span class="op">=</span> basis(x, <span class="op">**</span>kwargs)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> np.dot(Phi, w)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1.</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>np.exp(<span class="op">-</span>f)), Phi</span></code></pre></div>
+<p>This inverse of the link function is known as the <a href="http://en.wikipedia.org/wiki/Logistic_function">logistic</a> (thus the name logistic regression) or sometimes it is called the sigmoid function. For a particular value of the input to the link function, <span class="math inline">\(f_i = \mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x}_i)\)</span> we can plot the value of the inverse link function as below.</p>
+<p>By replacing the inverse link with the sigmoid we can write <span class="math inline">\(\pi\)</span> as a function of the input and the parameter vector as, <span class="math display">\[
+\pi(\mathbf{ x},\mathbf{ w}) = \frac{1}{1+\exp\left(-\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x})\right)}.
+\]</span> The process for logistic regression is as follows. Compute the output of a standard linear basis function composition (<span class="math inline">\(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x})\)</span>, as we did for linear regression) and then apply the inverse link function, <span class="math inline">\(g(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x}))\)</span>. In logistic regression this involves <em>squashing</em> it with the logistic (or sigmoid) function. Use this value, which now has an interpretation as a <em>probability</em> in a Bernoulli distribution to form the likelihood. Then we can assume conditional independence of each data point given the parameters and develop a likelihod for the entire data set.</p>
+<p>The Bernoulli likelihood is of the form, <span class="math display">\[
 P(y_i|\mathbf{ w}, \mathbf{ x}) =
 \pi_i^{y_i} (1-\pi_i)^{1-y_i}
-\]</span> which we can think of as clever trick for mathematically
-switching between two probabilities if we were to write it as code it
-would be better described as</p>
-<div class="sourceCode" id="cb17"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bernoulli(x, y, pi):</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> y <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> pi(x)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span><span class="op">-</span>pi(x)</span></code></pre></div>
-<p>but writing it mathematically makes it easier to write our objective
-function within a single mathematical equation.</p>
+\]</span> which we can think of as clever trick for mathematically switching between two probabilities if we were to write it as code it would be better described as</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bernoulli(x, y, pi):</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> y <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> pi(x)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span><span class="op">-</span>pi(x)</span></code></pre></div>
+<p>but writing it mathematically makes it easier to write our objective function within a single mathematical equation.</p>
 <h2 id="maximum-likelihood">Maximum Likelihood</h2>
-<p>To obtain the parameters of the model, we need to maximize the
-likelihood, or minimize the objective function, normally taken to be the
-negative log likelihood. With a data conditional independence assumption
-the likelihood has the form, <span class="math display">\[
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression-maximum-likelihood.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression-maximum-likelihood.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>To obtain the parameters of the model, we need to maximise the likelihood, or minimise the objective function, normally taken to be the negative log likelihood. With a data conditional independence assumption the likelihood has the form, <span class="math display">\[
 P(\mathbf{ y}|\mathbf{ w},
-\mathbf{X}) = \prod_{i=1}^nP(y_i|\mathbf{ w}, \mathbf{ x}_i).
-\]</span> which can be written as a log likelihood in the form <span
-class="math display">\[
+\mathbf{X}) = \prod_{i=1}^nP(y_i|\mathbf{ w}, \mathbf{ x}_i). 
+\]</span> which can be written as a log likelihood in the form <span class="math display">\[
 \log P(\mathbf{ y}|\mathbf{ w},
-\mathbf{X}) = \sum_{i=1}^n\log P(y_i|\mathbf{ w}, \mathbf{ x}_i) =
-\sum_{i=1}^n
+\mathbf{X}) = \sum_{i=1}^n\log P(y_i|\mathbf{ w}, \mathbf{ x}_i) = \sum_{i=1}^n
 y_i \log \pi_i + \sum_{i=1}^n(1-y_i)\log (1-\pi_i)
-\]</span> and if we take the probability of positive outcome for the
-<span class="math inline">\(i\)</span>th data point to be given by <span
-class="math display">\[
-\pi_i = g\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{
-x}_i)\right),
-\]</span> where <span class="math inline">\(g(\cdot)\)</span> is the
-<em>inverse</em> link function, then this leads to an objective function
-of the form, <span class="math display">\[
+\]</span> and if we take the probability of positive outcome for the <span class="math inline">\(i\)</span>th data point to be given by <span class="math display">\[
+\pi_i = h\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x}_i)\right),
+\]</span> where <span class="math inline">\(h(\cdot)\)</span> is the <em>inverse</em> link function, then this leads to an objective function of the form, <span class="math display">\[
 E(\mathbf{ w}) = -  \sum_{i=1}^ny_i \log
-g\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x}_i)\right) -
-\sum_{i=1}^n(1-y_i)\log \left(1-g\left(\mathbf{ w}^\top
+h\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x}_i)\right) -
+\sum_{i=1}^n(1-y_i)\log \left(1-h\left(\mathbf{ w}^\top
 \boldsymbol{ \phi}(\mathbf{ x}_i)\right)\right).
 \]</span></p>
-<div class="sourceCode" id="cb18"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> objective(g, y):</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Computes the objective function.&quot;</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    labs <span class="op">=</span> np.asarray(y, dtype<span class="op">=</span><span class="bu">float</span>).flatten()</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    posind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">1</span>)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    negind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">0</span>)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.log(g[posind, :]).<span class="bu">sum</span>() <span class="op">-</span> np.log(<span class="dv">1</span><span class="op">-</span>g[negind, :]).<span class="bu">sum</span>()</span></code></pre></div>
-<p>As normal, we would like to minimize this objective. This can be done
-by differentiating with respect to the parameters of our prediction
-function, <span class="math inline">\(\pi(\mathbf{ x};\mathbf{
-w})\)</span>, for optimisation. The gradient of the likelihood with
-respect to <span class="math inline">\(\pi(\mathbf{ x};\mathbf{
-w})\)</span> is of the form, <span class="math display">\[
+<h2 id="negative-log-likelihood">Negative Log Likelihood</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression-optimisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression-optimisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> objective(h, y):</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Computes the objective function.&quot;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    labs <span class="op">=</span> np.asarray(y, dtype<span class="op">=</span><span class="bu">float</span>).flatten()</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    posind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">1</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    negind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">0</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.log(h[posind, :]).<span class="bu">sum</span>() <span class="op">-</span> np.log(<span class="dv">1</span><span class="op">-</span>h[negind, :]).<span class="bu">sum</span>()</span></code></pre></div>
+<p>As normal, we would like to minimise this objective. This can be done by differentiating with respect to the parameters of our prediction function, <span class="math inline">\(\pi(\mathbf{ x};\mathbf{ w})\)</span>, for optimisation. The gradient of the likelihood with respect to <span class="math inline">\(\pi(\mathbf{ x};\mathbf{ w})\)</span> is of the form, <span class="math display">\[
 \frac{\text{d}E(\mathbf{ w})}{\text{d}\mathbf{ w}} = -\sum_{i=1}^n
-\frac{y_i}{g\left(\mathbf{ w}^\top
-\boldsymbol{ \phi}(\mathbf{
-x})\right)}\frac{\text{d}g(f_i)}{\text{d}f_i}
+\frac{y_i}{h\left(\mathbf{ w}^\top
+\boldsymbol{ \phi}(\mathbf{ x})\right)}\frac{\text{d}h(f_i)}{\text{d}f_i}
 \boldsymbol{ \phi}(\mathbf{ x}_i) +  \sum_{i=1}^n
-\frac{1-y_i}{1-g\left(\mathbf{ w}^\top
-\boldsymbol{ \phi}(\mathbf{
-x})\right)}\frac{\text{d}g(f_i)}{\text{d}f_i}
+\frac{1-y_i}{1-h\left(\mathbf{ w}^\top
+\boldsymbol{ \phi}(\mathbf{ x})\right)}\frac{\text{d}h(f_i)}{\text{d}f_i}
 \boldsymbol{ \phi}(\mathbf{ x}_i)
-\]</span> where we used the chain rule to develop the derivative in
-terms of <span
-class="math inline">\(\frac{\text{d}g(f_i)}{\text{d}f_i}\)</span>, which
-is the gradient of the inverse link function (in our case the gradient
-of the sigmoid function).</p>
-<p>So the objective function now depends on the gradient of the inverse
-link function, as well as the likelihood depends on the gradient of the
-inverse link function, as well as the gradient of the log likelihood,
-and naturally the gradient of the argument of the inverse link function
-with respect to the parameters, which is simply <span
-class="math inline">\(\boldsymbol{ \phi}(\mathbf{ x}_i)\)</span>.</p>
-<p>The only missing term is the gradient of the inverse link function.
-For the sigmoid squashing function we have, <span
-class="math display">\[\begin{align*}
-g(f_i) &amp;= \frac{1}{1+\exp(-f_i)}\\
+\]</span> where we used the chain rule to develop the derivative in terms of <span class="math inline">\(\frac{\text{d}h(f_i)}{\text{d}f_i}\)</span>, which is the gradient of the inverse link function (in our case the gradient of the sigmoid function).</p>
+<p>So the objective function now depends on the gradient of the inverse link function, as well as the likelihood depends on the gradient of the inverse link function, as well as the gradient of the log likelihood, and naturally the gradient of the argument of the inverse link function with respect to the parameters, which is simply <span class="math inline">\(\boldsymbol{ \phi}(\mathbf{ x}_i)\)</span>.</p>
+The only missing term is the gradient of the inverse link function. For the sigmoid squashing function we have,
+<span class="math display">\[\begin{aligned}
+h(f_i) &amp;= \frac{1}{1+\exp(-f_i)}\\
 &amp;=(1+\exp(-f_i))^{-1}
-\end{align*}\]</span> and the gradient can be computed as <span
-class="math display">\[\begin{align*}
-\frac{\text{d}g(f_i)}{\text{d} f_i} &amp; =
+\end{align*}$$
+and the gradient can be computed as
+$$\begin{align*}
+\frac{\text{d}h(f_i)}{\text{d} f_i} &amp; =
 \exp(-f_i)(1+\exp(-f_i))^{-2}\\
 &amp; = \frac{1}{1+\exp(-f_i)}
 \frac{\exp(-f_i)}{1+\exp(-f_i)} \\
-&amp; = g(f_i) (1-g(f_i))
-\end{align*}\]</span> so the full gradient can be written down as <span
-class="math display">\[
+&amp; = h(f_i) (1-g(f_i))
+\end{aligned}\]</span>
+<p>so the full gradient can be written down as <span class="math display">\[
 \frac{\text{d}E(\mathbf{ w})}{\text{d}\mathbf{ w}} = -\sum_{i=1}^n
-y_i\left(1-g\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{
-x})\right)\right)
+y_i\left(1-h\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x})\right)\right)
 \boldsymbol{ \phi}(\mathbf{ x}_i) +  \sum_{i=1}^n
-(1-y_i)\left(g\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{
-x})\right)\right)
+(1-y_i)\left(h\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x})\right)\right)
 \boldsymbol{ \phi}(\mathbf{ x}_i).
 \]</span></p>
-<div class="sourceCode" id="cb20"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb21"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient(g, Phi, y):</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Generates the gradient of the parameter vector.&quot;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    labs <span class="op">=</span> np.asarray(y, dtype<span class="op">=</span><span class="bu">float</span>).flatten()</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    posind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">1</span>)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    dw <span class="op">=</span> <span class="op">-</span>(Phi[posind]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>g[posind])).<span class="bu">sum</span>(<span class="dv">0</span>)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    negind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">0</span> )</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    dw <span class="op">+=</span> (Phi[negind]<span class="op">*</span>g[negind]).<span class="bu">sum</span>(<span class="dv">0</span>)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dw[:, <span class="va">None</span>]</span></code></pre></div>
-<h2 id="optimization-of-the-function">Optimization of the Function</h2>
-<p>Reorganizing the gradient to find a stationary point of the function
-with respect to the parameters <span class="math inline">\(\mathbf{
-w}\)</span> turns out to be impossible. Optimization has to proceed by
-<em>numerical methods</em>. Options include the multidimensional variant
-of <a href="http://en.wikipedia.org/wiki/Newton%27s_method">Newton’s
-method</a> or <a
-href="http://en.wikipedia.org/wiki/Gradient_method">gradient based
-optimization methods</a> like we used for optimizing matrix
-factorization for the movie recommender system. We recall from matrix
-factorization that, for large data, <em>stochastic gradient descent</em>
-or the Robbins Munro <span class="citation"
-data-cites="Robbins:stoch51">(Robbins and Monro, 1951)</span>
-optimization procedure worked best for function minimization.</p>
-<p>Logistic regression is a widely used technique in many real world
-application domains. Within social media, the first wave of machine
-learning solutions were targeted at challenges such as ad matching or
-news-post ranking. In these domains the users are characterised by their
-previous behaviour (such as which posts they have liked) and other
-contextual information (such as which friends they have). The logistic
-regression approach is then used to predict which ads should be shown.
-For example Facebook’s ad matching system faces the complex challenge of
-connecting millions of advertisers with billions of users. The scale of
-this matching problem is immense:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient(h, Phi, y):</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Generates the gradient of the parameter vector.&quot;</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    labs <span class="op">=</span> np.asarray(y, dtype<span class="op">=</span><span class="bu">float</span>).flatten()</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    posind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">1</span>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    dw <span class="op">=</span> <span class="op">-</span>(Phi[posind]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>h[posind])).<span class="bu">sum</span>(<span class="dv">0</span>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    negind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">0</span> )</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    dw <span class="op">+=</span> (Phi[negind]<span class="op">*</span>h[negind]).<span class="bu">sum</span>(<span class="dv">0</span>)</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dw[:, <span class="va">None</span>]</span></code></pre></div>
+<h2 id="optimisation-of-the-function">Optimisation of the Function</h2>
+<p>Reorganising the gradient to find a stationary point of the function with respect to the parameters <span class="math inline">\(\mathbf{ w}\)</span> turns out to be impossible. Optimisation has to proceed by <em>numerical methods</em>. Options include the multidimensional variant of <a href="http://en.wikipedia.org/wiki/Newton%27s_method">Newton’s method</a> or <a href="http://en.wikipedia.org/wiki/Gradient_method">gradient based optimisation methods</a> like we used for optimising matrix factorisation for the movie recommender system. We recall from matrix factorisation that, for large data, <em>stochastic gradient descent</em> or the Robbins Munro <span class="citation" data-cites="Robbins:stoch51">(Robbins and Monro, 1951)</span> optimisation procedure worked best for function minimisation.</p>
+<p>Multiplying everything out leads to <span class="math display">\[
+\begin{aligned}
+\frac{\text{d}E(\mathbf{ w})}{\text{d}\mathbf{ w}} = &amp; -\sum_{i=1}^n
+y_i- h\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x})\boldsymbol{ \phi}(\mathbf{ x}_i).
+\]</span></p>
+<h2 id="ad-matching-for-facebook">Ad Matching for Facebook</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression-deployed.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression-deployed.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>Logistic regression is a widely used technique in many real world application domains. Within social media, the first wave of machine learning solutions were targeted at challenges such as ad matching or news-post ranking. In these domains the users are characterised by their previous behaviour (such as which posts they have liked) and other contextual information (such as which friends they have). The logistic regression approach is then used to predict which ads should be shown. For example Facebook’s ad matching system faces the complex challenge of connecting millions of advertisers with billions of users. The scale of this matching problem is immense:</p>
 <ul>
-<li>Facebook has millions of potential advertisers, each with different
-target audiences and budgets</li>
-<li>There are billions of users, each with unique interests and
-behaviors</li>
+<li>Facebook has millions of potential advertisers, each with different target audiences and budgets</li>
+<li>There are billions of users, each with unique interests and behaviors</li>
 <li>Decisions about which ads to show must be made in real-time</li>
-<li>The system needs to balance between user experience and advertiser
-ROI</li>
+<li>The system needs to balance between user experience and advertiser ROI</li>
 </ul>
-<p>Facebook’s solution employed a system that combines logistic
-regression with decision trees. The system considers various features
-including:</p>
+<p>Facebook’s solution employed a system that combines logistic regression with decision trees. The system considers various features including:</p>
 <ul>
 <li>User demographics and behaviour</li>
 <li>Historical ad performance</li>
 <li>Advertiser parameters and budgets</li>
 <li>Contextual information</li>
 </ul>
-<p>The hybrid approach allows Facebook to make rapid predictions about
-ad performance while handling the massive scale of their platform. The
-details of this system are described in a <a
-href="http://www.herbrich.me/papers/adclicksfacebook.pdf">technical
-paper by Herbrich et al.</a>, which describes Facebook’s click
-prediction system for online advertising, which combines decision trees
-with logistic regression to predict ad clicks. At the time Facebook had
-over 750 million daily active users and 1 million advertisers at the
-time. The authors found that a hybrid model outperformed either decision
-trees or logistic regression alone.</p>
-<p>Importantly, from our perspective, the researchers found that
-<em>feature selection</em> was the most critical factor - particularly
-choosing the features that capture historical information about users
-and ads. Given the ‘right’ features and model architecture, adapting the
-system to accommodate other aspects such as data freshness and learning
-rate tuning provided smaller incremental gains. To handle the scale of
-the task the system used a cascade of classifies to handle thecandidate
-ads per request efficiently. The hybrid model served as the final stage
-classifier. The paper also discusses practical considerations around
-implementing online learning and managing computational resources at
-scale.</p>
+<p>The hybrid approach allows Facebook to make rapid predictions about ad performance while handling the massive scale of their platform. The details of this system are described in a <a href="http://www.herbrich.me/papers/adclicksfacebook.pdf">technical paper by Herbrich et al.</a>, which describes Facebook’s click prediction system for online advertising, which combines decision trees with logistic regression to predict ad clicks. At the time Facebook had over 750 million daily active users and 1 million advertisers at the time. The authors found that a hybrid model outperformed either decision trees or logistic regression alone.</p>
+<p>Importantly, from our perspective, the researchers found that <em>feature selection</em> was the most critical factor - particularly choosing the features that capture historical information about users and ads. Given the ‘right’ features and model architecture, adapting the system to accommodate other aspects such as data freshness and learning rate tuning provided smaller incremental gains. To handle the scale of the task the system used a cascade of classifies to handle thecandidate ads per request efficiently. The hybrid model served as the final stage classifier. The paper also discusses practical considerations around implementing online learning and managing computational resources at scale.</p>
 <h2 id="olivetti-glasses-data">Olivetti Glasses Data</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/olivetti-glasses-logistic.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/olivetti-glasses-logistic.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/olivetti-glasses-logistic.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/olivetti-glasses-logistic.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>Let’s classify images with logistic regression. We’ll look at a data
-set of individuals with glasses. We can load in the data from
-<code>pods</code> as</p>
-<p>Correspond to whether the subject of the image is wearing glasses.
-Set up the ipython environment and download the data:</p>
-<div class="sourceCode" id="cb22"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> io</span></code></pre></div>
-<p>First let’s retrieve some data. We will use the ORL faces data set,
-our objective will be to classify whether or not the subject in an image
-is wearing glasess.</p>
-<p>Here’s a simple way to visualise the data. Each pixel in the image
-will become an input to the GP.</p>
-<div class="sourceCode" id="cb23"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
-<div class="sourceCode" id="cb24"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.olivetti_glasses()</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>]</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>Xtest <span class="op">=</span> data[<span class="st">&#39;Xtest&#39;</span>]</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>ytest <span class="op">=</span> data[<span class="st">&#39;Ytest&#39;</span>]</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;info&#39;</span>], data[<span class="st">&#39;details&#39;</span>], data[<span class="st">&#39;citation&#39;</span>])</span></code></pre></div>
+<p>Let’s classify images with logistic regression. We’ll look at a data set of individuals with glasses. We can load in the data from <code>pods</code> as</p>
+<p>Correspond to whether the subject of the image is wearing glasses. Set up the ipython environment and download the data:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> io</span></code></pre></div>
+<p>First let’s retrieve some data. We will use the ORL faces data set, our objective will be to classify whether or not the subject in an image is wearing glasess.</p>
+<p>Here’s a simple way to visualise the data. Each pixel in the image will become an input to the GP.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.olivetti_glasses()</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>]</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>Xtest <span class="op">=</span> data[<span class="st">&#39;Xtest&#39;</span>]</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>ytest <span class="op">=</span> data[<span class="st">&#39;Ytest&#39;</span>]</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;info&#39;</span>], data[<span class="st">&#39;details&#39;</span>], data[<span class="st">&#39;citation&#39;</span>])</span></code></pre></div>
 <div class="figure">
 <div id="olivetti-glasses-image-figure" class="figure-frame">
 <div class="centered" style="">
-<img class="" src="'https://mlatcl.github.io/advds/./slides/diagrams//datasets/olivetti-glasses-image.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="'https://mlatcl.github.io/advds/diagrams/datasets/olivetti-glasses-image.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="olivetti-glasses-image-magnify" class="magnify"
-onclick="magnifyFigure(&#39;olivetti-glasses-image&#39;)">
+<div id="olivetti-glasses-image-magnify" class="magnify" onclick="magnifyFigure(&#39;olivetti-glasses-image&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="olivetti-glasses-image-caption" class="caption-frame">
@@ -764,111 +454,55 @@ onclick="magnifyFigure(&#39;olivetti-glasses-image&#39;)">
 </div>
 <h2 id="batch-gradient-descent">Batch Gradient Descent</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression-gradient-descent.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression-gradient-descent.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression-gradient-descent.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression-gradient-descent.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>We will need to define some initial random values for our vector and
-then minimize the objective by descending the gradient.</p>
-<div class="sourceCode" id="cb25"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Separate train and test</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>indices <span class="op">=</span> np.random.permutation(X.shape[<span class="dv">0</span>])</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>num_train <span class="op">=</span> np.ceil(X.shape[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span>)r</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>train_indices <span class="op">=</span> indices[:num_train]</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>test_indices <span class="op">=</span> indices[num_train:]</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> X.iloc[train_indices]</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> y.iloc[train_indices]<span class="op">==</span><span class="va">True</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> X.iloc[test_indices]</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> y.iloc[test_indices]<span class="op">==</span><span class="va">True</span></span></code></pre></div>
-<div class="sourceCode" id="cb26"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb27"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gradient descent algorithm</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.random.normal(size<span class="op">=</span>(X.shape[<span class="dv">1</span>]<span class="op">+</span><span class="dv">1</span>, <span class="dv">1</span>), scale <span class="op">=</span> <span class="fl">0.001</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>eta <span class="op">=</span> <span class="fl">1e-9</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>iters <span class="op">=</span> <span class="dv">10000</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(iters):</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    g, Phi <span class="op">=</span> predict(w, X_train, linear)</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    w <span class="op">-=</span> eta<span class="op">*</span>gradient(g, Phi, y_train) <span class="op">+</span> <span class="fl">0.001</span><span class="op">*</span>w</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> i <span class="op">%</span> <span class="dv">100</span>:</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;Iter&quot;</span>, i, <span class="st">&quot;Objective&quot;</span>, objective(g, y_train))</span></code></pre></div>
-<p>Let’s look at the weights and how they relate to the inputs.</p>
-<div class="sourceCode" id="cb28"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
-<div class="sourceCode" id="cb29"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(w)</span></code></pre></div>
-<p>What does the magnitude of the weight vectors tell you about the
-different parameters and their influence on outcome? Are the weights of
-roughly the same size, if not, how might you fix this?</p>
-<div class="sourceCode" id="cb30"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>g_test, Phi_test <span class="op">=</span> predict(w, X_test, linear)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">sum</span>(g_test[y_test]<span class="op">&gt;</span><span class="fl">0.5</span>)</span></code></pre></div>
-<h2 id="stochastic-gradient-descent">Stochastic Gradient Descent</h2>
-<h3 id="exercise-1">Exercise 1</h3>
-<p>Now construct a stochastic gradient descent algorithm and run it on
-the data. Is it faster or slower than batch gradient descent? What can
-you do to improve convergence speed?</p>
-<h2 id="using-statsmodels">Using Statsmodels</h2>
-<p>The statsmodels package provides a more convenient way to fit
-logistic regression models with additional statistical analysis
-capabilities.</p>
-<div class="sourceCode" id="cb31"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span></code></pre></div>
-<div class="sourceCode" id="cb32"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add constant term to X_train and X_test for intercept</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>X_train_sm <span class="op">=</span> sm.add_constant(X_train)</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>X_test_sm <span class="op">=</span> sm.add_constant(X_test)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit logistic regression</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.Logit(y_train, X_train_sm)</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> model.fit()</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Print summary of model results</span></span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.summary())</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Make predictions on test set</span></span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> results.predict(X_test_sm)</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Test set accuracy:&quot;</span>, np.mean((y_pred <span class="op">&gt;</span> <span class="fl">0.5</span>) <span class="op">==</span> y_test))</span></code></pre></div>
-<p>The statsmodels implementation provides additional statistical
-metrics like p-values, confidence intervals, and various diagnostic
-tests that can help evaluate the model’s fit and assumptions.</p>
+<p>We will need to define some initial random values for our vector and then minimize the objective by descending the gradient.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Separate train and test</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>indices <span class="op">=</span> np.random.permutation(X.shape[<span class="dv">0</span>])</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>num_train <span class="op">=</span> <span class="bu">int</span>(np.ceil(X.shape[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span>))</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>train_indices <span class="op">=</span> indices[:num_train]</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>test_indices <span class="op">=</span> indices[num_train:]</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> X.iloc[train_indices]</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> y.iloc[train_indices]<span class="op">==</span><span class="va">True</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> X.iloc[test_indices]</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> y.iloc[test_indices]<span class="op">==</span><span class="va">True</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gradient descent algorithm</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>w_vals <span class="op">=</span> np.random.normal(size<span class="op">=</span>(X.shape[<span class="dv">1</span>]<span class="op">+</span><span class="dv">1</span>, <span class="dv">1</span>), scale <span class="op">=</span> <span class="fl">0.001</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert weights to a pandas DataFrame with column names</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> typeof(X_train) <span class="kw">is</span> pd.DataFrame:</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>w_vals, </span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>                     index<span class="op">=</span>[<span class="st">&#39;Eins&#39;</span>] <span class="op">+</span> <span class="bu">list</span>(X_train.columns), </span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>                     columns<span class="op">=</span>[<span class="st">&#39;weight&#39;</span>])</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>eta <span class="op">=</span> <span class="fl">1e-9</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>iters <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(iters):</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>    g, Phi <span class="op">=</span> predict(w, X_train, mlai.linear)</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>    w <span class="op">-=</span> eta<span class="op">*</span>gradient(g, Phi, y_train) <span class="op">+</span> <span class="fl">0.001</span><span class="op">*</span>w</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> i <span class="op">%</span> <span class="dv">100</span>:</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;Iter&quot;</span>, i, <span class="st">&quot;Objective&quot;</span>, objective(g, y_train))</span></code></pre></div>
 <h2 id="going-further-optimization">Going Further: Optimization</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression-going-further.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression-going-further.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression-going-further.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/logistic-regression-going-further.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>Other optimization techniques for generalized linear models include
-<a href="http://en.wikipedia.org/wiki/Newton%27s_method">Newton’s
-method</a>, it requires you to compute the Hessian, or second derivative
-of the objective function.</p>
-<p>Methods that are based on gradients only include <a
-href="http://en.wikipedia.org/wiki/Limited-memory_BFGS">L-BFGS</a> and
-<a
-href="http://en.wikipedia.org/wiki/Conjugate_gradient_method">conjugate
-gradients</a>. Can you find these in python? Are they suitable for very
-large data sets? }</p>
+<p>Other optimization techniques for generalized linear models include <a href="http://en.wikipedia.org/wiki/Newton%27s_method">Newton’s method</a>, it requires you to compute the Hessian, or second derivative of the objective function.</p>
+<p>Methods that are based on gradients only include <a href="http://en.wikipedia.org/wiki/Limited-memory_BFGS">L-BFGS</a> and <a href="http://en.wikipedia.org/wiki/Conjugate_gradient_method">conjugate gradients</a>. Can you find these in python? Are they suitable for very large data sets? }</p>
 <h2 id="other-glms">Other GLMs</h2>
-<p>We’ve introduced the formalism for generalized linear models. Have a
-think about how you might model count data using the <a
-href="http://en.wikipedia.org/wiki/Poisson_distribution">Poisson
-distribution</a> and a log link function for the rate, <span
-class="math inline">\(\lambda(\mathbf{ x})\)</span>. If you want a data
-set you can try the <code>pods.datasets.google_trends()</code> for some
-count data.</p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_statistics/includes/other-glms-statsmodels.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_statistics/includes/other-glms-statsmodels.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>We’ve introduced the formalism for generalised linear models. Have a think about how you might model count data using the <a href="http://en.wikipedia.org/wiki/Poisson_distribution">Poisson distribution</a> and a log link function for the rate, <span class="math inline">\(\lambda(\mathbf{ x})\)</span>. If you want a data set you can try the <code>pods.datasets.google_trends()</code> for some count data.</p>
 <h2 id="poisson-distribution">Poisson Distribution</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/poisson-distribution.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/poisson-distribution.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/poisson-distribution.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/poisson-distribution.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <div class="figure">
 <div id="the-poisson-distribution-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/poisson.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/ml/poisson.svg" width="80%" style=" ">
 </object>
 </div>
-<div id="the-poisson-distribution-magnify" class="magnify"
-onclick="magnifyFigure(&#39;the-poisson-distribution&#39;)">
+<div id="the-poisson-distribution-magnify" class="magnify" onclick="magnifyFigure(&#39;the-poisson-distribution&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="the-poisson-distribution-caption" class="caption-frame">
@@ -877,242 +511,80 @@ onclick="magnifyFigure(&#39;the-poisson-distribution&#39;)">
 </div>
 <h2 id="poisson-regression">Poisson Regression</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/poisson-regression.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/poisson-regression.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/poisson-regression.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/poisson-regression.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>Poisson regression is a type of generalized linear model (GLM) used
-when modeling count data. It assumes the response variable follows a
-Poisson distribution and uses a logarithmic link function to relate the
-mean of the response to the linear predictor.</p>
-<p>In this model, we make the rate parameter λ a function of covariates
-(like space or time). The logarithm of the rate is modeled as a linear
-combination of the input features:</p>
-<p><span class="math display">\[\log \lambda(\mathbf{ x}, t) = \mathbf{
-w}_x^\top \boldsymbol{ \phi}_x(\mathbf{ x}) + \mathbf{ w}_t^\top
-\boldsymbol{ \phi}_t(t)\]</span></p>
-<p>where: - <span class="math inline">\(\mathbf{ w}_x\)</span> and <span
-class="math inline">\(\mathbf{ w}_t\)</span> are parameter vectors -
-<span class="math inline">\(\boldsymbol{ \phi}_x(\mathbf{ x})\)</span>
-and <span class="math inline">\(\boldsymbol{ \phi}_t(t)\)</span> are
-basis functions for space and time respectively</p>
-<p>This formulation is known as a log-linear or log-additive model
-because we’re adding terms in the log space. The logarithm serves as our
-link function, connecting the linear predictor to the response
-variable’s mean.</p>
-<p>An important characteristic of this model that practitioners should
-be aware of is that while we add terms in the log space, the model
-becomes multiplicative when we transform back to the original space.
-This happens because:</p>
+<p>Poisson regression is a type of generalized linear model (GLM) used when modeling count data. It assumes the response variable follows a Poisson distribution and uses a logarithmic link function to relate the mean of the response to the linear predictor.</p>
+<p>In this model, we make the rate parameter λ a function of covariates (like space or time). The logarithm of the rate is modeled as a linear combination of the input features:</p>
+<p><span class="math display">\[\log \lambda(\mathbf{ x}, t) = \mathbf{ w}_x^\top \boldsymbol{ \phi}_x(\mathbf{ x}) + \mathbf{ w}_t^\top \boldsymbol{ \phi}_t(t)\]</span></p>
+<p>where: - <span class="math inline">\(\mathbf{ w}_x\)</span> and <span class="math inline">\(\mathbf{ w}_t\)</span> are parameter vectors - <span class="math inline">\(\boldsymbol{ \phi}_x(\mathbf{ x})\)</span> and <span class="math inline">\(\boldsymbol{ \phi}_t(t)\)</span> are basis functions for space and time respectively</p>
+<p>This formulation is known as a log-linear or log-additive model because we’re adding terms in the log space. The logarithm serves as our link function, connecting the linear predictor to the response variable’s mean.</p>
+<p>An important characteristic of this model that practitioners should be aware of is that while we add terms in the log space, the model becomes multiplicative when we transform back to the original space. This happens because:</p>
 <ol type="1">
-<li><p>We start with the log-additive form: <span
-class="math inline">\(\log \lambda(\mathbf{ x}, t) = f_x(\mathbf{ x}) +
-f_t(t)\)</span></p></li>
-<li><p>When we exponentiate both sides to get back to λ, the addition in
-log space becomes multiplication: <span
-class="math display">\[\lambda(\mathbf{ x}, t) = \exp(f_x(\mathbf{ x}) +
-f_t(t)) = \exp(f_x(\mathbf{ x}))\exp(f_t(t))\]</span></p></li>
+<li><p>We start with the log-additive form: <span class="math inline">\(\log \lambda(\mathbf{ x}, t) = f_x(\mathbf{ x}) + f_t(t)\)</span></p></li>
+<li><p>When we exponentiate both sides to get back to λ, the addition in log space becomes multiplication: <span class="math display">\[\lambda(\mathbf{ x}, t) = \exp(f_x(\mathbf{ x}) + f_t(t)) = \exp(f_x(\mathbf{ x}))\exp(f_t(t))\]</span></p></li>
 </ol>
-<p>This multiplicative nature has important implications for
-interpretation. For example, if we increase one input variable, it has a
-multiplicative effect on the rate, not an additive one. This can lead to
-rapid growth in the predicted counts as input values increase.</p>
-<div class="sourceCode" id="cb33"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span></code></pre></div>
-<div class="sourceCode" id="cb34"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.google_trends([<span class="st">&#39;xbox one&#39;</span>, <span class="st">&#39;wii u&#39;</span>, <span class="st">&#39;ps4&#39;</span>])</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>]</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.GLM(y, sm.add_constant(x), family<span class="op">=</span>sm.families.Poisson())</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> model.fit()</span></code></pre></div>
-<p>The <code>statsmodels</code> library in Python provides a convenient
-way to fit Poisson regression models. The <code>sm.GLM</code> function
-is used to fit generalized linear models, and we specify the Poisson
-family to indicate that we’re modeling count data. The
-<code>sm.add_constant(x)</code> function adds a column of ones to the
-design matrix to account for the intercept term.</p>
-<div class="figure">
-<div id="google-trends-poisson-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/google-trends-poisson.svg.svg" width="80%" style=" ">
-</object>
-</div>
-<div id="google-trends-poisson-magnify" class="magnify"
-onclick="magnifyFigure(&#39;google-trends-poisson&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="google-trends-poisson-caption" class="caption-frame">
-<p>Figure: Google Trends Search Queries for Xbox One, Wii U, and
-PS4.</p>
-</div>
-</div>
-<div class="figure">
-<div id="google-trends-poisson-predictions-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/google-trends-poisson-predictions.svg.svg" width="80%" style=" ">
-</object>
-</div>
-<div id="google-trends-poisson-predictions-magnify" class="magnify"
-onclick="magnifyFigure(&#39;google-trends-poisson-predictions&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="google-trends-poisson-predictions-caption"
-class="caption-frame">
-<p>Figure: Google Trends Search Queries for Xbox One, Wii U, and
-PS4.</p>
-</div>
-</div>
-<p>Let’s look at another example using synthetic data to demonstrate
-Poisson regression without relying on external APIs.</p>
-<div class="sourceCode" id="cb35"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span></code></pre></div>
-<div class="sourceCode" id="cb36"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate some example count data</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">10</span>, n_samples)</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">5</span>, n_samples)</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.column_stack((x1, x2))</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co"># True relationship: y ~ Poisson(exp(1 + 0.3*x1 - 0.2*x2))</span></span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>lambda_true <span class="op">=</span> np.exp(<span class="dv">1</span> <span class="op">+</span> <span class="fl">0.3</span><span class="op">*</span>x1 <span class="op">-</span> <span class="fl">0.2</span><span class="op">*</span>x2)</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.random.poisson(lambda_true)</span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit Poisson regression</span></span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>model_synthetic <span class="op">=</span> sm.GLM(y, sm.add_constant(X), family<span class="op">=</span>sm.families.Poisson())</span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>result_synthetic <span class="op">=</span> model_synthetic.fit()</span></code></pre></div>
-<p>In this synthetic example, we generate count data that follows a
-Poisson distribution where the rate parameter λ depends on two predictor
-variables. This demonstrates how Poisson regression can model count data
-with multiple predictors.</p>
+<p>This multiplicative nature has important implications for interpretation. For example, if we increase one input variable, it has a multiplicative effect on the rate, not an additive one. This can lead to rapid growth in the predicted counts as input values increase.</p>
+<p>Let’s look at another example using synthetic data to demonstrate Poisson regression without relying on external APIs.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate some example count data</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">10</span>, n_samples)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">5</span>, n_samples)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.column_stack((x1, x2))</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="co"># True relationship: y ~ Poisson(exp(1 + 0.3*x1 - 0.2*x2))</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>lambda_true <span class="op">=</span> np.exp(<span class="dv">1</span> <span class="op">+</span> <span class="fl">0.3</span><span class="op">*</span>x1 <span class="op">-</span> <span class="fl">0.2</span><span class="op">*</span>x2)</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.random.poisson(lambda_true)</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit Poisson regression</span></span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>model_synthetic <span class="op">=</span> sm.GLM(y, sm.add_constant(X), family<span class="op">=</span>sm.families.Poisson())</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>result_synthetic <span class="op">=</span> model_synthetic.fit()</span></code></pre></div>
+<p>The <code>statsmodels</code> library in Python provides a convenient way to fit Poisson regression models. The <code>sm.GLM</code> function is used to fit generalized linear models, and we specify the Poisson family to indicate that we’re modeling count data. The <code>sm.add_constant(x)</code> function adds a column of ones to the design matrix to account for the intercept term.</p>
+<p>In this synthetic example, we generate count data that follows a Poisson distribution where the rate parameter <span class="math inline">\(\lambda\)</span> depends on two predictor variables. This demonstrates how Poisson regression can model count data with multiple predictors.</p>
 <div class="figure">
 <div id="poisson-regression-diagnostics-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/poisson-regression-diagnostics.svg.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/ml/poisson-regression-diagnostics.svg" width="80%" style=" ">
 </object>
 </div>
-<div id="poisson-regression-diagnostics-magnify" class="magnify"
-onclick="magnifyFigure(&#39;poisson-regression-diagnostics&#39;)">
+<div id="poisson-regression-diagnostics-magnify" class="magnify" onclick="magnifyFigure(&#39;poisson-regression-diagnostics&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="poisson-regression-diagnostics-caption" class="caption-frame">
-<p>Figure: Diagnostic plots for the Poisson regression model showing
-actual vs predicted counts and residual analysis.</p>
+<p>Figure: Diagnostic plots for the Poisson regression model showing actual vs predicted counts and residual analysis.</p>
 </div>
 </div>
 <h2 id="practical-tips">Practical Tips</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/glm-practical-tips.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/glm-practical-tips.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_statistics/includes/glm-practical-tips.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_statistics/includes/glm-practical-tips.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>When working with generalised linear models in practice, there are
-several key considerations that can significantly impact model
-performance:</p>
-<p>Feature engineering is often the most critical factor in model
-success:</p>
-<ul>
-<li>Build modular data processing pipelines that allow you to easily
-test different feature sets. For example, if modeling house prices, you
-might want to test combinations of raw features (square footage,
-bedrooms), derived features (price per square foot), and interaction
-terms (bedrooms × bathrooms).</li>
-<li>Consider non-linear transformations of continuous variables. For
-instance, taking the log of price data often helps normalize
-distributions.</li>
-<li>Be thoughtful about encoding categorical variables - one-hot
-encoding isn’t always optimal. For high-cardinality categories, consider
-target encoding or feature hashing.</li>
-<li>Scale features appropriately - standardization or min-max scaling
-depending on your model assumptions.</li>
-<li>Document your feature creation process thoroughly, including the
-rationale for each transformation.</li>
-</ul>
-<p>Model validation requires careful consideration:</p>
-<ul>
-<li>Cross-validation should match your real-world use case. For time
-series data, use time-based splits rather than random splits.</li>
-<li>Bootstrap sampling helps understand parameter uncertainty. For
-example, bootstrapping can show if a coefficient’s sign might flip under
-different samples.</li>
-<li>Hold-out test sets should be truly independent. In a customer churn
-model, this might mean testing on future customers rather than a random
-subset.</li>
-<li>Watch for data leakage, especially with time-dependent features. If
-predicting customer churn, using future purchase data would create
-leakage.</li>
-</ul>
-<p>Diagnostic checks are essential for model reliability:</p>
-<ul>
-<li>Create residual plots against fitted values and each predictor. Look
-for systematic patterns - a U-shaped residual plot suggests missing
-quadratic terms.</li>
-<li>For logistic regression, plot predicted probabilities against actual
-outcomes in bins to check calibration.</li>
-<li>Calculate influence measures like Cook’s distance to identify
-outliers. In a house price model, a mansion might have outsized
-influence on coefficients.</li>
-<li>Check Variance Inflation Factors (VIF) for multicollinearity. High
-VIF (&gt;5-10) suggests problematic correlation between predictors.</li>
-</ul>
-<p>Visualization remains crucial throughout:</p>
-<ul>
-<li>Before modeling, create scatter plots, box plots, and histograms to
-understand your data distribution and relationships.</li>
-<li>Use pairs plots to identify correlations and potential interactions
-between features.</li>
-<li>Create residual diagnostic plots including Q-Q plots for normality
-checking.</li>
-<li>When communicating results, focus on interpretable visualizations.
-For instance, partial dependence plots can show how predictions change
-with a single feature.</li>
-</ul>
-<p>Additional practical considerations:</p>
-<ul>
-<li>Start simple and add complexity incrementally. A basic linear model
-often provides a good baseline.</li>
-<li>Keep track of model performance metrics across iterations to ensure
-changes actually improve results.</li>
-<li>Consider the computational cost of feature engineering - some
-transformations might not be feasible in production.</li>
-<li>Think about how features will be available in production. If a
-feature requires complex processing or external data, it might not be
-practical.</li>
-<li>For categorical variables with many levels, consider grouping rare
-categories.</li>
-<li>When dealing with missing data, document your imputation strategy
-and test its impact on model performance.</li>
-</ul>
+<p>{In practice feature engineering is critical to the success of a GLM. Build modular data processing pipelines that allow you to easily test different feature sets. For example, if modeling house prices, you might want to test combinations of raw features (square footage, bedrooms), derived features (price per square foot), and interaction terms (bedrooms <span class="math inline">\(\times\)</span> bathrooms). Consider non-linear transformations of continuous variables. For instance, taking the log of price data often helps normalise distributions. Be thoughtful about encoding categorical variables. One-hot encoding isn’t always optimal, for high-cardinality categories, consider target encoding or feature hashing. Scale features appropriately: standardization or min-max scaling depending on your model assumptions. Document your feature creation process thoroughly, including the rationale for each transformation. Jupyter notebooks can be a good place to do this.</p>
+<p>Model validation requires careful consideration. Cross-validation should match your real-world use case. For time series data, use time-based splits rather than random splits. Bootstrap sampling can help with understanding parameter uncertainty. For example, bootstrapping can show if a coefficient’s sign might flip under different samples. Hold-out test sets should be truly independent. In a customer churn model, this might mean testing on future customers rather than a random subset. Watch for data leakage, especially with time-dependent features. E.g. if predicting customer churn, using future purchase data would create leakage.</p>
+<p>Diagnostic checks are essential for building confidence about the model reliability. Create residual plots against fitted values and each predictor. Look for systematic patterns, a U-shaped residual plot suggests missing quadratic terms. For logistic regression, plot predicted probabilities against actual outcomes in bins to check calibration. Calculate influence measures like Cook’s distance to identify outliers. In a house price model, a mansion might have outsized influence on coefficients. Check <a href="https://en.wikipedia.org/wiki/Variance_inflation_factor">variance inflation factors</a> (VIF) for multicollinearity. High VIF (&gt;5-10) suggests problematic correlation between predictors.</p>
+<p>Visualisation remains crucial throughout. Before modeling, create scatter plots, box plots, and histograms to understand your data distribution and relationships. Use pairs plots to identify correlations and potential interactions between features. Create residual diagnostic plots including Q-Q plots for normality checking. When communicating results, focus on interpretable visualizations. For instance, partial dependence plots can show how predictions change with a single feature.</p>
+<p>Other practical considerations include starting simple and add complexity incrementally. A basic linear model often provides a good baseline. Keep track of model performance metrics across iterations to ensure changes actually improve results. Consider the computational cost of feature engineering: some transformations might not be feasible in production. Think about how features will be available in production. If a feature requires complex processing or external data, it might not be practical. For categorical variables with many levels, consider grouping rare categories. When dealing with missing data, document your imputation strategy and test its impact on model performance. When using the Access, Assess, Address approach remember that documentation of the missing values is part of Assess. Imputation can only occur in Address.</p>
 <h2 id="further-reading">Further Reading</h2>
 <ul>
-<li>Section 5.2.2 up to pg 182 of <span class="citation"
-data-cites="Rogers:book11">Rogers and Girolami (2011)</span></li>
+<li>Section 5.2.2 up to pg 182 of <span class="citation" data-cites="Rogers:book11">Rogers and Girolami (2011)</span></li>
 </ul>
 <h2 id="thanks">Thanks!</h2>
-<p>For more information on these subjects and more you might want to
-check the following resources.</p>
+<p>For more information on these subjects and more you might want to check the following resources.</p>
 <ul>
-<li>book: <a
-href="https://www.penguin.co.uk/books/455130/the-atomic-human-by-lawrence-neil-d/9780241625248">The
-Atomic Human</a></li>
+<li>company: <a href="https://trent.ai">Trent AI</a></li>
+<li>book: <a href="https://www.penguin.co.uk/books/455130/the-atomic-human-by-lawrence-neil-d/9780241625248">The Atomic Human</a></li>
 <li>twitter: <a href="https://twitter.com/lawrennd">@lawrennd</a></li>
-<li>podcast: <a href="http://thetalkingmachines.com">The Talking
-Machines</a></li>
-<li>newspaper: <a
-href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile
-Page</a></li>
-<li>blog: <a
-href="http://inverseprobability.com/blog.html">http://inverseprobability.com</a></li>
+<li>podcast: <a href="http://thetalkingmachines.com">The Talking Machines</a></li>
+<li>newspaper: <a href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile Page</a></li>
+<li>blog: <a href="http://inverseprobability.com/blog.html">http://inverseprobability.com</a></li>
 </ul>
 <h1 class="unnumbered" id="references">References</h1>
-<div id="refs" class="references csl-bib-body hanging-indent"
-role="list">
-<div id="ref-Robbins:stoch51" class="csl-entry" role="listitem">
-Robbins, H., Monro, S., 1951. A stochastic approximation method. Annals
-of Mathematical Statistics 22, 400–407.
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Robbins:stoch51" class="csl-entry" role="doc-biblioentry">
+Robbins, H., Monro, S., 1951. A stochastic approximation method. Annals of Mathematical Statistics 22, 400–407.
 </div>
-<div id="ref-Rogers:book11" class="csl-entry" role="listitem">
-Rogers, S., Girolami, M., 2011. A first course in machine learning. CRC
-Press.
+<div id="ref-Rogers:book11" class="csl-entry" role="doc-biblioentry">
+Rogers, S., Girolami, M., 2011. A first course in machine learning. CRC Press.
 </div>
 </div>
 

@@ -42,17 +42,17 @@ When taking a probabilistic approach to supervised learning we're interested in 
 
 As we move to generalized linear models like logistic regression, we'll see how directly modeling the conditional density $p(\dataVector|\inputMatrix)$ can provide more flexibility in our modeling assumptions, while still allowing us to make the specific predictions we need.}
 
-\include{_ml/includes/linear-regression-statsmodels.md}
+\include{_statistics/includes/linear-regression-statsmodels.md}
 \include{_ml/includes/logistic-regression.md}
 
 \include{_ml/includes/logistic-regression-deployed.md}
 
 \notes{\include{_ml/includes/olivetti-glasses-logistic.md}}
 \include{_ml/includes/logistic-regression-going-further.md}
-\include{_ml/includes/other-glms-statsmodels.md}
+\include{_statistics/includes/other-glms-statsmodels.md}
 
 \include{_ml/includes/poisson-regression.md}
-\include{_ml/includes/glm-practical-tips.md}
+\include{_statistics/includes/glm-practical-tips.md}
 
 \reading
 

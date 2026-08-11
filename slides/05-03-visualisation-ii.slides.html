@@ -14,71 +14,17 @@
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
-  </style>
-  <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+      /* scrollable slides: start content at top, left-align text */
+      .reveal section.scrollable {
+          overflow-y: auto !important;
+          height: 100% !important;
+          top: 0 !important;
+          text-align: left;
+      }
+      .reveal section.scrollable > h2:first-child,
+      .reveal section.scrollable > h2.scrollable:first-child {
+          margin-top: 0.2em;
+      }
   </style>
   <link rel="stylesheet" href="https://unpkg.com/reveal.js@3.9.2/css/theme/black.css" id="theme">
   <link rel="stylesheet" href="https://inverseprobability.com/assets/css/talks.css"/>
@@ -93,6 +39,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <!--[if lt IE 9]>
   <script src="https://unpkg.com/reveal.js@3.9.2/lib/js/html5shiv.js"></script>
   <![endif]-->
+   <!-- Mermaid -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_SVG" type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -102,19 +51,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     });
   </script>
   <script src="https://inverseprobability.com/assets/js/figure-animate.js"></script>
+  <script>
+  /* Map range slider values (min..max, often 0-based in LaMD content) to the
+     1-based frame index expected by figure-animate.js showDivs(). */
+  function lamdFrameIndex(group) {
+    var range = document.getElementById("range-" + group);
+    var val = parseInt(range.value, 10);
+    var min = parseInt(range.min, 10);
+    return val - min + 1;
+  }
+  function lamdSetDivs(group) {
+    if (typeof showDivs !== "function") return;
+    slideIndex = lamdFrameIndex(group);
+    showDivs(slideIndex, group);
+  }
+  function lamdPlusDivs(n, group) {
+    if (typeof showDivs !== "function") return;
+    var range = document.getElementById("range-" + group);
+    var min = parseInt(range.min, 10);
+    var max = parseInt(range.max, 10);
+    var val = parseInt(range.value, 10) + n;
+    if (val < min) val = max;
+    if (val > max) val = min;
+    range.value = val;
+    range.setAttribute("aria-valuenow", val);
+    slideIndex = val - min + 1;
+    showDivs(slideIndex, group);
+  }
+  </script>
+   <!-- Initialize Mermaid after Reveal is loaded -->
+<script>
+  Reveal.addEventListener('ready', event => {
+    // Initialize mermaid
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'base',
+      // These are the same theme variables we used above
+      themeVariables: {
+          primaryColor: '#4a90e2',
+          primaryTextColor: '#fff',
+          primaryBorderColor: '#357abd',
+          lineColor: '#67b246',
+          fontSize: '30px',
+          fontFamily: 'arial',
+	  edgeLabelBackground: 'transparent',
+	  tertiaryColor: 'transparent'
+      }
+    });
+  });
+</script>
+   
 </head>
 <body>
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide">
-  <h1 class="title">Visualisation II: Further Dimensionality
-Reduction</h1>
-  <p class="author" style="text-align:center"><a href="http://inverseprobability.com">Neil
-D. Lawrence</a></p>
+  <h1 class="title">Visualisation II: Further Dimensionality Reduction</h1>
+  <p class="author" style="text-align:center"><a href="http://inverseprobability.com">Neil D. Lawrence</a></p>
   <p class="date" style="text-align:center"><time>2024-11-13</time></p>
-  <p class="venue" style="text-align:center">LT2, William Gates
-Building</p>
+  <p class="venue" style="text-align:center">LT2, William Gates Building</p>
 </section>
 
 <section class="slide level2">
@@ -135,9 +131,7 @@ sns.set_palette('colorblind')}-->
 <section id="principal-component-analysis" class="slide level2">
 <h2>Principal Component Analysis</h2>
 <ul>
-<li>PCA (<span class="citation"
-data-cites="Hotelling:analysis33">Hotelling (1933)</span>) is a linear
-embedding</li>
+<li>PCA (<span class="citation" data-cites="Hotelling:analysis33">Hotelling (1933)</span>) is a linear embedding</li>
 <li>Today its presented as:
 <ul>
 <li>Rotate to find ‘directions’ in data with maximal variance</li>
@@ -145,130 +139,110 @@ embedding</li>
 </ul></li>
 </ul>
 <p><span class="math display">\[
-\mathbf{S}=\frac{1}{n}\sum_{i=1}^n\left(\mathbf{ y}_{i, :}-\boldsymbol{
-\mu}\right)\left(\mathbf{ y}_{i, :} - \boldsymbol{ \mu}\right)^\top
+\mathbf{S}=\frac{1}{n}\sum_{i=1}^n\left(\mathbf{ y}_{i, :}-\boldsymbol{ \mu}\right)\left(\mathbf{ y}_{i, :} - \boldsymbol{ \mu}\right)^\top
 \]</span></p>
 </section>
 <section id="principal-component-analysis-1" class="slide level2">
 <h2>Principal Component Analysis</h2>
 <ul>
-<li>Find directions in the data, <span class="math inline">\(\mathbf{
-z}= \mathbf{U}\mathbf{ y}\)</span>, for which variance is
-maximized.</li>
+<li>Find directions in the data, <span class="math inline">\(\mathbf{ z}= \mathbf{U}\mathbf{ y}\)</span>, for which variance is maximized.</li>
 </ul>
 </section>
 <section id="lagrangian" class="slide level2">
 <h2>Lagrangian</h2>
 <ul>
-<li><p>Solution is found via constrained optimisation (which uses <a
-href="https://en.wikipedia.org/wiki/Lagrange_multiplier">Lagrange
-multipliers</a>): <span class="math display">\[
+<li><p>Solution is found via constrained optimisation (which uses <a href="https://en.wikipedia.org/wiki/Lagrange_multiplier">Lagrange multipliers</a>): <span class="math display">\[
 L\left(\mathbf{u}_{1},\lambda_{1}\right)=\mathbf{u}_{1}^{\top}\mathbf{S}\mathbf{u}_{1}+\lambda_{1}\left(1-\mathbf{u}_{1}^{\top}\mathbf{u}_{1}\right)
 \]</span></p></li>
-<li><p>Gradient with respect to <span
-class="math inline">\(\mathbf{u}_{1}\)</span> <span
-class="math display">\[\frac{\text{d}L\left(\mathbf{u}_{1},\lambda_{1}\right)}{\text{d}\mathbf{u}_{1}}=2\mathbf{S}\mathbf{u}_{1}-2\lambda_{1}\mathbf{u}_{1}\]</span>
-rearrange to form <span
-class="math display">\[\mathbf{S}\mathbf{u}_{1}=\lambda_{1}\mathbf{u}_{1}.\]</span>
-Which is known as an <a
-href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors"><em>eigenvalue
-problem</em></a>.</p></li>
-<li><p>Further directions that are <em>orthogonal</em> to the first can
-also be shown to be eigenvectors of the covariance.</p></li>
+<li><p>Gradient with respect to <span class="math inline">\(\mathbf{u}_{1}\)</span> <span class="math display">\[\frac{\text{d}L\left(\mathbf{u}_{1},\lambda_{1}\right)}{\text{d}\mathbf{u}_{1}}=2\mathbf{S}\mathbf{u}_{1}-2\lambda_{1}\mathbf{u}_{1}\]</span></p></li>
+</ul>
+</section>
+<section id="lagrangian-1" class="slide level2">
+<h2>Lagrangian</h2>
+<ul>
+<li>Rearrange to form <span class="math display">\[\mathbf{S}\mathbf{u}_{1}=\lambda_{1}\mathbf{u}_{1}.\]</span> Which is known as an <a href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors"><em>eigenvalue problem</em></a>.</li>
+<li>Further directions that are <em>orthogonal</em> to the first can also be shown to be eigenvectors of the covariance.</li>
 </ul>
 </section>
 <section id="pca-directions" class="slide level2">
 <h2>PCA directions</h2>
+<div id="animation-pca-directions" class="lamd-animation" role="region" aria-label="" data-animation-group="pca-directions">
+<noscript>
+<style>#animation-pca-directions .animation-controls{display:none}#animation-pca-directions .pca-directions~.pca-directions{display:none}</style>
+</noscript>
+<div class="animation-controls">
+<p><small></small> <input id="range-pca-directions" type="range" min="0" max="3" value="0" aria-label="Frame slider for " aria-valuemin="0" aria-valuemax="3" aria-valuenow="0" onchange="typeof lamdSetDivs==='function'&&lamdSetDivs('pca-directions')" oninput="typeof lamdSetDivs==='function'&&lamdSetDivs('pca-directions')"> <button type="button" onclick="typeof lamdPlusDivs==='function'&&lamdPlusDivs(-1,'pca-directions');" aria-label="Previous frame">❮</button> <button type="button" onclick="typeof lamdPlusDivs==='function'&&lamdPlusDivs(1,'pca-directions');" aria-label="Next frame">❯</button></p>
+</div>
 <script>
-showDivs(0, 'pca-directions');
+document.addEventListener('DOMContentLoaded',function(){
+try{
+if(typeof showDivs==='function'){showDivs(1,'pca-directions');}
+else{
+console.warn('[lamd] figure-animate.js not loaded; animation "'+'pca-directions'+'" degraded to static first frame.');
+var c=document.getElementById('animation-pca-directions');
+if(c){var ctrl=c.querySelector('.animation-controls');if(ctrl){ctrl.style.display='none';}}
+var f=document.getElementsByClassName('pca-directions');
+for(var i=1;i<f.length;i++){f[i].style.display='none';}
+if(f.length>0){f[0].style.display='block';}
+}
+}catch(e){console.warn('[lamd] Animation "'+'pca-directions'+'" failed to initialize:',e);}
+});
 </script>
-<p><small></small>
-<input id="range-pca-directions" type="range" min="0" max="3" value="0" onchange="setDivs('pca-directions')" oninput="setDivs('pca-directions')">
-<button onclick="plusDivs(-1, 'pca-directions')">❮</button>
-<button onclick="plusDivs(1, 'pca-directions')">❯</button></p>
-<div class="pca-directions" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/pca-directions-000.svg" width="60%" style=" ">
+<div class="pca-directions" style="text-align:center;" role="img" aria-label="pca-directions" data-animation-frame="pca-directions">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/pca-directions-000.svg" width="60%" style=" ">
 </object>
 </div>
-<div class="pca-directions" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/pca-directions-001.svg" width="60%" style=" ">
+<div class="pca-directions" style="text-align:center;" role="img" aria-label="pca-directions" data-animation-frame="pca-directions">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/pca-directions-001.svg" width="60%" style=" ">
 </object>
 </div>
-<div class="pca-directions" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/pca-directions-002.svg" width="60%" style=" ">
+<div class="pca-directions" style="text-align:center;" role="img" aria-label="pca-directions" data-animation-frame="pca-directions">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/pca-directions-002.svg" width="60%" style=" ">
 </object>
 </div>
-<div class="pca-directions" style="text-align:center;">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/pca-directions-003.svg" width="60%" style=" ">
+<div class="pca-directions" style="text-align:center;" role="img" aria-label="pca-directions" data-animation-frame="pca-directions">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/pca-directions-003.svg" width="60%" style=" ">
 </object>
 </div>
-<p><em>Maximum variance directions are eigenvectors of the covariance
-matrix</em></p>
+</div>
+<p><em>Maximum variance directions are eigenvectors of the covariance matrix</em></p>
 </section>
 <section id="probabilistic-pca" class="slide level2">
 <h2>Probabilistic PCA</h2>
 <ul>
-<li><p>Represent data, <span class="math inline">\(\mathbf{Y}\)</span>,
-with a lower dimensional set of latent variables <span
-class="math inline">\(\mathbf{Z}\)</span>.</p></li>
-<li><p>Assume a linear relationship of the form <span
-class="math display">\[
-\mathbf{ y}_{i,:}=\mathbf{W}\mathbf{ z}_{i,:}+\boldsymbol{
-\epsilon}_{i,:},
+<li>Represent data, <span class="math inline">\(\mathbf{Y}\)</span>, with a lower dimensional set of latent variables <span class="math inline">\(\mathbf{Z}\)</span>.</li>
+<li>Assume a linear relationship of the form <span class="math display">\[
+\mathbf{ y}_{i,:}=\mathbf{W}\mathbf{ z}_{i,:}+\boldsymbol{ \epsilon}_{i,:},
 \]</span> where <span class="math display">\[
-\boldsymbol{ \epsilon}_{i,:} \sim
-\mathcal{N}\left(\mathbf{0},\sigma^2\mathbf{I}\right)
-\]</span></p></li>
-<li><p>PPCA defines a probabilistic model where:</p>
+\boldsymbol{ \epsilon}_{i,:} \sim \mathscr{N}\left(\mathbf{0},\sigma^2\mathbf{I}\right)
+\]</span></li>
+</ul>
+</section>
+<section id="probabilistic-pca-1" class="slide level2">
+<h2>Probabilistic PCA</h2>
 <ul>
-<li>Data is generated from latent variables through linear
-transformation</li>
+<li>PPCA defines a probabilistic model where:
+<ul>
+<li>Data is generated from latent variables through linear transformation</li>
 <li>Gaussian noise is added to the transformed variables</li>
 <li>Latent variables have standard Gaussian prior</li>
 </ul></li>
-<li><p>Maximum likelihood recovers classical PCA</p></li>
+<li>Maximum likelihood recovers classical PCA</li>
 </ul>
 </section>
-<section id="graphical-model-representing-probabilistic-pca"
-class="slide level2">
+<section id="graphical-model-representing-probabilistic-pca" class="slide level2">
 <h2>Graphical model representing probabilistic PCA</h2>
 <div class="figure">
-<div id="ppca-graph-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/ppca_graph.svg" width="40%" style=" ">
+<div id="ppca-graphical_model-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/ppca_graphical_model.svg" width="60%" style=" ">
 </object>
 </div>
 </div>
 <aside class="notes">
 Graphical model representing probabilistic PCA.
 </aside>
-<!-- SECTION Probabilistic PCA -->
 </section>
-<section id="probabilistic-pca-1" class="slide level2">
-<h2>Probabilistic PCA</h2>
-<p><span class="math display">\[
-\boldsymbol{\Sigma} = \sigma^2 \mathbf{I}.
-\]</span></p>
-<p><span class="math display">\[
-p(\mathbf{Y}|\mathbf{W}, \sigma^2)
-= \prod_{i=1}^n\mathcal{N}\left(\mathbf{ y}_{i,
-:}|\mathbf{0},\mathbf{W}\mathbf{W}^\top + \sigma^2 \mathbf{I}\right)
-\]</span></p>
-<p><span class="math display">\[
-\mathbf{W}= \mathbf{U}\mathbf{L} \mathbf{R}^\top
-\]</span></p>
-<p><span class="math display">\[
-\mathbf{S} = \sum_{i=1}^n(\mathbf{ y}_{i, :} - \boldsymbol{
-\mu})(\mathbf{ y}_{i,:} - \boldsymbol{ \mu})^\top,
-\]</span></p>
-<p><span class="math display">\[
-\ell_i = \sqrt{\lambda_i - \sigma^2}
-\]</span></p>
-</section>
-<section id="ppca-as-manifold-learning" class="slide level2">
-<h2>PPCA as Manifold Learning</h2>
-</section>
-<section id="posterior-for-principal-component-analysis"
-class="slide level2">
+<section id="posterior-for-principal-component-analysis" class="slide level2">
 <h2>Posterior for Principal Component Analysis</h2>
 <p><span class="math display">\[
 p(\mathbf{ z}_{i, :} | \mathbf{ y}_{i, :})
@@ -278,16 +252,13 @@ p(\mathbf{ z}_{i, :} | \mathbf{ y}_{i, :}) \propto p(\mathbf{ y}_{i,
 :}|\mathbf{W}, \mathbf{ z}_{i, :}, \sigma^2) p(\mathbf{ z}_{i, :})
 \]</span></p>
 <p><span class="math display">\[
-\log p(\mathbf{ z}_{i, :} | \mathbf{ y}_{i, :}) = \log p(\mathbf{ y}_{i,
-:}|\mathbf{W},
-\mathbf{ z}_{i, :}, \sigma^2) + \log p(\mathbf{ z}_{i, :}) +
-\text{const}
+\log p(\mathbf{ z}_{i, :} | \mathbf{ y}_{i, :}) = \log p(\mathbf{ y}_{i, :}|\mathbf{W},
+\mathbf{ z}_{i, :}, \sigma^2) + \log p(\mathbf{ z}_{i, :}) + \text{const}
 \]</span></p>
 <p><span class="math display">\[
 \log p(\mathbf{ z}_{i, :} | \mathbf{ y}_{i, :}) =
 -\frac{1}{2\sigma^2} (\mathbf{ y}_{i, :} - \mathbf{W}\mathbf{ z}_{i,
-:})^\top(\mathbf{ y}_{i, :} - \mathbf{W}\mathbf{ z}_{i, :}) -
-\frac{1}{2}
+:})^\top(\mathbf{ y}_{i, :} - \mathbf{W}\mathbf{ z}_{i, :}) - \frac{1}{2}
 \mathbf{ z}_{i, :}^\top \mathbf{ z}_{i, :} + \text{const}
 \]</span></p>
 </section>
@@ -298,49 +269,261 @@ p(\mathbf{ z}_{i, :} | \mathbf{ y}_{i, :}) \propto p(\mathbf{ y}_{i,
 <h2>Oil Flow Data</h2>
 <div class="figure">
 <div id="oil-flow-data-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//datasets/oil-flow-data.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/datasets/oil-flow-data.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
 <aside class="notes">
-Visualization of the first two dimensions of the oil flow data from
-<span class="citation" data-cites="Bishop-oil93">Bishop and James
-(1993)</span>
+Visualization of the first two dimensions of the oil flow data from <span class="citation" data-cites="Bishop-oil93">Bishop and James (1993)</span>
 </aside>
 <div class="figure">
 <div id="oil-flow-pca-sklearn-figure" class="figure-frame">
-<p></p>
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/oil-flow-pca_sklearn.svg" width="60%" style=" ">
+</object>
 </div>
 </div>
 <aside class="notes">
-PCA of the oil flow data.
+PCA of the oil flow data. The flow is homogeneous, annular and stratified.
 </aside>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mu_x, C_x <span class="op">=</span> posterior(Y, W, sigma2)</span></code></pre></div>
-<p>where <code>mu_x</code> and <code>C_x</code> are the posterior mean
-and posterior covariance for the given <span
-class="math inline">\(\mathbf{Y}\)</span>.</p>
-<p>Don’t forget to subtract the mean of the data <code>Y</code> inside
-your function before computing the posterior: remember we assumed at the
-beginning of our analysis that the data had been centred (i.e. the mean
-was removed).}{# Answer Code # Write code for you answer to this
-exercise in this box # Do not delete these comments, otherwise you will
-get zero for this answer. # Make sure your code has run and the answer
-is correct <em>before</em> submitting your notebook for marking. import
-numpy as np import scipy as sp def posterior(Y, W, sigma2): Y_cent = Y -
-Y.mean(0) # Compute posterior over X C_x = mu_x = return mu_x,
-C_x}{20}}</p>
-<div id="refs" class="references csl-bib-body hanging-indent"
-role="list">
-<div id="ref-Bishop-oil93" class="csl-entry" role="listitem">
-Bishop, C.M., James, G.D., 1993. Analysis of multiphase flows using
-dual-energy gamma densitometry and neural networks. Nuclear Instruments
-and Methods in Physics Research A327, 580–593. <a
-href="https://doi.org/10.1016/0168-9002(93)90728-Z">https://doi.org/10.1016/0168-9002(93)90728-Z</a>
+</section>
+<section id="examples-motion-capture-data" class="slide level2">
+<h2>Examples: Motion Capture Data</h2>
+
+</section>
+<section id="osu-motion-capture-data-run-1" class="slide level2">
+<h2>OSU Motion Capture Data: Run 1</h2>
+<div class="figure">
+<div id="dem-osu-run1-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/osu-run1-pca.svg" width="60%" style=" ">
+</object>
 </div>
-<div id="ref-Hotelling:analysis33" class="csl-entry" role="listitem">
-Hotelling, H., 1933. Analysis of a complex of statistical variables into
-principal components. Journal of Educational Psychology 24, 417–441.
+</div>
+<aside class="notes">
+First two principal components of motion capture data of an individual running.
+</aside>
+<!-- SECTION Part 2: Beyond Linear Methods -->
+</section>
+<section id="part-2-beyond-linear-methods" class="slide level2">
+<h2>Part 2: Beyond Linear Methods</h2>
+</section>
+<section id="when-dimensionality-reduction-fails" class="slide level2">
+<h2>When Dimensionality Reduction Fails</h2>
+<ul>
+<li>Dimensionality reduction can fail in several key scenarios:
+<ul>
+<li>Truly high dimensional data with no simpler structure</li>
+<li>Highly nonlinear relationships between dimensions</li>
+<li>Varying intrinsic dimensionality across data</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-swiss-roll-example" class="slide level2">
+<h2>The Swiss Roll Example</h2>
+<ul>
+<li>Classic example of nonlinear structure</li>
+<li>2D manifold embedded in 3D</li>
+<li>Linear methods like PCA fail</li>
+<li>Requires nonlinear methods (t-SNE, UMAP)</li>
+</ul>
+<div class="figure">
+<div id="swiss-roll-example-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/swiss-roll.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+The Swiss roll dataset is a classic example of data with nonlinear structure. The color represents the position along the roll, showing how points that are far apart in the original space are actually close in the intrinsic manifold.
+</aside>
+</section>
+<section id="common-failure-modes" class="slide level2">
+<h2>Common Failure Modes</h2>
+<ul>
+<li>Key failure scenarios:
+<ul>
+<li>Linear methods on nonlinear manifolds</li>
+<li>Assuming global structure when only local exists</li>
+<li>Not accounting for noise</li>
+</ul></li>
+</ul>
+<!--include{_dimred/includes/local-vs-global-preservation.md}-->
+<!--include{_dimred/includes/iterative-dimensionality-reduction.md}-->
+<!-- SECTION Part 3: Graph Based Methods   -->
+</section>
+<section id="part-3-graph-based-methods" class="slide level2">
+<h2>Part 3: Graph Based Methods</h2>
+</section>
+<section id="t-sne" class="slide level2">
+<h2>t-SNE</h2>
+<p>, <span class="math display">\[
+where $s_{i,j} = 1$ if two points are linked in the latent space and $q_{i,j}$ is the probability of that link. The latent distances are given by
+\]</span> <em>{i,j} = (</em>{i, :} - <em>{j, :})^</em>{i, :} - _{j, :}). $$}</p>
+<p>= <em>i </em>{j} p_{i,k}  $$}</p>
+<ul>
+<li>Converts distances to probabilities</li>
+<li>Uses t-distribution in low-dimensional space</li>
+<li>Excellent for visualization</li>
+<li>Computationally intensive</li>
+<li>Results depend on perplexity parameter</li>
+</ul>
+</section>
+<section id="oil-flow-data-1" class="slide level2">
+<h2>Oil Flow Data</h2>
+<div class="figure">
+<div id="oil-flow-data-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/datasets/oil-flow-data.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+Visualization of the first two dimensions of the oil flow data from <span class="citation" data-cites="Bishop-oil93">Bishop and James (1993)</span>
+</aside>
+</section>
+<section id="t-sne-embedding-of-oil-flow-data" class="slide level2">
+<h2>t-SNE Embedding of Oil Flow Data</h2>
+<div class="figure">
+<div id="t-sne-oil-flow-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/t-sne-oil-flow.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+t-SNE embedding of the oil flow data.
+</aside>
+<!--include{_dimred/includes/umap-intro.md}-->
+<!-- SECTION Part 4: Practical Implementation -->
+</section>
+<section id="part-4-practical-implementation" class="slide level2">
+<h2>Part 4: Practical Implementation</h2>
+<!--include{_dimred/includes/dimensionality-reduction-comparison.md}-->
+</section>
+<section id="practical-tips-for-dimensionality-reduction" class="slide level2">
+<h2>Practical Tips for Dimensionality Reduction</h2>
+</section>
+<section id="always-start-with-pca" class="slide level2">
+<h2>Always Start with PCA</h2>
+<ul>
+<li>“Do PCA, always”</li>
+<li>Quick sanity check</li>
+<li>Provides baseline</li>
+<li>Helps understand data</li>
+</ul>
+</section>
+<section id="understanding-matrix-structure" class="slide level2">
+<h2>Understanding Matrix Structure</h2>
+<ul>
+<li>Learn to read Gram matrices</li>
+<li>Check distance matrices</li>
+<li>Look for block structure</li>
+<li>Identify outliers</li>
+</ul>
+</section>
+<section id="understanding-matrix-structure-1" class="slide level2">
+<h2>Understanding Matrix Structure</h2>
+</section>
+<section id="oil-flow-data-2" class="slide level2">
+<h2>Oil Flow Data</h2>
+<div class="figure">
+<div id="oil-flow-data-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/datasets/oil-flow-data.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+Visualization of the first two dimensions of the oil flow data from <span class="citation" data-cites="Bishop-oil93">Bishop and James (1993)</span>
+</aside>
+</section>
+<section id="gram-matrix-of-oil-flow-data" class="slide level2">
+<h2>Gram Matrix of Oil Flow Data</h2>
+<div class="figure">
+<div id="matrix-structure-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/matrix-structure.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+The Gram matrix (left) reveals the underlying structure in our data, while the scatter plot (right) shows the first two dimensions. Notice how patterns in the Gram matrix correspond to clusters in the data.
+</aside>
+<ul>
+<li>Learn to read Gram matrices</li>
+<li>Check distance matrices</li>
+<li>Look for block structure</li>
+<li>Identify outliers</li>
+</ul>
+</section>
+<section id="examining-projections" class="slide level2">
+<h2>Examining Projections</h2>
+<ul>
+<li>Look at multiple 2D views</li>
+<li>Check consecutive dimensions</li>
+<li>Examine suspicious patterns</li>
+<li>Plot residuals</li>
+</ul>
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/projection-examples.svg" width style=" ">
+</object>
+</section>
+<section id="evaluating-neighborhoods" class="slide level2">
+<h2>Evaluating Neighborhoods</h2>
+<ul>
+<li>Check <span class="math inline">\(k\)</span>-nearest neighbors</li>
+<li>Verify local distances</li>
+<li>Look for disconnected regions</li>
+<li>Examine boundary points</li>
+</ul>
+</section>
+<section id="common-pitfalls" class="slide level2">
+<h2>Common Pitfalls</h2>
+<ul>
+<li>Not scaling features appropriately</li>
+<li>Ignoring outliers</li>
+<li>Using wrong distance metric</li>
+<li>Trusting single visualization</li>
+<li>Assuming linearity</li>
+</ul>
+</section>
+<section id="validation-strategies" class="slide level2">
+<h2>Validation Strategies</h2>
+<ul>
+<li>Check reconstruction error</li>
+<li>Verify known relationships</li>
+<li>Test with held-out data</li>
+<li>Compare multiple methods</li>
+</ul>
+</section>
+<section id="implementation-guidelines" class="slide level2">
+<h2>Implementation Guidelines</h2>
+<ul>
+<li>Start simple</li>
+<li>Scale appropriately</li>
+<li>Check intermediate results</li>
+<li>Validate assumptions</li>
+<li>Document choices</li>
+</ul>
+</section>
+<section id="thanks" class="slide level2 scrollable">
+<h2 class="scrollable">Thanks!</h2>
+<ul>
+<li><p>company: <a href="https://trent.ai">Trent AI</a></p></li>
+<li><p>book: <a href="https://www.penguin.co.uk/books/455130/the-atomic-human-by-lawrence-neil-d/9780241625248">The Atomic Human</a></p></li>
+<li><p>twitter: <a href="https://twitter.com/lawrennd">@lawrennd</a></p></li>
+<li><p><a href="https://the-atomic-human.ai">The Atomic Human</a></p></li>
+<li><p>newspaper: <a href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile Page</a></p></li>
+<li><p>blog posts:</p>
+<p><a href="http://inverseprobability.com/2014/07/01/open-data-science">Open Data Science</a></p></li>
+</ul>
+</section>
+<section id="references" class="slide level2 scrollable">
+<h2 class="scrollable">References</h2>
+<!--https://github.com/neelsoumya/visualization_lecture/blob/main/visualization_lecture.pptx
+
+More material is in the repo:
+
+https://github.com/neelsoumya/visualization_lecture/-->
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Bishop-oil93" class="csl-entry" role="doc-biblioentry">
+Bishop, C.M., James, G.D., 1993. Analysis of multiphase flows using dual-energy gamma densitometry and neural networks. Nuclear Instruments and Methods in Physics Research A327, 580–593. <a href="https://doi.org/10.1016/0168-9002(93)90728-Z">https://doi.org/10.1016/0168-9002(93)90728-Z</a>
+</div>
+<div id="ref-Hotelling:analysis33" class="csl-entry" role="doc-biblioentry">
+Hotelling, H., 1933. Analysis of a complex of statistical variables into principal components. Journal of Educational Psychology 24, 417–441.
 </div>
 </div>
 </section>
@@ -355,39 +538,10 @@ principal components. Journal of Educational Psychology 24, 417–441.
       // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
-        // Display controls in the bottom right corner
-        controls: true,
-        // Display a presentation progress bar
-        progress: true,
         // Push each slide change to the browser history
         history: true,
-        // Enable keyboard shortcuts for navigation
-        keyboard: true,
-        // Enable the slide overview mode
-        overview: true,
-        // Vertical centering of slides
-        center: true,
-        // Enables touch navigation on devices with touch input
-        touch: true,
-        // Turns fragments on and off globally
-        fragments: true,
-        // Flags if we should show a help overlay when the questionmark
-        // key is pressed
-        help: true,
-        // Number of milliseconds between automatically proceeding to the
-        // next slide, disabled when set to 0, this value can be overwritten
-        // by using a data-autoslide attribute on your slides
-        autoSlide: 0,
-        // Stop auto-sliding after user input
-        autoSlideStoppable: true,
         // Transition style
         transition: 'None', // none/fade/slide/convex/concave/zoom
-        // Transition speed
-        transitionSpeed: 'default', // default/fast/slow
-        // Transition style for full page slide backgrounds
-        backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
-        // Number of slides away from the current that are visible
-        viewDistance: 3,
         math: {
           mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js',
           config: 'TeX-AMS_HTML-full',

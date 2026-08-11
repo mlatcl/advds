@@ -6,38 +6,49 @@ author:
   twitter: lawrennd
   orcid: 0000-0001-9258-1030
   url: http://inverseprobability.com
+macrosdir: macros # Macro directory
+bibdir: $HOME/lawrennd/bibliography # Bibliography directory
+postsdir: ../_lectures/ # Where compiled lecture HTML files go
+slidesdir: ../slides/ # Where compiled slides go
+notesdir: ../_notes/ # Where compiled notes go
+notebooksdir: ../_notebooks/ # Where compiled notebooks go
+practicalsdir: ../_practicals/ # Where compiled practicals go
+snippetsdir: $HOME/lawrennd/snippets # Directory for reusable content snippets
+writediagramsdir: . # Where to write generated diagrams
+scriptsdir: ../scripts/ # Directory for scripts
+diagramsdir: ../slides/diagrams/ # Directory for diagrams (with slidesdir)
+# Layout and styling
+slidesheader: slides-header.html
+notation: talk-notation.tex
 layout: lecture
 room: LT2
 venue: William Gates Building
 talkcss: https://inverseprobability.com/assets/css/talks.css
-bibdir: $HOME/lawrennd/bibliography/
-people: ../_people/people.yml
-postsdir: ../_lectures/
-slidesdir: ../slides/
-notesdir: ../_notes/
-notebooksdir: ../_notebooks/
-practicalsdir: ../_practicals/
-snippetsdir: $HOME/lawrennd/snippets/
-writediagramsdir: .
-scriptsdir: ./scripts/
-diagramsdir: ../slides/diagrams/
-slidesheader: slides-header.html
-posts: True
-docx: False
-notespdf: False
-slidesipynb: False
-pptx: False
-pdf: False
-assignment: False
-ipynb: False
-reveal: False
-potx: ""
-baseurl: "advds/" # the subpath of your site, e.g. /blog/
+# Output format settings (True/False)
+posts: True # Generate HTML lecture pages
+docx: False # Generate Word documents
+notespdf: False # Generate PDF notes
+slidesipynb: False # Generate Jupyter notebooks for slides
+pptx: False # Generate PowerPoint presentations
+pdf: False # Generate PDF lectures
+assignment: False # Generate assignment format
+ipynb: True # Generate Jupyter notebooks
+reveal: True # Use reveal.js for slides
+# Website configuration
 url: "https://mlatcl.github.io/" # the base hostname & protocol for your site
+baseurl: advds/
+talkcss: https://inverseprobability.com/assets/css/talks.css
+people: ../_people/people.yml
+macrosdir: $HOME/lawrennd/lamd/lamd/macros
+# Slide transition effect
+transition: None # Options: None, fade, slide, convex, concave, zoom
+potx: custom-reference.potx 
+dotx: custom-reference.dotx
+venue: Dedan Kimathi University of Technology, Nyeri, Kenya
+# GitHub Pages configuration
 ghub:
-- organization: mlatcl
-  repository: advds
-  branch: gh-pages
-  directory: _lamd
-transition: None
+  - organization: mlatcl # Your GitHub username or organization
+    repository: advds # Repository name
+    branch: gh-pages # Branch for GitHub Pages
+    directory: _lamd # Directory containing source files 
   
