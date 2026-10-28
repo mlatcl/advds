@@ -14,6 +14,17 @@
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
+      /* scrollable slides: start content at top, left-align text */
+      .reveal section.scrollable {
+          overflow-y: auto !important;
+          height: 100% !important;
+          top: 0 !important;
+          text-align: left;
+      }
+      .reveal section.scrollable > h2:first-child,
+      .reveal section.scrollable > h2.scrollable:first-child {
+          margin-top: 0.2em;
+      }
   </style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
@@ -54,7 +65,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -67,7 +78,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -93,6 +104,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <!--[if lt IE 9]>
   <script src="https://unpkg.com/reveal.js@3.9.2/lib/js/html5shiv.js"></script>
   <![endif]-->
+   <!-- Mermaid -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_SVG" type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -102,6 +116,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     });
   </script>
   <script src="https://inverseprobability.com/assets/js/figure-animate.js"></script>
+  <script>
+  /* Map range slider values (min..max, often 0-based in LaMD content) to the
+     1-based frame index expected by figure-animate.js showDivs(). */
+  function lamdFrameIndex(group) {
+    var range = document.getElementById("range-" + group);
+    var val = parseInt(range.value, 10);
+    var min = parseInt(range.min, 10);
+    return val - min + 1;
+  }
+  function lamdSetDivs(group) {
+    if (typeof showDivs !== "function") return;
+    slideIndex = lamdFrameIndex(group);
+    showDivs(slideIndex, group);
+  }
+  function lamdPlusDivs(n, group) {
+    if (typeof showDivs !== "function") return;
+    var range = document.getElementById("range-" + group);
+    var min = parseInt(range.min, 10);
+    var max = parseInt(range.max, 10);
+    var val = parseInt(range.value, 10) + n;
+    if (val < min) val = max;
+    if (val > max) val = min;
+    range.value = val;
+    range.setAttribute("aria-valuenow", val);
+    slideIndex = val - min + 1;
+    showDivs(slideIndex, group);
+  }
+  </script>
+   <!-- Initialize Mermaid after Reveal is loaded -->
+<script>
+  Reveal.addEventListener('ready', event => {
+    // Initialize mermaid
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'base',
+      // These are the same theme variables we used above
+      themeVariables: {
+          primaryColor: '#4a90e2',
+          primaryTextColor: '#fff',
+          primaryBorderColor: '#357abd',
+          lineColor: '#67b246',
+          fontSize: '30px',
+          fontFamily: 'arial',
+	  edgeLabelBackground: 'transparent',
+	  tertiaryColor: 'transparent'
+      }
+    });
+  });
+</script>
+   
 </head>
 <body>
   <div class="reveal">
@@ -109,11 +173,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="title-slide">
   <h1 class="title">Generalised Linear Models</h1>
-  <p class="author" style="text-align:center"><a href="http://inverseprobability.com">Neil
-D. Lawrence</a></p>
+  <p class="author" style="text-align:center"><a href="http://inverseprobability.com">Neil D. Lawrence</a></p>
   <p class="date" style="text-align:center"><time>2024-11-15</time></p>
-  <p class="venue" style="text-align:center">LT2, William Gates
-Building</p>
+  <p class="venue" style="text-align:center">LT2, William Gates Building</p>
 </section>
 
 <section class="slide level2">
@@ -130,40 +192,38 @@ sns.set_palette('colorblind')}-->
 <section id="review" class="slide level2">
 <h2>Review</h2>
 </section>
-<section id="linear-regression-reminder" class="slide level2">
-<h2>Linear Regression Reminder</h2>
+<section id="model-diagnostics-and-linear-regression" class="slide level2">
+<h2>Model Diagnostics and Linear Regression</h2>
 </section>
 <section id="linear-regression-model" class="slide level2">
 <h2>Linear Regression Model</h2>
 <ul>
-<li><p>Linear regression models continuous response <span
-class="math inline">\(y_i\)</span> vs inputs <span
-class="math inline">\(\mathbf{ x}_i\)</span>: <span
-class="math display">\[y_i = f(\mathbf{ x}_i) + \epsilon_i\]</span>
-where <span class="math inline">\(f(\mathbf{ x}_i) = \mathbf{
-w}^\top\mathbf{ x}_i\)</span></p></li>
-<li><p>Probabilistic model: <span class="math display">\[p(y_i|\mathbf{
-x}_i) = \gaussianDist{\mathbf{ w}^\top\mathbf{
-x}_i}{\sigma^2}\]</span></p></li>
+<li><p>Linear regression models continuous response <span class="math inline">\(y_i\)</span> vs inputs <span class="math inline">\(\mathbf{ x}_i\)</span>: <span class="math display">\[y_i = f(\mathbf{ x}_i) + \epsilon_i\]</span> where <span class="math inline">\(f(\mathbf{ x}_i) = \mathbf{ w}^\top\mathbf{ x}_i\)</span></p></li>
+<li><p>Probabilistic model: <span class="math display">\[p(y_i|\mathbf{ x}_i) = \mathscr{N}\left(y_i|\mathbf{ w}^\top\mathbf{ x}_i,\sigma^2\right)\]</span></p></li>
 </ul>
 </section>
 <section id="linear-regression-in-matrix-form" class="slide level2">
 <h2>Linear Regression in Matrix Form</h2>
 <ul>
-<li><p>Matrix form: <span class="math display">\[\mathbf{ y}=
-\mathbf{X}\mathbf{ w}+ \boldsymbol{ \epsilon}\]</span></p></li>
-<li><p>Expected prediction: <span
-class="math display">\[\mathbb{E}[y_i|\mathbf{ x}_i] = \mathbf{
-w}^\top\mathbf{ x}_i\]</span></p></li>
+<li><p>Matrix form: <span class="math display">\[\mathbf{ y}= \mathbf{X}\mathbf{ w}+ \boldsymbol{ \epsilon}\]</span></p></li>
+<li><p>Expected prediction: <span class="math display">\[\mathbb{E}[y_i|\mathbf{ x}_i] = \mathbf{ w}^\top\mathbf{ x}_i\]</span></p></li>
 </ul>
+<div class="figure">
+<div id="linear-regression-olympic-marathon-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/statistics/linear-regression-olympic-marathon-statsmodels.svg" width="50%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+Plot of the <code>statsmodels</code> fit to the olympic marathon data.
+</aside>
 </section>
 <section id="model-fit-statistics" class="slide level2">
 <h2>Model Fit Statistics</h2>
 <ul>
 <li>Model fit statistics help assess overall performance:
 <ul>
-<li>R-squared shows variance explained<br />
-</li>
+<li>R-squared shows variance explained</li>
 <li>F-statistic tests if model is useful</li>
 <li>AIC/BIC help compare models</li>
 </ul></li>
@@ -176,7 +236,7 @@ w}^\top\mathbf{ x}_i\]</span></p></li>
 <ul>
 <li>Coefficients show effect direction/size</li>
 <li>Standard errors show uncertainty</li>
-<li>P-values test significance</li>
+<li><span class="math inline">\(p\)</span>-values test significance</li>
 </ul></li>
 </ul>
 </section>
@@ -200,19 +260,26 @@ w}^\top\mathbf{ x}_i\]</span></p></li>
 <li>Shows if relationship makes practical sense</li>
 </ul></li>
 </ul>
-</section>
-<section id="linear-regression-fit" class="slide level2">
-<h2>Linear Regression Fit</h2>
 <div class="figure">
-<div id="linear-regression-olympic-marathon-men-statsmodels-figure"
-class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/linear-regression-olympic-marathon-men-statsmodels.svg.svg" width="80%" style=" ">
+<div id="residuals-histogram-olympic-marathon-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/statistics/residuals-histogram-olympic-marathon.svg" width="50%" style=" ">
 </object>
 </div>
 </div>
 <aside class="notes">
-Linear regression fit to Olympic marathon men’s times using
-<code>statsmodels</code>.
+The histogram of the residuals of the fit to the Olympic Marathon data.
+</aside>
+</section>
+<section id="linear-regression-fit" class="slide level2">
+<h2>Linear Regression Fit</h2>
+<div class="figure">
+<div id="linear-regression-olympic-marathon-men-statsmodels-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/data-science/linear-regression-olympic-marathon-men-statsmodels.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+Linear regression fit to Olympic marathon men’s times using <code>statsmodels</code>.
 </aside>
 <ul>
 <li>1904 St. Louis Olympics: Major outlier
@@ -248,243 +315,209 @@ Linear regression fit to Olympic marathon men’s times using
 <section id="design-matrix" class="slide level2">
 <h2>Design Matrix</h2>
 <ul>
-<li>The design matrix <span class="math inline">\(\designMatrix\)</span>
-stores our features</li>
+<li>The design matrix <span class="math inline">\(\boldsymbol{ \Phi}\)</span> stores our features</li>
 <li>Each row represents one data point</li>
 <li>Each column represents one feature</li>
-<li>For <span class="math inline">\(n\)</span> data points and <span
-class="math inline">\(p\)</span> features: <span
-class="math display">\[\designMatrix = \begin{bmatrix}
-x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1p} \\
-x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2p} \\
+<li>For <span class="math inline">\(n\)</span> data points and <span class="math inline">\(p\)</span> features: <span class="math display">\[\boldsymbol{ \Phi}= \begin{bmatrix} 
+\phi_{11} &amp; \phi_{12} &amp; \cdots &amp; \phi_{1p} \\
+\phi_{21} &amp; \phi_{22} &amp; \cdots &amp; \phi_{2p} \\
 \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{np}
+\phi_{n1} &amp; \phi_{n2} &amp; \cdots &amp; \phi_{np}
 \end{bmatrix}\]</span></li>
 <li>Also called the feature matrix or model matrix</li>
 </ul>
-</section>
-<section id="augmented-features-with-interactions-regression-fit"
-class="slide level2">
-<h2>Augmented Features with Interactions Regression Fit</h2>
 <div class="figure">
-<div
-id="linear-regression-olympic-marathon-men-augmented-statsmodels-figure"
-class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/linear-regression-olympic-marathon-men-augmented-statsmodels.svg.svg" width="80%" style=" ">
+<div id="linear-regression-olypmic-marathon-men-augmented-statsmodels-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/data-science/linear-regression-olypmic-marathon-men-augmented-statsmodels.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
 <aside class="notes">
-Polynomial regression fit to Olympic marathon men’s times using
-<code>statsmodels</code>.
+Plot of the fit obtained when we include indicator variables that identify the pre-1914, across war, and post-war eras.
 </aside>
 </section>
-<section id="logistic-regression-and-glms" class="slide level2">
-<h2>Logistic Regression and GLMs</h2>
+<section id="logistic-regression" class="slide level2">
+<h2>Logistic Regression</h2>
 <ul>
-<li>Modelling entire density allows any question to be answered (also
-missing data).</li>
-<li>Comes at the possible expense of <em>strong</em> assumptions about
-data generation distribution.</li>
-<li>In regression we model probability of <span
-class="math inline">\(y_i |\mathbf{ x}_i\)</span> directly.
+<li>Model the log odds with a linear model.</li>
+</ul>
+</section>
+<section id="logistic-regression-1" class="slide level2">
+<h2>Logistic Regression</h2>
 <ul>
-<li><strong>Allows less flexibility in the question, but more
-flexibility in the model assumptions.</strong></li>
-</ul></li>
-<li>Can do this not just for regression, but classification.</li>
-<li>Framework is known as <em>generalized linear models</em>.</li>
+<li>In regression we model probability of <span class="math inline">\(y_i |\mathbf{ x}_i\)</span> directly</li>
+<li>Allows less flexibility in questions, but more flexibility in model assumptions</li>
 </ul>
 </section>
 <section id="log-odds" class="slide level2">
 <h2>Log Odds</h2>
 <ul>
-<li>model the <em>log-odds</em> with the basis functions.</li>
-<li><a href="http://en.wikipedia.org/wiki/Odds">odds</a> are defined as
-the ratio of the probability of a positive outcome, to the probability
-of a negative outcome.</li>
-<li>Probability is between zero and one, odds are: <span
-class="math display">\[ \frac{\pi}{1-\pi} \]</span></li>
-<li>Odds are between <span class="math inline">\(0\)</span> and <span
-class="math inline">\(\infty\)</span>.</li>
-<li>Logarithm of odds maps them to <span
-class="math inline">\(-\infty\)</span> to <span
-class="math inline">\(\infty\)</span>.</li>
+<li>Model the <em>log-odds</em> with basis functions</li>
+<li><a href="http://en.wikipedia.org/wiki/Odds">Odds</a> are ratio of probability of positive vs negative outcome</li>
 </ul>
 </section>
-<section id="logit-link-function" class="slide level2">
-<h2>Logit Link Function</h2>
+<section id="log-odds-1" class="slide level2">
+<h2>Log Odds</h2>
 <ul>
-<li>The <a href="http://en.wikipedia.org/wiki/Logit">Logit function</a>,
-<span class="math display">\[g^{-1}(\pi_i) =
-\log\frac{\pi_i}{1-\pi_i}.\]</span> This function is known as a <em>link
-function</em>.</li>
-<li>For a standard regression we take, <span
-class="math display">\[f(\mathbf{ x}_i) = \mathbf{ w}^\top \boldsymbol{
-\phi}(\mathbf{ x}_i),\]</span></li>
-<li>For classification we perform a logistic regression. <span
-class="math display">\[\log \frac{\pi_i}{1-\pi_i} = \mathbf{ w}^\top
-\boldsymbol{ \phi}(\mathbf{ x}_i)\]</span></li>
+<li>Probability is between zero and one</li>
+<li>Odds are: <span class="math display">\[ \frac{\pi}{1-\pi} \]</span></li>
 </ul>
 </section>
-<section id="inverse-link-function" class="slide level2">
-<h2>Inverse Link Function</h2>
-<p>We have defined the link function as taking the form <span
-class="math inline">\(g^{-1}(\cdot)\)</span> implying that the inverse
-link function is given by <span class="math inline">\(g(\cdot)\)</span>.
-Since we have defined, <span class="math display">\[
-g^{-1}(\pi(\mathbf{ x})) = \mathbf{ w}^\top\boldsymbol{ \phi}(\mathbf{
-x})
-\]</span> we can write <span class="math inline">\(\pi\)</span> in terms
-of the <em>inverse link</em> function, <span
-class="math inline">\(g(\cdot)\)</span> as <span class="math display">\[
-\pi(\mathbf{ x}) = g(\mathbf{ w}^\top\boldsymbol{ \phi}(\mathbf{ x})).
-\]</span></p>
-</section>
-<section id="logistic-function" class="slide level2">
-<h2>Logistic function</h2>
+<section id="log-odds-2" class="slide level2">
+<h2>Log Odds</h2>
 <ul>
-<li><a
-href="http://en.wikipedia.org/wiki/Logistic_function">Logistic</a> (or
-sigmoid) squashes real line to between 0 &amp; 1. Sometimes also called
-a ‘squashing function’.
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/logistic.svg" width="" style=" "></object></li>
+<li>Odds are between <span class="math inline">\(0\)</span> and <span class="math inline">\(\infty\)</span></li>
+<li>Logarithm of odds maps them to <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(\infty\)</span></li>
 </ul>
 </section>
-<section id="basis-function" class="slide level2">
-<h2>Basis Function</h2>
+<section id="logit-link-function---1" class="slide level2">
+<h2>Logit Link Function - 1</h2>
+<ul>
+<li>The <a href="http://en.wikipedia.org/wiki/Logit">Logit function</a> is our link function</li>
+<li><span class="math display">\[g(\pi_i) = \log\frac{\pi_i}{1-\pi_i}\]</span></li>
+</ul>
+</section>
+<section id="logit-link-function---2" class="slide level2">
+<h2>Logit Link Function - 2</h2>
+<ul>
+<li>For standard regression:</li>
+<li><span class="math display">\[f(\mathbf{ x}_i) = \mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x}_i)\]</span></li>
+</ul>
+</section>
+<section id="logistic-function---3" class="slide level2">
+<h2>Logistic function - 3</h2>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Logistic_function">Logistic</a> (or sigmoid) squashes real line to between 0 &amp; 1. Sometimes also called a ‘squashing function.’ <object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/ml/logistic.svg" width="" style=" "></object></li>
+</ul>
+</section>
+<section id="logistic-funciton---4" class="slide level2">
+<h2>Logistic funciton - 4</h2>
+<ul>
+<li>For classification (logistic regression): <span class="math display">\[\log \frac{\pi_i}{1-\pi_i} = \mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x}_i)\]</span></li>
+</ul>
+</section>
+<section id="soft-arg-max-softmax-function" class="slide level2">
+<h2>Soft Arg Max (Softmax) Function</h2>
+<ul>
+<li>Softmax turns unnormalised scores into probabilities</li>
+<li>Invariant to adding a constant to all scores</li>
+</ul>
 </section>
 <section id="prediction-function" class="slide level2">
 <h2>Prediction Function</h2>
+<p>Prediction Function</p>
 <ul>
-<li>Can now write <span class="math inline">\(\pi\)</span> as a function
-of the input and the parameter vector as, <span
-class="math display">\[\pi(\mathbf{ x},\mathbf{ w}) = \frac{1}{1+
-\exp\left(-\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{
-x})\right)}.\]</span></li>
-<li>Compute the output of a standard linear basis function composition
-(<span class="math inline">\(\mathbf{ w}^\top \boldsymbol{
-\phi}(\mathbf{ x})\)</span>, as we did for linear regression)</li>
-<li>Apply the inverse link function, <span
-class="math inline">\(g(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{
-x}))\)</span>.</li>
-<li>Use this value in a Bernoulli distribution to form the
-likelihood.</li>
+<li>Can write <span class="math inline">\(\pi\)</span> as a function of input, parameters, <span class="math display">\[\pi(\mathbf{ x},\mathbf{ w}) = \frac{1}{1+
+\exp\left(-\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x})\right)}.\]</span></li>
+<li>Compute the output <span class="math inline">\(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x})\)</span></li>
+<li>Apply inverse link function, <span class="math inline">\(h(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x}))\)</span>.</li>
+<li>Use this value in a Bernoulli distribution to form the likelihood.</li>
 </ul>
 </section>
 <section id="bernoulli-reminder" class="slide level2">
 <h2>Bernoulli Reminder</h2>
 <ul>
-<li><p>From last time <span class="math display">\[P(y_i|\mathbf{ w},
-\mathbf{ x}) = \pi_i^{y_i} (1-\pi_i)^{1-y_i}\]</span></p></li>
+<li><p>From last time <span class="math display">\[P(y_i|\mathbf{ w}, \mathbf{ x}) = \pi_i^{y_i} (1-\pi_i)^{1-y_i}\]</span></p></li>
 <li><p>Trick for switching betwen probabilities</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bernoulli(y, pi):</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bernoulli(y, pi):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> y <span class="op">==</span> <span class="dv">1</span>:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> pi</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="dv">1</span><span class="op">-</span>pi</span></code></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span><span class="op">-</span>pi</span></code></pre></div>
 </section>
 <section id="maximum-likelihood" class="slide level2">
 <h2>Maximum Likelihood</h2>
 <ul>
-<li>Conditional independence of data: <span
-class="math display">\[P(\mathbf{ y}|\mathbf{ w}, \mathbf{X}) =
-\prod_{i=1}^nP(y_i|\mathbf{ w},
+<li>Conditional independence of data: <span class="math display">\[P(\mathbf{ y}|\mathbf{ w}, \mathbf{X}) = \prod_{i=1}^nP(y_i|\mathbf{ w},
 \mathbf{ x}_i). \]</span></li>
 </ul>
 </section>
-<section id="log-likelihood" class="slide level2">
-<h2>Log Likelihood</h2>
-<p><span class="math display">\[\begin{align*}
-  \log P(\mathbf{ y}|\mathbf{ w}, \mathbf{X}) = &amp;
-  \sum_{i=1}^n\log P(y_i|\mathbf{ w}, \mathbf{ x}_i) \\ =
-&amp;\sum_{i=1}^ny_i \log
-  \pi_i \\ &amp; + \sum_{i=1}^n(1-y_i)\log (1-\pi_i)
-\end{align*}\]</span></p>
+<section id="negative-log-likelihood" class="slide level2">
+<h2>Negative Log Likelihood</h2>
+<span class="math display">\[\begin{aligned}
+  - \log P(\mathbf{ y}|\mathbf{ w}, \mathbf{X}) = &amp;
+  - \sum_{i=1}^n\log P(y_i|\mathbf{ w}, \mathbf{ x}_i) \\ = &amp;- \sum_{i=1}^ny_i \log
+  \pi_i \\ &amp; - \sum_{i=1}^n(1-y_i)\log (1-\pi_i)
+\end{aligned}\]</span>
 </section>
 <section id="objective-function" class="slide level2">
 <h2>Objective Function</h2>
 <ul>
-<li>Probability of positive outcome for the <span
-class="math inline">\(i\)</span>th data point <span
-class="math display">\[\pi_i = g\left(\mathbf{ w}^\top \boldsymbol{
-\phi}(\mathbf{ x}_i)\right),\]</span> where <span
-class="math inline">\(g(\cdot)\)</span> is the <em>inverse</em> link
-function</li>
-<li>Objective function of the form <span
-class="math display">\[\begin{align*}
+<li>Probability of positive outcome for the <span class="math inline">\(i\)</span>th data point <span class="math display">\[\pi_i = h\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x}_i)\right),\]</span> where <span class="math inline">\(h(\cdot)\)</span> is the <em>inverse</em> link function</li>
+<li>Objective function of the form <span class="math display">\[\begin{align*}
   E(\mathbf{ w}) = &amp; -  \sum_{i=1}^ny_i \log
-  g\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x}_i)\right)
-\\&amp; -
-  \sum_{i=1}^n(1-y_i)\log \left(1-g\left(\mathbf{ w}^\top
+  h\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x}_i)\right) \\&amp; -
+  \sum_{i=1}^n(1-y_i)\log \left(1-h\left(\mathbf{ w}^\top
   \boldsymbol{ \phi}(\mathbf{ x}_i)\right)\right).
-\end{align*}\]</span></li>
+ \end{align*}\]</span></li>
 </ul>
 </section>
-<section id="minimize-objective" class="slide level2">
-<h2>Minimize Objective</h2>
+<section id="minimise-objective" class="slide level2">
+<h2>Minimise Objective</h2>
 <ul>
-<li>Grdient wrt <span class="math inline">\(\pi(\mathbf{ x};\mathbf{
-w})\)</span> <span class="math display">\[\begin{align*}
+<li>Grdient wrt <span class="math inline">\(\pi(\mathbf{ x};\mathbf{ w})\)</span>
+<span class="math display">\[\begin{aligned}
 \frac{\text{d}E(\mathbf{ w})}{\text{d}\mathbf{ w}} = &amp;
--\sum_{i=1}^n\frac{y_i}{g\left(\mathbf{ w}^\top
-\boldsymbol{ \phi}(\mathbf{
-x})\right)}\frac{\text{d}g(f_i)}{\text{d}f_i}
+-\sum_{i=1}^n\frac{y_i}{h\left(\mathbf{ w}^\top
+\boldsymbol{ \phi}(\mathbf{ x})\right)}\frac{\text{d}h(f_i)}{\text{d}f_i}
 \boldsymbol{ \phi}(\mathbf{ x}_i) \\ &amp; +  \sum_{i=1}^n
-\frac{1-y_i}{1-g\left(\mathbf{ w}^\top
-\boldsymbol{ \phi}(\mathbf{
-x})\right)}\frac{\text{d}g(f_i)}{\text{d}f_i}
+\frac{1-y_i}{1-h\left(\mathbf{ w}^\top
+\boldsymbol{ \phi}(\mathbf{ x})\right)}\frac{\text{d}h(f_i)}{\text{d}f_i}
 \boldsymbol{ \phi}(\mathbf{ x}_i)
-\end{align*}\]</span></li>
+\end{aligned}\]</span></li>
 </ul>
 </section>
 <section id="link-function-gradient" class="slide level2">
 <h2>Link Function Gradient</h2>
 <ul>
-<li>Also need gradient of inverse link function wrt parameters. <span
-class="math display">\[\begin{align*}
-g(f_i) &amp;= \frac{1}{1+\exp(-f_i)}\\
+<li>Also need gradient of inverse link function wrt parameters.
+<span class="math display">\[\begin{aligned}
+h(f_i) &amp;= \frac{1}{1+\exp(-f_i)}\\
 &amp;=(1+\exp(-f_i))^{-1}
-\end{align*}\]</span> and the gradient can be computed as <span
-class="math display">\[\begin{align*}
-\frac{\text{d}g(f_i)}{\text{d} f_i} &amp; =
+\end{aligned}\]</span></li>
+</ul>
+</section>
+<section id="link-function-gradient-1" class="slide level2">
+<h2>Link Function Gradient</h2>
+and the gradient can be computed as
+<span class="math display">\[\begin{aligned}
+\frac{\text{d}h(f_i)}{\text{d} f_i} &amp; =
 \exp(-f_i)(1+\exp(-f_i))^{-2}\\
 &amp; = \frac{1}{1+\exp(-f_i)}
 \frac{\exp(-f_i)}{1+\exp(-f_i)} \\
-&amp; = g(f_i) (1-g(f_i))
-\end{align*}\]</span></li>
-</ul>
+&amp; = h(f_i) (1-h(f_i))
+\end{aligned}\]</span>
 </section>
 <section id="objective-gradient" class="slide level2">
 <h2>Objective Gradient</h2>
-<p><span class="math display">\[\begin{align*}
+<span class="math display">\[\begin{aligned}
 \frac{\text{d}E(\mathbf{ w})}{\text{d}\mathbf{ w}} = &amp; -\sum_{i=1}^n
-y_i\left(1-g\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{
-x})\right)\right)
+y_i\left(1-h\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x})\right)\right)
 \boldsymbol{ \phi}(\mathbf{ x}_i) \\ &amp; + \sum_{i=1}^n
-(1-y_i)\left(g\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{
-x})\right)\right)
+(1-y_i)\left(h\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x})\right)\right)
 \boldsymbol{ \phi}(\mathbf{ x}_i).
-\end{align*}\]</span></p>
+\end{aligned}\]</span>
 </section>
-<section id="optimization-of-the-function" class="slide level2">
-<h2>Optimization of the Function</h2>
+<section id="objective-gradient-1" class="slide level2">
+<h2>Objective Gradient</h2>
+<p>Multiplying everything out leads to <span class="math display">\[
+\begin{aligned}
+\frac{\text{d}E(\mathbf{ w})}{\text{d}\mathbf{ w}} = &amp; -\sum_{i=1}^n
+y_i- h\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x})\boldsymbol{ \phi}(\mathbf{ x}_i).
+\]</span></p>
+</section>
+<section id="optimisation-of-the-function" class="slide level2">
+<h2>Optimisation of the Function</h2>
 <ul>
-<li>Can’t find a stationary point of the objective function
-analytically.</li>
-<li>Optimization has to proceed by <em>numerical methods</em>.
+<li>Can’t find a stationary point of the objective function analytically.</li>
+<li>Optimisation has to proceed by <em>numerical methods</em>.
 <ul>
-<li><a href="http://en.wikipedia.org/wiki/Newton%27s_method">Newton’s
-method</a> or</li>
-<li><a href="http://en.wikipedia.org/wiki/Gradient_method">gradient
-based optimization methods</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Newton%27s_method">Newton’s method</a> or</li>
+<li><a href="http://en.wikipedia.org/wiki/Gradient_method">gradient based optimisation methods</a></li>
+<li>Iterative Reweighted Least Squares</li>
 </ul></li>
-<li>Similarly to matrix factorization, for large data <em>stochastic
-gradient descent</em> (Robbins Munro <span class="citation"
-data-cites="Robbins:stoch51">(Robbins and Monro, 1951)</span>
-optimization procedure) works well.</li>
+<li>Similarly to matrix factorisation, for large data <em>stochastic gradient descent</em> (Robbins Munro <span class="citation" data-cites="Robbins:stoch51">(Robbins and Monro, 1951)</span> optimisation procedure) works well.</li>
 </ul>
 </section>
 <section id="ad-matching-for-facebook" class="slide level2">
@@ -497,53 +530,36 @@ optimization procedure) works well.</li>
 <li>Billions of users</li>
 <li>How do you choose who to show what?</li>
 </ul></li>
-<li>Logistic regression used in combination with <a href="">decision
-trees</a></li>
-<li><a href="http://www.herbrich.me/papers/adclicksfacebook.pdf">Paper
-available here</a></li>
+<li>Logistic regression used in combination with <a href="">decision trees</a></li>
+<li><a href="http://www.herbrich.me/papers/adclicksfacebook.pdf">Paper available here</a></li>
 </ul>
 </section>
 <section id="going-further-optimization" class="slide level2">
 <h2>Going Further: Optimization</h2>
-<p>Other optimization techniques for generalized linear models include
-<a href="http://en.wikipedia.org/wiki/Newton%27s_method">Newton’s
-method</a>, it requires you to compute the Hessian, or second derivative
-of the objective function.</p>
-<p>Methods that are based on gradients only include <a
-href="http://en.wikipedia.org/wiki/Limited-memory_BFGS">L-BFGS</a> and
-<a
-href="http://en.wikipedia.org/wiki/Conjugate_gradient_method">conjugate
-gradients</a>. Can you find these in python? Are they suitable for very
-large data sets? }</p>
+<p>Other optimization techniques for generalized linear models include <a href="http://en.wikipedia.org/wiki/Newton%27s_method">Newton’s method</a>, it requires you to compute the Hessian, or second derivative of the objective function.</p>
+<p>Methods that are based on gradients only include <a href="http://en.wikipedia.org/wiki/Limited-memory_BFGS">L-BFGS</a> and <a href="http://en.wikipedia.org/wiki/Conjugate_gradient_method">conjugate gradients</a>. Can you find these in python? Are they suitable for very large data sets? }</p>
 </section>
 <section id="other-glms" class="slide level2">
 <h2>Other GLMs</h2>
 <ul>
-<li>Logistic regression is part of a family known as <em>generalized
-linear models</em></li>
-<li>They all take the form <span class="math display">\[g^{-1}(f_i(x)) =
-\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x}_i)\]</span></li>
+<li>Logistic regression is part of a family known as <em>generalized linear models</em></li>
+<li>They all take the form <span class="math display">\[g^{-1}(f_i(x)) = \mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x}_i)\]</span></li>
 <li>Other examples include <em>Poisson regression</em>.</li>
 </ul>
 </section>
 <section id="poisson-distribution" class="slide level2">
 <h2>Poisson Distribution</h2>
 <ul>
-<li>Poisson distribution is used for ‘count data’. For non-negative
-integers, <span class="math inline">\(y\)</span>, <span
-class="math display">\[P(y) = \frac{\lambda^y}{y!}\exp(-y)\]</span></li>
-<li>Here <span class="math inline">\(\lambda\)</span> is a <em>rate</em>
-parameter that can be thought of as the number of arrivals per unit
-time.</li>
-<li>Poisson distributions can be used for disease count data. E.g.
-number of incidence of malaria in a district.</li>
+<li>Poisson distribution is used for ‘count data.’ For non-negative integers, <span class="math inline">\(y\)</span>, <span class="math display">\[P(y) = \frac{\lambda^y}{y!}\exp(-y)\]</span></li>
+<li>Here <span class="math inline">\(\lambda\)</span> is a <em>rate</em> parameter that can be thought of as the number of arrivals per unit time.</li>
+<li>Poisson distributions can be used for disease count data. E.g. number of incidence of malaria in a district.</li>
 </ul>
 </section>
 <section id="poisson-distribution-1" class="slide level2">
 <h2>Poisson Distribution</h2>
 <div class="figure">
 <div id="the-poisson-distribution-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/poisson.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/ml/poisson.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
@@ -554,54 +570,21 @@ The Poisson distribution.
 <section id="poisson-regression" class="slide level2">
 <h2>Poisson Regression</h2>
 <ul>
-<li>In a Poisson regression make rate a function of space/time. <span
-class="math display">\[\log \lambda(\mathbf{ x}, t) = \mathbf{ w}_x^\top
-\boldsymbol{ \phi}_x(\mathbf{ x}) + \mathbf{ w}_t^\top \boldsymbol{
-\phi}_t(t)\]</span></li>
-<li>This is known as a <em>log linear</em> or <em>log additive</em>
-model.</li>
+<li>In a Poisson regression make rate a function of space/time. <span class="math display">\[\log \lambda(\mathbf{ x}, t) = \mathbf{ w}_x^\top
+\boldsymbol{ \phi}_x(\mathbf{ x}) + \mathbf{ w}_t^\top \boldsymbol{ \phi}_t(t)\]</span></li>
+<li>This is known as a <em>log linear</em> or <em>log additive</em> model.</li>
 <li>The link function is a logarithm.</li>
-<li>We can rewrite such a function as <span class="math display">\[\log
-\lambda(\mathbf{ x}, t) = f_x(\mathbf{ x}) + f_t(t)\]</span></li>
+<li>We can rewrite such a function as <span class="math display">\[\log \lambda(\mathbf{ x}, t) = f_x(\mathbf{ x}) + f_t(t)\]</span></li>
 </ul>
 </section>
 <section id="multiplicative-model" class="slide level2">
 <h2>Multiplicative Model</h2>
 <ul>
-<li>Be careful though … a log additive model is really multiplicative.
-<span class="math display">\[\log \lambda(\mathbf{ x}, t) = f_x(\mathbf{
-x}) + f_t(t)\]</span></li>
-<li>Becomes <span class="math display">\[\lambda(\mathbf{ x}, t) =
-\exp(f_x(\mathbf{ x}) + f_t(t))\]</span></li>
-<li>Which is equivalent to <span class="math display">\[\lambda(\mathbf{
-x}, t) = \exp(f_x(\mathbf{ x}))\exp(f_t(t))\]</span></li>
+<li>Be careful though … a log additive model is really multiplicative. <span class="math display">\[\log \lambda(\mathbf{ x}, t) = f_x(\mathbf{ x}) + f_t(t)\]</span></li>
+<li>Becomes <span class="math display">\[\lambda(\mathbf{ x}, t) = \exp(f_x(\mathbf{ x}) + f_t(t))\]</span></li>
+<li>Which is equivalent to <span class="math display">\[\lambda(\mathbf{ x}, t) = \exp(f_x(\mathbf{ x}))\exp(f_t(t))\]</span></li>
 <li>Link functions can be deceptive in this way.</li>
 </ul>
-</section>
-<section id="google-trends-search-queries" class="slide level2">
-<h2>Google Trends Search Queries</h2>
-<div class="figure">
-<div id="google-trends-poisson-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/google-trends-poisson.svg.svg" width="80%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-Google Trends Search Queries for Xbox One, Wii U, and PS4.
-</aside>
-</section>
-<section id="google-trends-search-queries-predictions"
-class="slide level2">
-<h2>Google Trends Search Queries Predictions</h2>
-<div class="figure">
-<div id="google-trends-poisson-predictions-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/google-trends-poisson-predictions.svg.svg" width="80%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-Google Trends Search Queries for Xbox One, Wii U, and PS4.
-</aside>
 </section>
 <section id="synthetic-example" class="slide level2">
 <h2>Synthetic Example</h2>
@@ -610,17 +593,17 @@ Google Trends Search Queries for Xbox One, Wii U, and PS4.
 <h2>Poisson Regression Diagnostics</h2>
 <div class="figure">
 <div id="poisson-regression-diagnostics-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//ml/poisson-regression-diagnostics.svg.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/ml/poisson-regression-diagnostics.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
 <aside class="notes">
-Diagnostic plots for the Poisson regression model showing actual vs
-predicted counts and residual analysis.
+Diagnostic plots for the Poisson regression model showing actual vs predicted counts and residual analysis.
 </aside>
 </section>
 <section id="practical-tips" class="slide level2">
 <h2>Practical Tips</h2>
+<p>{</p>
 <ul>
 <li>Feature engineering is critical</li>
 <li>Build modular pipelines to test features</li>
@@ -639,6 +622,7 @@ predicted counts and residual analysis.
 </section>
 <section id="diagnostic-checks" class="slide level2">
 <h2>Diagnostic Checks</h2>
+<p>Diagnostic checks are essential for building confidence about the model reliability. Create residual plots against fitted values and each predictor. Look for systematic patterns, a U-shaped residual plot suggests missing quadratic terms. For logistic regression, plot predicted probabilities against actual outcomes in bins to check calibration. Calculate influence measures like Cook’s distance to identify outliers. In a house price model, a mansion might have outsized influence on coefficients. Check <a href="https://en.wikipedia.org/wiki/Variance_inflation_factor">variance inflation factors</a> (VIF) for multicollinearity. High VIF (&gt;5-10) suggests problematic correlation between predictors.</p>
 <ul>
 <li>Plot residuals systematically</li>
 <li>Check for non-linear patterns</li>
@@ -646,11 +630,11 @@ predicted counts and residual analysis.
 <li>Test feature relationships</li>
 </ul>
 </section>
-<section id="visualization" class="slide level2">
-<h2>Visualization</h2>
+<section id="visualisation" class="slide level2">
+<h2>Visualisation</h2>
 <ul>
 <li>Always plot raw data first</li>
-<li>Create diagnostic visualizations</li>
+<li>Create diagnostic visualisations</li>
 <li>Check model assumptions</li>
 <li>Communicate results clearly</li>
 </ul>
@@ -658,43 +642,29 @@ predicted counts and residual analysis.
 <section id="further-reading" class="slide level2 scrollable">
 <h2 class="scrollable">Further Reading</h2>
 <ul>
-<li>Section 5.2.2 up to pg 182 of <span class="citation"
-data-cites="Rogers:book11">Rogers and Girolami (2011)</span></li>
+<li>Section 5.2.2 up to pg 182 of <span class="citation" data-cites="Rogers:book11">Rogers and Girolami (2011)</span></li>
 </ul>
 </section>
 <section id="thanks" class="slide level2 scrollable">
 <h2 class="scrollable">Thanks!</h2>
 <ul>
-<li><p>book: <a
-href="https://www.penguin.co.uk/books/455130/the-atomic-human-by-lawrence-neil-d/9780241625248">The
-Atomic Human</a></p></li>
-<li><p>twitter: <a
-href="https://twitter.com/lawrennd">@lawrennd</a></p></li>
-<li><p><a
-href="https://www.penguin.co.uk/books/455130/the-atomic-human-bylawrence-neil-d/9780241625248">The
-Atomic Human</a></p></li>
-<li><p>podcast: <a href="http://thetalkingmachines.com">The Talking
-Machines</a></p></li>
-<li><p>newspaper: <a
-href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile
-Page</a></p></li>
+<li><p>company: <a href="https://trent.ai">Trent AI</a></p></li>
+<li><p>book: <a href="https://www.penguin.co.uk/books/455130/the-atomic-human-by-lawrence-neil-d/9780241625248">The Atomic Human</a></p></li>
+<li><p>twitter: <a href="https://twitter.com/lawrennd">@lawrennd</a></p></li>
+<li><p><a href="https://the-atomic-human.ai">The Atomic Human</a></p></li>
+<li><p>newspaper: <a href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile Page</a></p></li>
 <li><p>blog posts:</p>
-<p><a
-href="http://inverseprobability.com/2014/07/01/open-data-science">Open
-Data Science</a></p></li>
+<p><a href="http://inverseprobability.com/2014/07/01/open-data-science">Open Data Science</a></p></li>
 </ul>
 </section>
 <section id="references" class="slide level2 unnumbered scrollable">
 <h2 class="unnumbered scrollable">References</h2>
-<div id="refs" class="references csl-bib-body hanging-indent"
-role="list">
-<div id="ref-Robbins:stoch51" class="csl-entry" role="listitem">
-Robbins, H., Monro, S., 1951. A stochastic approximation method. Annals
-of Mathematical Statistics 22, 400–407.
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Robbins:stoch51" class="csl-entry" role="doc-biblioentry">
+Robbins, H., Monro, S., 1951. A stochastic approximation method. Annals of Mathematical Statistics 22, 400–407.
 </div>
-<div id="ref-Rogers:book11" class="csl-entry" role="listitem">
-Rogers, S., Girolami, M., 2011. A first course in machine learning. CRC
-Press.
+<div id="ref-Rogers:book11" class="csl-entry" role="doc-biblioentry">
+Rogers, S., Girolami, M., 2011. A first course in machine learning. CRC Press.
 </div>
 </div>
 </section>
@@ -709,39 +679,10 @@ Press.
       // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
-        // Display controls in the bottom right corner
-        controls: true,
-        // Display a presentation progress bar
-        progress: true,
         // Push each slide change to the browser history
         history: true,
-        // Enable keyboard shortcuts for navigation
-        keyboard: true,
-        // Enable the slide overview mode
-        overview: true,
-        // Vertical centering of slides
-        center: true,
-        // Enables touch navigation on devices with touch input
-        touch: true,
-        // Turns fragments on and off globally
-        fragments: true,
-        // Flags if we should show a help overlay when the questionmark
-        // key is pressed
-        help: true,
-        // Number of milliseconds between automatically proceeding to the
-        // next slide, disabled when set to 0, this value can be overwritten
-        // by using a data-autoslide attribute on your slides
-        autoSlide: 0,
-        // Stop auto-sliding after user input
-        autoSlideStoppable: true,
         // Transition style
         transition: 'None', // none/fade/slide/convex/concave/zoom
-        // Transition speed
-        transitionSpeed: 'default', // default/fast/slow
-        // Transition style for full page slide backgrounds
-        backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
-        // Number of slides away from the current that are visible
-        viewDistance: 3,
         math: {
           mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js',
           config: 'TeX-AMS_HTML-full',

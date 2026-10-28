@@ -45,16 +45,29 @@ reveal: True
 \include{_dimred/includes/dimensionality-reduction-failure-modes.md}
 \include{_dimred/includes/high-dimensional-data-real.md}
 \include{_dimred/includes/latent-variables.md}
+\include{_dimred/includes/probabilistic-pca-model.md}
+\include{_dimred/includes/probabilistic-pca.md}
 \include{_dimred/includes/principal-component-analysis.md}
 
-\include{_dimred/includes/probabilistic-pca.md}
 
-\include{_dimred/includes/mocap-ppca.md}
+\include{_dimred/includes/osu-run1-ppca.md}
 \include{_dimred/includes/robot-wireless-ppca.md}
-\include{_dimred/includes/ppca-interpretations.md}
-\include{_dimred/includes/pca-in-practice.md}
+
+\section{Interpretations of Principal Component Analysis}
+
+\include{_dimred/includes/principal-component-analysis.md}
+\include{_dimred/includes/pca-and-matrix-factorisation.md}
+\include{_dimred/includes/pca-and-model-algorithm-separation.md}
+\include{_dimred/includes/pca-effectiveness.md}
+
+\section{Derivation of PPCA}
+
 \include{_dimred/includes/ppca-marginal-likelihood.md}
 \include{_dimred/includes/ppca-reconstruction.md}
+
+
+\section{Multidimensional Scaling}
+
 \include{_dimred/includes/mds-derivation.md}
 \include{_dimred/includes/mds-pca-equivalence.md}
 

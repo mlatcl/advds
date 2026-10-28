@@ -1,14 +1,7 @@
 ---
 title: "Visualisation II: Further Dimensionality Reduction"
 venue: "LT2, William Gates Building"
-abstract: "<p>Building on our understanding of discrete and continuous
-latent variables, this lecture explores modern approaches to
-dimensionality reduction. We examine the limitations of linear methods
-like PCA, introduce powerful nonlinear techniques like t-SNE, and
-develop practical guidelines for choosing and implementing these
-methods. The lecture emphasizes the importance of understanding when
-methods preserve local versus global structure and how this affects
-their application.</p>"
+abstract: "<p>Building on our understanding of discrete and continuous latent variables, this lecture explores modern approaches to dimensionality reduction. We examine the limitations of linear methods like PCA, introduce powerful nonlinear techniques like t-SNE, and develop practical guidelines for choosing and implementing these methods. The lecture emphasizes the importance of understanding when methods preserve local versus global structure and how this affects their application.</p>"
 author:
 - given: Neil D.
   family: Lawrence
@@ -19,7 +12,6 @@ author:
   orcid: 
 edit_url: https://github.com/mlatcl/advds/edit/gh-pages/_lamd/visualisation-ii.md
 date: 2024-11-13
-published: 2024-11-13
 time: "10:00"
 week: 5
 session: 3
@@ -44,9 +36,7 @@ categories:
 -->
 <h2 id="setup">Setup</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_notebooks/includes/notebook-setup.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_notebooks/includes/notebook-setup.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_notebooks/includes/notebook-setup.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_notebooks/includes/notebook-setup.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <!--setupplotcode{import seaborn as sns
 sns.set_style('darkgrid')
@@ -54,685 +44,623 @@ sns.set_context('paper')
 sns.set_palette('colorblind')}-->
 <h2 id="notutils">notutils</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_software/includes/notutils-software.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_software/includes/notutils-software.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_software/includes/notutils-software.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_software/includes/notutils-software.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>This small package is a helper package for various notebook utilities
-used below.</p>
+<p>This small package is a helper package for various notebook utilities used below.</p>
 <p>The software can be installed using</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install notutils</span></code></pre></div>
-<p>from the command prompt where you can access your python
-installation.</p>
-<p>The code is also available on GitHub: <a
-href="https://github.com/lawrennd/notutils"
-class="uri">https://github.com/lawrennd/notutils</a></p>
-<p>Once <code>notutils</code> is installed, it can be imported in the
-usual manner.</p>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> notutils</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib.util</span></code></pre></div>
+<p>from the command prompt where you can access your python installation.</p>
+<p>The code is also available on GitHub: <a href="https://github.com/lawrennd/notutils" class="uri">https://github.com/lawrennd/notutils</a></p>
+<p>Once <code>notutils</code> is installed, it can be imported in the usual manner.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> notutils</span></code></pre></div>
 <h2 id="pods">pods</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_software/includes/pods-software.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_software/includes/pods-software.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_software/includes/pods-software.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_software/includes/pods-software.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>In Sheffield we created a suite of software tools for ‘Open Data
-Science’. Open data science is an approach to sharing code, models and
-data that should make it easier for companies, health professionals and
-scientists to gain access to data science techniques.</p>
-<p>You can also check this blog post on <a
-href="http://inverseprobability.com/2014/07/01/open-data-science">Open
-Data Science</a>.</p>
+<p>In Sheffield we created a suite of software tools for ‘Open Data Science.’ Open data science is an approach to sharing code, models and data that should make it easier for companies, health professionals and scientists to gain access to data science techniques.</p>
+<p>You can also check this blog post on <a href="http://inverseprobability.com/2014/07/01/open-data-science">Open Data Science</a>.</p>
 <p>The software can be installed using</p>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install pods</span></code></pre></div>
-<p>from the command prompt where you can access your python
-installation.</p>
-<p>The code is also available on GitHub: <a
-href="https://github.com/lawrennd/ods"
-class="uri">https://github.com/lawrennd/ods</a></p>
-<p>Once <code>pods</code> is installed, it can be imported in the usual
-manner.</p>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cmd <span class="op">=</span> install_command(<span class="st">&#39;pods&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>system {cmd}</span></code></pre></div>
+<p>from the command prompt where you can access your python installation.</p>
+<p>The code is also available on GitHub: <a href="https://github.com/lawrennd/ods" class="uri">https://github.com/lawrennd/ods</a></p>
+<p>Once <code>pods</code> is installed, it can be imported in the usual manner.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
 <h2 id="mlai">mlai</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_software/includes/mlai-software.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_software/includes/mlai-software.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_software/includes/mlai-software.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_software/includes/mlai-software.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>The <code>mlai</code> software is a suite of helper functions for
-teaching and demonstrating machine learning algorithms. It was first
-used in the Machine Learning and Adaptive Intelligence course in
-Sheffield in 2013.</p>
+<p>The <code>mlai</code> software is a suite of helper functions for teaching and demonstrating machine learning algorithms. It was first used in the Machine Learning and Adaptive Intelligence course in Sheffield in 2013.</p>
 <p>The software can be installed using</p>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install mlai</span></code></pre></div>
-<p>from the command prompt where you can access your python
-installation.</p>
-<p>The code is also available on GitHub: <a
-href="https://github.com/lawrennd/mlai"
-class="uri">https://github.com/lawrennd/mlai</a></p>
-<p>Once <code>mlai</code> is installed, it can be imported in the usual
-manner.</p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> plot</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cmd <span class="op">=</span> install_command(<span class="st">&#39;mlai&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>system {cmd}</span></code></pre></div>
+<p>from the command prompt where you can access your python installation.</p>
+<p>The code is also available on GitHub: <a href="https://github.com/lawrennd/mlai" class="uri">https://github.com/lawrennd/mlai</a></p>
+<p>Once <code>mlai</code> is installed, it can be imported in the usual manner.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> plot</span></code></pre></div>
 <h1 id="part-1-linear-pca">Part 1: Linear PCA</h1>
 <h2 id="principal-component-analysis">Principal Component Analysis</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/includes/principal-component-analysis.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_dimred/includes/principal-component-analysis.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/includes/principal-component-analysis.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_dimred/includes/principal-component-analysis.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>Principal Component Analysis (PCA) is one of the most fundamental and
-widely used dimensionality reduction techniques. While commonly credited
-to <span class="citation" data-cites="Pearson-lines01">Pearson
-(1901)</span>, who was interested in finding “lines and planes of
-closest fit to systems of points in space”, the method as we will review
-it today was introduced and <em>named</em> by Hotelling (<span
-class="citation" data-cites="Hotelling:analysis33">Hotelling
-(1933)</span>). The approach is often used as a way of looking for
-correlations, but Hotelling’s motivation was a principled alternative to
-Spearman’s factor analysis <span class="citation"
-data-cites="Spearman-general04">(Spearman, 1904)</span>.</p>
-<p>Often PCA is introduced as a method for finding directions of maximum
-variance in high-dimensional data, and this is the interpretation that
-is due to <span class="citation" data-cites="Pearson-lines01">Pearson
-(1901)</span>, but philosophically these approaches arre different even
-though they turn out to be identical mathematically. In a very real
-sense “many models lead to the PCA algorithm”. But these equivalences
-are only true when a <em>linear</em> interpretation is sought. Nonlinear
-extensions of these ideas (maximum variance directions, eigenvalue
-problems, latent variable models) all lead to <em>different</em>
-algorithms. However, since the linear algorithm has so many
-interpretations it is a wise place to begin analysis.</p>
-<p>The mathematical foundation of PCA relies on analyzing the sample
-covariance matrix of the data. For a dataset with <span
-class="math inline">\(n\)</span> points, this matrix is given by:</p>
+<p>Principal Component Analysis (PCA) is one of the most fundamental and widely used dimensionality reduction techniques. While commonly credited to <span class="citation" data-cites="Pearson-lines01">Pearson (1901)</span>, who was interested in finding “lines and planes of closest fit to systems of points in space,” the method as we will review it today was introduced and <em>named</em> by Hotelling (<span class="citation" data-cites="Hotelling:analysis33">Hotelling (1933)</span>). The approach is often used as a way of looking for correlations, but Hotelling’s motivation was a principled alternative to Spearman’s factor analysis <span class="citation" data-cites="Spearman-general04">(Spearman, 1904)</span>.</p>
+<p>Often PCA is introduced as a method for finding directions of maximum variance in high-dimensional data, and this is the interpretation that is due to <span class="citation" data-cites="Pearson-lines01">Pearson (1901)</span>, but philosophically these approaches arre different even though they turn out to be identical mathematically. In a very real sense “many models lead to the PCA algorithm.” But these equivalences are only true when a <em>linear</em> interpretation is sought. Nonlinear extensions of these ideas (maximum variance directions, eigenvalue problems, latent variable models) all lead to <em>different</em> algorithms. However, since the linear algorithm has so many interpretations it is a wise place to begin analysis.</p>
+<p>The mathematical foundation of PCA relies on analyzing the sample covariance matrix of the data. For a dataset with <span class="math inline">\(n\)</span> points, this matrix is given by:</p>
 <p><span class="math display">\[
-\mathbf{S}=\frac{1}{n}\sum_{i=1}^n\left(\mathbf{ y}_{i, :}-\boldsymbol{
-\mu}\right)\left(\mathbf{ y}_{i, :} - \boldsymbol{ \mu}\right)^\top
+\mathbf{S}=\frac{1}{n}\sum_{i=1}^n\left(\mathbf{ y}_{i, :}-\boldsymbol{ \mu}\right)\left(\mathbf{ y}_{i, :} - \boldsymbol{ \mu}\right)^\top
 \]</span></p>
-<p>The modern interpretation focuses on finding a set of orthogonal
-directions (principal components) along which the data varies the most,
-but Hotelling’s original formulation was derived from the idea of latent
-variables. The optimization problem we solve today, which maximizes the
-variance along each direction while maintaining orthogonality
-constraints, arises as the solution of the original latent variable
-formulation <span class="citation"
-data-cites="Tipping-probpca99">(Tipping and Bishop, 1999a)</span>.</p>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate correlated 2D Gaussian samples</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>num_points <span class="op">=</span> <span class="dv">200</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">0</span>])</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>cov <span class="op">=</span> np.array([[<span class="fl">2.0</span>, <span class="fl">1.8</span>], </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                [<span class="fl">1.8</span>, <span class="fl">2.0</span>]])</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.random.multivariate_normal(mean, cov, num_points)</span></code></pre></div>
+<p>The modern interpretation focuses on finding a set of orthogonal directions (principal components) along which the data varies the most, but Hotelling’s original formulation was derived from the idea of latent variables. The optimization problem we solve today, which maximizes the variance along each direction while maintaining orthogonality constraints, arises as the solution of the original latent variable formulation <span class="citation" data-cites="Tipping-probpca99">(Tipping and Bishop, 1999a)</span>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate correlated 2D Gaussian samples</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>num_points <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>cov <span class="op">=</span> np.array([[<span class="fl">2.0</span>, <span class="fl">1.8</span>], </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                [<span class="fl">1.8</span>, <span class="fl">2.0</span>]])</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.random.multivariate_normal(mean, cov, num_points)</span></code></pre></div>
 <div class="figure">
 <div id="pca-directions-003-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/pca-directions-003.svg" width="\width" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/pca-directions-003.svg" width="\width" style=" ">
 </object>
 </div>
-<div id="pca-directions-003-magnify" class="magnify"
-onclick="magnifyFigure(&#39;pca-directions-003&#39;)">
+<div id="pca-directions-003-magnify" class="magnify" onclick="magnifyFigure(&#39;pca-directions-003&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="pca-directions-003-caption" class="caption-frame">
-<p>Figure: Illustration of PCA on 2D correlated Gaussian data. The
-arrows show the principal components (eigenvectors scaled by square root
-of eigenvalues). The ellipse represents the covariance structure.</p>
+<p>Figure: Illustration of PCA on 2D correlated Gaussian data. The arrows show the principal components (eigenvectors scaled by square root of eigenvalues). The ellipse represents the covariance structure.</p>
 </div>
 </div>
 <h2 id="probabilistic-pca">Probabilistic PCA</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/includes/probabilistic-pca.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_dimred/includes/probabilistic-pca.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/includes/probabilistic-pca.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_dimred/includes/probabilistic-pca.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>This linear relationship between the observed data and the latent
-variables is at the heart of Hotelling’s original formulation of PCA. It
-explicitly models the idea that the observed high-dimensional data is
-generated from a lower-dimensional set of latent variables, with some
-added noise. This perspective aligns PCA more closely with factor
-analysis and highlights its nature as a latent variable model.</p>
-<p>Probabilistic PCA (PPCA) provides a probabilistic interpretation of
-PCA by explicitly modeling the generative process that creates the
-observed data. The model assumes that each high-dimensional data point
-<span class="math inline">\(\mathbf{ y}_{i,:}\)</span> is generated from
-a lower-dimensional latent variable <span class="math inline">\(\mathbf{
-z}_{i,:}\)</span> through a linear transformation with added Gaussian
-noise: <span class="math display">\[
-\mathbf{ y}_{i,:} = \mathbf{W}\mathbf{ z}_{i,:} + \boldsymbol{
-\epsilon}_{i,:}
-\]</span> where <span class="math inline">\(\boldsymbol{ \epsilon}_{i,:}
-\sim \mathcal{N}\left(\mathbf{0},\sigma^2\mathbf{I}\right)\)</span>
-represents isotropic Gaussian noise. The model places a standard
-Gaussian prior over the latent variables: <span class="math display">\[
-p(\mathbf{ z}_{i,:}) = \mathcal{N}\left(\mathbf{
-z}_{i,:}|\mathbf{0},\mathbf{I}\right)
-\]</span> Given these assumptions, the conditional probability of
-observing a data point given its latent representation is: <span
-class="math display">\[
-p(\mathbf{ y}_{i,:}|\mathbf{ z}_{i,:},\mathbf{W}) =
-\mathcal{N}\left(\mathbf{ y}_{i,:}|\mathbf{W}\mathbf{
-z}_{i,:},\sigma^2\mathbf{I}\right)
-\]</span> By integrating out the latent variables, we obtain the
-marginal likelihood of the data: <span class="math display">\[
-p(\mathbf{ y}_{i,:}|\mathbf{W}) = \mathcal{N}\left(\mathbf{
-y}_{i,:}|\mathbf{0},\mathbf{W}\mathbf{W}^{\top}+\sigma^{2}\mathbf{I}\right)
-\]</span> This probabilistic formulation, developed by Tipping and
-Bishop <span class="citation" data-cites="Tipping-probpca99">(Tipping
-and Bishop, 1999a)</span>, provides a principled framework that not only
-recovers classical PCA as a special case when <span
-class="math inline">\(\sigma^2 \to 0\)</span>, but also enables
-extensions like handling missing data and mixture models.</p>
+<p>This linear relationship between the observed data and the latent variables is at the heart of Hotelling’s original formulation of PCA. It explicitly models the idea that the observed high-dimensional data is generated from a lower-dimensional set of latent variables, with some added noise. This perspective aligns PCA more closely with factor analysis and highlights its nature as a latent variable model.</p>
+<p>Probabilistic PCA (PPCA) provides a probabilistic interpretation of PCA by explicitly modeling the generative process that creates the observed data. The model assumes that each high-dimensional data point <span class="math inline">\(\mathbf{ y}_{i,:}\)</span> is generated from a lower-dimensional latent variable <span class="math inline">\(\mathbf{ z}_{i,:}\)</span> through a linear transformation with added Gaussian noise: <span class="math display">\[
+\mathbf{ y}_{i,:} = \mathbf{W}\mathbf{ z}_{i,:} + \boldsymbol{ \epsilon}_{i,:}
+\]</span> where <span class="math inline">\(\boldsymbol{ \epsilon}_{i,:} \sim \mathscr{N}\left(\mathbf{0},\sigma^2\mathbf{I}\right)\)</span> represents isotropic Gaussian noise. The model places a standard Gaussian prior over the latent variables: <span class="math display">\[
+p(\mathbf{ z}_{i,:}) = \mathscr{N}\left(\mathbf{ z}_{i,:}|\mathbf{0},\mathbf{I}\right)
+\]</span> Given these assumptions, the conditional probability of observing a data point given its latent representation is: <span class="math display">\[
+p(\mathbf{ y}_{i,:}|\mathbf{ z}_{i,:},\mathbf{W}) = \mathscr{N}\left(\mathbf{ y}_{i,:}|\mathbf{W}\mathbf{ z}_{i,:},\sigma^2\mathbf{I}\right)
+\]</span> By integrating out the latent variables, we obtain the marginal likelihood of the data: <span class="math display">\[
+p(\mathbf{ y}_{i,:}|\mathbf{W}) = \mathscr{N}\left(\mathbf{ y}_{i,:}|\mathbf{0},\mathbf{W}\mathbf{W}^{\top}+\sigma^{2}\mathbf{I}\right)
+\]</span> This probabilistic formulation, developed by Tipping and Bishop <span class="citation" data-cites="Tipping-probpca99">(Tipping and Bishop, 1999a)</span>, provides a principled framework that not only recovers classical PCA as a special case when <span class="math inline">\(\sigma^2 \to 0\)</span>, but also enables extensions like handling missing data and mixture models.</p>
 <div class="figure">
-<div id="ppca-graph-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//dimred/ppca_graph.svg" width="40%" style=" ">
+<div id="ppca-graphical_model-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/ppca_graphical_model.svg" width="60%" style=" ">
 </object>
 </div>
-<div id="ppca-graph-magnify" class="magnify"
-onclick="magnifyFigure(&#39;ppca-graph&#39;)">
+<div id="ppca-graphical_model-magnify" class="magnify" onclick="magnifyFigure(&#39;ppca-graphical_model&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="ppca-graph-caption" class="caption-frame">
+<div id="ppca-graphical_model-caption" class="caption-frame">
 <p>Figure: Graphical model representing probabilistic PCA.</p>
 </div>
 </div>
-<h1 id="probabilistic-pca-1">Probabilistic PCA</h1>
-<p>In 1997 <a
-href="http://research.microsoft.com/pubs/67218/bishop-ppca-jrss.pdf">Tipping
-and Bishop</a> <span class="citation"
-data-cites="Tipping:pca97">(Tipping and Bishop, 1999b)</span> and <a
-href="https://www.cs.nyu.edu/~roweis/papers/empca.pdf">Roweis</a> <span
-class="citation" data-cites="Roweis:SPCA97">(Roweis, n.d.)</span>
-independently revisited Hotelling’s model and considered the case where
-the noise variance was finite, but <em>shared</em> across all output
-dimensons. Their model can be thought of as a factor analysis where
-<span class="math display">\[
+<h2 id="probabilistic-pca-1">Probabilistic PCA</h2>
+<p>In 1997 <a href="http://research.microsoft.com/pubs/67218/bishop-ppca-jrss.pdf">Tipping and Bishop</a> <span class="citation" data-cites="Tipping-pca97">(Tipping and Bishop, 1999b)</span> and <a href="https://www.cs.nyu.edu/~roweis/papers/empca.pdf">Roweis</a> <span class="citation" data-cites="Roweis-SPCA97">(Roweis, n.d.)</span> independently revisited Hotelling’s model and considered the case where the noise variance was finite, but <em>shared</em> across all output dimensons. Their model can be thought of as a factor analysis where <span class="math display">\[
 \boldsymbol{\Sigma} = \sigma^2 \mathbf{I}.
-\]</span> This leads to a marginal likelihood of the form <span
-class="math display">\[
+\]</span> This leads to a marginal likelihood of the form <span class="math display">\[
 p(\mathbf{Y}|\mathbf{W}, \sigma^2)
-= \prod_{i=1}^n\mathcal{N}\left(\mathbf{ y}_{i,
-:}|\mathbf{0},\mathbf{W}\mathbf{W}^\top + \sigma^2 \mathbf{I}\right)
-\]</span> where the limit of <span
-class="math inline">\(\sigma^2\rightarrow 0\)</span> is <em>not</em>
-taken. This defines a proper probabilistic model. Tippping and Bishop
-then went on to prove that the <em>maximum likelihood</em> solution of
-this model with respect to <span
-class="math inline">\(\mathbf{W}\)</span> is given by an eigenvalue
-problem. In the probabilistic PCA case the eigenvalues and eigenvectors
-are given as follows. <span class="math display">\[
+= \prod_{i=1}^n\mathscr{N}\left(\mathbf{ y}_{i, :}|\mathbf{0},\mathbf{W}\mathbf{W}^\top + \sigma^2 \mathbf{I}\right)
+\]</span> where the limit of <span class="math inline">\(\sigma^2\rightarrow 0\)</span> is <em>not</em> taken. This defines a proper probabilistic model. Tippping and Bishop then went on to prove that the <em>maximum likelihood</em> solution of this model with respect to <span class="math inline">\(\mathbf{W}\)</span> is given by an eigenvalue problem. In the probabilistic PCA case the eigenvalues and eigenvectors are given as follows. <span class="math display">\[
 \mathbf{W}= \mathbf{U}\mathbf{L} \mathbf{R}^\top
-\]</span> where <span class="math inline">\(\mathbf{U}\)</span> is the
-eigenvectors of the empirical covariance matrix <span
-class="math display">\[
-\mathbf{S} = \sum_{i=1}^n(\mathbf{ y}_{i, :} - \boldsymbol{
-\mu})(\mathbf{ y}_{i,:} - \boldsymbol{ \mu})^\top,
-\]</span> which can be written <span class="math inline">\(\mathbf{S} =
-\frac{1}{n} \mathbf{Y}^\top\mathbf{Y}\)</span> if the data is zero mean.
-The matrix <span class="math inline">\(\mathbf{L}\)</span> is diagonal
-and is dependent on the <em>eigenvalues</em> of <span
-class="math inline">\(\mathbf{S}\)</span>, <span
-class="math inline">\(\boldsymbol{\Lambda}\)</span>. If the <span
-class="math inline">\(i\)</span>th diagonal element of this matrix is
-given by <span class="math inline">\(\lambda_i\)</span> then the
-corresponding element of <span class="math inline">\(\mathbf{L}\)</span>
-is <span class="math display">\[
+\]</span> where <span class="math inline">\(\mathbf{U}\)</span> is the eigenvectors of the empirical covariance matrix <span class="math display">\[
+\mathbf{S}= \sum_{i=1}^n(\mathbf{ y}_{i, :} - \boldsymbol{ \mu})(\mathbf{ y}_{i,:} - \boldsymbol{ \mu})^\top,
+\]</span> which can be written <span class="math inline">\(\mathbf{S}= \frac{1}{n} \mathbf{Y}^\top\mathbf{Y}\)</span> if the data is zero mean. The matrix <span class="math inline">\(\mathbf{L}\)</span> is diagonal and is dependent on the <em>eigenvalues</em> of <span class="math inline">\(\mathbf{S}\)</span>, <span class="math inline">\(\boldsymbol{\Lambda}\)</span>. If the <span class="math inline">\(i\)</span>th diagonal element of this matrix is given by <span class="math inline">\(\lambda_i\)</span> then the corresponding element of <span class="math inline">\(\mathbf{L}\)</span> is <span class="math display">\[
 \ell_i = \sqrt{\lambda_i - \sigma^2}
-\]</span> where <span class="math inline">\(\sigma^2\)</span> is the
-noise variance. Note that if <span
-class="math inline">\(\sigma^2\)</span> is larger than any particular
-eigenvalue, then that eigenvalue (along with its corresponding
-eigenvector) is <em>discarded</em> from the solution.</p>
+\]</span> where <span class="math inline">\(\sigma^2\)</span> is the noise variance. Note that if <span class="math inline">\(\sigma^2\)</span> is larger than any particular eigenvalue, then that eigenvalue (along with its corresponding eigenvector) is <em>discarded</em> from the solution.</p>
 <h2 id="ppca-as-manifold-learning">PPCA as Manifold Learning</h2>
-<p>Probabilistic PCA can be viewed as a simple manifold learning
-algorithm. It assumes that:</p>
+<p>Probabilistic PCA can be viewed as a simple manifold learning algorithm. It assumes that:</p>
 <ol type="1">
-<li>The data lies near a linear manifold (subspace) of the
-high-dimensional space</li>
+<li>The data lies near a linear manifold (subspace) of the high-dimensional space</li>
 <li>The deviation from this manifold is Gaussian noise</li>
-<li>The intrinsic dimensionality is specified by the number of retained
-components</li>
+<li>The intrinsic dimensionality is specified by the number of retained components</li>
 </ol>
-<p>This view helps explain why PPCA works well when the manifold
-hypothesis holds and the manifold is approximately linear. When the
-manifold is nonlinear, we need more sophisticated methods like kernel
-PCA or neural network-based approaches.</p>
-<h2 id="python-implementation-of-probabilistic-pca">Python
-Implementation of Probabilistic PCA</h2>
+<p>This view helps explain why PPCA works well when the manifold hypothesis holds and the manifold is approximately linear. When the manifold is nonlinear, we need more sophisticated methods like kernel PCA or neural network-based approaches.</p>
+<h2 id="python-implementation-of-probabilistic-pca">Python Implementation of Probabilistic PCA</h2>
 <p>We will now implement this algorithm in python.</p>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># probabilistic PCA algorithm</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ppca(Y, q):</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remove mean</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    Y_cent <span class="op">=</span> Y <span class="op">-</span> Y.mean(<span class="dv">0</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Comute covariance</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> np.dot(Y_cent.T, Y_cent)<span class="op">/</span>Y.shape[<span class="dv">0</span>]</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    lambd, U <span class="op">=</span> np.linalg.eig(S)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Choose number of eigenvectors</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    sigma2 <span class="op">=</span> np.<span class="bu">sum</span>(lambd[q:])<span class="op">/</span>(Y.shape[<span class="dv">1</span>]<span class="op">-</span>q)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    l <span class="op">=</span> np.sqrt(lambd[:q]<span class="op">-</span>sigma2)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    W <span class="op">=</span> U[:, :q]<span class="op">*</span>l[<span class="va">None</span>, :]</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> W, sigma2</span></code></pre></div>
-<p>In practice we may not wish to compute the eigenvectors of the
-covariance matrix directly. This is because it requires us to estimate
-the covariance, which involves a sum of squares term, before estimating
-the eigenvectors. We can estimate the eigenvectors directly either
-through <a href="http://en.wikipedia.org/wiki/QR_decomposition">QR
-decomposition</a> or <a
-href="http://en.wikipedia.org/wiki/Singular_value_decomposition">singular
-value decomposition</a>. We saw a similar issue arise when , where we
-also wished to avoid computation of <span
-class="math inline">\(\mathbf{Z}^\top\mathbf{Z}\)</span> (or in the case
-of <span
-class="math inline">\(\boldsymbol{\Phi}^\top\boldsymbol{\Phi}\)</span>).</p>
-<h2 id="posterior-for-principal-component-analysis">Posterior for
-Principal Component Analysis</h2>
-<p>Under the latent variable model justification for principal component
-analysis, we are normally interested in inferring something about the
-latent variables given the data. This is the distribution, <span
-class="math display">\[
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> ppca_eig</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ppca <span class="op">=</span> ppca_eig</span></code></pre></div>
+<p>In practice we may not wish to compute the eigenvectors of the covariance matrix directly. This is because it requires us to estimate the covariance, which involves a sum of squares term, before estimating the eigenvectors. We can estimate the eigenvectors directly either through <a href="http://en.wikipedia.org/wiki/QR_decomposition">QR decomposition</a> or <a href="http://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>. We saw a similar issue arise when , where we also wished to avoid computation of <span class="math inline">\(\mathbf{Z}^\top\mathbf{Z}\)</span> (or in the case of  <span class="math inline">\(\boldsymbol{\Phi}^\top\boldsymbol{\Phi}\)</span>).</p>
+<h2 id="posterior-for-principal-component-analysis">Posterior for Principal Component Analysis</h2>
+<p>Under the latent variable model justification for principal component analysis, we are normally interested in inferring something about the latent variables given the data. This is the distribution, <span class="math display">\[
 p(\mathbf{ z}_{i, :} | \mathbf{ y}_{i, :})
-\]</span> for any given data point. Determining this density turns out
-to be very similar to the approach for determining the Bayesian
-posterior of <span class="math inline">\(\mathbf{ w}\)</span> in
-Bayesian linear regression, only this time we place the prior density
-over <span class="math inline">\(\mathbf{ z}_{i, :}\)</span> instead of
-<span class="math inline">\(\mathbf{ w}\)</span>. The posterior is
-proportional to the joint density as follows, <span
-class="math display">\[
+\]</span> for any given data point. Determining this density turns out to be very similar to the approach for determining the Bayesian posterior of <span class="math inline">\(\mathbf{ w}\)</span> in Bayesian linear regression, only this time we place the prior density over <span class="math inline">\(\mathbf{ z}_{i, :}\)</span> instead of <span class="math inline">\(\mathbf{ w}\)</span>. The posterior is proportional to the joint density as follows, <span class="math display">\[
 p(\mathbf{ z}_{i, :} | \mathbf{ y}_{i, :}) \propto p(\mathbf{ y}_{i,
 :}|\mathbf{W}, \mathbf{ z}_{i, :}, \sigma^2) p(\mathbf{ z}_{i, :})
-\]</span> And as in the Bayesian linear regression case we first
-consider the log posterior, <span class="math display">\[
-\log p(\mathbf{ z}_{i, :} | \mathbf{ y}_{i, :}) = \log p(\mathbf{ y}_{i,
-:}|\mathbf{W},
-\mathbf{ z}_{i, :}, \sigma^2) + \log p(\mathbf{ z}_{i, :}) +
-\text{const}
-\]</span> where the constant is not dependent on <span
-class="math inline">\(\mathbf{ z}\)</span>. As before we collect the
-quadratic terms in <span class="math inline">\(\mathbf{ z}_{i,
-:}\)</span> and we assemble them into a Gaussian density over <span
-class="math inline">\(\mathbf{ z}\)</span>. <span
-class="math display">\[
+\]</span> And as in the Bayesian linear regression case we first consider the log posterior, <span class="math display">\[
+\log p(\mathbf{ z}_{i, :} | \mathbf{ y}_{i, :}) = \log p(\mathbf{ y}_{i, :}|\mathbf{W},
+\mathbf{ z}_{i, :}, \sigma^2) + \log p(\mathbf{ z}_{i, :}) + \text{const}
+\]</span> where the constant is not dependent on <span class="math inline">\(\mathbf{ z}\)</span>. As before we collect the quadratic terms in <span class="math inline">\(\mathbf{ z}_{i, :}\)</span> and we assemble them into a Gaussian density over <span class="math inline">\(\mathbf{ z}\)</span>. <span class="math display">\[
 \log p(\mathbf{ z}_{i, :} | \mathbf{ y}_{i, :}) =
 -\frac{1}{2\sigma^2} (\mathbf{ y}_{i, :} - \mathbf{W}\mathbf{ z}_{i,
-:})^\top(\mathbf{ y}_{i, :} - \mathbf{W}\mathbf{ z}_{i, :}) -
-\frac{1}{2}
+:})^\top(\mathbf{ y}_{i, :} - \mathbf{W}\mathbf{ z}_{i, :}) - \frac{1}{2}
 \mathbf{ z}_{i, :}^\top \mathbf{ z}_{i, :} + \text{const}
 \]</span></p>
 <h3 id="exercise-1">Exercise 1</h3>
-<p>Multiply out the terms in the brackets. Then collect the quadratic
-term and the linear terms together. Show that the posterior has the form
-<span class="math display">\[
-\mathbf{ z}_{i, :} | \mathbf{W}\sim \mathcal{N}\left(\boldsymbol{
-\mu}_x,\mathbf{C}_x\right)
+<p>Multiply out the terms in the brackets. Then collect the quadratic term and the linear terms together. Show that the posterior has the form <span class="math display">\[
+\mathbf{ z}_{i, :} | \mathbf{W}\sim \mathscr{N}\left(\boldsymbol{ \mu}_x,\mathbf{C}_x\right)
 \]</span> where <span class="math display">\[
 \mathbf{C}_x = \left(\sigma^{-2}
 \mathbf{W}^\top\mathbf{W}+ \mathbf{I}\right)^{-1}
 \]</span> and <span class="math display">\[
 \boldsymbol{ \mu}_x
-= \mathbf{C}_x \sigma^{-2}\mathbf{W}^\top \mathbf{ y}_{i, :}
-\]</span> Compare this to the posterior for the Bayesian linear
-regression from last week, do they have similar forms? What matches and
-what differs?</p>
-<h2 id="python-implementation-of-the-posterior">Python Implementation of
-the Posterior</h2>
+= \mathbf{C}_x \sigma^{-2}\mathbf{W}^\top \mathbf{ y}_{i, :} 
+\]</span> Compare this to the posterior for the Bayesian linear regression from last week, do they have similar forms? What matches and what differs?</p>
+<h2 id="python-implementation-of-the-posterior">Python Implementation of the Posterior</h2>
 <p>Now let’s implement the system in code.</p>
 <h3 id="exercise-2">Exercise 2</h3>
-<p>Use the values for <span class="math inline">\(\mathbf{W}\)</span>
-and <span class="math inline">\(\sigma^2\)</span> you have computed,
-along with the data set <span class="math inline">\(\mathbf{Y}\)</span>
-to compute the posterior density over <span
-class="math inline">\(\mathbf{Z}\)</span>. Write a function of the
-form</p>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mu_x, C_x <span class="op">=</span> posterior(Y, W, sigma2)</span></code></pre></div>
-<p>where <code>mu_x</code> and <code>C_x</code> are the posterior mean
-and posterior covariance for the given <span
-class="math inline">\(\mathbf{Y}\)</span>.</p>
-<p>Don’t forget to subtract the mean of the data <code>Y</code> inside
-your function before computing the posterior: remember we assumed at the
-beginning of our analysis that the data had been centred (i.e. the mean
-was removed).</p>
-<h2 id="numerically-stable-and-efficient-version">Numerically Stable and
-Efficient Version</h2>
-<p>Just as we saw for and computation of a matrix such as <span
-class="math inline">\(\mathbf{Y}^\top\mathbf{Y}\)</span> (or its centred
-version) can be a bad idea in terms of loss of numerical accuracy.
-Fortunately, we can find the eigenvalues and eigenvectors of the matrix
-<span class="math inline">\(\mathbf{Y}^\top\mathbf{Y}\)</span> without
-direct computation of the matrix. This can be done with the <a
-href="http://en.wikipedia.org/wiki/Singular_value_decomposition"><em>singular
-value decomposition</em></a>. The singular value decompsition takes a
-matrix, <span class="math inline">\(\mathbf{Z}\)</span> and represents
-it in the form, <span class="math display">\[
+<p>Use the values for <span class="math inline">\(\mathbf{W}\)</span> and <span class="math inline">\(\sigma^2\)</span> you have computed, along with the data set <span class="math inline">\(\mathbf{Y}\)</span> to compute the posterior density over <span class="math inline">\(\mathbf{Z}\)</span>. Write a function of the form</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mu_x, C_x <span class="op">=</span> posterior(Y, W, sigma2)</span></code></pre></div>
+<p>where <code>mu_x</code> and <code>C_x</code> are the posterior mean and posterior covariance for the given <span class="math inline">\(\mathbf{Y}\)</span>.</p>
+<p>Don’t forget to subtract the mean of the data <code>Y</code> inside your function before computing the posterior: remember we assumed at the beginning of our analysis that the data had been centred (i.e. the mean was removed).</p>
+<h2 id="numerically-stable-and-efficient-version">Numerically Stable and Efficient Version</h2>
+<p>Just as we saw for  and  computation of a matrix such as <span class="math inline">\(\mathbf{Y}^\top\mathbf{Y}\)</span> (or its centred version) can be a bad idea in terms of loss of numerical accuracy. Fortunately, we can find the eigenvalues and eigenvectors of the matrix <span class="math inline">\(\mathbf{Y}^\top\mathbf{Y}\)</span> without direct computation of the matrix. This can be done with the <a href="http://en.wikipedia.org/wiki/Singular_value_decomposition"><em>singular value decomposition</em></a>. The singular value decompsition takes a matrix, <span class="math inline">\(\mathbf{Z}\)</span> and represents it in the form, <span class="math display">\[
 \mathbf{Z} = \mathbf{U}\boldsymbol{\Lambda}\mathbf{V}^\top
-\]</span> where <span class="math inline">\(\mathbf{U}\)</span> is a
-matrix of orthogonal vectors in the columns, meaning <span
-class="math inline">\(\mathbf{U}^\top\mathbf{U} = \mathbf{I}\)</span>.
-It has the same number of rows and columns as <span
-class="math inline">\(\mathbf{Z}\)</span>. The matrices <span
-class="math inline">\(\mathbf{\Lambda}\)</span> and <span
-class="math inline">\(\mathbf{V}\)</span> are both square with
-dimensionality given by the number of columns of <span
-class="math inline">\(\mathbf{Z}\)</span>. The matrix <span
-class="math inline">\(\mathbf{\Lambda}\)</span> is <em>diagonal</em> and
-<span class="math inline">\(\mathbf{V}\)</span> is an orthogonal matrix
-so <span class="math inline">\(\mathbf{V}^\top\mathbf{V} =
-\mathbf{V}\mathbf{V}^\top = \mathbf{I}\)</span>. The eigenvalues of the
-matrix <span class="math inline">\(\mathbf{Y}^\top\mathbf{Y}\)</span>
-are then given by the singular values of the matrix <span
-class="math inline">\(\mathbf{Y}^\top\)</span> squared and the
-eigenvectors are given by <span
-class="math inline">\(\mathbf{U}\)</span>.</p>
-<h2 id="solution-for-mathbfw">Solution for <span
-class="math inline">\(\mathbf{W}\)</span></h2>
-<p>Given the singular value decomposition of <span
-class="math inline">\(\mathbf{Y}\)</span> then we have <span
-class="math display">\[
+\]</span> where <span class="math inline">\(\mathbf{U}\)</span> is a matrix of orthogonal vectors in the columns, meaning <span class="math inline">\(\mathbf{U}^\top\mathbf{U} = \mathbf{I}\)</span>. It has the same number of rows and columns as <span class="math inline">\(\mathbf{Z}\)</span>. The matrices <span class="math inline">\(\mathbf{\Lambda}\)</span> and <span class="math inline">\(\mathbf{V}\)</span> are both square with dimensionality given by the number of columns of <span class="math inline">\(\mathbf{Z}\)</span>. The matrix <span class="math inline">\(\mathbf{\Lambda}\)</span> is <em>diagonal</em> and <span class="math inline">\(\mathbf{V}\)</span> is an orthogonal matrix so <span class="math inline">\(\mathbf{V}^\top\mathbf{V} = \mathbf{V}\mathbf{V}^\top = \mathbf{I}\)</span>. The eigenvalues of the matrix <span class="math inline">\(\mathbf{Y}^\top\mathbf{Y}\)</span> are then given by the singular values of the matrix <span class="math inline">\(\mathbf{Y}^\top\)</span> squared and the eigenvectors are given by <span class="math inline">\(\mathbf{U}\)</span>.</p>
+<h2 id="solution-for-mathbfw">Solution for <span class="math inline">\(\mathbf{W}\)</span></h2>
+<p>Given the singular value decomposition of <span class="math inline">\(\mathbf{Y}\)</span> then we have <span class="math display">\[
 \mathbf{W}=
 \mathbf{U}\mathbf{L}\mathbf{R}^\top
-\]</span> where <span class="math inline">\(\mathbf{R}\)</span> is an
-arbitrary rotation matrix. This implies that the posterior is given by
-<span class="math display">\[
+\]</span> where <span class="math inline">\(\mathbf{R}\)</span> is an arbitrary rotation matrix. This implies that the posterior is given by <span class="math display">\[
 \mathbf{C}_x =
-\left[\sigma^{-2}\mathbf{R}\mathbf{L}^2\mathbf{R}^\top +
-\mathbf{I}\right]^{-1}
-\]</span> because <span class="math inline">\(\mathbf{U}^\top \mathbf{U}
-= \mathbf{I}\)</span>. Since, by convention, we normally take <span
-class="math inline">\(\mathbf{R} = \mathbf{I}\)</span> to ensure that
-the principal components are orthonormal we can write <span
-class="math display">\[
+\left[\sigma^{-2}\mathbf{R}\mathbf{L}^2\mathbf{R}^\top + \mathbf{I}\right]^{-1}
+\]</span> because <span class="math inline">\(\mathbf{U}^\top \mathbf{U} = \mathbf{I}\)</span>. Since, by convention, we normally take <span class="math inline">\(\mathbf{R} = \mathbf{I}\)</span> to ensure that the principal components are orthonormal we can write <span class="math display">\[
 \mathbf{C}_x = \left[\sigma^{-2}\mathbf{L}^2 +
 \mathbf{I}\right]^{-1}
-\]</span> which implies that <span
-class="math inline">\(\mathbf{C}_x\)</span> is actually diagonal with
-elements given by <span class="math display">\[
+\]</span> which implies that <span class="math inline">\(\mathbf{C}_x\)</span> is actually diagonal with elements given by <span class="math display">\[
 c_i = \frac{\sigma^2}{\sigma^2 + \ell^2_i}
 \]</span> and allows us to write <span class="math display">\[
 \boldsymbol{ \mu}_x = [\mathbf{L}^2 + \sigma^2
 \mathbf{I}]^{-1} \mathbf{L} \mathbf{U}^\top \mathbf{ y}_{i, :}
 \]</span> <span class="math display">\[
 \boldsymbol{ \mu}_x = \mathbf{D}\mathbf{U}^\top \mathbf{ y}_{i, :}
-\]</span> where <span class="math inline">\(\mathbf{D}\)</span> is a
-diagonal matrix with diagonal elements given by <span
-class="math inline">\(d_{i} = \frac{\ell_i}{\sigma^2 +
-\ell_i^2}\)</span>.</p>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sp</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># probabilistic PCA algorithm using SVD</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ppca(Y, q, center<span class="op">=</span><span class="va">True</span>):</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Probabilistic PCA through singular value decomposition&quot;&quot;&quot;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remove mean</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> center:</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        Y_cent <span class="op">=</span> Y <span class="op">-</span> Y.mean(<span class="dv">0</span>)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        Y_cent <span class="op">=</span> Y</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Comute singluar values, discard &#39;R&#39; as we will assume orthogonal</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    U, sqlambd, _ <span class="op">=</span> sp.linalg.svd(Y_cent.T,full_matrices<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    lambd <span class="op">=</span> (sqlambd<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>Y.shape[<span class="dv">0</span>]</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute residual and extract eigenvectors</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    sigma2 <span class="op">=</span> np.<span class="bu">sum</span>(lambd[q:])<span class="op">/</span>(Y.shape[<span class="dv">1</span>]<span class="op">-</span>q)</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    ell <span class="op">=</span> np.sqrt(lambd[:q]<span class="op">-</span>sigma2)</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> U[:, :q], ell, sigma2</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> posterior(Y, U, ell, sigma2, center<span class="op">=</span><span class="va">True</span>):</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Posterior computation for the latent variables given the eigendecomposition.&quot;&quot;&quot;</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> center:</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>        Y_cent <span class="op">=</span> Y <span class="op">-</span> Y.mean(<span class="dv">0</span>)</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>        Y_cent <span class="op">=</span> Y</span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    C_x <span class="op">=</span> np.diag(sigma2<span class="op">/</span>(sigma2<span class="op">+</span>ell<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> ell<span class="op">/</span>(sigma2<span class="op">+</span>ell<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    mu_x <span class="op">=</span> np.dot(Y_cent, U)<span class="op">*</span>d[<span class="va">None</span>, :]</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mu_x, C_x</span></code></pre></div>
-<h2 id="scikit-learn-implementation-pca">Scikit-learn implementation
-PCA</h2>
+\]</span> where <span class="math inline">\(\mathbf{D}\)</span> is a diagonal matrix with diagonal elements given by <span class="math inline">\(d_{i} = \frac{\ell_i}{\sigma^2 + \ell_i^2}\)</span>.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sp</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> ppca_svd</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> ppca_posterior</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ppca <span class="op">=</span> ppca_svd</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>posterior <span class="op">=</span> ppca_posterior</span></code></pre></div>
+<h2 id="scikit-learn-implementation-pca">Scikit-learn implementation PCA</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/includes/oil-flow-sklearn-pca.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_dimred/includes/oil-flow-sklearn-pca.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/includes/oil-flow-sklearn-pca.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_dimred/includes/oil-flow-sklearn-pca.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>We’ve implemented PCA as part of supporting the learning process, but
-in practice we can use the <code>scikit-learn</code> implementation.
-Let’s try it on the oil flow data.</p>
+<p>We’ve implemented PCA as part of supporting the learning process, but in practice we can use the <code>scikit-learn</code> implementation. Let’s try it on the oil flow data.</p>
 <h2 id="oil-flow-data">Oil Flow Data</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_datasets/includes/oil-flow-data.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_datasets/includes/oil-flow-data.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_datasets/includes/oil-flow-data.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_datasets/includes/oil-flow-data.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>This data set is from a physics-based simulation of oil flow in a
-pipeline. The data was generated as part of a project to determine the
-fraction of oil, water and gas in North Sea oil pipes <span
-class="citation"
-data-cites="Bishop:gtm96">(<strong>Bishop:gtm96?</strong>)</span>.</p>
-<div class="sourceCode" id="cb14"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.oil()</span></code></pre></div>
-<p>The data consists of 1000 12-dimensional observations of simulated
-oil flow in a pipeline. Each observation is labelled according to the
-multi-phase flow configuration (homogeneous, annular or laminar).</p>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert data[&quot;Y&quot;] from [1, -1, -1] in each row to rows of 0 or 1 or 2</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&quot;Y&quot;</span>]</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in first column (class 0)</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>class0 <span class="op">=</span> (Y[:, <span class="dv">0</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">0</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in second column (class 1) </span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>class1 <span class="op">=</span> (Y[:, <span class="dv">1</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">1</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in third column (class 2)</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>class2 <span class="op">=</span> (Y[:, <span class="dv">2</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">2</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine into single array of class labels 0,1,2</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> class0 <span class="op">+</span> class1 <span class="op">+</span> class2</span></code></pre></div>
-<p>The data is returned as a dictionary containing training and test
-inputs (‘X’, ‘Xtst’), training and test labels (‘Y’, ‘Ytst’), and the
-names of the features.</p>
+<p>This data set is from a physics-based simulation of oil flow in a pipeline. The data was generated as part of a project to determine the fraction of oil, water and gas in North Sea oil pipes <span class="citation" data-cites="Bishop-oil93">(Bishop and James, 1993)</span>.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.oil()</span></code></pre></div>
+<p>The data consists of 1000 12-dimensional observations of simulated oil flow in a pipeline. Each observation is labelled according to the multi-phase flow configuration (homogeneous, annular or laminar).</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert data[&quot;Y&quot;] from [1, -1, -1] in each row to rows of 0 or 1 or 2</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&quot;Y&quot;</span>]</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in first column (class 0)</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>class0 <span class="op">=</span> (Y[:, <span class="dv">0</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">0</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in second column (class 1) </span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>class1 <span class="op">=</span> (Y[:, <span class="dv">1</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">1</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in third column (class 2)</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>class2 <span class="op">=</span> (Y[:, <span class="dv">2</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine into single array of class labels 0,1,2</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> class0 <span class="op">+</span> class1 <span class="op">+</span> class2</span></code></pre></div>
+<p>The data is returned as a dictionary containing training and test inputs (‘X,’ ‘Xtst’), training and test labels (‘Y,’ ‘Ytst’), and the names of the features.</p>
 <div class="figure">
 <div id="oil-flow-data-figure" class="figure-frame">
-<object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//datasets/oil-flow-data.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/datasets/oil-flow-data.svg" width="80%" style=" ">
 </object>
 </div>
-<div id="oil-flow-data-magnify" class="magnify"
-onclick="magnifyFigure(&#39;oil-flow-data&#39;)">
+<div id="oil-flow-data-magnify" class="magnify" onclick="magnifyFigure(&#39;oil-flow-data&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="oil-flow-data-caption" class="caption-frame">
-<p>Figure: Visualization of the first two dimensions of the oil flow
-data from <span class="citation" data-cites="Bishop-oil93">Bishop and
-James (1993)</span></p>
+<p>Figure: Visualization of the first two dimensions of the oil flow data from <span class="citation" data-cites="Bishop-oil93">Bishop and James (1993)</span></p>
 </div>
 </div>
 <p>As normal we include the citation information for the data.</p>
-<div class="sourceCode" id="cb17"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;citation&#39;</span>])</span></code></pre></div>
-<p>And extra information about the data is included, as standard, under
-the keys <code>info</code> and <code>details</code>.</p>
-<div class="sourceCode" id="cb18"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;details&#39;</span>])</span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>]</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span></code></pre></div>
-<div class="sourceCode" id="cb20"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install scikit<span class="op">-</span>learn</span></code></pre></div>
-<div class="sourceCode" id="cb21"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span></code></pre></div>
-<div class="sourceCode" id="cb22"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>pca.fit(X)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>X_pca <span class="op">=</span> pca.transform(X)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;citation&#39;</span>])</span></code></pre></div>
+<p>And extra information about the data is included, as standard, under the keys <code>info</code> and <code>details</code>.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;details&#39;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>]</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cmd <span class="op">=</span> install_command(<span class="st">&#39;scikit-learn&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>system {cmd}</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>pca.fit(X)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>X_pca <span class="op">=</span> pca.transform(X)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in first column (class 0)</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>class0 <span class="op">=</span> (Y[:, <span class="dv">0</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">0</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in second column (class 1) </span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>class1 <span class="op">=</span> (Y[:, <span class="dv">1</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">1</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in third column (class 2)</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>class2 <span class="op">=</span> (Y[:, <span class="dv">2</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine into single array of class labels 0,1,2</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>lbls <span class="op">=</span> class0 <span class="op">+</span> class1 <span class="op">+</span> class2</span></code></pre></div>
 <div class="figure">
 <div id="oil-flow-pca-sklearn-figure" class="figure-frame">
-<p></p>
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/oil-flow-pca_sklearn.svg" width="60%" style=" ">
+</object>
 </div>
-<div id="oil-flow-pca-sklearn-magnify" class="magnify"
-onclick="magnifyFigure(&#39;oil-flow-pca-sklearn&#39;)">
+<div id="oil-flow-pca-sklearn-magnify" class="magnify" onclick="magnifyFigure(&#39;oil-flow-pca-sklearn&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="oil-flow-pca-sklearn-caption" class="caption-frame">
-<p>Figure: PCA of the oil flow data.</p>
+<p>Figure: PCA of the oil flow data. The flow is homogeneous, annular and stratified.</p>
 </div>
 </div>
-<div class="sourceCode" id="cb23"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>mu_x, C_x <span class="op">=</span> posterior(Y, W, sigma2)</span></code></pre></div>
-<p>where <code>mu_x</code> and <code>C_x</code> are the posterior mean
-and posterior covariance for the given <span
-class="math inline">\(\mathbf{Y}\)</span>.</p>
-<p>Don’t forget to subtract the mean of the data <code>Y</code> inside
-your function before computing the posterior: remember we assumed at the
-beginning of our analysis that the data had been centred (i.e. the mean
-was removed).}{# Answer Code # Write code for you answer to this
-exercise in this box # Do not delete these comments, otherwise you will
-get zero for this answer. # Make sure your code has run and the answer
-is correct <em>before</em> submitting your notebook for marking. import
-numpy as np import scipy as sp def posterior(Y, W, sigma2): Y_cent = Y -
-Y.mean(0) # Compute posterior over X C_x = mu_x = return mu_x,
-C_x}{20}}</p>
-<h2 id="numerically-stable-and-efficient-version-1">Numerically Stable
-and Efficient Version</h2>
-<p>Just as we saw for and computation of a matrix such as <span
-class="math inline">\(\mathbf{Y}^\top\mathbf{Y}\)</span> (or its centred
-version) can be a bad idea in terms of loss of numerical accuracy.
-Fortunately, we can find the eigenvalues and eigenvectors of the matrix
-<span class="math inline">\(\mathbf{Y}^\top\mathbf{Y}\)</span> without
-direct computation of the matrix. This can be done with the <a
-href="http://en.wikipedia.org/wiki/Singular_value_decomposition"><em>singular
-value decomposition</em></a>. The singular value decompsition takes a
-matrix, <span class="math inline">\(\mathbf{Z}\)</span> and represents
-it in the form, <span class="math display">\[
-\mathbf{Z} = \mathbf{U}\boldsymbol{\Lambda}\mathbf{V}^\top
-\]</span> where <span class="math inline">\(\mathbf{U}\)</span> is a
-matrix of orthogonal vectors in the columns, meaning <span
-class="math inline">\(\mathbf{U}^\top\mathbf{U} = \mathbf{I}\)</span>.
-It has the same number of rows and columns as <span
-class="math inline">\(\mathbf{Z}\)</span>. The matrices <span
-class="math inline">\(\mathbf{\Lambda}\)</span> and <span
-class="math inline">\(\mathbf{V}\)</span> are both square with
-dimensionality given by the number of columns of <span
-class="math inline">\(\mathbf{Z}\)</span>. The matrix <span
-class="math inline">\(\mathbf{\Lambda}\)</span> is <em>diagonal</em> and
-<span class="math inline">\(\mathbf{V}\)</span> is an orthogonal matrix
-so <span class="math inline">\(\mathbf{V}^\top\mathbf{V} =
-\mathbf{V}\mathbf{V}^\top = \mathbf{I}\)</span>. The eigenvalues of the
-matrix <span class="math inline">\(\mathbf{Y}^\top\mathbf{Y}\)</span>
-are then given by the singular values of the matrix <span
-class="math inline">\(\mathbf{Y}^\top\)</span> squared and the
-eigenvectors are given by <span
-class="math inline">\(\mathbf{U}\)</span>.</p>
-<h2 id="solution-for-mathbfw-1">Solution for <span
-class="math inline">\(\mathbf{W}\)</span></h2>
-<p>Given the singular value decomposition of <span
-class="math inline">\(\mathbf{Y}\)</span> then we have <span
-class="math display">\[
-\mathbf{W}=
-\mathbf{U}\mathbf{L}\mathbf{R}^\top
-\]</span> where <span class="math inline">\(\mathbf{R}\)</span> is an
-arbitrary rotation matrix. This implies that the posterior is given by
-<span class="math display">\[
-\mathbf{C}_x =
-\left[\sigma^{-2}\mathbf{R}\mathbf{L}^2\mathbf{R}^\top +
-\mathbf{I}\right]^{-1}
-\]</span> because <span class="math inline">\(\mathbf{U}^\top \mathbf{U}
-= \mathbf{I}\)</span>. Since, by convention, we normally take <span
-class="math inline">\(\mathbf{R} = \mathbf{I}\)</span> to ensure that
-the principal components are orthonormal we can write <span
-class="math display">\[
-\mathbf{C}_x = \left[\sigma^{-2}\mathbf{L}^2 +
-\mathbf{I}\right]^{-1}
-\]</span> which implies that <span
-class="math inline">\(\mathbf{C}_x\)</span> is actually diagonal with
-elements given by <span class="math display">\[
-c_i = \frac{\sigma^2}{\sigma^2 + \ell^2_i}
-\]</span> and allows us to write <span class="math display">\[
-\boldsymbol{ \mu}_x = [\mathbf{L}^2 + \sigma^2
-\mathbf{I}]^{-1} \mathbf{L} \mathbf{U}^\top \mathbf{ y}_{i, :}
-\]</span> <span class="math display">\[
-\boldsymbol{ \mu}_x = \mathbf{D}\mathbf{U}^\top \mathbf{ y}_{i, :}
-\]</span> where <span class="math inline">\(\mathbf{D}\)</span> is a
-diagonal matrix with diagonal elements given by <span
-class="math inline">\(d_{i} = \frac{\ell_i}{\sigma^2 +
-\ell_i^2}\)</span>.</p>
-<div class="sourceCode" id="cb24"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sp</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># probabilistic PCA algorithm using SVD</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ppca(Y, q, center<span class="op">=</span><span class="va">True</span>):</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Probabilistic PCA through singular value decomposition&quot;&quot;&quot;</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remove mean</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> center:</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>        Y_cent <span class="op">=</span> Y <span class="op">-</span> Y.mean(<span class="dv">0</span>)</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>        Y_cent <span class="op">=</span> Y</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Comute singluar values, discard &#39;R&#39; as we will assume orthogonal</span></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    U, sqlambd, _ <span class="op">=</span> sp.linalg.svd(Y_cent.T,full_matrices<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    lambd <span class="op">=</span> (sqlambd<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>Y.shape[<span class="dv">0</span>]</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute residual and extract eigenvectors</span></span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    sigma2 <span class="op">=</span> np.<span class="bu">sum</span>(lambd[q:])<span class="op">/</span>(Y.shape[<span class="dv">1</span>]<span class="op">-</span>q)</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>    ell <span class="op">=</span> np.sqrt(lambd[:q]<span class="op">-</span>sigma2)</span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> U[:, :q], ell, sigma2</span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> posterior(Y, U, ell, sigma2, center<span class="op">=</span><span class="va">True</span>):</span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Posterior computation for the latent variables given the eigendecomposition.&quot;&quot;&quot;</span></span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> center:</span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>        Y_cent <span class="op">=</span> Y <span class="op">-</span> Y.mean(<span class="dv">0</span>)</span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>        Y_cent <span class="op">=</span> Y</span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>    C_x <span class="op">=</span> np.diag(sigma2<span class="op">/</span>(sigma2<span class="op">+</span>ell<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> ell<span class="op">/</span>(sigma2<span class="op">+</span>ell<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>    mu_x <span class="op">=</span> np.dot(Y_cent, U)<span class="op">*</span>d[<span class="va">None</span>, :]</span>
-<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mu_x, C_x</span></code></pre></div>
-<div id="refs" class="references csl-bib-body hanging-indent"
-role="list">
-<div id="ref-Bishop-oil93" class="csl-entry" role="listitem">
-Bishop, C.M., James, G.D., 1993. Analysis of multiphase flows using
-dual-energy gamma densitometry and neural networks. Nuclear Instruments
-and Methods in Physics Research A327, 580–593. <a
-href="https://doi.org/10.1016/0168-9002(93)90728-Z">https://doi.org/10.1016/0168-9002(93)90728-Z</a>
+<h2 id="examples-motion-capture-data">Examples: Motion Capture Data</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/includes/osu-run1-ppca.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_dimred/includes/osu-run1-ppca.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<div id="ref-Hotelling:analysis33" class="csl-entry" role="listitem">
-Hotelling, H., 1933. Analysis of a complex of statistical variables into
-principal components. Journal of Educational Psychology 24, 417–441.
+<h2 id="osu-motion-capture-data-run-1">OSU Motion Capture Data: Run 1</h2>
+<p>Motion capture data the Open Motion Data Project by The Ohio State University Advanced Computing Center for the Arts and Design. Historically the data website was found here <a href="http://accad.osu.edu/research/mocap/mocap_data.htm" class="uri">http://accad.osu.edu/research/mocap/mocap_data.htm</a>, although it is now missing. The centre website is here: <a href="https://accad.osu.edu" class="uri">https://accad.osu.edu</a>.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<p>You can download different data from the site, here we download the ‘run1’ motion.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.osu_run1()</span></code></pre></div>
+<p>The data dictionary contains the keys ‘Y’ and ‘connect,’ which represent the data and connections that can be used to create the skeleton.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&#39;Y&#39;</span>].shape</span></code></pre></div>
+<p>The data has often been used in talks demonstrating GP-LVM models and comparing variants such as back constrained and temporal models.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;citation&#39;</span>])</span></code></pre></div>
+<p>And extra information about the data is included, as standard, under the keys under <code>details</code>.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;details&#39;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span></code></pre></div>
+<p>Once the data is loaded in we can examine the first two principal components as follows,</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>U, ell, sigma2 <span class="op">=</span> ppca(Y, q)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>mu_x, C_x <span class="op">=</span> posterior(Y, U, ell, sigma2)</span></code></pre></div>
+<div class="figure">
+<div id="dem-osu-run1-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/osu-run1-pca.svg" width="60%" style=" ">
+</object>
 </div>
-<div id="ref-Pearson-lines01" class="csl-entry" role="listitem">
-Pearson, K., 1901. On lines and planes of closest fit to systems of
-points in space. The London, Edinburgh and Dublin Philosophical Magazine
-and Journal of Science, Sixth Series 2, 559–572.
+<div id="dem-osu-run1-magnify" class="magnify" onclick="magnifyFigure(&#39;dem-osu-run1&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="ref-Roweis:SPCA97" class="csl-entry" role="listitem">
-Roweis, S.T., n.d. <span>EM</span> algorithms for <span>PCA</span> and
-<span>SPCA</span>. pp. 626–632.
+<div id="dem-osu-run1-caption" class="caption-frame">
+<p>Figure: First two principal components of motion capture data of an individual running.</p>
 </div>
-<div id="ref-Spearman-general04" class="csl-entry" role="listitem">
-Spearman, C.E., 1904. <a
-href="http://www.jstor.org/stable/1412107">"General intelligence,"
-objectively determined and measured</a>. The American Journal of
-Psychology 15, 201–292.
 </div>
-<div id="ref-Tipping:pca97" class="csl-entry" role="listitem">
-Tipping, M.E., Bishop, C.M., 1999b. Mixtures of probabilistic principal
-component analysers. Neural Computation 11, 443–482.
+<p>Here because the data is a time course, we have connected points that are neighbouring in time. This highlights the form of the run, which involves 3 paces. This projects in our low dimensional space to 3 loops. We can examin how much residual variance there is in the system by looking at <code>sigma2</code>.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sigma2)</span></code></pre></div>
+<h1 id="part-2-beyond-linear-methods">Part 2: Beyond Linear Methods</h1>
+<h2 id="when-dimensionality-reduction-fails">When Dimensionality Reduction Fails</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/includes/dimensionality-reduction-failure-modes.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_dimred/includes/dimensionality-reduction-failure-modes.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<div id="ref-Tipping-probpca99" class="csl-entry" role="listitem">
-Tipping, M.E., Bishop, C.M., 1999a. Probabilistic principal component
-analysis. Journal of the Royal Statistical Society, B 6, 611–622. <a
-href="https://doi.org/doi:10.1111/1467-9868.00196">https://doi.org/doi:10.1111/1467-9868.00196</a>
+<p>While dimensionality reduction is powerful, it’s important to understand when it can fail:</p>
+<ol type="1">
+<li>When the data really is high dimensional with no simpler structure</li>
+<li>When the relationship between dimensions is highly nonlinear</li>
+<li>When different parts of the data have different intrinsic dimensionality</li>
+</ol>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai.plot <span class="im">as</span> plot</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span></code></pre></div>
+<h2 id="the-swiss-roll-example">The Swiss Roll Example</h2>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate data that lies on a Swiss roll manifold</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_swiss_roll(n_points<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> <span class="fl">1.5</span> <span class="op">*</span> np.pi <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> np.random.rand(n_points))</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="dv">21</span> <span class="op">*</span> np.random.rand(n_points)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> t <span class="op">*</span> np.cos(t)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> t <span class="op">*</span> np.sin(t)</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.column_stack((x, y, z)), t</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>X, t <span class="op">=</span> generate_swiss_roll()</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>plot.big_wide_figsize)</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">&#39;3d&#39;</span>)</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>scatter <span class="op">=</span> ax.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], X[:, <span class="dv">2</span>], c<span class="op">=</span>t, cmap<span class="op">=</span><span class="st">&#39;viridis&#39;</span>)</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&#39;$x$&#39;</span>)</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">&#39;$y$&#39;</span>) </span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>ax.set_zlabel(<span class="st">&#39;$z$&#39;</span>)</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>plt.colorbar(scatter)</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>mlai.write_figure(<span class="st">&#39;swiss-roll.svg&#39;</span>, directory<span class="op">=</span><span class="st">&#39;./dimred&#39;</span>)</span></code></pre></div>
+<div class="figure">
+<div id="swiss-roll-example-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/swiss-roll.svg" width="80%" style=" ">
+</object>
+</div>
+<div id="swiss-roll-example-magnify" class="magnify" onclick="magnifyFigure(&#39;swiss-roll-example&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="swiss-roll-example-caption" class="caption-frame">
+<p>Figure: The Swiss roll dataset is a classic example of data with nonlinear structure. The color represents the position along the roll, showing how points that are far apart in the original space are actually close in the intrinsic manifold.</p>
+</div>
+</div>
+<h2 id="common-failure-modes">Common Failure Modes</h2>
+<p>This example shows data lying on a Swiss roll manifold. Linear dimensionality reduction methods like PCA will fail to capture the structure of this data, while nonlinear methods like t-SNE or UMAP may perform better.</p>
+<p>Common failure modes include: 1. Using linear methods on nonlinear manifolds 2. Assuming global structure when only local structure exists 3. Not accounting for noise in the data</p>
+<!--include{_dimred/includes/local-vs-global-preservation.md}-->
+<!--include{_dimred/includes/iterative-dimensionality-reduction.md}-->
+<h1 id="part-3-graph-based-methods">Part 3: Graph Based Methods</h1>
+<h2 id="t-sne">t-SNE</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/includes/t-sne-intro.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_dimred/includes/t-sne-intro.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>t-Distributed Stochastic Neighbor Embedding (t-SNE) is a dimensionality reduction technique that focuses on preserving local structure. It converts distances between points into probabilities and tries to match these probabilities in the low-dimensional space.</p>
+<p>The idea in t-SNE is to convert distances in data space into probabilities. This is done through two stages. First a neighbourhood graph is formed, so each point, <span class="math inline">\(i\)</span>, is related to its <span class="math inline">\(k\)</span> nearest neighbours.</p>
+<p>If the squared distances between two data points are given by <span class="math inline">\(d_{i,j}^2\)</span>, then the probability of point <span class="math inline">\(i\)</span> linking to point <span class="math inline">\(j\)</span> is given by, <span class="math display">\[
+p(r_{i,j} | \mathbf{ D}) = \pi_{i,j} =  \frac{\exp -\frac{d_{i,j}^2}{2\sigma^2}}{\sum_{k\in \mathscr{N}\left( i \right)}\exp -d_{i,j}}
+\]</span> where <span class="math inline">\(r_{i,j} = 1\)</span> if the two points are linked, <span class="math inline">\(\pi_{i,j}\)</span> is the probability of that link and the neighbourhood of <span class="math inline">\(i\)</span> is given by <span class="math inline">\(\mathscr{N}(i)\)</span>.</p>
+<p>This is compared with probabilities in <em>latent</em> space which are given by <span class="math display">\[
+p(s_{i,j} | \boldsymbol{ \Delta}) = q_{i,j} = (1 + \delta_{i,j})^(-1),
+\]</span> where <span class="math inline">\(s_{i,j} = 1\)</span> if two points are linked in the latent space and <span class="math inline">\(q_{i,j}\)</span> is the probability of that link. The latent distances are given by <span class="math display">\[
+\delta_{i,j} = (\mathbf{ z}_{i, :} - \mathbf{ z}_{j, :})^\top*\mathbf{ z}_{i, :} - \mathbf{ z}_{j, :}).
+\]</span>}</p>
+<p><span class="math inline">\(t\)</span>-SNE then minimises the KL divergence between these two link distributions. <span class="math display">\[
+E(\mathbf{Z}= \sum_i \sum_{j\in\mathscr{N}\left( i \right)} p_{i,k} \log \frac{p_{i,k}}{q_{i,k}}
+\]</span>}</p>
+<p>The approach was originally proposed by <span class="citation" data-cites="Hinton-sne02">Hinton and Roweis (n.d.)</span>, then later modified using the <span class="math inline">\(t\)</span>-distribution in the latent space by <span class="citation" data-cites="Maaten-tsne08">van der Maaten and Hinton (2008)</span>.</p>
+<p>The basic idea is to minimise the Kullback-Leibler divergence between a distribution defined in the latent space and a distribution defined in the data space. The distribution is over neighbours in each space, by definition the probability of point <span class="math inline">\(j\)</span> being selected as a neighbor of point <span class="math inline">\(i\)</span> is:</p>
+<p><span class="math display">\[p_{j|i} = \frac{\exp(-\|\mathbf{ y}_i - \mathbf{ y}_j\|^2/2\sigma_i^2)}{\sum_{k \neq i} \exp(-\|\mathbf{ y}_i - \mathbf{ y}_k\|^2/2\sigma_i^2)}\]</span></p>
+<p>where <span class="math inline">\(\sigma_i\)</span> is chosen to achieve a desired perplexity. In the low-dimensional space, a t-distribution is used instead:</p>
+<p><span class="math display">\[q_{ij} = \frac{(1 + \|\mathbf{ z}_i - \mathbf{ z}_j\|^2)^{-1}}{\sum_{k \neq l} (1 + \|\mathbf{ z}_k - \mathbf{ z}_l\|^2)^{-1}}\]</span></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.manifold <span class="im">import</span> TSNE</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai.plot <span class="im">import</span> tsne_example</span></code></pre></div>
+<h2 id="oil-flow-data-1">Oil Flow Data</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_datasets/includes/oil-flow-data.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_datasets/includes/oil-flow-data.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>This data set is from a physics-based simulation of oil flow in a pipeline. The data was generated as part of a project to determine the fraction of oil, water and gas in North Sea oil pipes <span class="citation" data-cites="Bishop-oil93">(Bishop and James, 1993)</span>.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.oil()</span></code></pre></div>
+<p>The data consists of 1000 12-dimensional observations of simulated oil flow in a pipeline. Each observation is labelled according to the multi-phase flow configuration (homogeneous, annular or laminar).</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert data[&quot;Y&quot;] from [1, -1, -1] in each row to rows of 0 or 1 or 2</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&quot;Y&quot;</span>]</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in first column (class 0)</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>class0 <span class="op">=</span> (Y[:, <span class="dv">0</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">0</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in second column (class 1) </span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>class1 <span class="op">=</span> (Y[:, <span class="dv">1</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">1</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in third column (class 2)</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>class2 <span class="op">=</span> (Y[:, <span class="dv">2</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine into single array of class labels 0,1,2</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> class0 <span class="op">+</span> class1 <span class="op">+</span> class2</span></code></pre></div>
+<p>The data is returned as a dictionary containing training and test inputs (‘X,’ ‘Xtst’), training and test labels (‘Y,’ ‘Ytst’), and the names of the features.</p>
+<div class="figure">
+<div id="oil-flow-data-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/datasets/oil-flow-data.svg" width="80%" style=" ">
+</object>
+</div>
+<div id="oil-flow-data-magnify" class="magnify" onclick="magnifyFigure(&#39;oil-flow-data&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="oil-flow-data-caption" class="caption-frame">
+<p>Figure: Visualization of the first two dimensions of the oil flow data from <span class="citation" data-cites="Bishop-oil93">Bishop and James (1993)</span></p>
+</div>
+</div>
+<p>As normal we include the citation information for the data.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;citation&#39;</span>])</span></code></pre></div>
+<p>And extra information about the data is included, as standard, under the keys <code>info</code> and <code>details</code>.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;details&#39;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>]</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span></code></pre></div>
+<div class="figure">
+<div id="t-sne-oil-flow-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/t-sne-oil-flow.svg" width="80%" style=" ">
+</object>
+</div>
+<div id="t-sne-oil-flow-magnify" class="magnify" onclick="magnifyFigure(&#39;t-sne-oil-flow&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="t-sne-oil-flow-caption" class="caption-frame">
+<p>Figure: t-SNE embedding of the oil flow data.</p>
+</div>
+</div>
+<p>The perplexity parameter in t-SNE effectively controls how to balance attention between local and global aspects of the data. It can be interpreted as a smooth measure of the effective number of neighbors.</p>
+<!--include{_dimred/includes/umap-intro.md}-->
+<h1 id="part-4-practical-implementation">Part 4: Practical Implementation</h1>
+<!--include{_dimred/includes/dimensionality-reduction-comparison.md}-->
+<h2 id="practical-tips-for-dimensionality-reduction">Practical Tips for Dimensionality Reduction</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_dimred/includes/dimensionality-reduction-practical-tips.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_dimred/includes/dimensionality-reduction-practical-tips.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>While the theoretical foundations of dimensionality reduction are important, success in practice often comes down to following some key principles and understanding common pitfalls.</p>
+<h2 id="always-start-with-pca">Always Start with PCA</h2>
+<p>One of the most important practical tips for dimensionality reduction is to always start with PCA:</p>
+<p>There are several reasons for this:</p>
+<ol type="1">
+<li>It’s fast and deterministic (up to reflections)</li>
+<li>It provides a baseline for more complex methods</li>
+<li>It can reveal linear structure you might have missed</li>
+<li>The eigenvalue spectrum gives you information about dimensionality</li>
+<li>It helps identify potential issues with your data</li>
+</ol>
+<h2 id="understanding-matrix-structure">Understanding Matrix Structure</h2>
+<p>Learn to extract information from key matrices:</p>
+<p>Key patterns to look for:</p>
+<ol type="1">
+<li>In Gram matrices:
+<ul>
+<li>Block structure suggests clusters</li>
+<li>Diagonal dominance suggests noise</li>
+<li>Banded structure suggests ordering</li>
+</ul></li>
+<li>In distance matrices:
+<ul>
+<li>Look for natural groupings</li>
+<li>Check for anomalous distances</li>
+<li>Verify triangle inequality</li>
+</ul></li>
+</ol>
+<h2 id="understanding-matrix-structure-1">Understanding Matrix Structure</h2>
+<p>Learn to extract information from key matrices. Here’s an example using the oil flow data:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> gridspec</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<h2 id="oil-flow-data-2">Oil Flow Data</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/snippets/edit/main/_datasets/includes/oil-flow-data.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_datasets/includes/oil-flow-data.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>This data set is from a physics-based simulation of oil flow in a pipeline. The data was generated as part of a project to determine the fraction of oil, water and gas in North Sea oil pipes <span class="citation" data-cites="Bishop-oil93">(Bishop and James, 1993)</span>.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.oil()</span></code></pre></div>
+<p>The data consists of 1000 12-dimensional observations of simulated oil flow in a pipeline. Each observation is labelled according to the multi-phase flow configuration (homogeneous, annular or laminar).</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert data[&quot;Y&quot;] from [1, -1, -1] in each row to rows of 0 or 1 or 2</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&quot;Y&quot;</span>]</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in first column (class 0)</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>class0 <span class="op">=</span> (Y[:, <span class="dv">0</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">0</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in second column (class 1) </span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>class1 <span class="op">=</span> (Y[:, <span class="dv">1</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">1</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows with 1 in third column (class 2)</span></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>class2 <span class="op">=</span> (Y[:, <span class="dv">2</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>) <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine into single array of class labels 0,1,2</span></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> class0 <span class="op">+</span> class1 <span class="op">+</span> class2</span></code></pre></div>
+<p>The data is returned as a dictionary containing training and test inputs (‘X,’ ‘Xtst’), training and test labels (‘Y,’ ‘Ytst’), and the names of the features.</p>
+<div class="figure">
+<div id="oil-flow-data-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/datasets/oil-flow-data.svg" width="80%" style=" ">
+</object>
+</div>
+<div id="oil-flow-data-magnify" class="magnify" onclick="magnifyFigure(&#39;oil-flow-data&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="oil-flow-data-caption" class="caption-frame">
+<p>Figure: Visualization of the first two dimensions of the oil flow data from <span class="citation" data-cites="Bishop-oil93">Bishop and James (1993)</span></p>
+</div>
+</div>
+<p>As normal we include the citation information for the data.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;citation&#39;</span>])</span></code></pre></div>
+<p>And extra information about the data is included, as standard, under the keys <code>info</code> and <code>details</code>.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;details&#39;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>]</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the Gram matrix</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>gram <span class="op">=</span> X <span class="op">@</span> X.T</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a figure with two subplots</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>plot.big_wide_figsize)</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>gs <span class="op">=</span> gridspec.GridSpec(<span class="dv">1</span>, <span class="dv">2</span>, width_ratios<span class="op">=</span>[<span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the Gram matrix</span></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>ax0 <span class="op">=</span> plt.subplot(gs[<span class="dv">0</span>])</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax0.imshow(gram, cmap<span class="op">=</span><span class="st">&#39;viridis&#39;</span>)</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>ax0.set_title(<span class="st">&#39;Gram Matrix&#39;</span>)</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>plt.colorbar(im)</span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the first two dimensions of data</span></span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plt.subplot(gs[<span class="dv">1</span>])</span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>ax1.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">&#39;Data Scatter Plot&#39;</span>)</span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">&#39;Dimension 1&#39;</span>)</span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">&#39;Dimension 2&#39;</span>)</span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a>mlai.write_figure(<span class="st">&#39;matrix-structure.svg&#39;</span>, directory<span class="op">=</span><span class="st">&#39;./dimred&#39;</span>)</span></code></pre></div>
+<div class="figure">
+<div id="matrix-structure-figure" class="figure-frame">
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/matrix-structure.svg" width="80%" style=" ">
+</object>
+</div>
+<div id="matrix-structure-magnify" class="magnify" onclick="magnifyFigure(&#39;matrix-structure&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="matrix-structure-caption" class="caption-frame">
+<p>Figure: The Gram matrix (left) reveals the underlying structure in our data, while the scatter plot (right) shows the first two dimensions. Notice how patterns in the Gram matrix correspond to clusters in the data.</p>
+</div>
+</div>
+<p>The Gram matrix (left) reveals the underlying structure in our data, while the scatter plot (right) shows the first two dimensions. Notice how patterns in the Gram matrix correspond to clusters in the data.</p>
+<h2 id="examining-projections">Examining Projections</h2>
+<p>When working with high-dimensional data, systematically examine different projections:</p>
+<object class="svgplot " data="https://mlatcl.github.io/advds/diagrams/dimred/projection-examples.svg" width style=" ">
+</object>
+<p>Useful projection strategies:</p>
+<ol type="1">
+<li>Plot consecutive pairs of dimensions</li>
+<li>Project onto principal components</li>
+<li>Look at random projections</li>
+<li>Examine projections that show unusual patterns</li>
+<li>Consider targeted projections based on feature knowledge</li>
+</ol>
+<h2 id="evaluating-neighborhoods">Evaluating Neighborhoods</h2>
+<p>Understanding local structure is crucial for many methods:</p>
+<p>Important neighborhood checks:</p>
+<ol type="1">
+<li>Are neighbors sensible for different values of <span class="math inline">\(k\)</span>?</li>
+<li>Are there isolated points or clusters?</li>
+<li>Do distances make sense locally?</li>
+<li>Are there boundary effects?</li>
+<li>How stable are the neighborhoods?</li>
+</ol>
+<h2 id="common-pitfalls">Common Pitfalls</h2>
+<p>Be aware of common issues that can affect results:</p>
+<p>Key things to watch out for:</p>
+<ol type="1">
+<li>Feature scaling can dramatically affect results</li>
+<li>Outliers can dominate the analysis</li>
+<li>Choice of distance metric matters</li>
+<li>Single visualizations can be misleading</li>
+<li>Linear methods might miss important structure</li>
+</ol>
+<h2 id="validation-strategies">Validation Strategies</h2>
+<p>Always validate your dimensionality reduction:</p>
+<p>Useful validation approaches:</p>
+<ol type="1">
+<li>Compare results from different methods</li>
+<li>Check if known relationships are preserved</li>
+<li>Verify whether the reduction preserves important structure</li>
+<li>Test stability with different subsets of data</li>
+<li>Use domain knowledge to validate results</li>
+</ol>
+<h2 id="implementation-guidelines">Implementation Guidelines</h2>
+<p>When implementing dimensionality reduction:</p>
+<p>Follow these steps:</p>
+<ol type="1">
+<li>Begin with simple methods like PCA</li>
+<li>Scale and preprocess data appropriately</li>
+<li>Check intermediate results at each step</li>
+<li>Validate assumptions about your data</li>
+<li>Document all preprocessing and parameter choices</li>
+</ol>
+<h2 id="thanks">Thanks!</h2>
+<p>For more information on these subjects and more you might want to check the following resources.</p>
+<ul>
+<li>company: <a href="https://trent.ai">Trent AI</a></li>
+<li>book: <a href="https://www.penguin.co.uk/books/455130/the-atomic-human-by-lawrence-neil-d/9780241625248">The Atomic Human</a></li>
+<li>twitter: <a href="https://twitter.com/lawrennd">@lawrennd</a></li>
+<li>podcast: <a href="http://thetalkingmachines.com">The Talking Machines</a></li>
+<li>newspaper: <a href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile Page</a></li>
+<li>blog: <a href="http://inverseprobability.com/blog.html">http://inverseprobability.com</a></li>
+</ul>
+<h1 id="references">References</h1>
+<!--https://github.com/neelsoumya/visualization_lecture/blob/main/visualization_lecture.pptx
+
+More material is in the repo:
+
+https://github.com/neelsoumya/visualization_lecture/-->
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Bishop-oil93" class="csl-entry" role="doc-biblioentry">
+Bishop, C.M., James, G.D., 1993. Analysis of multiphase flows using dual-energy gamma densitometry and neural networks. Nuclear Instruments and Methods in Physics Research A327, 580–593. <a href="https://doi.org/10.1016/0168-9002(93)90728-Z">https://doi.org/10.1016/0168-9002(93)90728-Z</a>
+</div>
+<div id="ref-Hinton-sne02" class="csl-entry" role="doc-biblioentry">
+Hinton, G.E., Roweis, S.T., n.d. Stochastic neighbor embedding. pp. 857–864.
+</div>
+<div id="ref-Hotelling:analysis33" class="csl-entry" role="doc-biblioentry">
+Hotelling, H., 1933. Analysis of a complex of statistical variables into principal components. Journal of Educational Psychology 24, 417–441.
+</div>
+<div id="ref-Pearson-lines01" class="csl-entry" role="doc-biblioentry">
+Pearson, K., 1901. On lines and planes of closest fit to systems of points in space. The London, Edinburgh and Dublin Philosophical Magazine and Journal of Science, Sixth Series 2, 559–572.
+</div>
+<div id="ref-Roweis-SPCA97" class="csl-entry" role="doc-biblioentry">
+Roweis, S.T., n.d. <span>EM</span> algorithms for <span>PCA</span> and <span>SPCA</span>. pp. 626–632.
+</div>
+<div id="ref-Spearman-general04" class="csl-entry" role="doc-biblioentry">
+Spearman, C.E., 1904. "General intelligence," objectively determined and measured. The American Journal of Psychology 15, 201–292.
+</div>
+<div id="ref-Tipping-pca97" class="csl-entry" role="doc-biblioentry">
+Tipping, M.E., Bishop, C.M., 1999b. Mixtures of probabilistic principal component analysers. Neural Computation 11, 443–482.
+</div>
+<div id="ref-Tipping-probpca99" class="csl-entry" role="doc-biblioentry">
+Tipping, M.E., Bishop, C.M., 1999a. Probabilistic principal component analysis. Journal of the Royal Statistical Society, B 6, 611–622. <a href="https://doi.org/doi:10.1111/1467-9868.00196">https://doi.org/doi:10.1111/1467-9868.00196</a>
+</div>
+<div id="ref-Maaten-tsne08" class="csl-entry" role="doc-biblioentry">
+van der Maaten, L.J.P., Hinton, G.E., 2008. Visualizing data using t-<span>SNE</span>. Journal of Machine Learning Research 9, 2579–2605.
 </div>
 </div>
 
